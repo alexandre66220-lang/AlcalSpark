@@ -2,6 +2,80 @@
    AlcalSpark — Portfolio Page Styles
    ============================================================ */
 
+/* ── Real project images ────────────────────────────────────── */
+.pf-has-img { overflow: hidden; }
+
+.pf-real-img {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 1;
+  transition: transform 0.8s var(--ease-out-expo);
+}
+.pf-wrap:hover .pf-real-img { transform: scale(1.05); }
+
+.pf-has-img .pf-pattern { z-index: 2; }
+.pf-has-img .pf-img-content { z-index: 3; }
+.pf-has-img .pf-hover { z-index: 4; }
+
+/* Nova Studio fallback preview */
+.pf-img-content-light .pf-project-num { color: rgba(59,48,40,0.08); }
+.pf-nova-preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  opacity: 0.6;
+}
+.pf-nova-monogram {
+  font-family: 'Georgia', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #3B3028;
+  width: 56px; height: 56px;
+  border: 1.5px solid #7C6B5E;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: -0.04em;
+}
+.pf-nova-name {
+  font-family: 'Georgia', serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #3B3028;
+  line-height: 1.1;
+  text-align: center;
+  letter-spacing: 0.06em;
+}
+.pf-nova-palette {
+  display: flex;
+  gap: 6px;
+}
+.pf-nova-palette span {
+  width: 20px; height: 20px;
+  border-radius: 50%;
+}
+
+/* Lumenia fallback preview */
+.pf-lumenia-preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.pf-lumenia-diamond { opacity: 0.7; }
+.pf-lumenia-name {
+  font-family: 'Arial', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 300;
+  letter-spacing: 0.25em;
+  color: rgba(255,255,255,0.75);
+}
+
 /* ── Page hero ──────────────────────────────────────────────── */
 .portfolio-hero { background: var(--black); }
 .portfolio-hero .ph-bg {

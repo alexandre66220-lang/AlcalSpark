@@ -60,6 +60,16 @@
 }
 .btn-icon { transition: transform 0.4s var(--ease-spring); }
 .btn:hover .btn-icon { transform: translateX(6px); }
+/* Tagline sub-line below H1 */
+.hero-tagline {
+  font-family: var(--font-display);
+  font-size: clamp(0.85rem, 1vw, 1rem);
+  font-style: italic;
+  color: rgba(201, 168, 76, 0.55);
+  letter-spacing: 0.08em;
+  margin-bottom: 20px;
+}
+
 .hero-scroll-hint {
   display: flex;
   align-items: center;
@@ -91,6 +101,28 @@
   100% { transform: translateY(0); opacity: 1; }
 }
 
+/* Hero logo + floating badges */
+.hero-logo-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+.hero-logo-img {
+  width: 180px; height: 180px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 30px rgba(201, 168, 76, 0.35));
+  animation: heroLogoFloat 5s ease-in-out infinite;
+  transition: filter 0.4s;
+}
+.hero-logo-img:hover {
+  filter: drop-shadow(0 0 50px rgba(201, 168, 76, 0.6));
+}
+@keyframes heroLogoFloat {
+  0%, 100% { transform: translateY(0) rotate(-1deg); }
+  33%       { transform: translateY(-10px) rotate(0.5deg); }
+  66%       { transform: translateY(-5px) rotate(-0.5deg); }
+}
+
 /* Floating badges */
 .hero-badges {
   position: relative;
@@ -98,7 +130,7 @@
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
   align-self: center;
 }
 .float-badge {

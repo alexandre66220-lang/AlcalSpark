@@ -161,77 +161,107 @@ blockquote {
 }
 .tl-item:hover .tl-dot { background: var(--gold); transform: translate(-50%, -50%) scale(1.2); }
 
-/* ── Team ───────────────────────────────────────────────────── */
-.team-section { background: var(--black); }
-.team-grid {
+/* ── Solo brand presentation ────────────────────────────────── */
+.solo-section { background: var(--black); }
+
+.solo-layout {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 80px;
+  align-items: center;
 }
-.team-card {
-  text-align: center;
-  transition: transform 0.4s var(--ease-out-expo);
+
+.solo-visual {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 36px;
 }
-.team-card:hover { transform: translateY(-8px); }
-.tc-photo {
+
+.solo-logo-wrap {
   position: relative;
-  margin-bottom: 20px;
 }
-.tc-placeholder {
-  width: 100%;
-  aspect-ratio: 1;
-  border-radius: 4px;
-  background: rgba(201, 168, 76, 0.1);
-  border: 1px solid rgba(201, 168, 76, 0.15);
+.solo-logo {
+  width: 260px; height: 260px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 40px rgba(201, 168, 76, 0.3));
+  animation: soloFloat 5s ease-in-out infinite;
+}
+@keyframes soloFloat {
+  0%, 100% { transform: translateY(0) rotate(-1deg); }
+  50%       { transform: translateY(-12px) rotate(1deg); }
+}
+
+.solo-badges {
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 24px;
+  background: var(--black-soft);
+  border: 1px solid rgba(201, 168, 76, 0.12);
+  border-radius: 50px;
+  padding: 16px 28px;
+}
+.sb-item { text-align: center; }
+.sb-num {
+  display: block;
   font-family: var(--font-display);
-  font-size: 4rem;
+  font-size: 1.6rem;
   font-weight: 600;
-  color: rgba(201, 168, 76, 0.4);
-  overflow: hidden;
-  transition: border-color 0.4s;
-}
-.team-card:hover .tc-placeholder { border-color: rgba(201, 168, 76, 0.4); }
-.tc-social {
-  position: absolute;
-  bottom: 12px; right: 12px;
-  opacity: 0;
-  transform: translateY(8px);
-  transition: opacity 0.3s, transform 0.3s var(--ease-spring);
-}
-.team-card:hover .tc-social { opacity: 1; transform: translateY(0); }
-.tc-social a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px; height: 32px;
-  background: var(--black);
-  border: 1px solid rgba(201, 168, 76, 0.4);
-  border-radius: 50%;
-  font-family: var(--font-ui);
-  font-size: 0.65rem;
   color: var(--gold);
-  transition: background 0.3s, color 0.3s;
+  line-height: 1;
 }
-.tc-social a:hover { background: var(--gold); color: var(--black); }
-.tc-info h3 {
-  font-family: var(--font-display);
-  font-size: 1.4rem;
-  color: var(--off-white);
-  margin-bottom: 6px;
-}
-.tc-role {
+.sb-label {
   display: block;
   font-family: var(--font-ui);
-  font-size: 0.72rem;
+  font-size: 0.65rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 12px;
+  color: rgba(250, 248, 245, 0.35);
+  margin-top: 4px;
 }
-.tc-info p { font-size: 0.85rem; }
+.sb-sep {
+  width: 1px; height: 36px;
+  background: rgba(201, 168, 76, 0.15);
+}
+
+/* Skills list */
+.solo-skills {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.skill-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 16px 20px;
+  background: var(--black-soft);
+  border: 1px solid rgba(201, 168, 76, 0.08);
+  border-radius: 4px;
+  transition: border-color 0.3s, transform 0.3s var(--ease-spring);
+}
+.skill-item:hover {
+  border-color: rgba(201, 168, 76, 0.3);
+  transform: translateX(6px);
+}
+.skill-icon {
+  font-size: 1rem;
+  color: var(--gold);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.skill-item strong {
+  display: block;
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--off-white);
+  margin-bottom: 3px;
+}
+.skill-item span {
+  font-size: 0.8rem;
+  color: rgba(250, 248, 245, 0.45);
+}
 
 /* ── Stats ──────────────────────────────────────────────────── */
 .section-stats {
@@ -255,8 +285,9 @@ blockquote {
 
 /* ── Responsive ─────────────────────────────────────────────── */
 @media (max-width: 1100px) {
-  .values-grid { grid-template-columns: repeat(2, 1fr); }
-  .team-grid   { grid-template-columns: repeat(2, 1fr); }
+  .values-grid  { grid-template-columns: repeat(2, 1fr); }
+  .solo-layout  { grid-template-columns: 1fr; gap: 50px; }
+  .solo-visual  { flex-direction: row; flex-wrap: wrap; justify-content: center; }
 }
 @media (max-width: 768px) {
   .manifesto-layout { grid-template-columns: 1fr; gap: 50px; }
@@ -267,8 +298,10 @@ blockquote {
   .tl-content { max-width: 100%; }
   .stats-inner { flex-wrap: wrap; gap: 40px; justify-content: center; }
   .stat-separator { display: none; }
+  .solo-logo { width: 180px; height: 180px; }
+  .solo-badges { gap: 16px; padding: 12px 18px; }
 }
 @media (max-width: 480px) {
   .values-grid { grid-template-columns: 1fr; }
-  .team-grid   { grid-template-columns: 1fr 1fr; }
+  .solo-badges { flex-wrap: wrap; border-radius: 12px; justify-content: center; }
 }

@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Services AlcalSpark — Création web, Design UI/UX, Branding, SEO, Marketing Digital, Conseil stratégique. Des solutions digitales premium pour votre marque." />
+  <title>Services — AlcalSpark</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/services.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+</head>
+<body>
+
+  <div class="noise-overlay" aria-hidden="true"></div>
+
+  <div id="loading-screen" aria-hidden="true">
+    <div class="loading-logo">
+      <span style="animation-delay:0s">A</span><span style="animation-delay:.05s">l</span><span style="animation-delay:.1s">c</span><span style="animation-delay:.15s">a</span><span style="animation-delay:.2s">l</span><span style="animation-delay:.25s">S</span><span style="animation-delay:.3s">p</span><span style="animation-delay:.35s">a</span><span style="animation-delay:.4s">r</span><span style="animation-delay:.45s">k</span>
+    </div>
+    <div class="loading-bar-wrap"><div class="loading-bar"></div></div>
+    <span class="loading-percent">0%</span>
+  </div>
+
+  <div id="cursor-dot"  aria-hidden="true"></div>
+  <div id="cursor-ring" aria-hidden="true"></div>
+
+  <div id="page-transition" aria-hidden="true">
+    <div class="curtain-gold"></div>
+    <div class="curtain"></div>
+    <span class="logo-reveal">AlcalSpark</span>
+  </div>
+
+  <div id="scroll-progress" style="position:fixed;top:0;left:0;height:2px;background:var(--gold);z-index:1001;transition:width 0.1s linear;width:0;pointer-events:none;"></div>
+
+  <nav id="navbar" role="navigation">
+    <a href="index.html" class="nav-logo">Alcal<span>Spark</span></a>
+    <ul class="nav-links" role="list">
+      <li><a href="index.html"     class="nav-link">Accueil</a></li>
+      <li><a href="services.html"  class="nav-link active">Services</a></li>
+      <li><a href="portfolio.html" class="nav-link">Portfolio</a></li>
+      <li><a href="about.html"     class="nav-link">À propos</a></li>
+      <li><a href="contact.html"   class="nav-cta">Démarrer un projet</a></li>
+    </ul>
+    <button class="nav-burger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="nav-mobile" aria-hidden="true">
+    <a href="index.html"     class="nav-link">Accueil</a>
+    <a href="services.html"  class="nav-link">Services</a>
+    <a href="portfolio.html" class="nav-link">Portfolio</a>
+    <a href="about.html"     class="nav-link">À propos</a>
+    <a href="contact.html"   class="nav-link">Contact</a>
+  </div>
+
+  <main>
+    <!-- ── PAGE HERO ───────────────────────────────────────── -->
+    <section class="page-hero services-hero" aria-labelledby="ph-title">
+      <canvas id="services-canvas" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:0.5;"></canvas>
+      <div class="ph-bg" aria-hidden="true"></div>
+      <div class="container ph-content">
+        <div class="eyebrow reveal">Ce que nous faisons</div>
+        <h1 id="ph-title" class="reveal delay-1" data-text-reveal>Nos services</h1>
+        <p class="ph-desc reveal delay-2">
+          Des solutions digitales complètes, conçues avec précision pour propulser votre présence en ligne et maximiser votre impact.
+        </p>
+        <div class="ph-breadcrumb reveal delay-3">
+          <a href="index.html">Accueil</a>
+          <span aria-hidden="true">→</span>
+          <span>Services</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SERVICES LIST ────────────────────────────────────── -->
+    <section class="section services-list" aria-label="Nos services">
+      <div class="container">
+
+        <!-- Service 01 -->
+        <div class="service-row" id="web">
+          <div class="sr-header reveal">
+            <div class="sr-num">01</div>
+            <div class="eyebrow">Création Web</div>
+          </div>
+          <div class="sr-body">
+            <div class="sr-info reveal delay-1">
+              <h2>Sites web & Applications<br /><em class="text-gradient">sur mesure</em></h2>
+              <div class="gold-line"></div>
+              <p>Nous concevons des sites web qui combinent esthétique premium et performance technique. Chaque pixel est pensé pour convertir vos visiteurs en clients.</p>
+              <ul class="service-features mt-sm">
+                <li>Sites vitrine & institutionnels</li>
+                <li>E-commerce (Shopify, WooCommerce)</li>
+                <li>Applications web complexes</li>
+                <li>Portails & plateformes SaaS</li>
+                <li>Intégration CMS (WordPress, Strapi)</li>
+              </ul>
+              <div class="tag-list mt-sm">
+                <span class="tag">HTML/CSS</span>
+                <span class="tag">JavaScript</span>
+                <span class="tag">React</span>
+                <span class="tag">Next.js</span>
+                <span class="tag">Shopify</span>
+              </div>
+              <a href="contact.html" class="btn btn-gold mt-md">Demander un devis</a>
+            </div>
+            <div class="sr-visual reveal-right delay-2">
+              <div class="sv-mockup web-mockup">
+                <div class="sv-browser-bar">
+                  <div class="sv-dots"><span></span><span></span><span></span></div>
+                  <div class="sv-url">alcalspark.com/projet</div>
+                </div>
+                <div class="sv-screen">
+                  <div class="sv-nav-mock"></div>
+                  <div class="sv-hero-mock"></div>
+                  <div class="sv-cards-mock">
+                    <div></div><div></div><div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="service-separator"></div>
+
+        <!-- Service 02 -->
+        <div class="service-row reverse" id="design">
+          <div class="sr-header reveal">
+            <div class="sr-num">02</div>
+            <div class="eyebrow">Design UI/UX</div>
+          </div>
+          <div class="sr-body">
+            <div class="sr-visual reveal-left delay-2">
+              <div class="sv-mockup ui-mockup">
+                <div class="ui-phone">
+                  <div class="ui-notch"></div>
+                  <div class="ui-screen">
+                    <div class="ui-header"></div>
+                    <div class="ui-card"></div>
+                    <div class="ui-rows">
+                      <div></div><div></div><div></div>
+                    </div>
+                    <div class="ui-cta-mock"></div>
+                  </div>
+                </div>
+                <div class="ui-elements">
+                  <div class="ui-el-1">Aa</div>
+                  <div class="ui-el-2"></div>
+                  <div class="ui-el-3">
+                    <span></span><span></span><span></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="sr-info reveal delay-1">
+              <h2>Interfaces élégantes<br /><em class="text-gradient">& intuitives</em></h2>
+              <div class="gold-line"></div>
+              <p>Un design exceptionnel va au-delà de l'esthétique. Nous créons des expériences utilisateur qui guident naturellement vos visiteurs vers l'action.</p>
+              <ul class="service-features mt-sm">
+                <li>Wireframes & prototypes interactifs</li>
+                <li>Design system & UI Kit</li>
+                <li>UX Research & tests utilisateurs</li>
+                <li>Responsive design mobile-first</li>
+                <li>Animation & micro-interactions</li>
+              </ul>
+              <div class="tag-list mt-sm">
+                <span class="tag">Figma</span>
+                <span class="tag">Adobe XD</span>
+                <span class="tag">Prototyping</span>
+                <span class="tag">Motion Design</span>
+              </div>
+              <a href="contact.html" class="btn btn-gold mt-md">Demander un devis</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="service-separator"></div>
+
+        <!-- Service 03 -->
+        <div class="service-row" id="branding">
+          <div class="sr-header reveal">
+            <div class="sr-num">03</div>
+            <div class="eyebrow">Branding & Identité</div>
+          </div>
+          <div class="sr-body">
+            <div class="sr-info reveal delay-1">
+              <h2>Votre marque,<br /><em class="text-gradient">réinventée</em></h2>
+              <div class="gold-line"></div>
+              <p>Votre identité visuelle est la première impression que vous laissez. Nous créons des marques mémorables qui transmettent vos valeurs et séduisent votre cible.</p>
+              <ul class="service-features mt-sm">
+                <li>Création de logo & déclinaisons</li>
+                <li>Charte graphique complète</li>
+                <li>Guide de style & brand book</li>
+                <li>Supports de communication</li>
+                <li>Refonte de marque existante</li>
+              </ul>
+              <div class="tag-list mt-sm">
+                <span class="tag">Illustrator</span>
+                <span class="tag">Photoshop</span>
+                <span class="tag">Brand Strategy</span>
+                <span class="tag">Print</span>
+              </div>
+              <a href="contact.html" class="btn btn-gold mt-md">Demander un devis</a>
+            </div>
+            <div class="sr-visual reveal-right delay-2">
+              <div class="sv-mockup brand-mockup">
+                <div class="brand-logo-preview">
+                  <span>A</span><span class="text-gradient" style="-webkit-text-fill-color:var(--gold);">S</span>
+                </div>
+                <div class="brand-colors">
+                  <div style="background:var(--black);" title="Black"></div>
+                  <div style="background:var(--gold);" title="Gold"></div>
+                  <div style="background:var(--beige);" title="Beige"></div>
+                  <div style="background:var(--off-white);" title="Off-white"></div>
+                  <div style="background:var(--brown);" title="Brown"></div>
+                </div>
+                <div class="brand-typo">
+                  <span style="font-family:var(--font-display); font-size:1.2rem;">Cormorant Garamond</span>
+                  <span style="font-family:var(--font-ui); font-size:0.8rem; letter-spacing:0.1em;">RALEWAY</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="service-separator"></div>
+
+        <!-- Service 04 -->
+        <div class="service-row reverse" id="seo">
+          <div class="sr-header reveal">
+            <div class="sr-num">04</div>
+            <div class="eyebrow">SEO & Marketing</div>
+          </div>
+          <div class="sr-body">
+            <div class="sr-visual reveal-left delay-2">
+              <div class="sv-mockup seo-mockup">
+                <div class="seo-chart">
+                  <div class="seo-bars">
+                    <div style="height:30%"></div>
+                    <div style="height:55%"></div>
+                    <div style="height:45%"></div>
+                    <div style="height:70%"></div>
+                    <div style="height:60%"></div>
+                    <div style="height:85%"></div>
+                    <div style="height:95%"></div>
+                  </div>
+                  <div class="seo-line"></div>
+                </div>
+                <div class="seo-kpis">
+                  <div class="seo-kpi">
+                    <span>+247%</span>
+                    <span>Trafic organique</span>
+                  </div>
+                  <div class="seo-kpi">
+                    <span>#1</span>
+                    <span>Position Google</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="sr-info reveal delay-1">
+              <h2>Visibilité maximale,<br /><em class="text-gradient">ROI mesurable</em></h2>
+              <div class="gold-line"></div>
+              <p>Nous développons des stratégies d'acquisition digitale basées sur des données et orientées vers des résultats concrets et durables.</p>
+              <ul class="service-features mt-sm">
+                <li>Audit SEO technique & sémantique</li>
+                <li>Stratégie de contenu & netlinking</li>
+                <li>Campagnes Google & Meta Ads</li>
+                <li>Email marketing & automation</li>
+                <li>Reporting & analytics avancés</li>
+              </ul>
+              <div class="tag-list mt-sm">
+                <span class="tag">Google Ads</span>
+                <span class="tag">Meta Ads</span>
+                <span class="tag">Analytics</span>
+                <span class="tag">SEMrush</span>
+              </div>
+              <a href="contact.html" class="btn btn-gold mt-md">Demander un devis</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="service-separator"></div>
+
+        <!-- Service 05 + 06 -->
+        <div class="services-two-col">
+          <div class="service-small-card card reveal delay-1" id="content">
+            <div class="ssc-icon">✍</div>
+            <div class="ssc-num">05</div>
+            <h3>Contenu & Copywriting</h3>
+            <p>Textes percutants, articles de blog stratégiques et scripts vidéo qui engagent votre audience et boostent votre référencement.</p>
+            <ul class="service-features mt-sm">
+              <li>Rédaction web SEO-friendly</li>
+              <li>Articles de blog & landing pages</li>
+              <li>Scripts vidéo & podcasts</li>
+              <li>Newsletter & email marketing</li>
+            </ul>
+            <a href="contact.html" class="btn btn-outline mt-md">Demander un devis</a>
+          </div>
+          <div class="service-small-card card reveal delay-2" id="conseil">
+            <div class="ssc-icon">◈</div>
+            <div class="ssc-num">06</div>
+            <h3>Conseil Stratégique</h3>
+            <p>Accompagnement personnalisé pour clarifier votre positionnement digital, définir votre roadmap et accélérer votre croissance.</p>
+            <ul class="service-features mt-sm">
+              <li>Audit digital complet</li>
+              <li>Stratégie de transformation digitale</li>
+              <li>Formation & workshops</li>
+              <li>Suivi & mentorat</li>
+            </ul>
+            <a href="contact.html" class="btn btn-outline mt-md">Demander un devis</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── PRICING ────────────────────────────────────────── -->
+    <section class="section pricing-section" aria-labelledby="pricing-title">
+      <div class="container">
+        <div class="section-header text-center">
+          <div class="eyebrow reveal">Tarifs</div>
+          <h2 id="pricing-title" class="reveal delay-1">Des formules adaptées<br /><em class="text-gradient">à vos besoins</em></h2>
+          <div class="gold-line-center reveal delay-2"></div>
+          <p class="reveal delay-3">Chaque projet est unique. Ces formules sont des points de départ — nous adaptons toujours à vos besoins spécifiques.</p>
+        </div>
+
+        <div class="pricing-grid mt-lg">
+          <div class="pricing-card card reveal delay-1">
+            <div class="pc-badge">Starter</div>
+            <div class="pc-price">
+              <span class="pc-from">À partir de</span>
+              <span class="pc-num">1 500<span class="pc-currency">€</span></span>
+            </div>
+            <div class="gold-line"></div>
+            <ul class="pc-features">
+              <li>Site vitrine 5 pages</li>
+              <li>Design sur mesure</li>
+              <li>Responsive mobile</li>
+              <li>SEO de base</li>
+              <li>Hébergement 1 an inclus</li>
+            </ul>
+            <a href="contact.html" class="btn btn-outline" style="width:100%; justify-content:center;">Démarrer</a>
+          </div>
+
+          <div class="pricing-card card featured reveal delay-2">
+            <div class="pc-featured-label">Populaire</div>
+            <div class="pc-badge">Premium</div>
+            <div class="pc-price">
+              <span class="pc-from">À partir de</span>
+              <span class="pc-num">3 500<span class="pc-currency">€</span></span>
+            </div>
+            <div class="gold-line"></div>
+            <ul class="pc-features">
+              <li>Site jusqu'à 15 pages</li>
+              <li>Design UI/UX premium</li>
+              <li>Animations & interactions</li>
+              <li>SEO avancé + suivi 3 mois</li>
+              <li>CMS intégré (WordPress)</li>
+              <li>Formation incluse</li>
+            </ul>
+            <a href="contact.html" class="btn btn-gold" style="width:100%; justify-content:center;">Démarrer</a>
+          </div>
+
+          <div class="pricing-card card reveal delay-3">
+            <div class="pc-badge">Sur mesure</div>
+            <div class="pc-price">
+              <span class="pc-from">Devis personnalisé</span>
+              <span class="pc-num" style="font-size:2.5rem;">Sur devis</span>
+            </div>
+            <div class="gold-line"></div>
+            <ul class="pc-features">
+              <li>Projets complexes illimités</li>
+              <li>Application web / SaaS</li>
+              <li>E-commerce complet</li>
+              <li>Branding complet</li>
+              <li>Accompagnement long terme</li>
+              <li>Support prioritaire dédié</li>
+            </ul>
+            <a href="contact.html" class="btn btn-outline" style="width:100%; justify-content:center;">Nous contacter</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CTA ────────────────────────────────────────────── -->
+    <section class="section" style="background: var(--black-soft);" aria-label="Appel à l'action">
+      <div class="container text-center">
+        <div class="eyebrow reveal" style="justify-content:center;">Prêt à démarrer ?</div>
+        <h2 class="reveal delay-1">Discutons de<br /><em class="text-gradient">votre projet</em></h2>
+        <p class="reveal delay-2" style="max-width:420px; margin: 16px auto 36px;">
+          Consultation gratuite de 30 minutes pour définir ensemble la meilleure approche.
+        </p>
+        <div class="reveal delay-3">
+          <a href="contact.html" class="btn btn-gold">Prendre rendez-vous</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="footer" role="contentinfo">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">Alcal<span>Spark</span></a>
+        <p>Agence digitale premium spécialisée dans la création de sites web, le design UI/UX et le marketing digital.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul role="list">
+          <li><a href="#web">Création Web</a></li>
+          <li><a href="#design">Design UI/UX</a></li>
+          <li><a href="#branding">Branding</a></li>
+          <li><a href="#seo">SEO & Marketing</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Agence</h4>
+        <ul role="list">
+          <li><a href="about.html">À propos</a></li>
+          <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="mentions-legales.html">Mentions légales</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul role="list">
+          <li><a href="mailto:[EMAIL]">[EMAIL]</a></li>
+          <li><a href="tel:[TÉLÉPHONE]">[TÉLÉPHONE]</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© <span id="year">2024</span> AlcalSpark. Tous droits réservés.</p>
+      <a href="mentions-legales.html" style="font-size:0.8rem; color:rgba(250,248,245,0.4);">Mentions légales</a>
+    </div>
+  </footer>
+
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" crossorigin="anonymous"></script>
+  <script src="js/main.js"></script>
+  <script src="js/three-scene.js"></script>
+</body>
+</html>

@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Contactez AlcalSpark — Démarrez votre projet digital avec nous. Consultation gratuite, devis personnalisé, réponse sous 24h." />
+  <title>Contact — AlcalSpark</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/contact.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+</head>
+<body>
+
+  <div class="noise-overlay" aria-hidden="true"></div>
+
+  <div id="loading-screen" aria-hidden="true">
+    <div class="loading-logo">
+      <span style="animation-delay:0s">A</span><span style="animation-delay:.05s">l</span><span style="animation-delay:.1s">c</span><span style="animation-delay:.15s">a</span><span style="animation-delay:.2s">l</span><span style="animation-delay:.25s">S</span><span style="animation-delay:.3s">p</span><span style="animation-delay:.35s">a</span><span style="animation-delay:.4s">r</span><span style="animation-delay:.45s">k</span>
+    </div>
+    <div class="loading-bar-wrap"><div class="loading-bar"></div></div>
+    <span class="loading-percent">0%</span>
+  </div>
+
+  <div id="cursor-dot"  aria-hidden="true"></div>
+  <div id="cursor-ring" aria-hidden="true"></div>
+
+  <div id="page-transition" aria-hidden="true">
+    <div class="curtain-gold"></div>
+    <div class="curtain"></div>
+    <span class="logo-reveal">AlcalSpark</span>
+  </div>
+
+  <div id="scroll-progress" style="position:fixed;top:0;left:0;height:2px;background:var(--gold);z-index:1001;transition:width 0.1s linear;width:0;pointer-events:none;"></div>
+
+  <nav id="navbar" role="navigation">
+    <a href="index.html" class="nav-logo">Alcal<span>Spark</span></a>
+    <ul class="nav-links" role="list">
+      <li><a href="index.html"     class="nav-link">Accueil</a></li>
+      <li><a href="services.html"  class="nav-link">Services</a></li>
+      <li><a href="portfolio.html" class="nav-link">Portfolio</a></li>
+      <li><a href="about.html"     class="nav-link">À propos</a></li>
+      <li><a href="contact.html"   class="nav-cta active-cta">Démarrer un projet</a></li>
+    </ul>
+    <button class="nav-burger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="nav-mobile" aria-hidden="true">
+    <a href="index.html"     class="nav-link">Accueil</a>
+    <a href="services.html"  class="nav-link">Services</a>
+    <a href="portfolio.html" class="nav-link">Portfolio</a>
+    <a href="about.html"     class="nav-link">À propos</a>
+    <a href="contact.html"   class="nav-link active">Contact</a>
+  </div>
+
+  <main>
+    <!-- ── PAGE HERO ─────────────────────────────────────────── -->
+    <section class="page-hero contact-hero" aria-labelledby="ph-title">
+      <div class="ph-bg" aria-hidden="true"></div>
+      <div class="container ph-content">
+        <div class="eyebrow reveal">Démarrons ensemble</div>
+        <h1 id="ph-title" class="reveal delay-1">Contact</h1>
+        <p class="ph-desc reveal delay-2">
+          Parlez-nous de votre projet. Nous vous répondons sous 24h avec une première vision et un devis transparent.
+        </p>
+        <div class="ph-breadcrumb reveal delay-3">
+          <a href="index.html">Accueil</a>
+          <span aria-hidden="true">→</span>
+          <span>Contact</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CONTACT LAYOUT ─────────────────────────────────────── -->
+    <section class="section contact-section" aria-label="Formulaire de contact">
+      <div class="container">
+        <div class="contact-layout">
+
+          <!-- LEFT: Info -->
+          <div class="contact-info reveal">
+            <div class="eyebrow">Nos coordonnées</div>
+            <h2>Travaillons<br /><em class="text-gradient">ensemble</em></h2>
+            <div class="gold-line"></div>
+            <p>Que vous ayez un projet défini ou une simple idée, nous sommes là pour vous accompagner à chaque étape.</p>
+
+            <div class="contact-cards">
+              <div class="contact-card">
+                <div class="cc-icon">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M2 4a2 2 0 012-2h12a2 2 0 012 2v12a2 2 0 01-2 2H4a2 2 0 01-2-2V4z" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M2 7l8 5 8-5" stroke="currentColor" stroke-width="1.5"/>
+                  </svg>
+                </div>
+                <div>
+                  <span class="cc-label">Email</span>
+                  <a href="mailto:[EMAIL]" class="cc-value">[EMAIL]</a>
+                </div>
+              </div>
+
+              <div class="contact-card">
+                <div class="cc-icon">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M4 2a2 2 0 00-2 2v1c0 7.18 5.82 13 13 13h1a2 2 0 002-2v-3.5a.5.5 0 00-.5-.5h-3a.5.5 0 00-.5.5V14a9 9 0 01-9-9h.5a.5.5 0 00.5-.5v-3A.5.5 0 006.5 1H4z" stroke="currentColor" stroke-width="1.5"/>
+                  </svg>
+                </div>
+                <div>
+                  <span class="cc-label">Téléphone</span>
+                  <a href="tel:[TÉLÉPHONE]" class="cc-value">[TÉLÉPHONE]</a>
+                </div>
+              </div>
+
+              <div class="contact-card">
+                <div class="cc-icon">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M10 2C6.686 2 4 4.686 4 8c0 5 6 10 6 10s6-5 6-10c0-3.314-2.686-6-6-6z" stroke="currentColor" stroke-width="1.5"/>
+                    <circle cx="10" cy="8" r="2" stroke="currentColor" stroke-width="1.5"/>
+                  </svg>
+                </div>
+                <div>
+                  <span class="cc-label">Adresse</span>
+                  <span class="cc-value">[ADRESSE COMPLÈTE]</span>
+                </div>
+              </div>
+
+              <div class="contact-card">
+                <div class="cc-icon">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M10 6v5l3 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <div>
+                  <span class="cc-label">Disponibilité</span>
+                  <span class="cc-value">Lun–Ven, 9h–18h</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="contact-promise">
+              <div class="cp-item">
+                <span class="cp-icon">✦</span>
+                <span>Réponse sous 24h</span>
+              </div>
+              <div class="cp-item">
+                <span class="cp-icon">✦</span>
+                <span>Consultation gratuite 30 min</span>
+              </div>
+              <div class="cp-item">
+                <span class="cp-icon">✦</span>
+                <span>Devis transparent & personnalisé</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT: Form -->
+          <div class="contact-form-wrap reveal delay-2">
+            <form id="contact-form" class="contact-form" novalidate aria-label="Formulaire de contact">
+              <div class="form-row">
+                <div class="form-group">
+                  <input type="text" id="fname" name="fname" placeholder="Prénom" required autocomplete="given-name" />
+                  <label for="fname">Prénom</label>
+                  <div class="form-underline"></div>
+                </div>
+                <div class="form-group">
+                  <input type="text" id="lname" name="lname" placeholder="Nom" required autocomplete="family-name" />
+                  <label for="lname">Nom</label>
+                  <div class="form-underline"></div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <input type="email" id="email" name="email" placeholder="Email" required autocomplete="email" />
+                <label for="email">Adresse email</label>
+                <div class="form-underline"></div>
+              </div>
+
+              <div class="form-group">
+                <input type="text" id="company" name="company" placeholder="Entreprise" autocomplete="organization" />
+                <label for="company">Entreprise (optionnel)</label>
+                <div class="form-underline"></div>
+              </div>
+
+              <div class="form-group form-select-group">
+                <label class="select-label" for="service">Service souhaité</label>
+                <div class="select-wrap">
+                  <select id="service" name="service">
+                    <option value="">Choisissez un service</option>
+                    <option value="web">Création Web</option>
+                    <option value="design">Design UI/UX</option>
+                    <option value="branding">Branding & Identité</option>
+                    <option value="seo">SEO & Marketing</option>
+                    <option value="content">Contenu & Copywriting</option>
+                    <option value="conseil">Conseil Stratégique</option>
+                    <option value="autre">Autre / Je ne sais pas encore</option>
+                  </select>
+                  <div class="select-arrow" aria-hidden="true">↓</div>
+                </div>
+              </div>
+
+              <div class="form-group form-select-group">
+                <label class="select-label" for="budget">Budget estimé</label>
+                <div class="select-wrap">
+                  <select id="budget" name="budget">
+                    <option value="">Sélectionnez votre budget</option>
+                    <option value="small">Moins de 1 500 €</option>
+                    <option value="starter">1 500 € – 3 500 €</option>
+                    <option value="premium">3 500 € – 8 000 €</option>
+                    <option value="enterprise">Plus de 8 000 €</option>
+                    <option value="unknown">Je ne sais pas encore</option>
+                  </select>
+                  <div class="select-arrow" aria-hidden="true">↓</div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <textarea id="message" name="message" placeholder="Message" rows="5" required></textarea>
+                <label for="message">Décrivez votre projet</label>
+                <div class="form-underline"></div>
+              </div>
+
+              <!-- RGPD -->
+              <div class="form-rgpd">
+                <label class="checkbox-wrap">
+                  <input type="checkbox" id="rgpd" name="rgpd" required />
+                  <span class="checkbox-custom" aria-hidden="true"></span>
+                  <span>J'accepte que mes données soient utilisées pour répondre à ma demande, conformément à la <a href="mentions-legales.html">politique de confidentialité</a>.</span>
+                </label>
+              </div>
+
+              <button type="submit" class="btn btn-gold form-submit" style="width:100%; justify-content:center;" aria-label="Envoyer le message">
+                <span class="submit-text">Envoyer le message</span>
+                <span class="submit-icon" aria-hidden="true">→</span>
+              </button>
+
+              <div class="form-success" id="form-success" aria-live="polite" role="alert" hidden>
+                <span class="fs-icon">✦</span>
+                <strong>Message envoyé !</strong>
+                <p>Merci pour votre message. Nous vous répondrons dans les 24h.</p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── FAQ ────────────────────────────────────────────────── -->
+    <section class="section faq-section" aria-labelledby="faq-title">
+      <div class="container">
+        <div class="section-header text-center">
+          <div class="eyebrow reveal">Questions fréquentes</div>
+          <h2 id="faq-title" class="reveal delay-1">Tout ce que vous<br /><em class="text-gradient">devez savoir</em></h2>
+          <div class="gold-line-center reveal delay-2"></div>
+        </div>
+
+        <div class="faq-list mt-lg" id="faq-list">
+          <div class="faq-item reveal delay-1">
+            <button class="faq-question" aria-expanded="false">
+              <span>Combien de temps faut-il pour créer un site web ?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" hidden>
+              <p>Les délais varient selon la complexité du projet. Un site vitrine standard prend 2 à 4 semaines, un e-commerce 4 à 8 semaines, et une application web complexe 2 à 4 mois. Nous établissons toujours un planning précis dès le début du projet.</p>
+            </div>
+          </div>
+
+          <div class="faq-item reveal delay-2">
+            <button class="faq-question" aria-expanded="false">
+              <span>Comment se déroule la collaboration ?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" hidden>
+              <p>Notre processus se déroule en 4 étapes : Découverte (brief, recherches), Stratégie (maquettes, validation), Création (développement, révisions), Lancement (tests, mise en ligne, formation). Vous êtes impliqué à chaque étape avec des points réguliers.</p>
+            </div>
+          </div>
+
+          <div class="faq-item reveal delay-3">
+            <button class="faq-question" aria-expanded="false">
+              <span>Proposez-vous de la maintenance après la livraison ?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" hidden>
+              <p>Oui, nous proposons des contrats de maintenance mensuels qui incluent les mises à jour de sécurité, les sauvegardes, les petites modifications et un support prioritaire. Nous restons disponibles pour accompagner votre croissance sur le long terme.</p>
+            </div>
+          </div>
+
+          <div class="faq-item reveal delay-4">
+            <button class="faq-question" aria-expanded="false">
+              <span>Est-ce que je pourrai modifier mon site moi-même ?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" hidden>
+              <p>Absolument. Nous intégrons un CMS (WordPress, Strapi ou autre selon le projet) qui vous permet de modifier le contenu facilement sans compétences techniques. Une formation est incluse dans chaque projet Premium.</p>
+            </div>
+          </div>
+
+          <div class="faq-item reveal delay-5">
+            <button class="faq-question" aria-expanded="false">
+              <span>Quels modes de paiement acceptez-vous ?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" hidden>
+              <p>Nous acceptons les virements bancaires. Le paiement est généralement structuré en 3 versements : 30% à la signature du devis, 40% au lancement du développement, 30% à la livraison finale.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="footer" role="contentinfo">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">Alcal<span>Spark</span></a>
+        <p>Agence digitale premium spécialisée dans la création de sites web, le design UI/UX et le marketing digital.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul role="list">
+          <li><a href="services.html">Création Web</a></li>
+          <li><a href="services.html">Design UI/UX</a></li>
+          <li><a href="services.html">Branding</a></li>
+          <li><a href="services.html">SEO & Marketing</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Agence</h4>
+        <ul role="list">
+          <li><a href="about.html">À propos</a></li>
+          <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="mentions-legales.html">Mentions légales</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul role="list">
+          <li><a href="mailto:[EMAIL]">[EMAIL]</a></li>
+          <li><a href="tel:[TÉLÉPHONE]">[TÉLÉPHONE]</a></li>
+          <li style="color: rgba(250,248,245,0.4); font-size: 0.88rem;">[ADRESSE COMPLÈTE]</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© <span id="year">2024</span> AlcalSpark. Tous droits réservés.</p>
+      <a href="mentions-legales.html" style="font-size:0.8rem; color:rgba(250,248,245,0.4);">Mentions légales</a>
+    </div>
+  </footer>
+
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" crossorigin="anonymous"></script>
+  <script src="js/main.js"></script>
+  <script src="js/three-scene.js"></script>
+  <script>
+    // ── Form handling ──────────────────────────────────────────
+    (function () {
+      const form    = document.getElementById('contact-form');
+      const success = document.getElementById('form-success');
+      const submit  = form?.querySelector('.form-submit');
+
+      if (!form) return;
+
+      form.addEventListener('submit', async e => {
+        e.preventDefault();
+        if (!form.checkValidity()) { form.reportValidity(); return; }
+
+        submit.disabled = true;
+        submit.querySelector('.submit-text').textContent = 'Envoi en cours…';
+
+        // Simulate API call delay
+        await new Promise(r => setTimeout(r, 1800));
+
+        form.style.opacity = '0';
+        form.style.transform = 'translateY(-20px)';
+        form.style.transition = 'opacity 0.4s, transform 0.4s';
+        setTimeout(() => {
+          form.hidden = true;
+          success.hidden = false;
+          success.style.animation = 'fadeInUp 0.6s var(--ease-out-expo) forwards';
+        }, 400);
+      });
+
+      // ── FAQ accordion ────────────────────────────────────────
+      document.querySelectorAll('.faq-question').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const isOpen = btn.getAttribute('aria-expanded') === 'true';
+          const answer = btn.nextElementSibling;
+          const icon   = btn.querySelector('.faq-icon');
+
+          // Close all
+          document.querySelectorAll('.faq-question').forEach(b => {
+            b.setAttribute('aria-expanded', 'false');
+            b.nextElementSibling.hidden = true;
+            b.querySelector('.faq-icon').textContent = '+';
+            b.closest('.faq-item').classList.remove('open');
+          });
+
+          if (!isOpen) {
+            btn.setAttribute('aria-expanded', 'true');
+            answer.hidden = false;
+            icon.textContent = '−';
+            btn.closest('.faq-item').classList.add('open');
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

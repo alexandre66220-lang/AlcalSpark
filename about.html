@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="À propos d'AlcalSpark — Notre histoire, notre équipe, nos valeurs. Une agence digitale premium animée par la passion du détail et l'excellence." />
+  <title>À propos — AlcalSpark</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/about.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+</head>
+<body>
+
+  <div class="noise-overlay" aria-hidden="true"></div>
+
+  <div id="loading-screen" aria-hidden="true">
+    <div class="loading-logo">
+      <span style="animation-delay:0s">A</span><span style="animation-delay:.05s">l</span><span style="animation-delay:.1s">c</span><span style="animation-delay:.15s">a</span><span style="animation-delay:.2s">l</span><span style="animation-delay:.25s">S</span><span style="animation-delay:.3s">p</span><span style="animation-delay:.35s">a</span><span style="animation-delay:.4s">r</span><span style="animation-delay:.45s">k</span>
+    </div>
+    <div class="loading-bar-wrap"><div class="loading-bar"></div></div>
+    <span class="loading-percent">0%</span>
+  </div>
+
+  <div id="cursor-dot"  aria-hidden="true"></div>
+  <div id="cursor-ring" aria-hidden="true"></div>
+
+  <div id="page-transition" aria-hidden="true">
+    <div class="curtain-gold"></div>
+    <div class="curtain"></div>
+    <span class="logo-reveal">AlcalSpark</span>
+  </div>
+
+  <div id="scroll-progress" style="position:fixed;top:0;left:0;height:2px;background:var(--gold);z-index:1001;transition:width 0.1s linear;width:0;pointer-events:none;"></div>
+
+  <nav id="navbar" role="navigation">
+    <a href="index.html" class="nav-logo">Alcal<span>Spark</span></a>
+    <ul class="nav-links" role="list">
+      <li><a href="index.html"     class="nav-link">Accueil</a></li>
+      <li><a href="services.html"  class="nav-link">Services</a></li>
+      <li><a href="portfolio.html" class="nav-link">Portfolio</a></li>
+      <li><a href="about.html"     class="nav-link active">À propos</a></li>
+      <li><a href="contact.html"   class="nav-cta">Démarrer un projet</a></li>
+    </ul>
+    <button class="nav-burger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="nav-mobile" aria-hidden="true">
+    <a href="index.html"     class="nav-link">Accueil</a>
+    <a href="services.html"  class="nav-link">Services</a>
+    <a href="portfolio.html" class="nav-link">Portfolio</a>
+    <a href="about.html"     class="nav-link">À propos</a>
+    <a href="contact.html"   class="nav-link">Contact</a>
+  </div>
+
+  <main>
+    <!-- ── PAGE HERO ─────────────────────────────────────────── -->
+    <section class="page-hero about-hero" aria-labelledby="ph-title">
+      <canvas id="about-canvas" aria-hidden="true" style="position:absolute;right:0;top:0;width:50%;height:100%;z-index:0;pointer-events:none;opacity:0.4;"></canvas>
+      <div class="ph-bg" aria-hidden="true"></div>
+      <div class="container ph-content">
+        <div class="eyebrow reveal">Notre histoire</div>
+        <h1 id="ph-title" class="reveal delay-1">À propos</h1>
+        <p class="ph-desc reveal delay-2">
+          Nous sommes AlcalSpark — une agence digitale premium animée par une obsession pour le détail, la créativité et les résultats.
+        </p>
+        <div class="ph-breadcrumb reveal delay-3">
+          <a href="index.html">Accueil</a>
+          <span aria-hidden="true">→</span>
+          <span>À propos</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── MANIFESTE ─────────────────────────────────────────── -->
+    <section class="section manifesto-section" aria-labelledby="manifesto-title">
+      <div class="container">
+        <div class="manifesto-layout">
+          <div class="manifesto-quote reveal">
+            <div class="mq-mark" aria-hidden="true">"</div>
+            <blockquote>
+              Nous croyons que le digital bien fait peut transformer une entreprise. Pas juste lui donner un site — lui donner une voix, une présence, une identité qui dure.
+            </blockquote>
+            <div class="mq-author">
+              <div class="mq-line"></div>
+              <span>— L'équipe AlcalSpark</span>
+            </div>
+          </div>
+          <div class="manifesto-text reveal delay-2">
+            <div class="eyebrow">Notre philosophie</div>
+            <h2 id="manifesto-title">L'excellence<br /><em class="text-gradient">est notre standard</em></h2>
+            <div class="gold-line"></div>
+            <p>Fondée avec la conviction que chaque entreprise mérite une présence digitale à la hauteur de ses ambitions, AlcalSpark est née de la fusion entre créativité artistique et rigueur technique.</p>
+            <p style="margin-top:16px;">Nous ne faisons pas de sites. Nous construisons des expériences numériques qui parlent à vos clients, les séduisent et les convertissent.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── MARQUEE ────────────────────────────────────────────── -->
+    <div class="marquee-track" aria-hidden="true">
+      <div class="marquee-inner">
+        <span>Créativité</span><span class="accent">✦</span>
+        <span>Excellence</span><span class="accent">✦</span>
+        <span>Innovation</span><span class="accent">✦</span>
+        <span>Passion</span><span class="accent">✦</span>
+        <span>Précision</span><span class="accent">✦</span>
+        <span>Impact</span><span class="accent">✦</span>
+        <span>Créativité</span><span class="accent">✦</span>
+        <span>Excellence</span><span class="accent">✦</span>
+        <span>Innovation</span><span class="accent">✦</span>
+        <span>Passion</span><span class="accent">✦</span>
+        <span>Précision</span><span class="accent">✦</span>
+        <span>Impact</span><span class="accent">✦</span>
+      </div>
+    </div>
+
+    <!-- ── VALEURS ─────────────────────────────────────────────── -->
+    <section class="section values-section" aria-labelledby="values-title">
+      <div class="container">
+        <div class="section-header text-center">
+          <div class="eyebrow reveal">Ce qui nous guide</div>
+          <h2 id="values-title" class="reveal delay-1">Nos valeurs</h2>
+          <div class="gold-line-center reveal delay-2"></div>
+        </div>
+
+        <div class="values-grid mt-lg">
+          <div class="value-card reveal delay-1">
+            <div class="vc-icon">◈</div>
+            <h3>Excellence</h3>
+            <p>Nous ne livrons que ce dont nous sommes fiers. Chaque pixel, chaque ligne de code, chaque mot est soigné avec la même exigence.</p>
+          </div>
+          <div class="value-card reveal delay-2">
+            <div class="vc-icon">✦</div>
+            <h3>Créativité</h3>
+            <p>Les meilleures solutions naissent d'une pensée audacieuse. Nous repoussons les limites du design pour créer des expériences mémorables.</p>
+          </div>
+          <div class="value-card reveal delay-3">
+            <div class="vc-icon">◎</div>
+            <h3>Transparence</h3>
+            <p>Des prix clairs, des délais respectés, une communication ouverte. Nous sommes des partenaires fiables à chaque étape de votre projet.</p>
+          </div>
+          <div class="value-card reveal delay-4">
+            <div class="vc-icon">⟡</div>
+            <h3>Impact</h3>
+            <p>Notre objectif ultime : que votre investissement soit rentable. Chaque décision est orientée vers des résultats mesurables et durables.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── TIMELINE ────────────────────────────────────────────── -->
+    <section class="section timeline-section" aria-labelledby="timeline-title">
+      <div class="container">
+        <div class="section-header">
+          <div class="eyebrow reveal">Notre parcours</div>
+          <h2 id="timeline-title" class="reveal delay-1">Les étapes clés<br /><em class="text-gradient">d'AlcalSpark</em></h2>
+        </div>
+
+        <div class="timeline mt-lg">
+          <div class="timeline-line" aria-hidden="true"></div>
+
+          <div class="tl-item tl-left reveal">
+            <div class="tl-dot" aria-hidden="true"></div>
+            <div class="tl-content card">
+              <span class="tl-year">2019</span>
+              <h4>Fondation</h4>
+              <p>Création d'AlcalSpark avec une vision claire : rendre le design premium accessible à toutes les entreprises ambitieuses.</p>
+            </div>
+          </div>
+
+          <div class="tl-item tl-right reveal delay-1">
+            <div class="tl-dot" aria-hidden="true"></div>
+            <div class="tl-content card">
+              <span class="tl-year">2020</span>
+              <h4>Premiers grands projets</h4>
+              <p>Livraison de notre premier projet e-commerce à 6 figures de CA. Notre réputation commence à se construire.</p>
+            </div>
+          </div>
+
+          <div class="tl-item tl-left reveal delay-2">
+            <div class="tl-dot" aria-hidden="true"></div>
+            <div class="tl-content card">
+              <span class="tl-year">2021</span>
+              <h4>Expansion des services</h4>
+              <p>Lancement de notre pôle Marketing Digital et SEO. +40 clients dans notre portefeuille en 12 mois.</p>
+            </div>
+          </div>
+
+          <div class="tl-item tl-right reveal delay-3">
+            <div class="tl-dot" aria-hidden="true"></div>
+            <div class="tl-content card">
+              <span class="tl-year">2022</span>
+              <h4>Label d'excellence</h4>
+              <p>Reconnaissance par nos pairs et premiers prix dans des concours de design et d'innovation digitale.</p>
+            </div>
+          </div>
+
+          <div class="tl-item tl-left reveal delay-4">
+            <div class="tl-dot" aria-hidden="true"></div>
+            <div class="tl-content card">
+              <span class="tl-year">2023</span>
+              <h4>100+ projets livrés</h4>
+              <p>Cap symbolique franchi avec 100 projets livrés et un taux de satisfaction client de 98%.</p>
+            </div>
+          </div>
+
+          <div class="tl-item tl-right reveal delay-5">
+            <div class="tl-dot active" aria-hidden="true"></div>
+            <div class="tl-content card featured">
+              <span class="tl-year tl-year-gold">2024 — Aujourd'hui</span>
+              <h4>Nouvelle dimension</h4>
+              <p>AlcalSpark entre dans une nouvelle ère avec des projets internationaux et des technologies de pointe (IA, 3D, XR).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── ÉQUIPE ──────────────────────────────────────────────── -->
+    <section class="section team-section" aria-labelledby="team-title">
+      <div class="container">
+        <div class="section-header text-center">
+          <div class="eyebrow reveal">Les visages derrière AlcalSpark</div>
+          <h2 id="team-title" class="reveal delay-1">Notre équipe</h2>
+          <div class="gold-line-center reveal delay-2"></div>
+          <p class="reveal delay-3" style="max-width:480px; margin: 0 auto;">
+            Une équipe passionnée, multidisciplinaire, qui donne le meilleur d'elle-même sur chaque projet.
+          </p>
+        </div>
+
+        <div class="team-grid mt-lg">
+          <div class="team-card reveal delay-1">
+            <div class="tc-photo">
+              <div class="tc-placeholder">
+                <span>A</span>
+              </div>
+              <div class="tc-social">
+                <a href="#" aria-label="LinkedIn">in</a>
+              </div>
+            </div>
+            <div class="tc-info">
+              <h3>[Prénom NOM]</h3>
+              <span class="tc-role">Fondateur & Directeur Créatif</span>
+              <p>Visionnaire à la tête d'AlcalSpark, il orchestre chaque projet avec exigence et passion.</p>
+            </div>
+          </div>
+
+          <div class="team-card reveal delay-2">
+            <div class="tc-photo">
+              <div class="tc-placeholder" style="background: rgba(74, 46, 26, 0.3);">
+                <span>D</span>
+              </div>
+              <div class="tc-social">
+                <a href="#" aria-label="LinkedIn">in</a>
+              </div>
+            </div>
+            <div class="tc-info">
+              <h3>[Prénom NOM]</h3>
+              <span class="tc-role">Lead Designer UI/UX</span>
+              <p>Artiste du pixel, elle transforme les briefs les plus complexes en interfaces épurées.</p>
+            </div>
+          </div>
+
+          <div class="team-card reveal delay-3">
+            <div class="tc-photo">
+              <div class="tc-placeholder" style="background: rgba(201, 168, 76, 0.15);">
+                <span>L</span>
+              </div>
+              <div class="tc-social">
+                <a href="#" aria-label="LinkedIn">in</a>
+              </div>
+            </div>
+            <div class="tc-info">
+              <h3>[Prénom NOM]</h3>
+              <span class="tc-role">Développeur Full-Stack</span>
+              <p>Architecte du code, il donne vie aux designs avec précision et performance.</p>
+            </div>
+          </div>
+
+          <div class="team-card reveal delay-4">
+            <div class="tc-photo">
+              <div class="tc-placeholder" style="background: rgba(12, 12, 40, 0.6);">
+                <span>M</span>
+              </div>
+              <div class="tc-social">
+                <a href="#" aria-label="LinkedIn">in</a>
+              </div>
+            </div>
+            <div class="tc-info">
+              <h3>[Prénom NOM]</h3>
+              <span class="tc-role">Stratège Marketing</span>
+              <p>Data-driven et créatif, il conçoit les stratégies qui font croître vos marques.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── STATS ──────────────────────────────────────────────── -->
+    <section class="section-stats" aria-label="Nos chiffres">
+      <div class="stats-inner">
+        <div class="stat-item reveal">
+          <span class="stat-number" data-count="120" data-suffix="+">0+</span>
+          <span class="stat-label">Projets réalisés</span>
+        </div>
+        <div class="stat-separator" aria-hidden="true"></div>
+        <div class="stat-item reveal delay-1">
+          <span class="stat-number" data-count="5" data-suffix=" ans">0 ans</span>
+          <span class="stat-label">D'expertise</span>
+        </div>
+        <div class="stat-separator" aria-hidden="true"></div>
+        <div class="stat-item reveal delay-2">
+          <span class="stat-number" data-count="98" data-suffix="%">0%</span>
+          <span class="stat-label">Satisfaction client</span>
+        </div>
+        <div class="stat-separator" aria-hidden="true"></div>
+        <div class="stat-item reveal delay-3">
+          <span class="stat-number" data-count="4" data-suffix="">0</span>
+          <span class="stat-label">Experts passionnés</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CTA ────────────────────────────────────────────────── -->
+    <section class="section" style="background: var(--black);" aria-label="Appel à l'action">
+      <div class="container text-center">
+        <div class="eyebrow reveal" style="justify-content:center;">Rejoignez nos clients</div>
+        <h2 class="reveal delay-1">Prêt à travailler<br /><em class="text-gradient">avec nous ?</em></h2>
+        <p class="reveal delay-2" style="max-width:420px; margin: 16px auto 36px;">
+          Chaque grand projet commence par une conversation. Parlons du vôtre dès aujourd'hui.
+        </p>
+        <div class="reveal delay-3" style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+          <a href="contact.html" class="btn btn-gold">Nous contacter</a>
+          <a href="portfolio.html" class="btn btn-outline">Voir le portfolio</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="footer" role="contentinfo">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">Alcal<span>Spark</span></a>
+        <p>Agence digitale premium spécialisée dans la création de sites web, le design UI/UX et le marketing digital.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul role="list">
+          <li><a href="services.html">Création Web</a></li>
+          <li><a href="services.html">Design UI/UX</a></li>
+          <li><a href="services.html">Branding</a></li>
+          <li><a href="services.html">SEO & Marketing</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Agence</h4>
+        <ul role="list">
+          <li><a href="about.html">À propos</a></li>
+          <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="mentions-legales.html">Mentions légales</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul role="list">
+          <li><a href="mailto:[EMAIL]">[EMAIL]</a></li>
+          <li><a href="tel:[TÉLÉPHONE]">[TÉLÉPHONE]</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© <span id="year">2024</span> AlcalSpark. Tous droits réservés.</p>
+      <a href="mentions-legales.html" style="font-size:0.8rem; color:rgba(250,248,245,0.4);">Mentions légales</a>
+    </div>
+  </footer>
+
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" crossorigin="anonymous"></script>
+  <script src="js/main.js"></script>
+  <script src="js/three-scene.js"></script>
+</body>
+</html>

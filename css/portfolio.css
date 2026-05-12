@@ -1,0 +1,196 @@
+/* ============================================================
+   AlcalSpark — Portfolio Page Styles
+   ============================================================ */
+
+/* ── Page hero ──────────────────────────────────────────────── */
+.portfolio-hero { background: var(--black); }
+.portfolio-hero .ph-bg {
+  background: radial-gradient(ellipse 80% 60% at 30% 80%, rgba(201, 168, 76, 0.06) 0%, transparent 70%);
+}
+
+/* ── Filter bar ─────────────────────────────────────────────── */
+.filter-bar-section {
+  padding: 0 var(--gutter) 0;
+  background: var(--black);
+}
+.filter-bar {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 30px 0;
+  border-bottom: 1px solid rgba(201, 168, 76, 0.08);
+}
+.filter-btn {
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(250, 248, 245, 0.45);
+  padding: 8px 20px;
+  border: 1px solid rgba(201, 168, 76, 0.1);
+  border-radius: 20px;
+  cursor: none;
+  transition: color 0.3s, border-color 0.3s, background 0.3s, transform 0.3s var(--ease-spring);
+}
+.filter-btn:hover {
+  color: var(--gold);
+  border-color: rgba(201, 168, 76, 0.4);
+  transform: translateY(-2px);
+}
+.filter-btn.active {
+  color: var(--black);
+  background: var(--gold);
+  border-color: var(--gold);
+}
+
+/* ── Portfolio grid ─────────────────────────────────────────── */
+.portfolio-section { background: var(--black); }
+.portfolio-masonry {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.pf-item {
+  position: relative;
+  transition: opacity 0.4s, transform 0.4s;
+}
+.pf-item.pf-large { grid-column: span 2; }
+
+.pf-wrap {
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+  cursor: none;
+}
+
+.pf-image {
+  width: 100%;
+  aspect-ratio: 4/3;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.8s var(--ease-out-expo);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pf-item.pf-large .pf-image { aspect-ratio: 16/9; }
+
+.pf-wrap:hover .pf-image { transform: scale(1.04); }
+
+.pf-pattern {
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(201,168,76,0.025) 0px, rgba(201,168,76,0.025) 1px, transparent 1px, transparent 40px),
+    repeating-linear-gradient(90deg, rgba(201,168,76,0.025) 0px, rgba(201,168,76,0.025) 1px, transparent 1px, transparent 40px);
+}
+
+.pf-img-content {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  z-index: 1;
+}
+.pf-project-num {
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 8vw, 8rem);
+  font-weight: 700;
+  color: rgba(201, 168, 76, 0.08);
+  line-height: 1;
+}
+.pf-visual-logo { line-height: 1; }
+
+/* Hover overlay */
+.pf-hover {
+  position: absolute;
+  inset: 0;
+  background: rgba(12, 12, 12, 0.88);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: flex-end;
+  padding: clamp(20px, 4%, 36px);
+  opacity: 0;
+  transform: translateY(0);
+  transition: opacity 0.45s var(--ease-out-expo);
+}
+.pf-wrap:hover .pf-hover { opacity: 1; }
+
+.pf-hover-content {
+  transform: translateY(20px);
+  transition: transform 0.45s var(--ease-out-expo);
+}
+.pf-wrap:hover .pf-hover-content { transform: translateY(0); }
+
+.pf-hover-content h2 {
+  font-size: clamp(1.4rem, 3vw, 2.2rem);
+  color: var(--off-white);
+  margin: 10px 0 10px;
+}
+.pf-hover-content p { font-size: 0.85rem; margin-bottom: 12px; }
+.pf-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+
+/* Meta below image */
+.pf-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 4px 0;
+  gap: 10px;
+}
+.pf-meta-info h3 {
+  font-family: var(--font-ui);
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--off-white);
+  margin: 0 0 4px;
+}
+.pf-meta-info span {
+  font-size: 0.78rem;
+  color: rgba(201, 168, 76, 0.55);
+}
+.pf-year {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  color: rgba(250, 248, 245, 0.2);
+  flex-shrink: 0;
+}
+
+/* ── Stats row (reused from home) ──────────────────────────── */
+.section-stats {
+  padding: 0;
+  border-top: 1px solid rgba(201, 168, 76, 0.1);
+  border-bottom: 1px solid rgba(201, 168, 76, 0.1);
+  background: radial-gradient(ellipse 80% 100% at 50% 50%, rgba(201, 168, 76, 0.04) 0%, transparent 70%);
+}
+.stats-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 70px var(--gutter);
+}
+.stat-separator {
+  width: 1px; height: 70px;
+  background: rgba(201, 168, 76, 0.15);
+}
+
+/* ── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 1100px) {
+  .portfolio-masonry { grid-template-columns: repeat(2, 1fr); }
+  .pf-item.pf-large { grid-column: span 2; }
+}
+@media (max-width: 680px) {
+  .portfolio-masonry { grid-template-columns: 1fr; }
+  .pf-item.pf-large { grid-column: span 1; }
+  .stats-inner { flex-wrap: wrap; gap: 40px; justify-content: center; }
+  .stat-separator { display: none; }
+}

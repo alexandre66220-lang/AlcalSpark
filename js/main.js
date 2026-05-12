@@ -327,3 +327,40 @@
     runLoader();
   }
 })();
+
+/* ── Cookie Consent ──────────────────────────────────────────── */
+(function () {
+  if (localStorage.getItem('alcalspark-cookies')) return;
+
+  const banner = document.createElement('div');
+  banner.id = 'cookie-banner';
+  banner.setAttribute('role', 'dialog');
+  banner.setAttribute('aria-labelledby', 'cookie-title');
+  banner.innerHTML =
+    '<div class="cookie-inner">' +
+      '<div class="cookie-text">' +
+        '<strong id="cookie-title">Cookies & Confidentialité</strong>' +
+        '<p>Ce site utilise des cookies strictement nécessaires à son fonctionnement. Avec votre accord, nous pouvons analyser votre visite pour améliorer nos services. ' +
+        '<a href="mentions-legales.html">En savoir plus</a></p>' +
+      '</div>' +
+      '<div class="cookie-actions">' +
+        '<button class="cookie-btn cookie-refuse" id="cookie-refuse">Refuser</button>' +
+        '<button class="cookie-btn cookie-accept" id="cookie-accept">Tout accepter</button>' +
+      '</div>' +
+    '</div>';
+
+  document.body.appendChild(banner);
+
+  requestAnimationFrame(function () {
+    setTimeout(function () { banner.classList.add('show'); }, 900);
+  });
+
+  function dismiss(choice) {
+    localStorage.setItem('alcalspark-cookies', choice);
+    banner.classList.remove('show');
+    setTimeout(function () { if (banner.parentNode) banner.parentNode.removeChild(banner); }, 600);
+  }
+
+  document.getElementById('cookie-accept').addEventListener('click', function () { dismiss('accepted'); });
+  document.getElementById('cookie-refuse').addEventListener('click', function () { dismiss('refused'); });
+})();

@@ -4,6 +4,8 @@
 
 /* ── Real project images ────────────────────────────────────── */
 .pf-has-img { overflow: hidden; }
+.pf-has-img .pf-img-content { display: none !important; }
+.pf-has-img .pf-pattern     { opacity: 0 !important; }
 
 .pf-real-img {
   position: absolute;

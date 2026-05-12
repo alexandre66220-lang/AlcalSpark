@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Message envoyé — AlcalSpark vous répondra dans les 24h." />
+  <meta name="robots" content="noindex, follow" />
+  <title>Message envoyé — AlcalSpark</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+</head>
+<body>
+
+  <div class="noise-overlay" aria-hidden="true"></div>
+
+  <div id="cursor-dot"  aria-hidden="true"></div>
+  <div id="cursor-ring" aria-hidden="true"></div>
+
+  <nav id="navbar" role="navigation">
+    <a href="index.html" class="nav-logo">Alcal<span>Spark</span></a>
+    <ul class="nav-links" role="list">
+      <li><a href="index.html"     class="nav-link">Accueil</a></li>
+      <li><a href="services.html"  class="nav-link">Services</a></li>
+      <li><a href="portfolio.html" class="nav-link">Portfolio</a></li>
+      <li><a href="about.html"     class="nav-link">À propos</a></li>
+      <li><a href="contact.html"   class="nav-cta">Démarrer un projet</a></li>
+    </ul>
+    <button class="nav-burger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="nav-mobile" aria-hidden="true">
+    <a href="index.html"     class="nav-link">Accueil</a>
+    <a href="services.html"  class="nav-link">Services</a>
+    <a href="portfolio.html" class="nav-link">Portfolio</a>
+    <a href="about.html"     class="nav-link">À propos</a>
+    <a href="contact.html"   class="nav-link">Contact</a>
+  </div>
+
+  <main>
+    <section style="
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--black);
+      position: relative;
+      overflow: hidden;
+      padding: var(--nav-h) var(--gutter) 80px;
+    ">
+      <!-- Radial glow -->
+      <div aria-hidden="true" style="
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(201,168,76,0.07) 0%, transparent 70%);
+        pointer-events: none;
+      "></div>
+
+      <div style="text-align: center; position: relative; z-index: 1; max-width: 560px;">
+
+        <!-- Gold icon -->
+        <div style="
+          width: 80px; height: 80px;
+          border: 1px solid rgba(201,168,76,0.4);
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin: 0 auto 36px;
+          background: rgba(201,168,76,0.06);
+          animation: merciPulse 3s ease-in-out infinite;
+        " aria-hidden="true">
+          <span style="font-size: 2rem; color: var(--gold);">✦</span>
+        </div>
+
+        <div style="
+          font-family: var(--font-ui);
+          font-size: 0.72rem;
+          letter-spacing: 0.22em;
+          text-transform: uppercase;
+          color: var(--gold);
+          margin-bottom: 20px;
+        ">Message envoyé</div>
+
+        <h1 style="
+          font-family: var(--font-display);
+          font-size: clamp(2.8rem, 7vw, 5rem);
+          font-weight: 400;
+          color: var(--off-white);
+          line-height: 1.1;
+          margin-bottom: 24px;
+        ">Merci pour<br /><em style="
+          background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--gold-dark));
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+        ">votre message.</em></h1>
+
+        <div style="
+          width: 60px; height: 1px;
+          background: linear-gradient(90deg, transparent, var(--gold), transparent);
+          margin: 0 auto 28px;
+        "></div>
+
+        <p style="
+          font-size: 1rem;
+          color: rgba(250,248,245,0.55);
+          line-height: 1.8;
+          margin-bottom: 48px;
+        ">
+          Votre demande a bien été reçue. Je vous répondrai dans les <strong style="color: var(--off-white);">24 heures</strong> avec une première approche et un devis personnalisé.
+        </p>
+
+        <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+          <a href="index.html" class="btn btn-gold">Retour à l'accueil</a>
+          <a href="portfolio.html" class="btn btn-outline">Voir le portfolio</a>
+        </div>
+
+        <!-- Reassurance -->
+        <div style="
+          margin-top: 60px;
+          display: flex;
+          gap: 32px;
+          justify-content: center;
+          flex-wrap: wrap;
+        ">
+          <div style="text-align:center;">
+            <div style="font-family:var(--font-display); font-size:1.6rem; color:var(--gold); font-weight:600;">24h</div>
+            <div style="font-family:var(--font-ui); font-size:0.65rem; letter-spacing:0.14em; text-transform:uppercase; color:rgba(250,248,245,0.35); margin-top:4px;">Délai de réponse</div>
+          </div>
+          <div style="width:1px; background:rgba(201,168,76,0.15);"></div>
+          <div style="text-align:center;">
+            <div style="font-family:var(--font-display); font-size:1.6rem; color:var(--gold); font-weight:600;">100%</div>
+            <div style="font-family:var(--font-ui); font-size:0.65rem; letter-spacing:0.14em; text-transform:uppercase; color:rgba(250,248,245,0.35); margin-top:4px;">Personnalisé</div>
+          </div>
+          <div style="width:1px; background:rgba(201,168,76,0.15);"></div>
+          <div style="text-align:center;">
+            <div style="font-family:var(--font-display); font-size:1.6rem; color:var(--gold); font-weight:600;">0€</div>
+            <div style="font-family:var(--font-ui); font-size:0.65rem; letter-spacing:0.14em; text-transform:uppercase; color:rgba(250,248,245,0.35); margin-top:4px;">Devis gratuit</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer id="footer" role="contentinfo">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="footer-logo-link" aria-label="AlcalSpark — Accueil">
+          <img src="assets/logo.svg" alt="AlcalSpark" class="footer-logo-img" width="110" height="110" loading="lazy" />
+        </a>
+        <p class="footer-tagline">Votre marque, magnifiée.</p>
+        <p>Agence digitale premium spécialisée en création web, design UI/UX et visuels.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul role="list">
+          <li><a href="services.html">Création Web</a></li>
+          <li><a href="services.html">Design UI/UX</a></li>
+          <li><a href="services.html">Branding</a></li>
+          <li><a href="services.html">SEO & Marketing</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Agence</h4>
+        <ul role="list">
+          <li><a href="about.html">À propos</a></li>
+          <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="mentions-legales.html">Mentions légales</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul role="list">
+          <li><a href="mailto:alcalspark@icloud.com">alcalspark@icloud.com</a></li>
+          <li><a href="tel:0663054481">06 63 05 44 81</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© <span id="year">2024</span> AlcalSpark. Tous droits réservés.</p>
+      <a href="mentions-legales.html" style="font-size:0.8rem; color:rgba(250,248,245,0.4);">Mentions légales</a>
+    </div>
+  </footer>
+
+  <style>
+    @keyframes merciPulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(201,168,76,0); }
+      50%       { box-shadow: 0 0 30px 8px rgba(201,168,76,0.15); }
+    }
+  </style>
+
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script src="js/main.js"></script>
+</body>
+</html>

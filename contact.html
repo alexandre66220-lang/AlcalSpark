@@ -157,9 +157,9 @@
 
           <!-- RIGHT: Form -->
           <div class="contact-form-wrap reveal delay-2">
-            <form id="contact-form" class="contact-form" name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" novalidate aria-label="Formulaire de contact">
+            <form id="contact-form" class="contact-form" name="contact" method="POST" action="contact-merci.html" data-netlify="true" data-netlify-honeypot="bot-field" aria-label="Formulaire de contact">
               <input type="hidden" name="form-name" value="contact" />
-              <input type="hidden" name="bot-field" aria-hidden="true" />
+              <p style="display:none" aria-hidden="true"><label>Ne pas remplir : <input name="bot-field" /></label></p>
               <div class="form-row">
                 <div class="form-group">
                   <input type="text" id="fname" name="fname" placeholder="Prénom" required autocomplete="given-name" />
@@ -237,11 +237,6 @@
                 <span class="submit-icon" aria-hidden="true">→</span>
               </button>
 
-              <div class="form-success" id="form-success" aria-live="polite" role="alert" hidden>
-                <span class="fs-icon">✦</span>
-                <strong>Message envoyé !</strong>
-                <p>Merci pour votre message. Je vous répondrai dans les 24h.</p>
-              </div>
             </form>
           </div>
         </div>
@@ -359,43 +354,7 @@
   <script src="js/main.js"></script>
   <script src="js/three-scene.js"></script>
   <script>
-    // ── Form handling ──────────────────────────────────────────
     (function () {
-      const form    = document.getElementById('contact-form');
-      const success = document.getElementById('form-success');
-      const submit  = form?.querySelector('.form-submit');
-
-      if (!form) return;
-
-      form.addEventListener('submit', async e => {
-        e.preventDefault();
-        if (!form.checkValidity()) { form.reportValidity(); return; }
-
-        submit.disabled = true;
-        submit.querySelector('.submit-text').textContent = 'Envoi en cours…';
-
-        try {
-          await fetch('/', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: new URLSearchParams(new FormData(form)).toString()
-          });
-
-          form.style.opacity = '0';
-          form.style.transform = 'translateY(-20px)';
-          form.style.transition = 'opacity 0.4s, transform 0.4s';
-          setTimeout(() => {
-            form.hidden = true;
-            success.hidden = false;
-            success.style.animation = 'fadeInUp 0.6s var(--ease-out-expo) forwards';
-          }, 400);
-        } catch (_) {
-          submit.disabled = false;
-          submit.querySelector('.submit-text').textContent = 'Envoyer le message';
-          alert('Une erreur est survenue. Veuillez réessayer ou écrire directement à alcalspark@icloud.com');
-        }
-      });
-
       // ── FAQ accordion ────────────────────────────────────────
       document.querySelectorAll('.faq-question').forEach(btn => {
         btn.addEventListener('click', () => {

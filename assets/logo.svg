@@ -1,103 +1,104 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" fill="none">
   <defs>
-    <!-- Gold glow filter -->
-    <filter id="gold-glow" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="8" result="blur"/>
-      <feFlood flood-color="#C9A84C" flood-opacity="0.55" result="color"/>
-      <feComposite in="color" in2="blur" operator="in" result="shadow"/>
-      <feMerge>
-        <feMergeNode in="shadow"/>
-        <feMergeNode in="shadow"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
-    <!-- Inner gold glow -->
-    <filter id="inner-glow" x="-5%" y="-5%" width="110%" height="110%">
-      <feGaussianBlur stdDeviation="4" result="blur"/>
-      <feFlood flood-color="#E8C97A" flood-opacity="0.3" result="color"/>
-      <feComposite in="color" in2="blur" operator="in" result="shadow"/>
-      <feMerge>
-        <feMergeNode in="shadow"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
-    <!-- Gold gradient for line -->
-    <linearGradient id="gold-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#9A7530" stop-opacity="0.3"/>
-      <stop offset="30%" stop-color="#C9A84C"/>
-      <stop offset="70%" stop-color="#E8C97A"/>
-      <stop offset="100%" stop-color="#9A7530" stop-opacity="0.3"/>
-    </linearGradient>
-    <!-- Radial gradient for circle background -->
-    <radialGradient id="bg-gradient" cx="50%" cy="40%" r="60%">
-      <stop offset="0%" stop-color="#1A1000"/>
-      <stop offset="60%" stop-color="#0C0C0C"/>
+    <!-- Deep black with subtle warm highlight -->
+    <radialGradient id="bg" cx="40%" cy="35%" r="58%">
+      <stop offset="0%"   stop-color="#181200"/>
+      <stop offset="45%"  stop-color="#0D0D0D"/>
       <stop offset="100%" stop-color="#060606"/>
     </radialGradient>
-    <!-- Radial glow for border -->
-    <radialGradient id="border-glow" cx="50%" cy="50%" r="50%">
-      <stop offset="80%" stop-color="transparent"/>
-      <stop offset="100%" stop-color="#C9A84C" stop-opacity="0.25"/>
-    </radialGradient>
+
+    <!-- Gold ring gradient — 3-D shimmer effect -->
+    <linearGradient id="ring-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="#F2DFA0"/>
+      <stop offset="22%"  stop-color="#C9A84C"/>
+      <stop offset="48%"  stop-color="#F0D070"/>
+      <stop offset="72%"  stop-color="#8A6820"/>
+      <stop offset="100%" stop-color="#C9A84C"/>
+    </linearGradient>
+
+    <!-- Outer gold ambient glow -->
+    <filter id="glow-ring" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="9" result="blur"/>
+      <feFlood flood-color="#C9A84C" flood-opacity="0.55" result="color"/>
+      <feComposite in="color" in2="blur" operator="in" result="glow"/>
+      <feMerge>
+        <feMergeNode in="glow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Gold letter glow -->
+    <filter id="glow-gold" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feFlood flood-color="#C9A84C" flood-opacity="0.65" result="color"/>
+      <feComposite in="color" in2="blur" operator="in" result="glow"/>
+      <feMerge>
+        <feMergeNode in="glow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- White letter subtle glow -->
+    <filter id="glow-white" x="-15%" y="-15%" width="130%" height="130%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feFlood flood-color="#FFFFFF" flood-opacity="0.3" result="color"/>
+      <feComposite in="color" in2="blur" operator="in" result="glow"/>
+      <feMerge>
+        <feMergeNode in="glow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Deep shadow for depth on letters -->
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="4" dy="7" stdDeviation="9" flood-color="#000000" flood-opacity="0.75"/>
+    </filter>
+
+    <!-- Clip letters inside circle -->
+    <clipPath id="clip">
+      <circle cx="200" cy="200" r="174"/>
+    </clipPath>
   </defs>
 
-  <!-- Outer glow halo -->
-  <circle cx="200" cy="200" r="196" fill="url(#border-glow)" opacity="0.6"/>
+  <!-- Very faint outer halo -->
+  <circle cx="200" cy="200" r="198" fill="none" stroke="#C9A84C" stroke-width="1.2" opacity="0.13"/>
 
   <!-- Main circle background -->
-  <circle cx="200" cy="200" r="180" fill="url(#bg-gradient)"/>
+  <circle cx="200" cy="200" r="183" fill="url(#bg)"/>
 
-  <!-- Gold circle border with glow -->
-  <circle cx="200" cy="200" r="180" stroke="#C9A84C" stroke-width="1.8" fill="none" filter="url(#gold-glow)" opacity="0.9"/>
+  <!-- Gold border ring — premium thick stroke with shimmer -->
+  <circle cx="200" cy="200" r="183" fill="none" stroke="url(#ring-grad)" stroke-width="8" filter="url(#glow-ring)" opacity="0.92"/>
 
-  <!-- Subtle inner ring -->
-  <circle cx="200" cy="200" r="172" stroke="#C9A84C" stroke-width="0.5" fill="none" opacity="0.2"/>
+  <!-- Secondary inner accent ring -->
+  <circle cx="200" cy="200" r="171" fill="none" stroke="#C9A84C" stroke-width="0.7" opacity="0.2"/>
 
-  <!-- Corner decorative dots -->
-  <circle cx="200" cy="28" r="2.5" fill="#C9A84C" opacity="0.6"/>
-  <circle cx="200" cy="372" r="2.5" fill="#C9A84C" opacity="0.6"/>
-  <circle cx="28"  cy="200" r="2.5" fill="#C9A84C" opacity="0.6"/>
-  <circle cx="372" cy="200" r="2.5" fill="#C9A84C" opacity="0.6"/>
+  <!-- Subtle light reflection arc (top-left) — 3D feel -->
+  <path d="M 90,140 A 130,130 0 0,1 190,58" stroke="#F5E0A0" stroke-width="1.5" fill="none" opacity="0.18" stroke-linecap="round"/>
 
-  <!-- "ALCAL" text -->
-  <text
-    x="200"
-    y="178"
-    font-family="Georgia, 'Times New Roman', serif"
-    font-size="82"
-    font-weight="700"
-    fill="#FAF8F5"
-    text-anchor="middle"
-    letter-spacing="6"
-    filter="url(#inner-glow)"
-  >ALCAL</text>
+  <!-- Letters clipped to circle -->
+  <g clip-path="url(#clip)">
+    <!-- White serif "A" — dominant, left of center -->
+    <text
+      x="177"
+      y="278"
+      font-family="Georgia, 'Times New Roman', serif"
+      font-size="218"
+      font-weight="700"
+      fill="#FAF8F5"
+      text-anchor="middle"
+      filter="url(#shadow)"
+    >A</text>
 
-  <!-- "SPARK" text in gold -->
-  <text
-    x="200"
-    y="252"
-    font-family="Georgia, 'Times New Roman', serif"
-    font-size="82"
-    font-weight="700"
-    fill="#C9A84C"
-    text-anchor="middle"
-    letter-spacing="6"
-    filter="url(#gold-glow)"
-  >SPARK</text>
-
-  <!-- Separator line -->
-  <line x1="80" y1="268" x2="320" y2="268" stroke="url(#gold-gradient)" stroke-width="1.5"/>
-
-  <!-- Tagline "Web · Design · Visuels" -->
-  <text
-    x="200"
-    y="306"
-    font-family="'Helvetica Neue', Arial, sans-serif"
-    font-size="20"
-    font-weight="300"
-    fill="#FAF8F5"
-    text-anchor="middle"
-    letter-spacing="3"
-    opacity="0.65"
-  >Web · Design · Visuels</text>
+    <!-- Gold "S" — overlapping right, slightly smaller, forward layer -->
+    <text
+      x="244"
+      y="270"
+      font-family="Georgia, 'Times New Roman', serif"
+      font-size="178"
+      font-weight="700"
+      fill="#C9A84C"
+      text-anchor="middle"
+      filter="url(#glow-gold)"
+    >S</text>
+  </g>
 </svg>

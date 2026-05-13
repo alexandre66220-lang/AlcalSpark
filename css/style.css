@@ -830,8 +830,7 @@ p {
 .ph-content {
   position: relative;
   z-index: 1;
-  padding-top: clamp(60px, 8vw, 100px);
-  padding-bottom: clamp(60px, 8vw, 100px);
+  padding: clamp(60px, 8vw, 100px) var(--gutter);
 }
 .ph-content h1 {
   margin: 14px 0 20px;

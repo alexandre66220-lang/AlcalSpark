@@ -157,9 +157,13 @@
 
           <!-- RIGHT: Form -->
           <div class="contact-form-wrap reveal delay-2">
-            <form id="contact-form" class="contact-form" name="contact" method="POST" action="/contact-merci.html" data-netlify="true" data-netlify-honeypot="bot-field" aria-label="Formulaire de contact">
-              <input type="hidden" name="form-name" value="contact" />
-              <p style="display:none" aria-hidden="true"><label>Ne pas remplir : <input name="bot-field" /></label></p>
+            <form id="contact-form" class="contact-form" name="contact" method="POST" action="https://api.web3forms.com/submit" aria-label="Formulaire de contact">
+              <!-- Web3Forms config -->
+              <input type="hidden" name="access_key" value="REMPLACER_PAR_VOTRE_CLÉ_WEB3FORMS" />
+              <input type="hidden" name="subject" value="Nouveau message — AlcalSpark" />
+              <input type="hidden" name="from_name" value="AlcalSpark Contact" />
+              <input type="hidden" name="redirect" value="https://alcalspark.com/contact-merci.html" />
+              <input type="hidden" name="botcheck" value="" style="display:none" />
               <div class="form-row">
                 <div class="form-group">
                   <input type="text" id="fname" name="fname" placeholder="Prénom" required autocomplete="given-name" />

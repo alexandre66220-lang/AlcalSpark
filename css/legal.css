@@ -147,9 +147,15 @@
   }
   .legal-nav {
     position: static;
-    display: none; /* hidden on mobile, TOC style */
+    display: none;
   }
   .lib-label { min-width: 160px; }
+  /* Force reveal visible — legal-content is too tall for the 15% threshold */
+  .legal-layout .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
 }
 @media (max-width: 520px) {
   .lib-row { flex-direction: column; gap: 4px; }

@@ -104,7 +104,7 @@ a.cc-value:hover { color: var(--gold); }
 .form-select-group { margin-bottom: 32px; }
 .select-label {
   display: block;
-  position: static;  /* override .form-group label { position: absolute } from style.css */
+  position: static !important; /* .form-group label sets position:absolute (specificity 11 > 10) */
   font-family: var(--font-ui);
   font-size: 0.72rem;
   font-weight: 500;

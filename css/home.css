@@ -110,6 +110,7 @@
 .hero-logo-img {
   width: 180px; height: 180px;
   object-fit: contain;
+  mix-blend-mode: screen;
   filter: drop-shadow(0 0 30px rgba(201, 168, 76, 0.35));
   animation: heroLogoFloat 5s ease-in-out infinite;
   transition: filter 0.4s;

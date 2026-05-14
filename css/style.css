@@ -494,7 +494,6 @@ p {
   display: block;
   width: 110px; height: 110px;
   object-fit: contain;
-  mix-blend-mode: screen;
 }
 .footer-tagline {
   font-family: var(--font-display);

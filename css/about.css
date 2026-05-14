@@ -184,7 +184,6 @@ blockquote {
 .solo-logo {
   width: 260px; height: 260px;
   object-fit: contain;
-  mix-blend-mode: screen;
   filter: drop-shadow(0 0 40px rgba(201, 168, 76, 0.3));
   animation: soloFloat 5s ease-in-out infinite;
 }

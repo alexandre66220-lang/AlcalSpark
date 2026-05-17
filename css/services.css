@@ -348,6 +348,112 @@
 }
 .service-small-card h3 { margin-bottom: 14px; }
 
+/* ── Systèmes intelligents ──────────────────────────────────── */
+.si-section {
+  background: var(--black);
+  position: relative;
+  overflow: hidden;
+}
+.si-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 0%, rgba(201, 168, 76, 0.05) 0%, transparent 65%),
+    radial-gradient(ellipse 35% 40% at 100% 100%, rgba(201, 168, 76, 0.03) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.si-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.si-card {
+  position: relative;
+  padding: 44px 36px 52px;
+  overflow: hidden;
+  transition: border-color 0.4s, transform 0.4s var(--ease-spring), box-shadow 0.4s;
+}
+.si-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.55), transparent);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.si-card:hover {
+  border-color: rgba(201, 168, 76, 0.32);
+  transform: translateY(-6px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45), 0 0 40px rgba(201, 168, 76, 0.06);
+}
+.si-card:hover::after { opacity: 1; }
+
+.si-icon {
+  width: 52px; height: 52px;
+  border: 1px solid rgba(201, 168, 76, 0.22);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold);
+  margin-bottom: 24px;
+  transition: border-color 0.3s, background 0.3s;
+}
+.si-card:hover .si-icon {
+  border-color: rgba(201, 168, 76, 0.5);
+  background: rgba(201, 168, 76, 0.06);
+}
+
+.si-num {
+  position: absolute;
+  bottom: 16px; right: 22px;
+  font-family: var(--font-display);
+  font-size: 4.5rem;
+  font-weight: 700;
+  color: rgba(201, 168, 76, 0.05);
+  line-height: 1;
+  user-select: none;
+}
+
+.si-card h3 {
+  font-family: var(--font-ui);
+  font-size: clamp(0.95rem, 1.2vw, 1.05rem);
+  font-weight: 600;
+  color: var(--off-white);
+  margin-bottom: 14px;
+  line-height: 1.4;
+  transition: color 0.3s;
+}
+.si-card:hover h3 { color: var(--gold); }
+.si-card > p {
+  font-size: 0.88rem;
+  color: rgba(250, 248, 245, 0.55);
+  line-height: 1.8;
+}
+
+.si-cta {
+  margin-top: 64px;
+  padding-top: 56px;
+  border-top: 1px solid rgba(201, 168, 76, 0.1);
+}
+.si-cta-desc {
+  font-family: var(--font-display);
+  font-size: clamp(1.05rem, 1.6vw, 1.35rem);
+  color: rgba(250, 248, 245, 0.65);
+  margin-bottom: 0;
+}
+
+@media (max-width: 960px) {
+  .si-cards { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .si-card { padding: 36px 28px 48px; }
+}
+
 /* ── Pricing ────────────────────────────────────────────────── */
 .pricing-section { background: var(--black-soft); }
 .pricing-grid {

@@ -15,7 +15,7 @@
   position: absolute;
   inset: 0;
   background: radial-gradient(ellipse 80% 60% at 70% 40%, rgba(201, 168, 76, 0.07) 0%, transparent 70%),
-              radial-gradient(ellipse 60% 80% at 20% 60%, rgba(74, 46, 26, 0.2) 0%, transparent 60%),
+              radial-gradient(ellipse 60% 80% at 20% 60%, rgba(38, 58, 48, 0.2) 0%, transparent 60%),
               var(--black);
   z-index: 0;
 }
@@ -48,7 +48,7 @@
   max-width: 520px;
   margin-bottom: 40px;
   line-height: 1.75;
-  color: rgba(250, 248, 245, 0.65);
+  color: rgba(248, 245, 242, 0.65);
 }
 .br-desk { display: block; }
 .hero-actions {
@@ -78,7 +78,7 @@
   font-size: 0.72rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(250, 248, 245, 0.35);
+  color: rgba(248, 245, 242, 0.35);
 }
 .mouse-icon {
   width: 22px; height: 34px;
@@ -134,7 +134,7 @@
   align-self: center;
 }
 .float-badge {
-  background: rgba(12, 12, 12, 0.8);
+  background: rgba(38, 58, 48, 0.8);
   border: 1px solid rgba(201, 168, 76, 0.25);
   border-radius: 8px;
   padding: 20px 24px;
@@ -170,7 +170,7 @@
   font-size: 0.72rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(250, 248, 245, 0.5);
+  color: rgba(248, 245, 242, 0.5);
   margin-top: 6px;
 }
 
@@ -319,7 +319,7 @@
 .pi-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(12, 12, 12, 0.85);
+  background: rgba(38, 58, 48, 0.85);
   backdrop-filter: blur(4px);
   display: flex;
   align-items: flex-end;
@@ -343,7 +343,7 @@
 
 /* ── Process ───────────────────────────────────────────────── */
 .section-dark {
-  background: #0a0a0a;
+  background: #1f3229;
 }
 .process-steps {
   display: grid;
@@ -409,7 +409,7 @@
   line-height: 1.8;
   margin-bottom: 28px;
   font-style: italic;
-  color: rgba(250, 248, 245, 0.75);
+  color: rgba(248, 245, 242, 0.75);
 }
 .testi-author {
   display: flex;
@@ -482,7 +482,7 @@
   justify-content: center;
   font-family: var(--font-ui);
   font-size: 0.7rem;
-  color: rgba(250, 248, 245, 0.4);
+  color: rgba(248, 245, 242, 0.4);
   text-transform: lowercase;
   transition: border-color 0.3s, color 0.3s, background 0.3s;
 }

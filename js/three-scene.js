@@ -8,7 +8,7 @@
 
   const GOLD    = 0xC9A84C;
   const GOLD_L  = 0xE8C97A;
-  const WHITE   = 0xFAF8F5;
+  const WHITE   = 0xF8F5F2;
   const BROWN   = 0x7C5A3E;
 
   /* ── Hero Particle Field ─────────────────────────────────── */
@@ -19,7 +19,7 @@
     const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setSize(canvas.offsetWidth, canvas.offsetHeight);
-    renderer.setClearColor(0x000000, 0);
+    renderer.setClearColor(0x263a30, 0);
 
     const scene  = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(60, canvas.offsetWidth / canvas.offsetHeight, 0.1, 1000);
@@ -108,7 +108,7 @@
     const innerGeo = new THREE.IcosahedronGeometry(0.85, 0);
     const innerMat = new THREE.MeshPhongMaterial({
       color: GOLD,
-      emissive: 0x3A2800,
+      emissive: 0x0d2018,
       shininess: 80,
       transparent: true,
       opacity: 0.18,
@@ -118,7 +118,7 @@
     scene.add(inner);
 
     // Lights
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
+    const ambientLight = new THREE.AmbientLight(0xF8F5F2, 0.4);
     scene.add(ambientLight);
     const pointLight = new THREE.PointLight(GOLD, 1.5, 10);
     pointLight.position.set(2, 2, 2);
@@ -184,7 +184,7 @@
     geos.forEach((geo, i) => {
       const mat = new THREE.MeshPhongMaterial({
         color: GOLD,
-        emissive: 0x2A1800,
+        emissive: 0x0a1810,
         shininess: 100,
         wireframe: i % 2 === 0,
         transparent: true,
@@ -198,7 +198,7 @@
       shapes.push(mesh);
     });
 
-    const ambLight = new THREE.AmbientLight(0xffffff, 0.5);
+    const ambLight = new THREE.AmbientLight(0xF8F5F2, 0.5);
     const pLight   = new THREE.PointLight(GOLD, 2, 15);
     pLight.position.set(0, 0, 4);
     scene.add(ambLight, pLight);
@@ -241,8 +241,8 @@
     // Sphere with wireframe overlay
     const sphereGeo = new THREE.SphereGeometry(1.4, 32, 32);
     const sphereMat = new THREE.MeshPhongMaterial({
-      color: 0x1a0e00,
-      emissive: 0x1a0e00,
+      color: 0x0a1510,
+      emissive: 0x0a1510,
       shininess: 30,
       transparent: true,
       opacity: 0.7,
@@ -268,7 +268,7 @@
     ring2.material.opacity = 0.2;
     scene.add(ring2);
 
-    const ambLight = new THREE.AmbientLight(0xffffff, 0.3);
+    const ambLight = new THREE.AmbientLight(0xF8F5F2, 0.3);
     const pLight   = new THREE.PointLight(GOLD, 3, 10);
     pLight.position.set(2, 1, 3);
     scene.add(ambLight, pLight);
@@ -307,9 +307,9 @@
     canvas.width = canvas.height = 64;
     const ctx = canvas.getContext('2d');
     const grad = ctx.createRadialGradient(32, 32, 0, 32, 32, 32);
-    grad.addColorStop(0,   'rgba(255,255,255,1)');
-    grad.addColorStop(0.3, 'rgba(255,255,255,0.8)');
-    grad.addColorStop(1,   'rgba(255,255,255,0)');
+    grad.addColorStop(0,   'rgba(248, 245, 242, 1)');
+    grad.addColorStop(0.3, 'rgba(248, 245, 242, 0.8)');
+    grad.addColorStop(1,   'rgba(248, 245, 242, 0)');
     ctx.fillStyle = grad;
     ctx.fillRect(0, 0, 64, 64);
     return new THREE.CanvasTexture(canvas);

@@ -14,8 +14,8 @@
 .hero-bg {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 80% 60% at 70% 40%, rgba(215, 38, 61, 0.07) 0%, transparent 70%),
-              radial-gradient(ellipse 60% 80% at 20% 60%, rgba(2, 24, 43, 0.2) 0%, transparent 60%),
+  background: radial-gradient(ellipse 80% 60% at 70% 40%, rgba(201, 168, 76, 0.07) 0%, transparent 70%),
+              radial-gradient(ellipse 60% 80% at 20% 60%, rgba(38, 58, 48, 0.2) 0%, transparent 60%),
               var(--black);
   z-index: 0;
 }
@@ -48,7 +48,7 @@
   max-width: 520px;
   margin-bottom: 40px;
   line-height: 1.75;
-  color: rgba(255, 255, 255, 0.88);
+  color: rgba(248, 245, 242, 0.88);
 }
 .br-desk { display: block; }
 .hero-actions {
@@ -65,7 +65,7 @@
   font-family: var(--font-display);
   font-size: clamp(0.85rem, 1vw, 1rem);
   font-style: italic;
-  color: rgba(215, 38, 61, 0.55);
+  color: rgba(201, 168, 76, 0.55);
   letter-spacing: 0.08em;
   margin-bottom: 20px;
 }
@@ -78,11 +78,11 @@
   font-size: 0.72rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.52);
+  color: rgba(248, 245, 242, 0.52);
 }
 .mouse-icon {
   width: 22px; height: 34px;
-  border: 1.5px solid rgba(215, 38, 61, 0.4);
+  border: 1.5px solid rgba(201, 168, 76, 0.4);
   border-radius: 12px;
   display: flex;
   justify-content: center;
@@ -110,12 +110,12 @@
 .hero-logo-img {
   width: 180px; height: 180px;
   object-fit: contain;
-  filter: drop-shadow(0 0 30px rgba(215, 38, 61, 0.35));
+  filter: drop-shadow(0 0 30px rgba(201, 168, 76, 0.35));
   animation: heroLogoFloat 5s ease-in-out infinite;
   transition: filter 0.4s;
 }
 .hero-logo-img:hover {
-  filter: drop-shadow(0 0 50px rgba(215, 38, 61, 0.6));
+  filter: drop-shadow(0 0 50px rgba(201, 168, 76, 0.6));
 }
 @keyframes heroLogoFloat {
   0%, 100% { transform: translateY(0) rotate(-1deg); }
@@ -134,8 +134,8 @@
   align-self: center;
 }
 .float-badge {
-  background: rgba(2, 24, 43, 0.8);
-  border: 1px solid rgba(215, 38, 61, 0.25);
+  background: rgba(38, 58, 48, 0.8);
+  border: 1px solid rgba(201, 168, 76, 0.25);
   border-radius: 8px;
   padding: 20px 24px;
   backdrop-filter: blur(12px);
@@ -170,7 +170,7 @@
   font-size: 0.72rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.72);
+  color: rgba(248, 245, 242, 0.72);
   margin-top: 6px;
 }
 
@@ -186,7 +186,7 @@
   top: -200px; right: -200px;
   width: 600px; height: 600px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(215, 38, 61, 0.04) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(201, 168, 76, 0.04) 0%, transparent 70%);
   pointer-events: none;
 }
 .section-desc {
@@ -206,7 +206,7 @@
 }
 .sc-icon {
   width: 54px; height: 54px;
-  border: 1px solid rgba(215, 38, 61, 0.3);
+  border: 1px solid rgba(201, 168, 76, 0.3);
   border-radius: 6px;
   display: flex;
   align-items: center;
@@ -216,7 +216,7 @@
   transition: background 0.3s, border-color 0.3s, transform 0.4s var(--ease-spring);
 }
 .service-card:hover .sc-icon {
-  background: rgba(215, 38, 61, 0.1);
+  background: rgba(201, 168, 76, 0.1);
   border-color: var(--gold);
   transform: scale(1.1) rotate(5deg);
 }
@@ -234,18 +234,18 @@
   font-family: var(--font-display);
   font-size: 3.5rem;
   font-weight: 700;
-  color: rgba(215, 38, 61, 0.22);
+  color: rgba(201, 168, 76, 0.22);
   line-height: 1;
   transition: color 0.4s;
 }
-.service-card:hover .sc-number { color: rgba(215, 38, 61, 0.38); }
+.service-card:hover .sc-number { color: rgba(201, 168, 76, 0.38); }
 
 /* ── Stats ─────────────────────────────────────────────────── */
 .section-stats {
   padding: 0;
-  border-top: 1px solid rgba(215, 38, 61, 0.1);
-  border-bottom: 1px solid rgba(215, 38, 61, 0.1);
-  background: radial-gradient(ellipse 80% 100% at 50% 50%, rgba(215, 38, 61, 0.04) 0%, transparent 70%);
+  border-top: 1px solid rgba(201, 168, 76, 0.1);
+  border-bottom: 1px solid rgba(201, 168, 76, 0.1);
+  background: radial-gradient(ellipse 80% 100% at 50% 50%, rgba(201, 168, 76, 0.04) 0%, transparent 70%);
 }
 .stats-inner {
   max-width: var(--max-w);
@@ -257,7 +257,7 @@
 }
 .stat-separator {
   width: 1px; height: 70px;
-  background: rgba(215, 38, 61, 0.15);
+  background: rgba(201, 168, 76, 0.15);
 }
 
 /* ── Portfolio Teaser ──────────────────────────────────────── */
@@ -302,8 +302,8 @@
   inset: 0;
   background-image: repeating-linear-gradient(
     45deg,
-    rgba(215, 38, 61, 0.03) 0px,
-    rgba(215, 38, 61, 0.03) 1px,
+    rgba(201, 168, 76, 0.03) 0px,
+    rgba(201, 168, 76, 0.03) 1px,
     transparent 1px,
     transparent 20px
   );
@@ -312,14 +312,14 @@
   position: relative;
   font-family: var(--font-display);
   font-size: 1rem;
-  color: rgba(215, 38, 61, 0.3);
+  color: rgba(201, 168, 76, 0.3);
   letter-spacing: 0.1em;
   z-index: 1;
 }
 .pi-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(2, 24, 43, 0.85);
+  background: rgba(38, 58, 48, 0.85);
   backdrop-filter: blur(4px);
   display: flex;
   align-items: flex-end;
@@ -339,11 +339,11 @@
   justify-content: space-between;
 }
 .pi-meta h4 { font-size: 0.9rem; font-weight: 600; color: var(--off-white); }
-.pi-meta span { font-size: 0.78rem; color: rgba(215, 38, 61, 0.6); }
+.pi-meta span { font-size: 0.78rem; color: rgba(201, 168, 76, 0.6); }
 
 /* ── Process ───────────────────────────────────────────────── */
 .section-dark {
-  background: #010f1c;
+  background: #1f3229;
 }
 .process-steps {
   display: grid;
@@ -357,17 +357,17 @@
   text-align: center;
   transition: background 0.3s;
 }
-.process-step:hover { background: rgba(215, 38, 61, 0.03); }
+.process-step:hover { background: rgba(201, 168, 76, 0.03); }
 .ps-num {
   font-family: var(--font-display);
   font-size: 3.5rem;
   font-weight: 700;
-  color: rgba(215, 38, 61, 0.26);
+  color: rgba(201, 168, 76, 0.26);
   line-height: 1;
   margin-bottom: 20px;
   transition: color 0.3s;
 }
-.process-step:hover .ps-num { color: rgba(215, 38, 61, 0.44); }
+.process-step:hover .ps-num { color: rgba(201, 168, 76, 0.44); }
 .ps-content h4 {
   font-size: 0.85rem;
   letter-spacing: 0.12em;
@@ -379,7 +379,7 @@
   position: absolute;
   top: 50%; right: -1px;
   width: 1px; height: 60px;
-  background: rgba(215, 38, 61, 0.15);
+  background: rgba(201, 168, 76, 0.15);
   transform: translateY(-50%);
 }
 
@@ -409,7 +409,7 @@
   line-height: 1.8;
   margin-bottom: 28px;
   font-style: italic;
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(248, 245, 242, 0.9);
 }
 .testi-author {
   display: flex;
@@ -419,7 +419,7 @@
 .testi-avatar {
   width: 44px; height: 44px;
   border-radius: 50%;
-  border: 1px solid rgba(215, 38, 61, 0.3);
+  border: 1px solid rgba(201, 168, 76, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -438,7 +438,7 @@
 .testi-author span {
   display: block;
   font-size: 0.78rem;
-  color: rgba(215, 38, 61, 0.6);
+  color: rgba(201, 168, 76, 0.6);
 }
 
 /* ── CTA Section ───────────────────────────────────────────── */
@@ -451,14 +451,14 @@
   text-align: center;
   position: relative;
   padding: 80px 60px;
-  border: 1px solid rgba(215, 38, 61, 0.15);
+  border: 1px solid rgba(201, 168, 76, 0.15);
   border-radius: 6px;
   overflow: hidden;
 }
 .cta-bg-decor {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 80% 80% at 50% 50%, rgba(215, 38, 61, 0.05) 0%, transparent 70%);
+  background: radial-gradient(ellipse 80% 80% at 50% 50%, rgba(201, 168, 76, 0.05) 0%, transparent 70%);
   pointer-events: none;
 }
 .cta-inner h2 { margin-bottom: 16px; }
@@ -475,21 +475,21 @@
 .footer-socials { display: flex; gap: 10px; }
 .social-icon {
   width: 36px; height: 36px;
-  border: 1px solid rgba(215, 38, 61, 0.2);
+  border: 1px solid rgba(201, 168, 76, 0.2);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: var(--font-ui);
   font-size: 0.7rem;
-  color: rgba(255, 255, 255, 0.62);
+  color: rgba(248, 245, 242, 0.62);
   text-transform: lowercase;
   transition: border-color 0.3s, color 0.3s, background 0.3s;
 }
 .social-icon:hover {
   border-color: var(--gold);
   color: var(--gold);
-  background: rgba(215, 38, 61, 0.08);
+  background: rgba(201, 168, 76, 0.08);
 }
 
 /* ── Real project images (home teaser) ─────────────────────── */

@@ -4,7 +4,7 @@
 
 .legal-hero { background: var(--black); }
 .legal-hero .ph-bg {
-  background: radial-gradient(ellipse 50% 60% at 50% 100%, rgba(215, 38, 61, 0.05) 0%, transparent 70%);
+  background: radial-gradient(ellipse 50% 60% at 50% 100%, rgba(201, 168, 76, 0.05) 0%, transparent 70%);
 }
 
 /* ── Legal layout ───────────────────────────────────────────── */
@@ -21,7 +21,7 @@
   position: sticky;
   top: 100px;
   background: var(--black);
-  border: 1px solid rgba(215, 38, 61, 0.1);
+  border: 1px solid rgba(201, 168, 76, 0.1);
   border-radius: 4px;
   padding: 24px 20px;
 }
@@ -31,7 +31,7 @@
   font-family: var(--font-ui);
   font-size: 0.78rem;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.72);
+  color: rgba(248, 245, 242, 0.72);
   padding: 8px 12px;
   border-radius: 2px;
   border-left: 2px solid transparent;
@@ -41,7 +41,7 @@
 .legal-nav-link.active {
   color: var(--gold);
   border-left-color: var(--gold);
-  background: rgba(215, 38, 61, 0.05);
+  background: rgba(201, 168, 76, 0.05);
   padding-left: 18px;
 }
 
@@ -62,7 +62,7 @@
   color: var(--gold);
   margin-bottom: 20px;
   padding-bottom: 14px;
-  border-bottom: 1px solid rgba(215, 38, 61, 0.12);
+  border-bottom: 1px solid rgba(201, 168, 76, 0.12);
 }
 .legal-article h3 {
   font-family: var(--font-ui);
@@ -70,13 +70,13 @@
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.82);
+  color: rgba(248, 245, 242, 0.82);
   margin: 24px 0 10px;
 }
 .legal-article p {
   font-size: 0.92rem;
   line-height: 1.85;
-  color: rgba(255, 255, 255, 0.88);
+  color: rgba(248, 245, 242, 0.88);
   margin-bottom: 14px;
 }
 .legal-article p:last-child { margin-bottom: 0; }
@@ -91,7 +91,7 @@
 }
 .legal-article ul li {
   font-size: 0.92rem;
-  color: rgba(255, 255, 255, 0.88);
+  color: rgba(248, 245, 242, 0.88);
   line-height: 1.7;
   position: relative;
   padding-left: 20px;
@@ -100,7 +100,7 @@
   content: '✦';
   position: absolute;
   left: 0;
-  color: rgba(215, 38, 61, 0.5);
+  color: rgba(201, 168, 76, 0.5);
   font-size: 0.5rem;
   top: 6px;
 }
@@ -108,7 +108,7 @@
 /* Info block (table-like) */
 .legal-info-block {
   background: var(--black);
-  border: 1px solid rgba(215, 38, 61, 0.1);
+  border: 1px solid rgba(201, 168, 76, 0.1);
   border-radius: 4px;
   overflow: hidden;
   margin-top: 16px;
@@ -118,24 +118,24 @@
   align-items: baseline;
   gap: 20px;
   padding: 12px 20px;
-  border-bottom: 1px solid rgba(215, 38, 61, 0.06);
+  border-bottom: 1px solid rgba(201, 168, 76, 0.06);
   transition: background 0.2s;
 }
 .lib-row:last-child { border-bottom: none; }
-.lib-row:hover { background: rgba(215, 38, 61, 0.03); }
+.lib-row:hover { background: rgba(201, 168, 76, 0.03); }
 .lib-label {
   font-family: var(--font-ui);
   font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.62);
+  color: rgba(248, 245, 242, 0.62);
   min-width: 220px;
   flex-shrink: 0;
 }
 .lib-value {
   font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.92);
+  color: rgba(248, 245, 242, 0.92);
 }
 .lib-value a { color: var(--gold); text-decoration: none; }
 .lib-value a:hover { text-decoration: underline; }

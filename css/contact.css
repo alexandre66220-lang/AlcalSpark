@@ -5,7 +5,7 @@
 /* ── Page hero ──────────────────────────────────────────────── */
 .contact-hero { background: var(--black); }
 .contact-hero .ph-bg {
-  background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(201, 168, 76, 0.06) 0%, transparent 70%);
+  background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(215, 38, 61, 0.06) 0%, transparent 70%);
 }
 
 /* ── Contact layout ─────────────────────────────────────────── */
@@ -34,17 +34,17 @@
   gap: 16px;
   padding: 18px 20px;
   background: var(--black);
-  border: 1px solid rgba(201, 168, 76, 0.1);
+  border: 1px solid rgba(215, 38, 61, 0.1);
   border-radius: 4px;
   transition: border-color 0.3s, transform 0.3s var(--ease-spring);
 }
 .contact-card:hover {
-  border-color: rgba(201, 168, 76, 0.3);
+  border-color: rgba(215, 38, 61, 0.3);
   transform: translateX(6px);
 }
 .cc-icon {
   width: 40px; height: 40px;
-  border: 1px solid rgba(201, 168, 76, 0.2);
+  border: 1px solid rgba(215, 38, 61, 0.2);
   border-radius: 4px;
   display: flex;
   align-items: center;
@@ -58,7 +58,7 @@
   font-size: 0.68rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(248, 245, 242, 0.62);
+  color: rgba(255, 255, 255, 0.62);
   margin-bottom: 4px;
 }
 .cc-value {
@@ -73,8 +73,8 @@ a.cc-value:hover { color: var(--gold); }
   flex-direction: column;
   gap: 10px;
   padding: 24px;
-  background: rgba(201, 168, 76, 0.04);
-  border: 1px solid rgba(201, 168, 76, 0.12);
+  background: rgba(215, 38, 61, 0.04);
+  border: 1px solid rgba(215, 38, 61, 0.12);
   border-radius: 4px;
 }
 .cp-item {
@@ -82,14 +82,14 @@ a.cc-value:hover { color: var(--gold); }
   align-items: center;
   gap: 12px;
   font-size: 0.88rem;
-  color: rgba(248, 245, 242, 0.88);
+  color: rgba(255, 255, 255, 0.88);
 }
 .cp-icon { color: var(--gold); font-size: 0.6rem; flex-shrink: 0; }
 
 /* ── Form side ──────────────────────────────────────────────── */
 .contact-form-wrap {
   background: var(--black);
-  border: 1px solid rgba(201, 168, 76, 0.1);
+  border: 1px solid rgba(215, 38, 61, 0.1);
   border-radius: 6px;
   padding: 50px 44px;
 }
@@ -110,13 +110,13 @@ a.cc-value:hover { color: var(--gold); }
   font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(248, 245, 242, 0.68);
+  color: rgba(255, 255, 255, 0.68);
   margin-bottom: 10px;
   transition: color 0.3s;
 }
 .select-wrap {
   position: relative;
-  border-bottom: 1px solid rgba(201, 168, 76, 0.25);
+  border-bottom: 1px solid rgba(215, 38, 61, 0.25);
   transition: border-color 0.3s;
 }
 .select-wrap:focus-within { border-color: var(--gold); }
@@ -124,7 +124,7 @@ a.cc-value:hover { color: var(--gold); }
   width: 100%;
   padding: 12px 0;
   font-size: 0.95rem;
-  color: rgba(248, 245, 242, 0.88);
+  color: rgba(255, 255, 255, 0.88);
   background: transparent;
   appearance: none;
   cursor: none;
@@ -152,7 +152,7 @@ a.cc-value:hover { color: var(--gold); }
 .checkbox-wrap input[type="checkbox"] { position: absolute; opacity: 0; width: 0; height: 0; }
 .checkbox-custom {
   width: 18px; height: 18px;
-  border: 1px solid rgba(201, 168, 76, 0.3);
+  border: 1px solid rgba(215, 38, 61, 0.3);
   border-radius: 2px;
   flex-shrink: 0;
   margin-top: 1px;
@@ -173,7 +173,7 @@ a.cc-value:hover { color: var(--gold); }
 }
 .checkbox-wrap span:last-child {
   font-size: 0.82rem;
-  color: rgba(248, 245, 242, 0.78);
+  color: rgba(255, 255, 255, 0.78);
   line-height: 1.6;
 }
 .checkbox-wrap a { color: var(--gold); text-decoration: underline; }
@@ -202,7 +202,7 @@ a.cc-value:hover { color: var(--gold); }
   color: var(--off-white);
   margin-bottom: 10px;
 }
-.form-success p { color: rgba(248, 245, 242, 0.85); }
+.form-success p { color: rgba(255, 255, 255, 0.85); }
 
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(20px); }
@@ -225,10 +225,10 @@ a.cc-value:hover { color: var(--gold); }
   gap: 0;
 }
 .faq-item {
-  border-bottom: 1px solid rgba(201, 168, 76, 0.1);
+  border-bottom: 1px solid rgba(215, 38, 61, 0.1);
   transition: background 0.3s;
 }
-.faq-item.open { background: rgba(201, 168, 76, 0.03); }
+.faq-item.open { background: rgba(215, 38, 61, 0.03); }
 .faq-question {
   width: 100%;
   display: flex;
@@ -262,7 +262,7 @@ a.cc-value:hover { color: var(--gold); }
 }
 .faq-answer p {
   font-size: 0.9rem;
-  color: rgba(248, 245, 242, 0.85);
+  color: rgba(255, 255, 255, 0.85);
   line-height: 1.8;
   padding-right: 40px;
 }
@@ -270,7 +270,7 @@ a.cc-value:hover { color: var(--gold); }
 /* Active nav cta */
 .nav-cta.active-cta {
   background: var(--gold-light);
-  box-shadow: 0 4px 20px rgba(201, 168, 76, 0.3);
+  box-shadow: 0 4px 20px rgba(215, 38, 61, 0.3);
 }
 
 /* ── Responsive ─────────────────────────────────────────────── */

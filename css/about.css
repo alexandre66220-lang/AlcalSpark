@@ -252,11 +252,80 @@ blockquote {
   background: rgba(201, 168, 76, 0.15);
 }
 
+/* ── Qui est AlcalSpark / Pourquoi AlcalSpark ───────────────── */
+.about-story-section { background: var(--black-soft); }
+.about-story-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+  margin-bottom: 70px;
+}
+.about-story-block h3 {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 2.2vw, 1.9rem);
+  font-weight: 500;
+  color: var(--gold);
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(201, 168, 76, 0.12);
+}
+.about-story-block p {
+  font-size: 0.92rem;
+  line-height: 1.88;
+  color: rgba(248, 245, 242, 0.88);
+  margin-bottom: 14px;
+}
+.about-story-block p:last-child { margin-bottom: 0; }
+
+.pourquoi-header {
+  margin-bottom: 32px;
+}
+.pourquoi-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.pourquoi-card {
+  background: var(--black);
+  border: 1px solid rgba(201, 168, 76, 0.1);
+  border-radius: 4px;
+  padding: 32px 28px;
+  transition: border-color 0.4s, transform 0.4s var(--ease-spring), box-shadow 0.4s;
+}
+.pourquoi-card:hover {
+  border-color: rgba(201, 168, 76, 0.4);
+  transform: translateY(-6px);
+  box-shadow: 0 20px 50px rgba(26, 38, 32, 0.4);
+}
+.pourquoi-card .pq-icon {
+  font-size: 1.6rem;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 16px;
+}
+.pourquoi-card h4 {
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+.pourquoi-card p {
+  font-size: 0.88rem;
+  line-height: 1.75;
+  color: rgba(248, 245, 242, 0.85);
+}
+
 /* ── Responsive ─────────────────────────────────────────────── */
 @media (max-width: 1100px) {
   .values-grid  { grid-template-columns: repeat(2, 1fr); }
   .solo-layout  { grid-template-columns: 1fr; gap: 50px; }
   .solo-visual  { flex-direction: row; flex-wrap: wrap; justify-content: center; }
+  .about-story-grid { grid-template-columns: 1fr; gap: 40px; }
+  .pourquoi-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 768px) {
   .manifesto-layout { grid-template-columns: 1fr; gap: 50px; }
@@ -265,8 +334,6 @@ blockquote {
   .tl-item { padding: 0 !important; justify-content: center; }
   .tl-dot  { display: none; }
   .tl-content { max-width: 100%; }
-  .stats-inner { flex-wrap: wrap; gap: 40px; justify-content: center; }
-  .stat-separator { display: none; }
   .solo-logo { width: 180px; height: 180px; }
 }
 @media (max-width: 480px) {

@@ -31,7 +31,7 @@
   font-family: var(--font-ui);
   font-size: 0.78rem;
   font-weight: 500;
-  color: rgba(248, 245, 242, 0.45);
+  color: rgba(248, 245, 242, 0.72);
   padding: 8px 12px;
   border-radius: 2px;
   border-left: 2px solid transparent;
@@ -70,13 +70,13 @@
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(248, 245, 242, 0.6);
+  color: rgba(248, 245, 242, 0.82);
   margin: 24px 0 10px;
 }
 .legal-article p {
   font-size: 0.92rem;
   line-height: 1.85;
-  color: rgba(248, 245, 242, 0.65);
+  color: rgba(248, 245, 242, 0.88);
   margin-bottom: 14px;
 }
 .legal-article p:last-child { margin-bottom: 0; }
@@ -91,7 +91,7 @@
 }
 .legal-article ul li {
   font-size: 0.92rem;
-  color: rgba(248, 245, 242, 0.65);
+  color: rgba(248, 245, 242, 0.88);
   line-height: 1.7;
   position: relative;
   padding-left: 20px;
@@ -129,13 +129,13 @@
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(248, 245, 242, 0.35);
+  color: rgba(248, 245, 242, 0.62);
   min-width: 220px;
   flex-shrink: 0;
 }
 .lib-value {
   font-size: 0.9rem;
-  color: rgba(248, 245, 242, 0.75);
+  color: rgba(248, 245, 242, 0.92);
 }
 .lib-value a { color: var(--gold); text-decoration: none; }
 .lib-value a:hover { text-decoration: underline; }

@@ -299,7 +299,7 @@ p {
   font-size: clamp(0.9rem, 1.1vw, 1rem);
   font-weight: 300;
   line-height: 1.8;
-  color: rgba(248, 245, 242, 0.7);
+  color: rgba(248, 245, 242, 0.88);
 }
 .text-gold { color: var(--gold); }
 .text-italic { font-style: italic; }
@@ -426,12 +426,12 @@ p {
 /* ── Cards ─────────────────────────────────────────────────── */
 .card {
   background: var(--black-soft);
-  border: 1px solid rgba(201, 168, 76, 0.1);
+  border: 1px solid transparent;
   border-radius: 4px;
   padding: 40px;
   position: relative;
   overflow: hidden;
-  transition: border-color 0.4s, transform 0.4s var(--ease-out-expo), box-shadow 0.4s;
+  transition: transform 0.4s var(--ease-out-expo), box-shadow 0.4s;
 }
 .card::before {
   content: '';
@@ -440,13 +440,43 @@ p {
   background: linear-gradient(135deg, rgba(201, 168, 76, 0.06), transparent);
   opacity: 0;
   transition: opacity 0.4s;
+  z-index: 0;
+}
+/* Glossy gradient border — excluded from .si-card which owns its own ::after shimmer */
+.card:not(.si-card)::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 4px;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    rgba(212, 175, 55, 0.15) 0%,
+    rgba(212, 175, 55, 0.9)  25%,
+    rgba(255, 236, 150, 1)   50%,
+    rgba(212, 175, 55, 0.9)  75%,
+    rgba(212, 175, 55, 0.15) 100%
+  );
+  background-size: 200% 200%;
+  background-position: 0% 0%;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 3;
+  transition: background-position 0.4s ease;
 }
 .card:hover {
-  border-color: rgba(201, 168, 76, 0.4);
   transform: translateY(-6px);
   box-shadow: 0 20px 60px rgba(26, 38, 32, 0.5), 0 0 40px rgba(201, 168, 76, 0.08);
 }
 .card:hover::before { opacity: 1; }
+.card:not(.si-card):hover::after { background-position: 100% 100%; }
 
 /* ── Gold Badge ────────────────────────────────────────────── */
 .badge {
@@ -515,7 +545,7 @@ p {
 .footer-col li + li { margin-top: 12px; }
 .footer-col a {
   font-size: 0.88rem;
-  color: rgba(248, 245, 242, 0.55);
+  color: rgba(248, 245, 242, 0.78);
   transition: color 0.3s, padding-left 0.3s;
 }
 .footer-col a:hover { color: var(--gold); padding-left: 6px; }
@@ -557,7 +587,7 @@ p {
   font-size: 0.65rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(248, 245, 242, 0.4);
+  color: rgba(248, 245, 242, 0.55);
   animation: scrollBob 2.5s ease-in-out infinite;
 }
 .scroll-indicator .scroll-line {
@@ -614,7 +644,7 @@ p {
   font-size: 0.78rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(248, 245, 242, 0.5);
+  color: rgba(248, 245, 242, 0.72);
   margin-top: 8px;
   display: block;
 }
@@ -632,7 +662,7 @@ p {
   font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(248, 245, 242, 0.4);
+  color: rgba(248, 245, 242, 0.58);
   transition: top 0.3s var(--ease-out-expo), font-size 0.3s, color 0.3s;
   pointer-events: none;
 }
@@ -848,7 +878,7 @@ p {
   font-family: var(--font-ui);
   font-size: 0.75rem;
   letter-spacing: 0.1em;
-  color: rgba(248, 245, 242, 0.35);
+  color: rgba(248, 245, 242, 0.55);
 }
 .ph-breadcrumb a { color: var(--gold); transition: color 0.3s; }
 .ph-breadcrumb a:hover { color: var(--gold-light); }
@@ -903,7 +933,7 @@ p {
 }
 .cookie-text p {
   font-size: 0.8rem;
-  color: rgba(248, 245, 242, 0.45);
+  color: rgba(248, 245, 242, 0.78);
   margin: 0;
   max-width: 600px;
   line-height: 1.6;
@@ -924,7 +954,7 @@ p {
 }
 .cookie-btn:hover { transform: translateY(-2px); }
 .cookie-refuse {
-  color: rgba(248, 245, 242, 0.5);
+  color: rgba(248, 245, 242, 0.72);
   border: 1px solid rgba(248, 245, 242, 0.15);
   background: transparent;
 }

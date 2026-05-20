@@ -39,7 +39,7 @@
   font-family: var(--font-ui);
   font-size: 0.75rem;
   letter-spacing: 0.1em;
-  color: rgba(248, 245, 242, 0.35);
+  color: rgba(248, 245, 242, 0.55);
 }
 .ph-breadcrumb a { color: var(--gold); transition: color 0.3s; }
 .ph-breadcrumb a:hover { color: var(--gold-light); }
@@ -86,7 +86,7 @@
   gap: 12px;
   font-family: var(--font-body);
   font-size: 0.9rem;
-  color: rgba(248, 245, 242, 0.7);
+  color: rgba(248, 245, 242, 0.88);
 }
 .service-features li::before {
   content: '✦';
@@ -275,7 +275,7 @@
   flex-direction: column;
   align-items: center;
   gap: 8px;
-  color: rgba(248, 245, 242, 0.5);
+  color: rgba(248, 245, 242, 0.72);
 }
 
 /* SEO mockup */
@@ -343,7 +343,7 @@
   font-family: var(--font-display);
   font-size: 3.5rem;
   font-weight: 700;
-  color: rgba(201, 168, 76, 0.06);
+  color: rgba(201, 168, 76, 0.22);
   line-height: 1;
 }
 .service-small-card h3 { margin-bottom: 14px; }
@@ -414,7 +414,7 @@
   font-family: var(--font-display);
   font-size: 4.5rem;
   font-weight: 700;
-  color: rgba(201, 168, 76, 0.05);
+  color: rgba(201, 168, 76, 0.2);
   line-height: 1;
   user-select: none;
 }
@@ -431,7 +431,7 @@
 .si-card:hover h3 { color: var(--gold); }
 .si-card > p {
   font-size: 0.88rem;
-  color: rgba(248, 245, 242, 0.55);
+  color: rgba(248, 245, 242, 0.85);
   line-height: 1.8;
 }
 
@@ -443,7 +443,7 @@
 .si-cta-desc {
   font-family: var(--font-display);
   font-size: clamp(1.05rem, 1.6vw, 1.35rem);
-  color: rgba(248, 245, 242, 0.65);
+  color: rgba(248, 245, 242, 0.85);
   margin-bottom: 0;
 }
 
@@ -464,7 +464,7 @@
 }
 .pricing-card { padding: 44px 40px; position: relative; }
 .pricing-card.featured {
-  border-color: rgba(201, 168, 76, 0.5);
+  border-color: transparent;
   transform: translateY(-12px);
   box-shadow: 0 30px 80px rgba(26, 38, 32, 0.5), 0 0 60px rgba(201, 168, 76, 0.1);
 }
@@ -495,7 +495,7 @@
 .pc-from {
   display: block;
   font-size: 0.78rem;
-  color: rgba(248, 245, 242, 0.4);
+  color: rgba(248, 245, 242, 0.65);
   margin-bottom: 6px;
 }
 .pc-num {
@@ -523,7 +523,7 @@
   align-items: center;
   gap: 10px;
   font-size: 0.88rem;
-  color: rgba(248, 245, 242, 0.7);
+  color: rgba(248, 245, 242, 0.88);
 }
 .pc-features li::before {
   content: '✦';

@@ -48,7 +48,7 @@
   max-width: 520px;
   margin-bottom: 40px;
   line-height: 1.75;
-  color: rgba(248, 245, 242, 0.65);
+  color: rgba(248, 245, 242, 0.88);
 }
 .br-desk { display: block; }
 .hero-actions {
@@ -78,7 +78,7 @@
   font-size: 0.72rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(248, 245, 242, 0.35);
+  color: rgba(248, 245, 242, 0.52);
 }
 .mouse-icon {
   width: 22px; height: 34px;
@@ -170,7 +170,7 @@
   font-size: 0.72rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(248, 245, 242, 0.5);
+  color: rgba(248, 245, 242, 0.72);
   margin-top: 6px;
 }
 
@@ -234,11 +234,11 @@
   font-family: var(--font-display);
   font-size: 3.5rem;
   font-weight: 700;
-  color: rgba(201, 168, 76, 0.05);
+  color: rgba(201, 168, 76, 0.22);
   line-height: 1;
   transition: color 0.4s;
 }
-.service-card:hover .sc-number { color: rgba(201, 168, 76, 0.1); }
+.service-card:hover .sc-number { color: rgba(201, 168, 76, 0.38); }
 
 /* ── Stats ─────────────────────────────────────────────────── */
 .section-stats {
@@ -362,12 +362,12 @@
   font-family: var(--font-display);
   font-size: 3.5rem;
   font-weight: 700;
-  color: rgba(201, 168, 76, 0.15);
+  color: rgba(201, 168, 76, 0.26);
   line-height: 1;
   margin-bottom: 20px;
   transition: color 0.3s;
 }
-.process-step:hover .ps-num { color: rgba(201, 168, 76, 0.3); }
+.process-step:hover .ps-num { color: rgba(201, 168, 76, 0.44); }
 .ps-content h4 {
   font-size: 0.85rem;
   letter-spacing: 0.12em;
@@ -409,7 +409,7 @@
   line-height: 1.8;
   margin-bottom: 28px;
   font-style: italic;
-  color: rgba(248, 245, 242, 0.75);
+  color: rgba(248, 245, 242, 0.9);
 }
 .testi-author {
   display: flex;
@@ -482,7 +482,7 @@
   justify-content: center;
   font-family: var(--font-ui);
   font-size: 0.7rem;
-  color: rgba(248, 245, 242, 0.4);
+  color: rgba(248, 245, 242, 0.62);
   text-transform: lowercase;
   transition: border-color 0.3s, color 0.3s, background 0.3s;
 }

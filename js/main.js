@@ -306,33 +306,32 @@
     }, { passive: true });
   }
 
-  /* ── Hero floating particles ─────────────────────────────── */
-  function initHeroParticles() {
-    const hero = document.getElementById('hero');
-    if (!hero) return;
+  /* ── Global particles canvas (fixed, full viewport) ─────── */
+  function initGlobalParticles() {
+    if (window.innerWidth < 1024) return;
 
-    const canvas = document.createElement('canvas');
+    var canvas = document.createElement('canvas');
+    canvas.id = 'particles-bg';
     canvas.setAttribute('aria-hidden', 'true');
-    canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;';
-    const heroBg = hero.querySelector('.hero-bg');
-    if (heroBg) heroBg.after(canvas); else hero.prepend(canvas);
+    canvas.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:0;pointer-events:none;';
+    document.body.insertBefore(canvas, document.body.firstChild);
 
-    const ctx = canvas.getContext('2d');
-    const G = [212, 168, 67];
-    const particles = [];
+    var ctx = canvas.getContext('2d');
+    var G   = [212, 168, 67];
+    var particles = [];
 
-    function resize() { canvas.width = hero.offsetWidth; canvas.height = hero.offsetHeight; }
+    function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
     resize();
     window.addEventListener('resize', resize, { passive: true });
 
-    for (let i = 0; i < 40; i++) {
+    for (var i = 0; i < 80; i++) {
       particles.push({
         x:     Math.random() * canvas.width,
         y:     Math.random() * canvas.height,
-        r:     Math.random() * 1.4 + 0.4,
-        vx:    (Math.random() - 0.5) * 0.18,
-        vy:    -(Math.random() * 0.22 + 0.07),
-        alpha: Math.random() * 0.32 + 0.08,
+        r:     Math.random() * 1.5 + 1,
+        vx:    (Math.random() - 0.5) * 0.2,
+        vy:    (Math.random() - 0.5) * 0.2,
+        alpha: Math.random() * 0.4 + 0.2,
         phase: Math.random() * Math.PI * 2,
       });
     }
@@ -340,10 +339,12 @@
     (function tick() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       particles.forEach(function (p) {
-        p.x += p.vx; p.y += p.vy; p.phase += 0.013;
-        if (p.y < -8) { p.y = canvas.height + 8; p.x = Math.random() * canvas.width; }
-        if (p.x < -8 || p.x > canvas.width + 8) p.x = Math.random() * canvas.width;
-        var opacity = p.alpha * (0.5 + 0.5 * Math.sin(p.phase));
+        p.x += p.vx; p.y += p.vy; p.phase += 0.008;
+        if (p.x < -5) p.x = canvas.width + 5;
+        if (p.x > canvas.width + 5) p.x = -5;
+        if (p.y < -5) p.y = canvas.height + 5;
+        if (p.y > canvas.height + 5) p.y = -5;
+        var opacity = p.alpha * (0.6 + 0.4 * Math.sin(p.phase));
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
         ctx.fillStyle = 'rgba(' + G[0] + ',' + G[1] + ',' + G[2] + ',' + opacity.toFixed(3) + ')';
@@ -454,7 +455,7 @@
     initTextReveal();
     initScrollProgress();
     revealPage();
-    initHeroParticles();
+    initGlobalParticles();
     initTypewriter();
     initStaggeredReveal();
   }

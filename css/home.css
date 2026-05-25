@@ -188,7 +188,7 @@
 
 /* ── Services preview ──────────────────────────────────────── */
 .services-preview {
-  background: var(--black-soft);
+  background: transparent;
   position: relative;
   overflow: hidden;
 }
@@ -285,9 +285,9 @@
 
 /* ── Philosophy section (remplace stats) ───────────────────── */
 .philosophy-section {
-  background: var(--black-soft);
-  border-top: 1px solid rgba(201, 168, 76, 0.1);
-  border-bottom: 1px solid rgba(201, 168, 76, 0.1);
+  background: transparent;
+  border-top: 1px solid rgba(212, 168, 67, 0.1);
+  border-bottom: 1px solid rgba(212, 168, 67, 0.1);
 }
 .philosophy-grid {
   display: grid;
@@ -295,8 +295,8 @@
   gap: 24px;
 }
 .phil-card {
-  background: var(--black);
-  border: 1px solid rgba(201, 168, 76, 0.1);
+  background: rgba(15, 22, 17, 0.82);
+  border: 1px solid rgba(212, 168, 67, 0.12);
   border-radius: 4px;
   padding: 44px 36px;
   text-align: center;
@@ -347,7 +347,7 @@
 
 /* ── Portfolio Teaser ──────────────────────────────────────── */
 .portfolio-teaser {
-  background: var(--black);
+  background: transparent;
   position: relative;
   overflow: hidden;
 }
@@ -428,7 +428,7 @@
 
 /* ── Process ───────────────────────────────────────────────── */
 .section-dark {
-  background: #1f3229;
+  background: transparent;
 }
 .process-steps {
   display: grid;
@@ -470,7 +470,7 @@
 
 /* ── Testimonials ──────────────────────────────────────────── */
 .testimonials-section {
-  background: linear-gradient(180deg, var(--black-soft) 0%, var(--black) 100%);
+  background: transparent;
 }
 .testi-grid {
   display: grid;
@@ -528,7 +528,7 @@
 
 /* ── CTA Section ───────────────────────────────────────────── */
 .cta-section {
-  background: var(--black);
+  background: transparent;
 }
 .cta-inner {
   max-width: 700px;

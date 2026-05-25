@@ -234,9 +234,24 @@ body.cursor-click #cursor-ring { width: 30px; height: 30px; opacity: 1; border-c
 .nav-mobile .nav-link::after { bottom: -6px; height: 1px; }
 
 /* ── Section Layout ────────────────────────────────────────── */
+main {
+  position: relative;
+  z-index: 1;
+}
 .section {
+  position: relative;
+  z-index: 1;
   width: 100%;
   padding: clamp(80px, 10vw, 140px) var(--gutter);
+}
+/* Subtle gold separator between consecutive sections */
+.section + .section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 12%; right: 12%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212, 168, 67, 0.1), transparent);
+  pointer-events: none;
 }
 .container {
   max-width: var(--max-w);
@@ -425,7 +440,7 @@ p {
 
 /* ── Cards ─────────────────────────────────────────────────── */
 .card {
-  background: var(--black-soft);
+  background: rgba(30, 46, 38, 0.88);
   border: 1px solid transparent;
   border-radius: 4px;
   padding: 40px;
@@ -494,8 +509,10 @@ p {
 
 /* ── Footer ────────────────────────────────────────────────── */
 #footer {
-  background: #1a2620;
-  border-top: 1px solid rgba(201, 168, 76, 0.12);
+  position: relative;
+  z-index: 1;
+  background: #111a14;
+  border-top: 1px solid rgba(212, 168, 67, 0.12);
   padding: clamp(60px, 8vw, 100px) var(--gutter) 40px;
 }
 .footer-grid {

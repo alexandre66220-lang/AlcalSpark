@@ -9,7 +9,7 @@
 :root {
   --black:       #263a30;
   --black-soft:  #385144;
-  --gold:        #C9A84C;
+  --gold:        #D4A843;
   --gold-light:  #E8C97A;
   --gold-dark:   #9A7530;
   --gold-muted:  #B8944A33;
@@ -38,7 +38,7 @@
 html { scroll-behavior: smooth; font-size: 16px; }
 body {
   font-family: var(--font-body);
-  background: var(--black);
+  background: linear-gradient(180deg, #0a0a0a 0%, #0a120e 45%, #0b160d 65%, #0a0a0a 100%);
   color: var(--off-white);
   overflow-x: hidden;
   cursor: none;
@@ -567,7 +567,7 @@ p {
   inset: 0;
   z-index: 9997;
   pointer-events: none;
-  opacity: 0.025;
+  opacity: 0.065;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
   background-repeat: repeat;
   background-size: 200px;

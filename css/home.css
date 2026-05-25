@@ -14,10 +14,22 @@
 .hero-bg {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 80% 60% at 70% 40%, rgba(201, 168, 76, 0.07) 0%, transparent 70%),
+  background: radial-gradient(ellipse 80% 60% at 70% 40%, rgba(212, 168, 67, 0.07) 0%, transparent 70%),
               radial-gradient(ellipse 60% 80% at 20% 60%, rgba(38, 58, 48, 0.2) 0%, transparent 60%),
-              var(--black);
+              #0a120e;
   z-index: 0;
+}
+.hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 50% at 65% 35%, rgba(212, 168, 67, 0.06) 0%, transparent 60%);
+  animation: heroPulse 7s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes heroPulse {
+  0%, 100% { opacity: 0.4; transform: scale(0.95); }
+  50%       { opacity: 1;   transform: scale(1.12); }
 }
 .hero-content {
   position: relative;
@@ -234,11 +246,42 @@
   font-family: var(--font-display);
   font-size: 3.5rem;
   font-weight: 700;
-  color: rgba(201, 168, 76, 0.22);
+  color: rgba(212, 168, 67, 0.22);
   line-height: 1;
-  transition: color 0.4s;
+  transition: color 0.3s, font-size 0.3s var(--ease-out-expo), top 0.3s var(--ease-out-expo);
 }
-.service-card:hover .sc-number { color: rgba(201, 168, 76, 0.38); }
+.service-card:hover .sc-number {
+  color: rgba(212, 168, 67, 0.52);
+  font-size: 4.2rem;
+  top: 22px;
+}
+
+/* Service card hover overrides */
+.service-card {
+  transition: transform 0.3s var(--ease-out-expo), box-shadow 0.3s, border-color 0.3s;
+}
+.service-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(212, 168, 67, 0.4);
+  box-shadow: 0 24px 70px rgba(10, 18, 12, 0.6), 0 0 50px rgba(212, 168, 67, 0.1);
+}
+
+/* Shimmer sweep on hover */
+.service-card::before {
+  background: linear-gradient(
+    105deg,
+    transparent 20%,
+    rgba(212, 168, 67, 0.09) 50%,
+    transparent 80%
+  );
+  background-size: 200% 100%;
+  background-position: -100% 0;
+  opacity: 1;
+  transition: background-position 0.65s ease;
+}
+.service-card:hover::before {
+  background-position: 200% 0;
+}
 
 /* ── Philosophy section (remplace stats) ───────────────────── */
 .philosophy-section {

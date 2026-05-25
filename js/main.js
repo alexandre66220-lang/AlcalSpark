@@ -277,6 +277,7 @@
   /* ── Text split reveal ───────────────────────────────────── */
   function initTextReveal() {
     document.querySelectorAll('[data-text-reveal]').forEach(el => {
+      if (el.closest('.hero-title')) return; // typewriter handles these
       const words = el.textContent.trim().split(' ');
       el.innerHTML = words.map((w, i) =>
         `<span class="word-wrap" style="overflow:hidden;display:inline-block;vertical-align:bottom;"><span class="word" style="display:inline-block;transform:translateY(105%);transition:transform 0.8s cubic-bezier(0.16,1,0.3,1) ${i * 0.06}s;">${w}&nbsp;</span></span>`
@@ -305,6 +306,141 @@
     }, { passive: true });
   }
 
+  /* ── Hero floating particles ─────────────────────────────── */
+  function initHeroParticles() {
+    const hero = document.getElementById('hero');
+    if (!hero) return;
+
+    const canvas = document.createElement('canvas');
+    canvas.setAttribute('aria-hidden', 'true');
+    canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;';
+    const heroBg = hero.querySelector('.hero-bg');
+    if (heroBg) heroBg.after(canvas); else hero.prepend(canvas);
+
+    const ctx = canvas.getContext('2d');
+    const G = [212, 168, 67];
+    const particles = [];
+
+    function resize() { canvas.width = hero.offsetWidth; canvas.height = hero.offsetHeight; }
+    resize();
+    window.addEventListener('resize', resize, { passive: true });
+
+    for (let i = 0; i < 40; i++) {
+      particles.push({
+        x:     Math.random() * canvas.width,
+        y:     Math.random() * canvas.height,
+        r:     Math.random() * 1.4 + 0.4,
+        vx:    (Math.random() - 0.5) * 0.18,
+        vy:    -(Math.random() * 0.22 + 0.07),
+        alpha: Math.random() * 0.32 + 0.08,
+        phase: Math.random() * Math.PI * 2,
+      });
+    }
+
+    (function tick() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(function (p) {
+        p.x += p.vx; p.y += p.vy; p.phase += 0.013;
+        if (p.y < -8) { p.y = canvas.height + 8; p.x = Math.random() * canvas.width; }
+        if (p.x < -8 || p.x > canvas.width + 8) p.x = Math.random() * canvas.width;
+        var opacity = p.alpha * (0.5 + 0.5 * Math.sin(p.phase));
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(' + G[0] + ',' + G[1] + ',' + G[2] + ',' + opacity.toFixed(3) + ')';
+        ctx.fill();
+      });
+      requestAnimationFrame(tick);
+    }());
+  }
+
+  /* ── Typewriter on hero H1 ───────────────────────────────── */
+  function initTypewriter() {
+    var lines = document.querySelectorAll('.hero-title .hero-line');
+    if (!lines.length) return;
+
+    var texts = [];
+    lines.forEach(function (line) {
+      texts.push(line.textContent.trim());
+      line.textContent = '';
+    });
+
+    var style = document.createElement('style');
+    style.textContent = '.tw-cursor{color:var(--gold);animation:twBlink .65s step-end infinite;font-style:normal;}@keyframes twBlink{0%,100%{opacity:1;}50%{opacity:0;}}';
+    document.head.appendChild(style);
+
+    var cursor = document.createElement('span');
+    cursor.className = 'tw-cursor';
+    cursor.textContent = '|';
+    var lineIdx = 0, charIdx = 0;
+
+    function type() {
+      if (lineIdx >= lines.length) { cursor.remove(); return; }
+      var line = lines[lineIdx];
+      var text = texts[lineIdx];
+      if (!line.contains(cursor)) line.appendChild(cursor);
+      if (charIdx < text.length) {
+        line.insertBefore(document.createTextNode(text[charIdx]), cursor);
+        charIdx++;
+        setTimeout(type, 44);
+      } else {
+        lineIdx++; charIdx = 0;
+        setTimeout(type, 200);
+      }
+    }
+    type();
+  }
+
+  /* ── Staggered scroll reveals ────────────────────────────── */
+  function initStaggeredReveal() {
+    var ease = 'var(--ease-out-expo)';
+
+    // Philosophy cards: slide-up + fade with stagger
+    var philGrid = document.querySelector('.philosophy-grid');
+    if (philGrid) {
+      var philCards = philGrid.querySelectorAll('.phil-card');
+      philCards.forEach(function (card) {
+        card.style.opacity   = '0';
+        card.style.transform = 'translateY(32px)';
+        card.style.transition = 'opacity 0.7s ' + ease + ', transform 0.7s ' + ease;
+      });
+      new IntersectionObserver(function (entries, obs) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          philCards.forEach(function (card, i) {
+            setTimeout(function () {
+              card.style.opacity   = '1';
+              card.style.transform = 'translateY(0)';
+            }, i * 120);
+          });
+          obs.unobserve(entry.target);
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }).observe(philGrid);
+    }
+
+    // Process steps: sequential 0.15s stagger
+    var processContainer = document.querySelector('.process-steps');
+    if (processContainer) {
+      var steps = processContainer.querySelectorAll('.process-step');
+      steps.forEach(function (step) {
+        step.style.opacity   = '0';
+        step.style.transform = 'translateY(28px)';
+        step.style.transition = 'opacity 0.6s ' + ease + ', transform 0.6s ' + ease;
+      });
+      new IntersectionObserver(function (entries, obs) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          steps.forEach(function (step, i) {
+            setTimeout(function () {
+              step.style.opacity   = '1';
+              step.style.transform = 'translateY(0)';
+            }, i * 150);
+          });
+          obs.unobserve(entry.target);
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' }).observe(processContainer);
+    }
+  }
+
   /* ── Init page ───────────────────────────────────────────── */
   function initPage() {
     initCursor();
@@ -318,6 +454,9 @@
     initTextReveal();
     initScrollProgress();
     revealPage();
+    initHeroParticles();
+    initTypewriter();
+    initStaggeredReveal();
   }
 
   /* ── Bootstrap ───────────────────────────────────────────── */

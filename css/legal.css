@@ -2,13 +2,13 @@
    AlcalSpark — Legal Page Styles
    ============================================================ */
 
-.legal-hero { background: var(--black); }
+.legal-hero { background: transparent; }
 .legal-hero .ph-bg {
   background: radial-gradient(ellipse 50% 60% at 50% 100%, rgba(201, 168, 76, 0.05) 0%, transparent 70%);
 }
 
 /* ── Legal layout ───────────────────────────────────────────── */
-.legal-section { background: var(--black-soft); }
+.legal-section { background: transparent; }
 .legal-layout {
   display: grid;
   grid-template-columns: 220px 1fr;

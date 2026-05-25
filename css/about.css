@@ -4,7 +4,7 @@
 
 /* ── Page hero ──────────────────────────────────────────────── */
 .about-hero {
-  background: var(--black);
+  background: transparent;
   overflow: hidden;
 }
 .about-hero .ph-bg {
@@ -12,7 +12,7 @@
 }
 
 /* ── Manifesto ─────────────────────────────────────────────── */
-.manifesto-section { background: var(--black-soft); }
+.manifesto-section { background: transparent; }
 .manifesto-layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -60,7 +60,7 @@ blockquote {
 }
 
 /* ── Values ─────────────────────────────────────────────────── */
-.values-section { background: var(--black); }
+.values-section { background: transparent; }
 .values-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -97,7 +97,7 @@ blockquote {
 
 /* ── Timeline ───────────────────────────────────────────────── */
 .timeline-section {
-  background: var(--black-soft);
+  background: transparent;
   overflow: hidden;
 }
 .timeline {
@@ -162,7 +162,7 @@ blockquote {
 .tl-item:hover .tl-dot { background: var(--gold); transform: translate(-50%, -50%) scale(1.2); }
 
 /* ── Solo brand presentation ────────────────────────────────── */
-.solo-section { background: var(--black); }
+.solo-section { background: transparent; }
 
 .solo-layout {
   display: grid;
@@ -253,7 +253,7 @@ blockquote {
 }
 
 /* ── Qui est AlcalSpark / Pourquoi AlcalSpark ───────────────── */
-.about-story-section { background: var(--black-soft); }
+.about-story-section { background: transparent; }
 .about-story-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;

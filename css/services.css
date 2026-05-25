@@ -11,7 +11,7 @@
   padding-top: var(--nav-h);
   overflow: hidden;
 }
-.services-hero { background: var(--black); }
+.services-hero { background: transparent; }
 .ph-bg {
   position: absolute;
   inset: 0;
@@ -45,7 +45,7 @@
 .ph-breadcrumb a:hover { color: var(--gold-light); }
 
 /* ── Services List ──────────────────────────────────────────── */
-.services-list { background: var(--black); }
+.services-list { background: transparent; }
 
 .service-row { padding: 80px 0; position: relative; }
 .service-row.reverse .sr-body { flex-direction: row-reverse; }
@@ -350,7 +350,7 @@
 
 /* ── Systèmes intelligents ──────────────────────────────────── */
 .si-section {
-  background: var(--black);
+  background: transparent;
   position: relative;
   overflow: hidden;
 }
@@ -455,7 +455,7 @@
 }
 
 /* ── Pricing ────────────────────────────────────────────────── */
-.pricing-section { background: var(--black-soft); }
+.pricing-section { background: transparent; }
 .pricing-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

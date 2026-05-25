@@ -3,13 +3,13 @@
    ============================================================ */
 
 /* ── Page hero ──────────────────────────────────────────────── */
-.contact-hero { background: var(--black); }
+.contact-hero { background: transparent; }
 .contact-hero .ph-bg {
   background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(201, 168, 76, 0.06) 0%, transparent 70%);
 }
 
 /* ── Contact layout ─────────────────────────────────────────── */
-.contact-section { background: var(--black-soft); }
+.contact-section { background: transparent; }
 .contact-layout {
   display: grid;
   grid-template-columns: 1fr 1.4fr;
@@ -216,7 +216,7 @@ a.cc-value:hover { color: var(--gold); }
 }
 
 /* ── FAQ ─────────────────────────────────────────────────────── */
-.faq-section { background: var(--black); }
+.faq-section { background: transparent; }
 .faq-list {
   max-width: 760px;
   margin: 0 auto;

@@ -106,7 +106,7 @@
 }
 
 /* ── Page hero ──────────────────────────────────────────────── */
-.portfolio-hero { background: var(--black); }
+.portfolio-hero { background: transparent; }
 .portfolio-hero .ph-bg {
   background: radial-gradient(ellipse 80% 60% at 30% 80%, rgba(201, 168, 76, 0.06) 0%, transparent 70%);
 }
@@ -114,7 +114,7 @@
 /* ── Filter bar ─────────────────────────────────────────────── */
 .filter-bar-section {
   padding: 0 var(--gutter) 0;
-  background: var(--black);
+  background: transparent;
 }
 .filter-bar {
   max-width: var(--max-w);
@@ -150,7 +150,7 @@
 }
 
 /* ── Portfolio grid ─────────────────────────────────────────── */
-.portfolio-section { background: var(--black); }
+.portfolio-section { background: transparent; }
 .portfolio-masonry {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

@@ -299,9 +299,16 @@
 
   /* ── Bootstrap ───────────────────────────────────────────── */
   function init() {
-    initHeroScene();
-    initServicesScene();
-    initAboutScene();
+    // Yield to browser's first paint before starting heavy WebGL init
+    var start = window.requestIdleCallback
+      ? function (fn) { requestIdleCallback(fn, { timeout: 2000 }); }
+      : function (fn) { setTimeout(fn, 80); };
+
+    start(function () {
+      initHeroScene();
+      initServicesScene();
+      initAboutScene();
+    });
   }
 
   if (document.readyState === 'loading') {

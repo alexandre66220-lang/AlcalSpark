@@ -14,12 +14,33 @@
   function runLoader() {
     if (!loadingScreen) return;
     let pct = 0;
+    let done = false;
+
+    // Animate bar quickly toward 85% while real load happens in background
     const interval = setInterval(() => {
-      pct += Math.random() * 18;
-      if (pct >= 100) { pct = 100; clearInterval(interval); finishLoader(); }
-      if (loadingBar)  loadingBar.style.width = pct + '%';
-      if (loadingPct)  loadingPct.textContent = Math.round(pct) + '%';
-    }, 120);
+      if (done) return;
+      pct = Math.min(pct + (pct < 60 ? Math.random() * 28 : Math.random() * 7), 85);
+      if (loadingBar) loadingBar.style.width = pct + '%';
+      if (loadingPct) loadingPct.textContent = Math.round(pct) + '%';
+    }, 80);
+
+    function complete() {
+      if (done) return;
+      done = true;
+      clearInterval(interval);
+      if (loadingBar) loadingBar.style.width = '100%';
+      if (loadingPct) loadingPct.textContent = '100%';
+      finishLoader();
+    }
+
+    if (document.readyState === 'complete') {
+      // Page already fully loaded (cache or fast connection)
+      setTimeout(complete, 80);
+    } else {
+      window.addEventListener('load', complete, { once: true });
+      // Safety cap: never block more than 1.2s regardless of network
+      setTimeout(complete, 1200);
+    }
   }
 
   function finishLoader() {
@@ -28,8 +49,8 @@
       setTimeout(() => {
         if (loadingScreen) loadingScreen.remove();
         initPage();
-      }, 800);
-    }, 400);
+      }, 400); // matches the 0.4s CSS opacity transition
+    }, 100);
   }
 
   /* ── Custom Cursor ───────────────────────────────────────── */
@@ -94,7 +115,7 @@
       logoReveal.style.opacity    = '1';
     }
 
-    setTimeout(() => { window.location.href = href; }, 700);
+    setTimeout(() => { window.location.href = href; }, 500);
   }
 
   function revealPage() {

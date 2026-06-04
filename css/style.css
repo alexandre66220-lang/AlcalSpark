@@ -800,7 +800,7 @@ p {
   align-items: center;
   justify-content: center;
   gap: 30px;
-  transition: opacity 0.4s var(--ease-out-expo);
+  transition: opacity 0.3s var(--ease-out-expo);
 }
 #loading-screen.hidden { opacity: 0; pointer-events: none; }
 .loading-logo {

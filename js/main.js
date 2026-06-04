@@ -13,44 +13,47 @@
 
   function runLoader() {
     if (!loadingScreen) return;
-    let pct = 0;
+
+    // Inter-page navigation: curtain already covers the screen, skip loader entirely
+    if (sessionStorage.getItem('as-nav')) {
+      sessionStorage.removeItem('as-nav');
+      loadingScreen.style.display = 'none';
+      initPage();
+      return;
+    }
+
+    // First/direct load: wait for real page load then fade out fast
     let done = false;
-
-    // Animate bar quickly toward 85% while real load happens in background
-    const interval = setInterval(() => {
-      if (done) return;
-      pct = Math.min(pct + (pct < 60 ? Math.random() * 28 : Math.random() * 7), 85);
-      if (loadingBar) loadingBar.style.width = pct + '%';
-      if (loadingPct) loadingPct.textContent = Math.round(pct) + '%';
-    }, 80);
-
     function complete() {
       if (done) return;
       done = true;
-      clearInterval(interval);
       if (loadingBar) loadingBar.style.width = '100%';
       if (loadingPct) loadingPct.textContent = '100%';
       finishLoader();
     }
 
+    let pct = 0;
+    const interval = setInterval(() => {
+      if (done) { clearInterval(interval); return; }
+      pct = Math.min(pct + (pct < 60 ? Math.random() * 30 : Math.random() * 8), 88);
+      if (loadingBar) loadingBar.style.width = pct + '%';
+      if (loadingPct) loadingPct.textContent = Math.round(pct) + '%';
+    }, 70);
+
     if (document.readyState === 'complete') {
-      // Page already fully loaded (cache or fast connection)
-      setTimeout(complete, 80);
+      setTimeout(() => { clearInterval(interval); complete(); }, 60);
     } else {
-      window.addEventListener('load', complete, { once: true });
-      // Safety cap: never block more than 1.2s regardless of network
-      setTimeout(complete, 1200);
+      window.addEventListener('load', () => { clearInterval(interval); complete(); }, { once: true });
+      setTimeout(complete, 1000); // safety cap
     }
   }
 
   function finishLoader() {
+    if (loadingScreen) loadingScreen.classList.add('hidden');
     setTimeout(() => {
-      if (loadingScreen) loadingScreen.classList.add('hidden');
-      setTimeout(() => {
-        if (loadingScreen) loadingScreen.remove();
-        initPage();
-      }, 400); // matches the 0.4s CSS opacity transition
-    }, 100);
+      if (loadingScreen) loadingScreen.remove();
+      initPage();
+    }, 300);
   }
 
   /* ── Custom Cursor ───────────────────────────────────────── */
@@ -100,6 +103,7 @@
   function navigateTo(href) {
     if (isTransitioning || href === window.location.href) return;
     isTransitioning = true;
+    sessionStorage.setItem('as-nav', '1'); // tell next page to skip loading screen
 
     // In
     if (curtainGold) {

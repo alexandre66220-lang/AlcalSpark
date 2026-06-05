@@ -35,18 +35,17 @@
 
 /* ── Reset ─────────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; font-size: 16px; cursor: none; }
+html { scroll-behavior: smooth; font-size: 16px; }
 body {
   font-family: var(--font-body);
   background: linear-gradient(180deg, #0a0a0a 0%, #0a120e 45%, #0b160d 65%, #0a0a0a 100%);
   color: var(--off-white);
   overflow-x: hidden;
-  cursor: none;
 }
 img, video { max-width: 100%; display: block; }
 a { color: inherit; text-decoration: none; }
 ul { list-style: none; }
-button { cursor: none; border: none; background: none; font-family: inherit; }
+button { cursor: pointer; border: none; background: none; font-family: inherit; }
 input, textarea, select {
   font-family: var(--font-body);
   outline: none;
@@ -54,14 +53,7 @@ input, textarea, select {
   background: none;
 }
 
-/* ── Spark Cursor canvas ────────────────────────────────────── */
-#cursor-canvas {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100vw; height: 100vh;
-  pointer-events: none;
-  z-index: 99999;
-}
+
 
 /* ── Page Transition Overlay ───────────────────────────────── */
 #page-transition {
@@ -178,7 +170,7 @@ input, textarea, select {
   flex-direction: column;
   gap: 5px;
   width: 28px;
-  cursor: none;
+  cursor: pointer;
 }
 .nav-burger span {
   display: block;
@@ -349,7 +341,7 @@ p {
   position: relative;
   overflow: hidden;
   transition: color 0.4s, transform 0.3s var(--ease-spring), box-shadow 0.4s;
-  cursor: none;
+  cursor: pointer;
 }
 .btn::before {
   content: '';
@@ -832,9 +824,6 @@ p {
   .grid-4 { grid-template-columns: 1fr 1fr; }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
   #cursor-canvas { display: none; }
-  html { cursor: auto; }
-  body { cursor: auto; }
-  button { cursor: pointer; }
 }
 @media (max-width: 480px) {
   .grid-4 { grid-template-columns: 1fr; }
@@ -948,7 +937,7 @@ p {
   text-transform: uppercase;
   padding: 11px 28px;
   border-radius: 2px;
-  cursor: none;
+  cursor: pointer;
   transition: background 0.3s, color 0.3s, border-color 0.3s, transform 0.3s var(--ease-spring);
 }
 .cookie-btn:hover { transform: translateY(-2px); }
@@ -987,7 +976,7 @@ p {
   color: var(--gold);
   box-shadow: 0 4px 20px rgba(26, 38, 32, 0.5);
   transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s var(--ease-spring);
-  cursor: none;
+  cursor: pointer;
 }
 .whatsapp-btn:hover {
   border-color: rgba(201, 168, 76, 0.7);

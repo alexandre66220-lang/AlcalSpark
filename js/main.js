@@ -60,27 +60,40 @@
   function initCursor() {
     if (window.matchMedia('(pointer: coarse)').matches) return;
 
+    // Force native cursor hidden everywhere — overrides any specificity issues
+    var cursorStyle = document.createElement('style');
+    cursorStyle.textContent = 'html,body,a,button,[role="button"],input,textarea,select,label,*{cursor:none!important}';
+    document.head.appendChild(cursorStyle);
+
     var canvas = document.createElement('canvas');
     canvas.id = 'cursor-canvas';
+    canvas.setAttribute('aria-hidden', 'true');
+    // All positioning inline — no dependency on external CSS rule
+    canvas.style.cssText = 'position:fixed;top:0;left:0;pointer-events:none;z-index:999999;';
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
     document.body.appendChild(canvas);
     var ctx = canvas.getContext('2d');
 
-    function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-    resize();
-    window.addEventListener('resize', resize, { passive: true });
+    window.addEventListener('resize', function() {
+      canvas.width  = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }, { passive: true });
 
-    var mx = -200, my = -200;
-    var lastX = -200, lastY = -200;
+    var mx = 0, my = 0;
+    var lastX = null, lastY = null;
     var isHover = false;
     var particles = [];
 
-    // #c9a84c base, #e8c97a highlight
-    var G  = [201, 168, 76];
-    var GL = [232, 201, 122];
+    var G  = '201,168,76';   // #c9a84c
+    var GL = '232,201,122';  // #e8c97a
 
     document.addEventListener('mousemove', function(e) {
       mx = e.clientX;
       my = e.clientY;
+
+      // Skip first event to avoid off-screen burst
+      if (lastX === null) { lastX = mx; lastY = my; return; }
 
       var dx   = mx - lastX;
       var dy   = my - lastY;
@@ -112,7 +125,6 @@
       el.addEventListener('mouseenter', function() { isHover = true;  });
       el.addEventListener('mouseleave', function() { isHover = false; });
     });
-
     document.addEventListener('mousedown', function() { isHover = true;  });
     document.addEventListener('mouseup',   function() { isHover = false; });
 
@@ -120,7 +132,6 @@
       var glow = hover ? 22 : 16;
       var core = hover ? 5.5 : 4;
 
-      // soft outer halo
       var halo = ctx.createRadialGradient(x, y, 0, x, y, glow);
       halo.addColorStop(0,    'rgba(' + GL + ',0.55)');
       halo.addColorStop(0.45, 'rgba(' + G  + ',0.18)');
@@ -130,7 +141,6 @@
       ctx.arc(x, y, glow, 0, Math.PI * 2);
       ctx.fill();
 
-      // bright core
       var spark = ctx.createRadialGradient(x, y, 0, x, y, core);
       spark.addColorStop(0,   'rgba(255,245,195,1)');
       spark.addColorStop(0.35,'rgba(' + GL + ',0.95)');
@@ -151,7 +161,7 @@
         p.alpha -= p.decay;
         if (p.alpha <= 0) { particles.splice(i, 1); continue; }
 
-        var r = p.size * 2.2;
+        var r  = p.size * 2.2;
         var pg = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, r);
         pg.addColorStop(0,   'rgba(' + GL + ',' + Math.min(p.alpha * 0.92, 1).toFixed(3) + ')');
         pg.addColorStop(0.5, 'rgba(' + G  + ',' + (p.alpha * 0.45).toFixed(3)  + ')');
@@ -162,7 +172,8 @@
         ctx.fill();
       }
 
-      if (mx > -100) drawSpark(mx, my, isHover);
+      // Only draw spark head once mouse has been seen
+      if (lastX !== null) drawSpark(mx, my, isHover);
       requestAnimationFrame(tick);
     }());
   }

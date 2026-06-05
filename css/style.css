@@ -35,7 +35,7 @@
 
 /* ── Reset ─────────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; font-size: 16px; }
+html { scroll-behavior: smooth; font-size: 16px; cursor: none; }
 body {
   font-family: var(--font-body);
   background: linear-gradient(180deg, #0a0a0a 0%, #0a120e 45%, #0b160d 65%, #0a0a0a 100%);
@@ -832,6 +832,7 @@ p {
   .grid-4 { grid-template-columns: 1fr 1fr; }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
   #cursor-canvas { display: none; }
+  html { cursor: auto; }
   body { cursor: auto; }
   button { cursor: pointer; }
 }

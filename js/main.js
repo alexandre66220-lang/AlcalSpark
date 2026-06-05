@@ -56,41 +56,115 @@
     }, 300);
   }
 
-  /* ── Custom Cursor ───────────────────────────────────────── */
-  const dot  = document.getElementById('cursor-dot');
-  const ring = document.getElementById('cursor-ring');
-
-  let mouseX = 0, mouseY = 0;
-  let ringX  = 0, ringY  = 0;
-  let ringAnimId;
-
+  /* ── Spark Cursor ────────────────────────────────────────── */
   function initCursor() {
-    if (!dot || !ring) return;
     if (window.matchMedia('(pointer: coarse)').matches) return;
 
-    document.addEventListener('mousemove', e => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-      dot.style.left  = mouseX + 'px';
-      dot.style.top   = mouseY + 'px';
+    var canvas = document.createElement('canvas');
+    canvas.id = 'cursor-canvas';
+    document.body.appendChild(canvas);
+    var ctx = canvas.getContext('2d');
+
+    function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+    resize();
+    window.addEventListener('resize', resize, { passive: true });
+
+    var mx = -200, my = -200;
+    var lastX = -200, lastY = -200;
+    var isHover = false;
+    var particles = [];
+
+    // #c9a84c base, #e8c97a highlight
+    var G  = [201, 168, 76];
+    var GL = [232, 201, 122];
+
+    document.addEventListener('mousemove', function(e) {
+      mx = e.clientX;
+      my = e.clientY;
+
+      var dx   = mx - lastX;
+      var dy   = my - lastY;
+      var dist = Math.sqrt(dx * dx + dy * dy);
+
+      if (dist > 1.5) {
+        var count = isHover
+          ? Math.min(Math.ceil(dist / 3) + 2, 7)
+          : Math.min(Math.ceil(dist / 6) + 1, 4);
+
+        for (var i = 0; i < count; i++) {
+          var t = count > 1 ? i / (count - 1) : 0;
+          particles.push({
+            x:     lastX + dx * t + (Math.random() - 0.5) * (isHover ? 5 : 3),
+            y:     lastY + dy * t + (Math.random() - 0.5) * (isHover ? 5 : 3),
+            size:  isHover ? Math.random() * 2.5 + 1.5 : Math.random() * 1.8 + 0.8,
+            alpha: isHover ? 0.9 : 0.75,
+            decay: isHover ? 0.055 : 0.048,
+            vx:    (Math.random() - 0.5) * 0.5,
+            vy:    (Math.random() - 0.5) * 0.5,
+          });
+        }
+        lastX = mx;
+        lastY = my;
+      }
     });
 
-    document.addEventListener('mousedown', () => document.body.classList.add('cursor-click'));
-    document.addEventListener('mouseup',   () => document.body.classList.remove('cursor-click'));
-
-    document.querySelectorAll('a, button, [data-hover]').forEach(el => {
-      el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
-      el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+    document.querySelectorAll('a, button, [data-hover]').forEach(function(el) {
+      el.addEventListener('mouseenter', function() { isHover = true;  });
+      el.addEventListener('mouseleave', function() { isHover = false; });
     });
 
-    function animateRing() {
-      ringX += (mouseX - ringX) * 0.12;
-      ringY += (mouseY - ringY) * 0.12;
-      ring.style.left = ringX + 'px';
-      ring.style.top  = ringY + 'px';
-      ringAnimId = requestAnimationFrame(animateRing);
+    document.addEventListener('mousedown', function() { isHover = true;  });
+    document.addEventListener('mouseup',   function() { isHover = false; });
+
+    function drawSpark(x, y, hover) {
+      var glow = hover ? 22 : 16;
+      var core = hover ? 5.5 : 4;
+
+      // soft outer halo
+      var halo = ctx.createRadialGradient(x, y, 0, x, y, glow);
+      halo.addColorStop(0,    'rgba(' + GL + ',0.55)');
+      halo.addColorStop(0.45, 'rgba(' + G  + ',0.18)');
+      halo.addColorStop(1,    'rgba(' + G  + ',0)');
+      ctx.fillStyle = halo;
+      ctx.beginPath();
+      ctx.arc(x, y, glow, 0, Math.PI * 2);
+      ctx.fill();
+
+      // bright core
+      var spark = ctx.createRadialGradient(x, y, 0, x, y, core);
+      spark.addColorStop(0,   'rgba(255,245,195,1)');
+      spark.addColorStop(0.35,'rgba(' + GL + ',0.95)');
+      spark.addColorStop(1,   'rgba(' + G  + ',0)');
+      ctx.fillStyle = spark;
+      ctx.beginPath();
+      ctx.arc(x, y, core, 0, Math.PI * 2);
+      ctx.fill();
     }
-    animateRing();
+
+    (function tick() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      for (var i = particles.length - 1; i >= 0; i--) {
+        var p = particles[i];
+        p.x    += p.vx;
+        p.y    += p.vy;
+        p.alpha -= p.decay;
+        if (p.alpha <= 0) { particles.splice(i, 1); continue; }
+
+        var r = p.size * 2.2;
+        var pg = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, r);
+        pg.addColorStop(0,   'rgba(' + GL + ',' + Math.min(p.alpha * 0.92, 1).toFixed(3) + ')');
+        pg.addColorStop(0.5, 'rgba(' + G  + ',' + (p.alpha * 0.45).toFixed(3)  + ')');
+        pg.addColorStop(1,   'rgba(' + G  + ',0)');
+        ctx.fillStyle = pg;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      if (mx > -100) drawSpark(mx, my, isHover);
+      requestAnimationFrame(tick);
+    }());
   }
 
   /* ── Page Transition ─────────────────────────────────────── */

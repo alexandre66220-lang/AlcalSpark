@@ -54,33 +54,14 @@ input, textarea, select {
   background: none;
 }
 
-/* ── Custom Cursor ─────────────────────────────────────────── */
-#cursor-dot {
+/* ── Spark Cursor canvas ────────────────────────────────────── */
+#cursor-canvas {
   position: fixed;
-  width: 8px; height: 8px;
-  border-radius: 50%;
-  background: var(--gold);
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
   pointer-events: none;
   z-index: 99999;
-  transform: translate(-50%, -50%);
-  transition: transform 0.1s var(--ease-out-expo), width 0.3s var(--ease-out-expo), height 0.3s var(--ease-out-expo), background 0.3s;
-  mix-blend-mode: normal;
 }
-#cursor-ring {
-  position: fixed;
-  width: 40px; height: 40px;
-  border-radius: 50%;
-  border: 1.5px solid var(--gold);
-  pointer-events: none;
-  z-index: 99998;
-  transform: translate(-50%, -50%);
-  transition: width 0.4s var(--ease-out-expo), height 0.4s var(--ease-out-expo), border-color 0.3s, opacity 0.3s;
-  opacity: 0.7;
-}
-body.cursor-hover #cursor-dot  { width: 14px; height: 14px; background: var(--gold-light); }
-body.cursor-hover #cursor-ring { width: 60px; height: 60px; opacity: 1; border-color: var(--gold-light); }
-body.cursor-click #cursor-dot  { transform: translate(-50%, -50%) scale(0.6); }
-body.cursor-click #cursor-ring { width: 30px; height: 30px; opacity: 1; border-color: var(--gold); }
 
 /* ── Page Transition Overlay ───────────────────────────────── */
 #page-transition {
@@ -850,7 +831,7 @@ p {
   .grid-3 { grid-template-columns: 1fr; }
   .grid-4 { grid-template-columns: 1fr 1fr; }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
-  #cursor-dot, #cursor-ring { display: none; }
+  #cursor-canvas { display: none; }
   body { cursor: auto; }
   button { cursor: pointer; }
 }

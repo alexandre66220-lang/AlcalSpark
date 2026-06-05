@@ -823,7 +823,6 @@ p {
   .grid-3 { grid-template-columns: 1fr; }
   .grid-4 { grid-template-columns: 1fr 1fr; }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
-  #cursor-canvas { display: none; }
 }
 @media (max-width: 480px) {
   .grid-4 { grid-template-columns: 1fr; }

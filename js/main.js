@@ -56,131 +56,6 @@
     }, 300);
   }
 
-  /* ── Spark Cursor ────────────────────────────────────────── */
-  function initCursor() {
-    // Touch/stylus devices keep native cursor
-    if (window.matchMedia('(pointer: coarse)').matches) return;
-
-    var canvas = document.createElement('canvas');
-    canvas.id = 'cursor-canvas';
-    canvas.setAttribute('aria-hidden', 'true');
-    canvas.style.position   = 'fixed';
-    canvas.style.top        = '0';
-    canvas.style.left       = '0';
-    canvas.style.pointerEvents = 'none';
-    canvas.style.zIndex     = '999999';
-    canvas.style.display    = 'block';
-    canvas.width  = window.innerWidth;
-    canvas.height = window.innerHeight;
-    document.body.appendChild(canvas);
-
-    var ctx = canvas.getContext('2d');
-    if (!ctx) return; // canvas not supported — leave native cursor intact
-
-    window.addEventListener('resize', function () {
-      canvas.width  = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }, { passive: true });
-
-    var mx = 0, my = 0;
-    var lastX = null, lastY = null;
-    var hover = false;
-    var particles = [];
-    var nativeHidden = false;
-
-    var G  = '201,168,76';   // #c9a84c
-    var GL = '232,201,122';  // #e8c97a
-
-    // Hide native cursor only on first real mouse move — safe fallback if JS breaks
-    function hideCursorOnce() {
-      if (nativeHidden) return;
-      nativeHidden = true;
-      var s = document.createElement('style');
-      s.textContent = '*,*::before,*::after{cursor:none!important}';
-      document.head.appendChild(s);
-    }
-
-    document.addEventListener('mousemove', function (e) {
-      mx = e.clientX;
-      my = e.clientY;
-      hideCursorOnce();
-      if (lastX === null) { lastX = mx; lastY = my; return; }
-      var dx   = mx - lastX;
-      var dy   = my - lastY;
-      var dist = Math.sqrt(dx * dx + dy * dy);
-      if (dist > 1.5) {
-        var count = hover
-          ? Math.min(Math.ceil(dist / 3) + 2, 7)
-          : Math.min(Math.ceil(dist / 6) + 1, 4);
-        for (var i = 0; i < count; i++) {
-          var t = count > 1 ? i / (count - 1) : 0;
-          particles.push({
-            x:     lastX + dx * t + (Math.random() - 0.5) * (hover ? 5 : 3),
-            y:     lastY + dy * t + (Math.random() - 0.5) * (hover ? 5 : 3),
-            size:  hover ? Math.random() * 2.5 + 1.5 : Math.random() * 1.8 + 0.8,
-            alpha: hover ? 0.9 : 0.75,
-            decay: hover ? 0.055 : 0.048,
-            vx:    (Math.random() - 0.5) * 0.5,
-            vy:    (Math.random() - 0.5) * 0.5
-          });
-        }
-        lastX = mx;
-        lastY = my;
-      }
-    });
-
-    document.querySelectorAll('a, button, [data-hover]').forEach(function (el) {
-      el.addEventListener('mouseenter', function () { hover = true;  });
-      el.addEventListener('mouseleave', function () { hover = false; });
-    });
-    document.addEventListener('mousedown', function () { hover = true;  });
-    document.addEventListener('mouseup',   function () { hover = false; });
-
-    function drawSpark(x, y, h) {
-      var glow = h ? 22 : 16;
-      var core = h ? 5.5 : 4;
-      var halo = ctx.createRadialGradient(x, y, 0, x, y, glow);
-      halo.addColorStop(0,    'rgba(' + GL + ',0.55)');
-      halo.addColorStop(0.45, 'rgba(' + G  + ',0.18)');
-      halo.addColorStop(1,    'rgba(' + G  + ',0)');
-      ctx.fillStyle = halo;
-      ctx.beginPath();
-      ctx.arc(x, y, glow, 0, Math.PI * 2);
-      ctx.fill();
-      var spark = ctx.createRadialGradient(x, y, 0, x, y, core);
-      spark.addColorStop(0,    'rgba(255,245,195,1)');
-      spark.addColorStop(0.35, 'rgba(' + GL + ',0.95)');
-      spark.addColorStop(1,    'rgba(' + G  + ',0)');
-      ctx.fillStyle = spark;
-      ctx.beginPath();
-      ctx.arc(x, y, core, 0, Math.PI * 2);
-      ctx.fill();
-    }
-
-    function tick() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      for (var i = particles.length - 1; i >= 0; i--) {
-        var p = particles[i];
-        p.x += p.vx;
-        p.y += p.vy;
-        p.alpha -= p.decay;
-        if (p.alpha <= 0) { particles.splice(i, 1); continue; }
-        var r  = p.size * 2.2;
-        var pg = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, r);
-        pg.addColorStop(0,   'rgba(' + GL + ',' + Math.min(p.alpha * 0.92, 1).toFixed(3) + ')');
-        pg.addColorStop(0.5, 'rgba(' + G  + ',' + (p.alpha * 0.45).toFixed(3) + ')');
-        pg.addColorStop(1,   'rgba(' + G  + ',0)');
-        ctx.fillStyle = pg;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
-        ctx.fill();
-      }
-      if (lastX !== null) drawSpark(mx, my, hover);
-      requestAnimationFrame(tick);
-    }
-    requestAnimationFrame(tick);
-  }
-
   /* ── Page Transition ─────────────────────────────────────── */
   const transition     = document.getElementById('page-transition');
   const curtain        = transition?.querySelector('.curtain');
@@ -557,7 +432,6 @@
 
   /* ── Init page ───────────────────────────────────────────── */
   function initPage() {
-    initCursor();
     initTransitions();
     initNavbar();
     initScrollReveal();

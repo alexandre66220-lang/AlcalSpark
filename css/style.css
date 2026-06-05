@@ -1,5 +1,5 @@
 /* ============================================================
-   AlcalSpark — Premium Website
+   AlcalSpark, Premium Website
    Palette: black, gold, beige, white, off-white, brown
    ============================================================ */
 
@@ -457,7 +457,7 @@ p {
   transition: opacity 0.4s;
   z-index: 0;
 }
-/* Glossy gradient border — excluded from .si-card which owns its own ::after shimmer */
+/* Glossy gradient border, excluded from .si-card which owns its own ::after shimmer */
 .card:not(.si-card)::after {
   content: '';
   position: absolute;

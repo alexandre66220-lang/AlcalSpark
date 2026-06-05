@@ -1,5 +1,5 @@
 /* ============================================================
-   AlcalSpark — Legal Page Styles
+   AlcalSpark, Legal Page Styles
    ============================================================ */
 
 .legal-hero { background: transparent; }
@@ -150,7 +150,7 @@
     display: none;
   }
   .lib-label { min-width: 160px; }
-  /* Force reveal visible — legal-content is too tall for the 15% threshold */
+  /* Force reveal visible, legal-content is too tall for the 15% threshold */
   .legal-layout .reveal {
     opacity: 1 !important;
     transform: none !important;

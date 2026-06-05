@@ -410,9 +410,10 @@
   align-items: flex-end;
   padding: 30px;
   opacity: 0;
+  pointer-events: none;
   transition: opacity 0.4s var(--ease-out-expo);
 }
-.pi-image:hover .pi-overlay { opacity: 1; }
+.pi-image:hover .pi-overlay { opacity: 1; pointer-events: auto; }
 .pi-info { transform: translateY(20px); transition: transform 0.4s var(--ease-out-expo); }
 .pi-image:hover .pi-info  { transform: translateY(0); }
 .pi-info h3 { font-size: 1.6rem; color: var(--off-white); margin: 10px 0 8px; }

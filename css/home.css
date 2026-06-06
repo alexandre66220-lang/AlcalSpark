@@ -364,12 +364,19 @@
   gap: 20px;
 }
 .portfolio-item { position: relative; }
+/* Carte avec lien (Auréa) : l'élément <a> couvre toute la carte */
+a.portfolio-item {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  -webkit-tap-highlight-color: rgba(201,168,76,0.12);
+}
 .pi-image {
   position: relative;
   overflow: hidden;
   border-radius: 4px;
   aspect-ratio: 4/3;
-  cursor: none;
+  cursor: pointer;
 }
 .portfolio-item.large .pi-image { aspect-ratio: 3/4; }
 .pi-placeholder {

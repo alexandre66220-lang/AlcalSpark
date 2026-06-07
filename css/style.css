@@ -5,6 +5,7 @@
 
 /* ── Tokens ──────────────────────────────────────────────────── */
 :root {
+  color-scheme: light;
   --green: #385144;
   --cream: #F8F5F2;
 
@@ -191,6 +192,9 @@ p { max-width: 62ch; text-wrap: pretty; }
 }
 
 /* ── Loading screen ──────────────────────────────────────────── */
+@keyframes ls-safeguard {
+  to { opacity: 0; visibility: hidden; pointer-events: none; }
+}
 #loading-screen {
   position: fixed;
   inset: 0;
@@ -202,6 +206,7 @@ p { max-width: 62ch; text-wrap: pretty; }
   justify-content: center;
   gap: 2.5rem;
   transition: opacity .7s var(--ease), visibility .7s;
+  animation: ls-safeguard .8s 4s forwards;
 }
 #loading-screen.hidden {
   opacity: 0;

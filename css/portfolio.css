@@ -75,7 +75,7 @@
   font-size: 1.6rem;
   font-weight: 300;
   letter-spacing: 0.25em;
-  color: rgba(248, 245, 242, 0.75);
+  color: var(--g70);
 }
 
 /* Maison Noire fallback preview */
@@ -131,7 +131,7 @@
   font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(248, 245, 242, 0.72);
+  color: var(--g70);
   padding: 8px 20px;
   min-height: 44px; /* touch target iOS HIG */
   border: 1px solid rgba(201, 168, 76, 0.1);
@@ -145,9 +145,9 @@
   transform: translateY(-2px);
 }
 .filter-btn.active {
-  color: var(--black);
-  background: var(--gold);
-  border-color: var(--gold);
+  color: var(--cream);
+  background: var(--green);
+  border-color: var(--green);
 }
 
 /* ── Portfolio grid ─────────────────────────────────────────── */
@@ -242,7 +242,7 @@
   color: var(--off-white);
   margin: 10px 0 10px;
 }
-.pf-hover-content p { font-size: 0.85rem; margin-bottom: 12px; }
+.pf-hover-content p { font-size: 0.85rem; margin-bottom: 12px; color: var(--c90); }
 .pf-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
 
 /* Meta below image */
@@ -257,17 +257,17 @@
   font-family: var(--font-ui);
   font-size: 0.92rem;
   font-weight: 600;
-  color: var(--off-white);
+  color: var(--green);
   margin: 0 0 4px;
 }
 .pf-meta-info span {
   font-size: 0.78rem;
-  color: rgba(201, 168, 76, 0.55);
+  color: var(--g50);
 }
 .pf-year {
   font-family: var(--font-display);
   font-size: 0.9rem;
-  color: rgba(248, 245, 242, 0.48);
+  color: var(--g40);
   flex-shrink: 0;
 }
 
@@ -298,7 +298,7 @@
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(201, 168, 76, 0.7);
+  color: var(--g60);
   border: 1px solid rgba(201, 168, 76, 0.22);
   padding: 3px 8px;
   border-radius: 2px;

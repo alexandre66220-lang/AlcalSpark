@@ -4,7 +4,6 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="Agence web à Castres (Tarn) spécialisée en création de site web pour artisans et PME d'Occitanie. Identité visuelle, design UI/UX et SEO. Devis gratuit." />
-<!-- Open Graph / Twitter Card -->
 <meta property="og:site_name" content="AlcalSpark" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://alcalspark.com/" />
@@ -14,42 +13,39 @@
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta name="twitter:card" content="summary_large_image" />
-  <link rel="canonical" href="https://alcalspark.com/" />
-  <meta name="geo.region" content="FR-OCC" />
-  <meta name="geo.placename" content="Castres, Tarn, Occitanie" />
-  <meta name="geo.position" content="43.6057;2.2417" />
-  <meta name="ICBM" content="43.6057, 2.2417" />
+<link rel="canonical" href="https://alcalspark.com/" />
+<meta name="geo.region" content="FR-OCC" />
+<meta name="geo.placename" content="Castres, Tarn, Occitanie" />
+<meta name="geo.position" content="43.6057;2.2417" />
+<meta name="ICBM" content="43.6057, 2.2417" />
 <title>AlcalSpark, Création de site web à Castres & Tarn | Agence web Occitanie</title>
-<!-- Favicon SVG -->
+
 <link rel="icon" type="image/png" sizes="96x96" href="favicon.png" />
 <link rel="icon" type="image/png" sizes="48x48" href="favicon-48.png" />
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
-<!-- Preload critical above-fold image (LCP) -->
 <link rel="preload" as="image" href="assets/logo.webp" type="image/webp" fetchpriority="high" />
-<!-- Styles -->
+
 <link rel="stylesheet" href="css/style.css" />
 <link rel="stylesheet" href="css/home.css" />
-<!-- Preconnect fonts -->
+
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=Raleway:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" media="print" onload="this.media='all'" crossorigin />
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=Raleway:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" crossorigin /></noscript>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18162516286"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'AW-18162516286');
-  </script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=Raleway:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'" crossorigin />
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=Raleway:wght@400;500;600;700&display=swap" crossorigin /></noscript>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18162516286"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-18162516286');
+</script>
 </head>
 <body>
 
-<!-- Noise overlay -->
 <div class="noise-overlay" aria-hidden="true"></div>
 
-<!-- Loading Screen -->
+<!-- Loading -->
 <div id="loading-screen" aria-hidden="true">
   <div class="loading-logo">
     <span style="animation-delay:0s">A</span><span style="animation-delay:.05s">l</span><span style="animation-delay:.1s">c</span><span style="animation-delay:.15s">a</span><span style="animation-delay:.2s">l</span><span style="animation-delay:.25s">S</span><span style="animation-delay:.3s">p</span><span style="animation-delay:.35s">a</span><span style="animation-delay:.4s">r</span><span style="animation-delay:.45s">k</span>
@@ -57,8 +53,6 @@
   <div class="loading-bar-wrap"><div class="loading-bar"></div></div>
   <span class="loading-percent">0%</span>
 </div>
-
-<!-- Custom Cursor -->
 
 <!-- Page Transition -->
 <div id="page-transition" aria-hidden="true">
@@ -68,11 +62,11 @@
 </div>
 
 <!-- Scroll Progress -->
-<div id="scroll-progress" style="position:fixed;top:0;left:0;height:2px;background:var(--gold);z-index:1001;transition:width 0.1s linear;width:0;pointer-events:none;"></div>
+<div id="scroll-progress"></div>
 
-<!-- Navbar -->
+<!-- Nav -->
 <nav id="navbar" role="navigation" aria-label="Navigation principale">
-  <a href="index.html" class="nav-logo" aria-label="AlcalSpark, Accueil">Alcal<span>Spark</span></a>
+  <a href="index.html" class="nav-logo" aria-label="AlcalSpark, Accueil">Alcal<em>Spark</em></a>
   <ul class="nav-links" role="list">
     <li><a href="index.html" class="nav-link active">Accueil</a></li>
     <li><a href="services.html" class="nav-link">Services</a></li>
@@ -97,372 +91,435 @@
 <main>
 
 <!-- ══════════════════════════════════════
-HERO
+  HERO — Éditorial
 ══════════════════════════════════════ -->
 <section class="hero" id="hero" aria-labelledby="hero-title">
-  <!-- Three.js canvas -->
-  <canvas id="hero-canvas" aria-hidden="true"></canvas>
-  <!-- Background gradient -->
-  <div class="hero-bg" aria-hidden="true"></div>
-  <!-- Content -->
-  <div class="hero-content container">
-    <div class="hero-text">
-      <div class="eyebrow reveal delay-1">Web · Design · Visuels</div>
+  <canvas id="hero-dots" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;" aria-hidden="true"></canvas>
+  <div class="hero-inner">
+
+    <!-- Ligne haute -->
+    <div class="hero-top">
+      <span class="hero-label">Agence digitale premium — Castres, Tarn</span>
+      <span class="hero-disciplines">Web · Design · Visuels</span>
+    </div>
+
+    <!-- Grand titre + colonne stat -->
+    <div class="hero-body">
       <h1 id="hero-title" class="hero-title">
-        <span class="hero-line" data-text-reveal>Votre marque,</span>
-        <span class="hero-line italic-gold" data-text-reveal>magnifiée.</span>
+        <span class="hero-line-1"><em>Votre</em> marque,</span>
+        <span class="hero-line-2">magnifiée.</span>
       </h1>
-      <p class="hero-tagline reveal delay-2">— AlcalSpark, agence digitale premium</p>
-      <p class="hero-desc reveal delay-3">
-        Nous créons des expériences digitales qui captivent, convertissent<br class="br-desk" />
-        et propulsent votre marque vers l'excellence.
-      </p>
-      <div class="hero-actions reveal delay-4">
-        <a href="services.html" class="btn btn-gold">
-          Découvrir nos services
-          <span class="btn-icon">→</span>
-        </a>
-        <a href="portfolio.html" class="btn btn-outline">
-          Voir le portfolio
-        </a>
-      </div>
-      <div class="hero-scroll-hint reveal delay-5">
-        <span>Ou scrollez pour explorer</span>
-        <div class="mouse-icon">
-          <div class="mouse-wheel"></div>
+
+      <div class="hero-side" aria-hidden="true">
+        <picture>
+          <source srcset="assets/logo.webp" type="image/webp">
+          <img src="assets/logo.png" alt="" class="hero-logo" width="160" height="160" fetchpriority="high" loading="eager" />
+        </picture>
+        <div class="hero-stat">
+          <strong>100%</strong>
+          <span>satisfaction client</span>
         </div>
       </div>
     </div>
 
-    <!-- Logo + Floating badges -->
-    <div class="hero-badges" aria-hidden="true">
-      <div class="hero-logo-wrap reveal delay-2">
-        <picture>
-          <source srcset="assets/logo.webp" type="image/webp">
-          <img src="assets/logo.png" alt="AlcalSpark, Votre marque, magnifiée" class="hero-logo-img" width="220" height="220" fetchpriority="high" loading="eager" />
-        </picture>
-      </div>
-      <div class="float-badge float-badge-1 reveal delay-3">
-        <span class="fb-num">100%</span>
-        <span class="fb-label">Satisfaction</span>
-      </div>
-      <div class="float-badge float-badge-2 reveal delay-4">
-        <span class="fb-num">Sur mesure</span>
-        <span class="fb-label">Chaque projet</span>
-      </div>
-      <div class="float-badge float-badge-3 reveal delay-5">
-        <span class="fb-icon">✦</span>
-        <span class="fb-label">Excellence garantie</span>
-      </div>
+    <!-- Description + CTAs -->
+    <div class="hero-bottom">
+      <p class="hero-desc">
+        Nous créons des expériences digitales qui captivent, convertissent
+        et propulsent votre marque vers l'excellence.
+      </p>
+      <nav class="hero-ctas" aria-label="Actions principales">
+        <a href="services.html" class="btn btn-primary">
+          Découvrir nos services
+        </a>
+        <a href="portfolio.html" class="btn btn-outline">
+          Voir le portfolio
+        </a>
+      </nav>
+      <span class="hero-scroll-hint" aria-hidden="true">Scroll ↓</span>
     </div>
-  </div>
 
-  <!-- Scroll indicator -->
-  <div class="scroll-indicator" aria-hidden="true">
-    <div class="scroll-line"></div>
-    <span>Scroll</span>
   </div>
 </section>
 
 <!-- ══════════════════════════════════════
-MARQUEE
+  MARQUEE
 ══════════════════════════════════════ -->
 <div class="marquee-track" aria-hidden="true">
   <div class="marquee-inner">
     <span>Création Web</span><span class="accent">✦</span>
     <span>Design UI/UX</span><span class="accent">✦</span>
     <span>Branding</span><span class="accent">✦</span>
-    <span>SEO & Performance</span><span class="accent">✦</span>
+    <span>SEO &amp; Performance</span><span class="accent">✦</span>
     <span>Marketing Digital</span><span class="accent">✦</span>
     <span>Applications Web</span><span class="accent">✦</span>
-    <!-- dupliqué pour la boucle infinie -->
     <span>Création Web</span><span class="accent">✦</span>
     <span>Design UI/UX</span><span class="accent">✦</span>
     <span>Branding</span><span class="accent">✦</span>
-    <span>SEO & Performance</span><span class="accent">✦</span>
+    <span>SEO &amp; Performance</span><span class="accent">✦</span>
     <span>Marketing Digital</span><span class="accent">✦</span>
     <span>Applications Web</span><span class="accent">✦</span>
   </div>
 </div>
 
 <!-- ══════════════════════════════════════
-SERVICES PREVIEW
+  SERVICES — Liste éditoriale
 ══════════════════════════════════════ -->
-<section class="section services-preview" id="services" aria-labelledby="services-title">
+<section class="services-section" id="services" aria-labelledby="services-title">
   <div class="container">
-    <div class="section-header text-center">
-      <div class="eyebrow reveal">Ce que nous faisons</div>
-      <h2 id="services-title" class="reveal delay-1">Des solutions digitales<br /><em class="text-gradient">sur mesure</em></h2>
-      <div class="gold-line-center reveal delay-2"></div>
-      <p class="section-desc reveal delay-3">
-        De la conception à la mise en ligne, nous accompagnons chaque projet avec expertise et passion.
-      </p>
-    </div>
 
-    <div class="services-grid mt-lg">
-      <div class="service-card card reveal delay-1">
-        <div class="sc-icon">
-          <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
-            <rect x="2" y="6" width="32" height="24" rx="2" stroke="currentColor" stroke-width="1.5"/>
-            <path d="M2 12h32" stroke="currentColor" stroke-width="1.5"/>
-            <path d="M8 18l4 4 8-8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        <h3 class="sc-title">Création Web</h3>
-        <p>Sites vitrine, e-commerce et applications web sur mesure, optimisés pour les performances et l'expérience utilisateur.</p>
-        <a href="services.html#web" class="btn btn-ghost mt-sm">
-          En savoir plus <span class="arrow-line"></span>
-        </a>
-        <div class="sc-number">01</div>
+    <div class="services-intro">
+      <div>
+        <div class="eyebrow reveal">Ce que nous faisons</div>
+        <h2 id="services-title" class="reveal delay-1">Des solutions digitales<br /><em>sur mesure</em></h2>
       </div>
-
-      <div class="service-card card reveal delay-2">
-        <div class="sc-icon">
-          <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
-            <circle cx="18" cy="18" r="8" stroke="currentColor" stroke-width="1.5"/>
-            <path d="M18 4v4M18 28v4M4 18h4M28 18h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-            <circle cx="18" cy="18" r="3" fill="currentColor"/>
-          </svg>
-        </div>
-        <h3 class="sc-title">Design UI/UX</h3>
-        <p>Interfaces élégantes et intuitives qui enchantent vos utilisateurs et renforcent votre image de marque premium.</p>
-        <a href="services.html#design" class="btn btn-ghost mt-sm">
-          En savoir plus <span class="arrow-line"></span>
-        </a>
-        <div class="sc-number">02</div>
-      </div>
-
-      <div class="service-card card reveal delay-3">
-        <div class="sc-icon">
-          <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
-            <path d="M18 4L28 10V22L18 28L8 22V10L18 4Z" stroke="currentColor" stroke-width="1.5"/>
-            <path d="M18 4v24M8 10l20 12M28 10L8 22" stroke="currentColor" stroke-width="1.5" opacity="0.5"/>
-          </svg>
-        </div>
-        <h3 class="sc-title">Branding & Identité</h3>
-        <p>Création de logos, chartes graphiques et identités visuelles qui reflètent l'essence unique de votre marque.</p>
-        <a href="services.html#branding" class="btn btn-ghost mt-sm">
-          En savoir plus <span class="arrow-line"></span>
-        </a>
-        <div class="sc-number">03</div>
-      </div>
-
-      <div class="service-card card reveal delay-4">
-        <div class="sc-icon">
-          <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
-            <path d="M6 30 L12 16 L18 22 L24 10 L30 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            <circle cx="12" cy="16" r="2" fill="currentColor"/>
-            <circle cx="18" cy="22" r="2" fill="currentColor"/>
-            <circle cx="24" cy="10" r="2" fill="currentColor"/>
-            <circle cx="30" cy="18" r="2" fill="currentColor"/>
-          </svg>
-        </div>
-        <h3 class="sc-title">SEO & Marketing</h3>
-        <p>Stratégies d'acquisition, référencement naturel et campagnes digitales pour maximiser votre visibilité en ligne.</p>
-        <a href="services.html#seo" class="btn btn-ghost mt-sm">
-          En savoir plus <span class="arrow-line"></span>
-        </a>
-        <div class="sc-number">04</div>
-      </div>
-
-      <div class="service-card card reveal delay-5">
-        <div class="sc-icon">
-          <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
-            <rect x="8" y="8" width="20" height="20" rx="2" stroke="currentColor" stroke-width="1.5"/>
-            <path d="M14 14h8M14 18h8M14 22h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <h3 class="sc-title">Contenu & Copywriting</h3>
-        <p>Rédaction stratégique et contenu éditorial qui engage votre audience et renforce votre autorité dans votre secteur.</p>
-        <a href="services.html#content" class="btn btn-ghost mt-sm">
-          En savoir plus <span class="arrow-line"></span>
-        </a>
-        <div class="sc-number">05</div>
-      </div>
-
-      <div class="service-card card reveal delay-6">
-        <div class="sc-icon">
-          <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
-            <path d="M8 28V22a10 10 0 0120 0v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-            <circle cx="18" cy="12" r="5" stroke="currentColor" stroke-width="1.5"/>
-            <path d="M26 24l4 4M10 24l-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
-          </svg>
-        </div>
-        <h3 class="sc-title">Conseil Stratégique</h3>
-        <p>Accompagnement personnalisé pour définir votre stratégie digitale et transformer vos ambitions en résultats mesurables.</p>
-        <a href="services.html#conseil" class="btn btn-ghost mt-sm">
-          En savoir plus <span class="arrow-line"></span>
-        </a>
-        <div class="sc-number">06</div>
+      <div class="services-intro-right reveal delay-2">
+        <p>De la conception à la mise en ligne, nous accompagnons chaque projet avec expertise et passion.</p>
       </div>
     </div>
 
-    <div class="text-center mt-lg reveal">
+    <ol class="services-list">
+      <li class="service-item reveal">
+        <div class="svc-xray" aria-hidden="true">
+          <pre class="xray-code"><span class="xc-tag">&lt;section</span> <span class="xc-attr">class</span>=<span class="xc-val">"hero"</span><span class="xc-tag">&gt;</span>
+  <span class="xc-tag">&lt;h1&gt;</span><span class="xc-text">Votre marque</span><span class="xc-tag">&lt;/h1&gt;</span>
+  <span class="xc-tag">&lt;nav&gt;</span>
+    <span class="xc-prop">display</span>: <span class="xc-val">flex</span>;
+    <span class="xc-prop">gap</span>: <span class="xc-val">2rem</span>;
+  <span class="xc-tag">&lt;/nav&gt;</span>
+<span class="xc-tag">&lt;/section&gt;</span></pre>
+          <div class="xray-code-extra"><span class="xc-cmt">/* responsive */</span>
+<span class="xc-prop">@media</span> (max-width: <span class="xc-val">768px</span>) {
+  <span class="xc-prop">grid-template</span>: <span class="xc-val">1fr</span>;
+  <span class="xc-prop">gap</span>: <span class="xc-val">1rem</span>;
+}</div>
+        </div>
+        <span class="svc-num">01</span>
+        <div class="svc-body">
+          <h3>Création Web</h3>
+          <p>Sites vitrine, e-commerce et applications web sur mesure, optimisés pour les performances et l'expérience utilisateur.</p>
+        </div>
+        <a href="services.html#web" class="svc-arrow" aria-label="En savoir plus sur la Création Web">En savoir plus</a>
+      </li>
+
+      <li class="service-item reveal delay-1">
+        <div class="svc-xray" aria-hidden="true">
+          <div class="xray-wireframe">
+            <div class="xw-nav"></div>
+            <div class="xw-row">
+              <div class="xw-box w2"></div>
+              <div class="xw-box"></div>
+            </div>
+            <div class="xw-row">
+              <div class="xw-box"></div>
+              <div class="xw-box"></div>
+              <div class="xw-box"></div>
+            </div>
+            <span class="xw-label">wireframe / 12col</span>
+          </div>
+          <div class="xray-wireframe-detail">
+            <div class="xwd-comp">Button / Primary</div>
+            <div class="xwd-comp">Input / Text</div>
+            <div class="xwd-comp">Card / Default</div>
+            <div class="xwd-comp">Nav / Mobile</div>
+          </div>
+        </div>
+        <span class="svc-num">02</span>
+        <div class="svc-body">
+          <h3>Design UI/UX</h3>
+          <p>Interfaces élégantes et intuitives qui enchantent vos utilisateurs et renforcent votre image de marque premium.</p>
+        </div>
+        <a href="services.html#design" class="svc-arrow" aria-label="En savoir plus sur le Design UI/UX">En savoir plus</a>
+      </li>
+
+      <li class="service-item reveal delay-2">
+        <div class="svc-xray" aria-hidden="true">
+          <div class="xray-brand">
+            <div class="xb-swatches">
+              <div class="xb-swatch" style="background:#1a2e24;border-color:rgba(248,245,242,0.2)"></div>
+              <div class="xb-swatch" style="background:#385144"></div>
+              <div class="xb-swatch" style="background:#c9a84c"></div>
+              <div class="xb-swatch" style="background:#F8F5F2"></div>
+              <div class="xb-swatch" style="background:#8ba88f"></div>
+            </div>
+            <div class="xb-type">Aa</div>
+            <div class="xb-label">Cormorant · Raleway · Inter</div>
+          </div>
+          <div class="xray-brand-scale">
+            <div class="xbs-row"><span class="xbs-sample" style="font-size:1.4rem">H1</span><span style="font-size:0.6rem;color:rgba(56,81,68,0.45);font-family:monospace">Cormorant / 700 / 4rem</span></div>
+            <div class="xbs-row"><span class="xbs-sample" style="font-size:1rem">H2</span><span style="font-size:0.6rem;color:rgba(56,81,68,0.45);font-family:monospace">Raleway / 600 / 1.8rem</span></div>
+            <div class="xbs-row"><span class="xbs-sample" style="font-size:0.75rem">body</span><span style="font-size:0.6rem;color:rgba(56,81,68,0.45);font-family:monospace">Inter / 400 / 1rem</span></div>
+          </div>
+        </div>
+        <span class="svc-num">03</span>
+        <div class="svc-body">
+          <h3>Branding &amp; Identité</h3>
+          <p>Création de logos, chartes graphiques et identités visuelles qui reflètent l'essence unique de votre marque.</p>
+        </div>
+        <a href="services.html#branding" class="svc-arrow" aria-label="En savoir plus sur le Branding">En savoir plus</a>
+      </li>
+
+      <li class="service-item reveal delay-3">
+        <div class="svc-xray" aria-hidden="true">
+          <div class="xray-seo">
+            <svg class="xs-chart" viewBox="0 0 110 44" fill="none" aria-hidden="true">
+              <polyline points="0,42 18,30 36,34 54,18 72,22 90,9 110,4" stroke="rgba(201,168,76,0.08)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+              <polyline points="0,42 18,30 36,34 54,18 72,22 90,9 110,4" stroke="rgba(201,168,76,0.55)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <line x1="0" y1="44" x2="110" y2="44" stroke="rgba(56,81,68,0.25)" stroke-width="1"/>
+            </svg>
+            <div class="xs-kpis">
+              <div class="xs-kpi"><strong>+247%</strong><span>trafic</span></div>
+              <div class="xs-kpi"><strong>#1</strong><span>Google</span></div>
+              <div class="xs-kpi"><strong>8.4%</strong><span>CTR</span></div>
+            </div>
+          </div>
+          <div class="xray-seo-tags">
+            <div class="xst-row">title: <span>"Votre marque | AlcalSpark"</span></div>
+            <div class="xst-row">meta[description]: <span>160 chars</span></div>
+            <div class="xst-row">canonical: <span>https://…</span></div>
+            <div class="xst-row">schema: <span>LocalBusiness</span></div>
+          </div>
+        </div>
+        <span class="svc-num">04</span>
+        <div class="svc-body">
+          <h3>SEO &amp; Marketing</h3>
+          <p>Stratégies d'acquisition, référencement naturel et campagnes digitales pour maximiser votre visibilité en ligne.</p>
+        </div>
+        <a href="services.html#seo" class="svc-arrow" aria-label="En savoir plus sur le SEO">En savoir plus</a>
+      </li>
+
+      <li class="service-item reveal delay-4">
+        <div class="svc-xray" aria-hidden="true">
+          <div class="xray-arch">
+            <div class="xa-node">Frontend</div>
+            <span class="xa-line">──</span>
+            <div class="xa-node accent">API REST</div>
+            <span class="xa-line">──</span>
+            <div class="xa-node">Supabase</div>
+            <span class="xa-line">──</span>
+            <div class="xa-node">Auth</div>
+          </div>
+          <div class="xray-arch-detail">
+            <div class="xad-line">GET /api/users → <span>200 OK</span></div>
+            <div class="xad-line">POST /api/auth → <span>JWT token</span></div>
+            <div class="xad-line">SELECT * FROM <span>dashboard</span></div>
+            <div class="xad-line">role: <span>admin | user | guest</span></div>
+          </div>
+        </div>
+        <span class="svc-num">05</span>
+        <div class="svc-body">
+          <h3>Applications SaaS &amp; Web App</h3>
+          <p>Tableaux de bord, outils métier et plateformes SaaS sur mesure — de l'idée au produit fonctionnel, avec une UX soignée dès le MVP.</p>
+        </div>
+        <a href="services.html#saas" class="svc-arrow" aria-label="En savoir plus sur les Applications SaaS">En savoir plus</a>
+      </li>
+
+      <li class="service-item reveal delay-5">
+        <div class="svc-xray" aria-hidden="true">
+          <div class="xray-copy">
+            <div class="xc-h1-line"></div>
+            <div class="xc-lead-line"></div>
+            <div class="xc-body-lines">
+              <div></div>
+              <div style="width:88%"></div>
+              <div style="width:70%"></div>
+            </div>
+            <div class="xc-cta-box">[ Lire la suite → ]</div>
+          </div>
+          <div class="xray-copy-meta">
+            <div class="xcm-block">H1 → <span>accroche principale</span></div>
+            <div class="xcm-block">lead → <span>160 chars max</span></div>
+            <div class="xcm-block">CTA → <span>verbe d'action</span></div>
+            <div class="xcm-block">SEO → <span>keyword density 1.2%</span></div>
+          </div>
+        </div>
+        <span class="svc-num">06</span>
+        <div class="svc-body">
+          <h3>Contenu &amp; Copywriting</h3>
+          <p>Rédaction stratégique et contenu éditorial qui engage votre audience et renforce votre autorité dans votre secteur.</p>
+        </div>
+        <a href="services.html#content" class="svc-arrow" aria-label="En savoir plus sur le Copywriting">En savoir plus</a>
+      </li>
+
+      <li class="service-item reveal delay-5">
+        <div class="svc-xray" aria-hidden="true">
+          <div class="xray-flow">
+            <div class="xf-node">Audit</div>
+            <span class="xf-arr">→</span>
+            <div class="xf-node">Stratégie</div>
+            <span class="xf-arr">→</span>
+            <div class="xf-node">Roadmap</div>
+            <span class="xf-arr">→</span>
+            <div class="xf-node accent">Résultats</div>
+          </div>
+          <div class="xray-flow-detail">
+            <div class="xfd-item">KPI → <span>définis & mesurés</span></div>
+            <div class="xfd-item">Q1 → <span>positionnement</span></div>
+            <div class="xfd-item">Q2 → <span>acquisition</span></div>
+            <div class="xfd-item">Q3 → <span>rétention</span></div>
+          </div>
+        </div>
+        <span class="svc-num">07</span>
+        <div class="svc-body">
+          <h3>Conseil Stratégique</h3>
+          <p>Accompagnement personnalisé pour définir votre stratégie digitale et transformer vos ambitions en résultats mesurables.</p>
+        </div>
+        <a href="services.html#conseil" class="svc-arrow" aria-label="En savoir plus sur le Conseil">En savoir plus</a>
+      </li>
+    </ol>
+
+    <div class="services-cta reveal">
       <a href="services.html" class="btn btn-outline">Tous nos services</a>
     </div>
   </div>
 </section>
 
 <!-- ══════════════════════════════════════
-PHILOSOPHIE
+  PHILOSOPHIE
 ══════════════════════════════════════ -->
-<section class="section philosophy-section" aria-label="Notre philosophie">
-  <div class="container">
-    <div class="philosophy-grid">
-      <div class="phil-card reveal delay-1">
-        <span class="phil-icon">◈</span>
-        <h3>Obsession du détail</h3>
-        <p>Chaque projet est traité avec une précision chirurgicale, du premier pixel au dernier commit. Rien n'est laissé au hasard.</p>
-      </div>
-      <div class="phil-card reveal delay-2">
-        <span class="phil-icon">✦</span>
-        <h3>Design qui convertit</h3>
-        <p>L'esthétique au service de la performance. Beau et efficace, pas l'un ou l'autre, les deux ensemble, sans compromis.</p>
-      </div>
-      <div class="phil-card reveal delay-3">
-        <span class="phil-icon">◎</span>
-        <h3>Engagement total</h3>
-        <p>Un seul projet à la fois. Votre projet mérite une attention entière, pas partagée. C'est ce que vous obtenez avec AlcalSpark.</p>
-      </div>
+<section class="philosophy-section" aria-label="Notre philosophie">
+  <div class="philosophy-grid">
+    <div class="phil-item reveal">
+      <span class="phil-symbol" aria-hidden="true">◈</span>
+      <h3>Obsession du détail</h3>
+      <p>Chaque projet est traité avec une précision chirurgicale, du premier pixel au dernier commit. Rien n'est laissé au hasard.</p>
+    </div>
+    <div class="phil-item reveal delay-2">
+      <span class="phil-symbol" aria-hidden="true">✦</span>
+      <h3>Design qui convertit</h3>
+      <p>L'esthétique au service de la performance. Beau et efficace, pas l'un ou l'autre, les deux ensemble, sans compromis.</p>
+    </div>
+    <div class="phil-item reveal delay-4">
+      <span class="phil-symbol" aria-hidden="true">◎</span>
+      <h3>Engagement total</h3>
+      <p>Un seul projet à la fois. Votre projet mérite une attention entière, pas partagée. C'est ce que vous obtenez avec AlcalSpark.</p>
     </div>
   </div>
 </section>
 
 <!-- ══════════════════════════════════════
-PORTFOLIO TEASER
+  PORTFOLIO TEASER
 ══════════════════════════════════════ -->
-<section class="section portfolio-teaser" aria-labelledby="portfolio-title">
-  <div class="container">
-    <div class="portfolio-header">
+<section class="portfolio-teaser" aria-labelledby="portfolio-title">
+
+  <div class="portfolio-header">
+    <div>
+      <div class="eyebrow reveal">Nos réalisations</div>
+      <h2 id="portfolio-title" class="reveal delay-1">Des projets qui<br /><em>parlent d'eux-mêmes</em></h2>
+    </div>
+    <a href="portfolio.html" class="btn btn-outline reveal delay-2">Voir tout</a>
+  </div>
+
+  <div class="portfolio-grid">
+
+    <!-- Nova Studio -->
+    <div class="portfolio-item reveal">
+      <div class="pi-image" style="background: linear-gradient(145deg, #2c4035 0%, #182820 100%);">
+        <div class="pi-ns-pattern"></div>
+        <div class="pi-placeholder">
+          <div style="font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(5rem,7vw,8rem);font-weight:300;letter-spacing:0.15em;color:#F8F5F2;line-height:1;opacity:0.9;">NS</div>
+          <div style="font-family:'Raleway','Segoe UI',sans-serif;font-size:0.6rem;font-weight:600;letter-spacing:0.45em;text-transform:uppercase;color:rgba(248,245,242,0.4);margin-top:14px;">NOVA STUDIO</div>
+        </div>
+        <div class="pi-overlay">
+          <div class="pi-info">
+            <span class="badge">Branding</span>
+            <h3>Nova Studio</h3>
+            <p>Identité visuelle complète pour un studio créatif photo &amp; vidéo.</p>
+          </div>
+        </div>
+      </div>
+      <div class="pi-meta">
+        <div>
+          <h4>Nova Studio</h4>
+          <span>Branding · Identité visuelle</span>
+        </div>
+        <span class="pi-concept-badge">Concept</span>
+      </div>
+    </div>
+
+    <!-- Auréa -->
+    <a class="portfolio-item reveal delay-2" href="https://angelbust.netlify.app" target="_blank" rel="noopener" aria-label="Voir le projet Auréa">
+      <div class="pi-image">
+        <div class="pi-placeholder" style="background:#0e0b08;">
+          <div style="font-family:'Cormorant Garamond',Georgia,serif;font-size:3.5rem;font-weight:300;letter-spacing:.06em;color:rgba(56,81,68,.6);">A</div>
+          <div style="font-size:.6rem;font-weight:700;letter-spacing:.35em;text-transform:uppercase;color:rgba(248,245,242,.3);">AURÉA</div>
+        </div>
+        <div class="pi-overlay">
+          <div class="pi-info">
+            <span class="badge">Création Web · UI/UX</span>
+            <h3>Auréa</h3>
+            <p>Site vitrine premium avec une direction artistique raffinée.</p>
+            <span class="btn btn-ghost" style="color:var(--cream);">Voir le projet <span class="arrow-line"></span></span>
+          </div>
+        </div>
+      </div>
+      <div class="pi-meta">
+        <div>
+          <h4>Auréa</h4>
+          <span>Création Web · Design UI/UX</span>
+        </div>
+        <span class="pi-concept-badge" style="color:rgba(56,200,100,.7);border-color:rgba(56,200,100,.25);">Live</span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+  PROCESSUS
+══════════════════════════════════════ -->
+<section class="process-section" aria-labelledby="process-title">
+  <div class="process-intro">
+    <div class="eyebrow">Notre approche</div>
+    <h2 id="process-title">Un processus <em>éprouvé</em></h2>
+  </div>
+
+  <div class="process-steps">
+    <div class="process-step reveal">
+      <span class="ps-num">01</span>
       <div>
-        <div class="eyebrow reveal">Nos réalisations</div>
-        <h2 id="portfolio-title" class="reveal delay-1">Des projets qui<br /><em class="text-gradient">parlent d'eux-mêmes</em></h2>
+        <h4>Découverte</h4>
+        <p>Nous plongeons dans votre univers, vos objectifs et votre audience pour poser des bases solides.</p>
       </div>
-      <a href="portfolio.html" class="btn btn-outline reveal delay-2">Voir tout</a>
     </div>
 
-    <div class="portfolio-grid mt-lg">
-
-      <!-- Nova Studio -->
-      <div class="portfolio-item reveal delay-1">
-        <div class="pi-image" style="position:relative; overflow:hidden;">
-          <img src="assets/images/nova-studio-branding.webp" alt="Nova Studio, Identité visuelle" class="pi-real-img" loading="lazy" onerror="this.style.display='none'" />
-          <div class="pi-placeholder" style="background: #F7F3EF; position:absolute; inset:0;">
-            <div class="pi-pattern" style="opacity:0.15;"></div>
-            <div style="font-family:Georgia,serif;font-size:2.5rem;font-weight:700;color:#3B3028;opacity:0.3;letter-spacing:0.06em;">NS</div>
-          </div>
-          <div class="pi-overlay">
-            <div class="pi-info">
-              <span class="badge">Branding</span>
-              <h3>Nova Studio</h3>
-              <p>Identité visuelle complète pour un studio créatif photo & vidéo.</p>
-            </div>
-          </div>
-        </div>
-        <div class="pi-meta">
-          <div>
-            <h4>Nova Studio</h4>
-            <span>Branding · Identité visuelle</span>
-          </div>
-          <span class="pi-concept-badge">Concept</span>
-        </div>
+    <div class="process-step reveal delay-1">
+      <span class="ps-num">02</span>
+      <div>
+        <h4>Stratégie</h4>
+        <p>Conception d'une feuille de route claire, alignée sur vos ambitions et votre budget.</p>
       </div>
-
-      <!-- Auréa — carte entière = lien (tap mobile + clic desktop) -->
-      <a class="portfolio-item reveal delay-2" href="https://angelbust.netlify.app" target="_blank" rel="noopener" aria-label="Voir le projet Auréa sur angelbust.netlify.app">
-        <div class="pi-image" style="position:relative; overflow:hidden;">
-          <div class="pi-placeholder" style="background: #0e0b08; position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px;">
-            <div class="pi-pattern" style="opacity:0.2;"></div>
-            <div style="font-family:Georgia,serif;font-size:2.8rem;font-weight:700;letter-spacing:0.06em;color:#C9A84C;opacity:0.85;line-height:1;">A</div>
-            <div style="font-family:Arial,sans-serif;font-size:0.62rem;font-weight:300;letter-spacing:0.35em;text-transform:uppercase;color:rgba(201,168,76,0.55);">AURÉA</div>
-          </div>
-          <div class="pi-overlay">
-            <div class="pi-info">
-              <span class="badge">Création Web · Design UI/UX</span>
-              <h3>Auréa</h3>
-              <p>Site vitrine premium avec une direction artistique raffinée. Expérience utilisateur soignée et identité visuelle cohérente.</p>
-              <span class="btn btn-ghost">Voir le projet <span class="arrow-line"></span></span>
-            </div>
-          </div>
-        </div>
-        <div class="pi-meta">
-          <div>
-            <h4>Auréa</h4>
-            <span>Création Web · Design UI/UX</span>
-          </div>
-          <span class="pi-concept-badge" style="color:rgba(100,200,120,0.8);border-color:rgba(100,200,120,0.3);">Live</span>
-        </div>
-      </a>
-
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════
-PROCESS
-══════════════════════════════════════ -->
-<section class="section section-dark process-section" aria-labelledby="process-title">
-  <div class="container">
-    <div class="section-header text-center">
-      <div class="eyebrow reveal">Notre approche</div>
-      <h2 id="process-title" class="reveal delay-1">Un processus<br /><em class="text-gradient">éprouvé</em></h2>
-      <div class="gold-line-center reveal delay-2"></div>
     </div>
 
-    <div class="process-steps mt-lg">
-      <div class="process-step reveal delay-1">
-        <div class="ps-num">01</div>
-        <div class="ps-content">
-          <h4>Découverte</h4>
-          <p>Nous plongeons dans votre univers, vos objectifs et votre audience pour poser des bases solides.</p>
-        </div>
-        <div class="ps-line" aria-hidden="true"></div>
+    <div class="process-step reveal delay-2">
+      <span class="ps-num">03</span>
+      <div>
+        <h4>Création</h4>
+        <p>Design et développement avec une attention obsessionnelle aux détails et à la qualité.</p>
       </div>
+    </div>
 
-      <div class="process-step reveal delay-2">
-        <div class="ps-num">02</div>
-        <div class="ps-content">
-          <h4>Stratégie</h4>
-          <p>Conception d'une feuille de route claire, alignée sur vos ambitions et votre budget.</p>
-        </div>
-        <div class="ps-line" aria-hidden="true"></div>
-      </div>
-
-      <div class="process-step reveal delay-3">
-        <div class="ps-num">03</div>
-        <div class="ps-content">
-          <h4>Création</h4>
-          <p>Design et développement avec une attention obsessionnelle aux détails et à la qualité.</p>
-        </div>
-        <div class="ps-line" aria-hidden="true"></div>
-      </div>
-
-      <div class="process-step reveal delay-4">
-        <div class="ps-num">04</div>
-        <div class="ps-content">
-          <h4>Lancement</h4>
-          <p>Mise en ligne soignée, tests rigoureux et suivi post-lancement pour un démarrage optimal.</p>
-        </div>
+    <div class="process-step reveal delay-3">
+      <span class="ps-num">04</span>
+      <div>
+        <h4>Lancement</h4>
+        <p>Mise en ligne soignée, tests rigoureux et suivi post-lancement pour un démarrage optimal.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ══════════════════════════════════════
-CTA SECTION
+  CTA
 ══════════════════════════════════════ -->
-<section class="section cta-section" aria-labelledby="cta-title">
+<section class="cta-section section" aria-labelledby="cta-title">
   <div class="container">
-    <div class="cta-inner reveal">
-      <div class="cta-bg-decor" aria-hidden="true"></div>
-      <div class="eyebrow" style="justify-content: center;">Prêt à passer au niveau supérieur ?</div>
-      <h2 id="cta-title">Transformons votre vision<br /><em class="text-gradient">en réalité</em></h2>
-      <p>Discutons de votre projet lors d'une consultation gratuite de 30 minutes.</p>
-      <div class="cta-actions">
-        <a href="contact.html" class="btn btn-gold">Prendre rendez-vous</a>
-        <a href="portfolio.html" class="btn btn-outline">Voir nos projets</a>
-      </div>
-      <div class="cta-decor-line" aria-hidden="true"></div>
+    <div class="eyebrow reveal">Prêt à passer au niveau supérieur ?</div>
+    <h2 id="cta-title" class="reveal delay-1">Transformons votre vision<br /><em>en réalité</em></h2>
+    <p class="reveal delay-2">Discutons de votre projet lors d'une consultation gratuite de 30 minutes.</p>
+    <div class="cta-actions reveal delay-3">
+      <a href="contact.html" class="btn btn-primary">Prendre rendez-vous</a>
+      <a href="portfolio.html" class="btn btn-outline">Voir nos projets</a>
     </div>
   </div>
 </section>
@@ -473,16 +530,11 @@ CTA SECTION
 <footer id="footer" role="contentinfo">
   <div class="footer-grid">
     <div class="footer-brand">
-      <a href="index.html" class="footer-logo-link" aria-label="AlcalSpark, Accueil">
-        <picture>
-          <source srcset="assets/logo.webp" type="image/webp">
-          <picture><source srcset="assets/logo.webp" type="image/webp"><img src="assets/logo.png" alt="AlcalSpark" class="footer-logo-img" width="110" height="110" loading="lazy" decoding="async" /></picture>
-        </picture>
-      </a>
+      <a href="index.html" class="footer-logo-link" aria-label="AlcalSpark, Accueil">Alcal<em>Spark</em></a>
       <p class="footer-tagline">Votre marque, magnifiée.</p>
       <p>Agence digitale premium spécialisée en création web, design UI/UX et visuels.</p>
       <div class="footer-socials mt-sm">
-        <a href="https://www.instagram.com/alcalspark/" aria-label="Instagram" class="social-icon" target="_blank" rel="noopener">ig</a>
+        <a href="https://www.instagram.com/alcalspark/" aria-label="Instagram AlcalSpark" class="social-icon" target="_blank" rel="noopener">ig</a>
       </div>
     </div>
 
@@ -492,7 +544,7 @@ CTA SECTION
         <li><a href="services.html">Création Web</a></li>
         <li><a href="services.html">Design UI/UX</a></li>
         <li><a href="services.html">Branding</a></li>
-        <li><a href="services.html">SEO & Marketing</a></li>
+        <li><a href="services.html">SEO &amp; Marketing</a></li>
         <li><a href="services.html">Copywriting</a></li>
       </ul>
     </div>
@@ -512,26 +564,27 @@ CTA SECTION
       <ul role="list">
         <li><a href="mailto:contact@alcalspark.com">contact@alcalspark.com</a></li>
         <li><a href="tel:0663054481">06 63 05 44 81</a></li>
-        <li style="color: rgba(250,248,245,0.4); font-size: 0.88rem;">90 av. Georges Guynemer, 81200 Mazamet</li>
+        <li style="color:var(--c50);font-size:.85rem;">90 av. Georges Guynemer,<br>81200 Mazamet</li>
       </ul>
     </div>
   </div>
 
   <div class="footer-bottom">
     <p>© <span id="year">2024</span> AlcalSpark. Tous droits réservés.</p>
-    <a href="mentions-legales.html" style="font-size:0.8rem; color:rgba(250,248,245,0.4);">Mentions légales</a>
+    <a href="mentions-legales.html">Mentions légales</a>
   </div>
 </footer>
 
 <!-- Scripts -->
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" crossorigin="anonymous" defer></script>
 <script src="js/main.js" defer></script>
-<script src="js/three-scene.js" defer></script>
+<script src="js/dots.js" defer></script>
 
 <a href="https://wa.me/33663054481" class="whatsapp-btn" target="_blank" rel="noopener" aria-label="Contactez AlcalSpark sur WhatsApp">
-  <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
+
+<script src="js/xray.js" defer></script>
 <script src="js/cursor.js" defer></script>
 </body>
 </html>

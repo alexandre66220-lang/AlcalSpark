@@ -125,20 +125,8 @@
 
   function initNavbar() {
     if (!navbar) return;
-
-    // Pages with a green hero need nav-dark initially
-    const firstSection = document.querySelector('main > section:first-child, main > .page-hero:first-child');
-    const isDarkHero = firstSection && (
-      firstSection.classList.contains('section-green') ||
-      firstSection.classList.contains('nav-dark') ||
-      firstSection.dataset.navDark === 'true'
-    );
-    if (isDarkHero) navbar.classList.add('nav-dark');
-
     const handleScroll = () => {
-      const scrolled = window.scrollY > 40;
-      navbar.classList.toggle('scrolled', scrolled);
-      if (isDarkHero) navbar.classList.toggle('nav-dark', !scrolled);
+      navbar.classList.toggle('scrolled', window.scrollY > 40);
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
@@ -277,10 +265,10 @@
   /* ── Text split reveal ───────────────────────────────────── */
   function initTextReveal() {
     document.querySelectorAll('[data-text-reveal]').forEach(el => {
-      if (el.closest('.hero-title')) return; // hero handled by initHeroReveal
+      if (el.closest('.hero-title')) return; // typewriter handles these
       const words = el.textContent.trim().split(' ');
       el.innerHTML = words.map((w, i) =>
-        `<span class="word-wrap" style="overflow:hidden;display:inline-block;vertical-align:bottom;"><span class="word" style="display:inline-block;transform:translateY(100%);transition:transform 0.85s cubic-bezier(0.16,1,0.3,1) ${i * 0.055}s;">${w}&nbsp;</span></span>`
+        `<span class="word-wrap" style="overflow:hidden;display:inline-block;vertical-align:bottom;"><span class="word" style="display:inline-block;transform:translateY(105%);transition:transform 0.8s cubic-bezier(0.16,1,0.3,1) ${i * 0.06}s;">${w}&nbsp;</span></span>`
       ).join('');
     });
 
@@ -317,21 +305,21 @@
     document.body.insertBefore(canvas, document.body.firstChild);
 
     var ctx = canvas.getContext('2d');
-    var G   = [56, 81, 68]; /* vert #385144 */
+    var G   = [212, 168, 67];
     var particles = [];
 
     function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
     resize();
     window.addEventListener('resize', resize, { passive: true });
 
-    for (var i = 0; i < 36; i++) {
+    for (var i = 0; i < 80; i++) {
       particles.push({
         x:     Math.random() * canvas.width,
         y:     Math.random() * canvas.height,
-        r:     Math.random() * 1.0 + 0.5,
-        vx:    (Math.random() - 0.5) * 0.15,
-        vy:    (Math.random() - 0.5) * 0.15,
-        alpha: Math.random() * 0.22 + 0.08,
+        r:     Math.random() * 1.5 + 1,
+        vx:    (Math.random() - 0.5) * 0.2,
+        vy:    (Math.random() - 0.5) * 0.2,
+        alpha: Math.random() * 0.4 + 0.2,
         phase: Math.random() * Math.PI * 2,
       });
     }
@@ -354,32 +342,41 @@
     }());
   }
 
-  /* ── Cinematic hero entrance — CSS-driven, JS adds trigger ── */
-  function initHeroReveal() {
-    var hero = document.querySelector('.hero');
-    if (!hero) return;
-    requestAnimationFrame(function () {
-      requestAnimationFrame(function () {
-        hero.classList.add('hero-ready');
-      });
-    });
-  }
+  /* ── Typewriter on hero H1 ───────────────────────────────── */
+  function initTypewriter() {
+    var lines = document.querySelectorAll('.hero-title .hero-line');
+    if (!lines.length) return;
 
-  /* ── Button ripple on click ──────────────────────────────── */
-  function initButtonRipple() {
-    document.querySelectorAll('.btn').forEach(function (btn) {
-      btn.addEventListener('click', function (e) {
-        var rect = btn.getBoundingClientRect();
-        var size = 60;
-        var x = e.clientX - rect.left - size / 2;
-        var y = e.clientY - rect.top  - size / 2;
-        var ripple = document.createElement('span');
-        ripple.className = 'btn-ripple';
-        ripple.style.cssText = 'width:' + size + 'px;height:' + size + 'px;left:' + x + 'px;top:' + y + 'px;background:rgba(255,255,255,0.3);';
-        btn.appendChild(ripple);
-        setTimeout(function () { if (ripple.parentNode) ripple.parentNode.removeChild(ripple); }, 700);
-      });
+    var texts = [];
+    lines.forEach(function (line) {
+      texts.push(line.textContent.trim());
+      line.textContent = '';
     });
+
+    var style = document.createElement('style');
+    style.textContent = '.tw-cursor{color:var(--gold);animation:twBlink .65s step-end infinite;font-style:normal;}@keyframes twBlink{0%,100%{opacity:1;}50%{opacity:0;}}';
+    document.head.appendChild(style);
+
+    var cursor = document.createElement('span');
+    cursor.className = 'tw-cursor';
+    cursor.textContent = '|';
+    var lineIdx = 0, charIdx = 0;
+
+    function type() {
+      if (lineIdx >= lines.length) { cursor.remove(); return; }
+      var line = lines[lineIdx];
+      var text = texts[lineIdx];
+      if (!line.contains(cursor)) line.appendChild(cursor);
+      if (charIdx < text.length) {
+        line.insertBefore(document.createTextNode(text[charIdx]), cursor);
+        charIdx++;
+        setTimeout(type, 44);
+      } else {
+        lineIdx++; charIdx = 0;
+        setTimeout(type, 200);
+      }
+    }
+    type();
   }
 
   /* ── Staggered scroll reveals ────────────────────────────── */
@@ -392,8 +389,8 @@
       var philCards = philGrid.querySelectorAll('.phil-card');
       philCards.forEach(function (card) {
         card.style.opacity   = '0';
-        card.style.transform = 'translateY(18px)';
-        card.style.transition = 'opacity 0.85s ' + ease + ', transform 0.85s ' + ease;
+        card.style.transform = 'translateY(32px)';
+        card.style.transition = 'opacity 0.7s ' + ease + ', transform 0.7s ' + ease;
       });
       new IntersectionObserver(function (entries, obs) {
         entries.forEach(function (entry) {
@@ -402,21 +399,21 @@
             setTimeout(function () {
               card.style.opacity   = '1';
               card.style.transform = 'translateY(0)';
-            }, i * 110);
+            }, i * 120);
           });
           obs.unobserve(entry.target);
         });
-      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }).observe(philGrid);
+      }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }).observe(philGrid);
     }
 
-    // Process steps: sequential stagger
+    // Process steps: sequential 0.15s stagger
     var processContainer = document.querySelector('.process-steps');
     if (processContainer) {
       var steps = processContainer.querySelectorAll('.process-step');
       steps.forEach(function (step) {
         step.style.opacity   = '0';
-        step.style.transform = 'translateY(16px)';
-        step.style.transition = 'opacity 0.75s ' + ease + ', transform 0.75s ' + ease;
+        step.style.transform = 'translateY(28px)';
+        step.style.transition = 'opacity 0.6s ' + ease + ', transform 0.6s ' + ease;
       });
       new IntersectionObserver(function (entries, obs) {
         entries.forEach(function (entry) {
@@ -425,11 +422,11 @@
             setTimeout(function () {
               step.style.opacity   = '1';
               step.style.transform = 'translateY(0)';
-            }, i * 130);
+            }, i * 150);
           });
           obs.unobserve(entry.target);
         });
-      }, { threshold: 0.1, rootMargin: '0px 0px -20px 0px' }).observe(processContainer);
+      }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' }).observe(processContainer);
     }
   }
 
@@ -446,30 +443,8 @@
     initScrollProgress();
     revealPage();
     initGlobalParticles();
-    initHeroReveal();
+    initTypewriter();
     initStaggeredReveal();
-    initCardSpotlight();
-    initButtonRipple();
-  }
-
-  /* ── Card spotlight border (cursor-tracked glow on edges) ─── */
-  function initCardSpotlight() {
-    if (window.matchMedia('(pointer: coarse)').matches) return;
-
-    var cards = document.querySelectorAll('.card, .phil-card, .si-card, .testi-card');
-    cards.forEach(function (card) {
-      card.addEventListener('mousemove', function (e) {
-        var rect = card.getBoundingClientRect();
-        var x = ((e.clientX - rect.left) / rect.width  * 100).toFixed(1);
-        var y = ((e.clientY - rect.top)  / rect.height * 100).toFixed(1);
-        card.style.setProperty('--mx', x + '%');
-        card.style.setProperty('--my', y + '%');
-        card.style.setProperty('--sg', '1');
-      });
-      card.addEventListener('mouseleave', function () {
-        card.style.setProperty('--sg', '0');
-      });
-    });
   }
 
   /* ── Bootstrap ───────────────────────────────────────────── */

@@ -49,7 +49,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--gold);
+  color: var(--cream);
   flex-shrink: 0;
 }
 .cc-label {
@@ -66,7 +66,7 @@
   color: var(--off-white);
   transition: color 0.3s;
 }
-a.cc-value:hover { color: var(--gold); }
+a.cc-value:hover { color: var(--c90); }
 
 .contact-promise {
   display: flex;
@@ -82,7 +82,7 @@ a.cc-value:hover { color: var(--gold); }
   align-items: center;
   gap: 12px;
   font-size: 0.88rem;
-  color: rgba(248, 245, 242, 0.88);
+  color: var(--g80);
 }
 .cp-icon { color: var(--gold); font-size: 0.6rem; flex-shrink: 0; }
 
@@ -100,6 +100,10 @@ a.cc-value:hover { color: var(--gold); }
   grid-template-columns: 1fr 1fr;
   gap: 0 30px;
 }
+.contact-form textarea {
+  min-height: 150px;
+  resize: vertical;
+}
 
 .form-select-group { margin-bottom: 32px; }
 .select-label {
@@ -116,10 +120,10 @@ a.cc-value:hover { color: var(--gold); }
 }
 .select-wrap {
   position: relative;
-  border-bottom: 1px solid rgba(201, 168, 76, 0.25);
+  border-bottom: 1px solid rgba(248, 245, 242, 0.25);
   transition: border-color 0.3s;
 }
-.select-wrap:focus-within { border-color: var(--gold); }
+.select-wrap:focus-within { border-color: var(--cream); }
 .select-wrap select {
   width: 100%;
   padding: 12px 0;
@@ -127,14 +131,14 @@ a.cc-value:hover { color: var(--gold); }
   color: rgba(248, 245, 242, 0.88);
   background: transparent;
   appearance: none;
-  cursor: none;
+  cursor: pointer;
 }
-.select-wrap select option { background: var(--black); color: var(--off-white); }
+.select-wrap select option { background: var(--green); color: var(--cream); }
 .select-arrow {
   position: absolute;
   right: 0; top: 50%;
   transform: translateY(-50%);
-  color: var(--gold);
+  color: var(--cream);
   font-size: 0.7rem;
   pointer-events: none;
   transition: transform 0.3s;
@@ -147,7 +151,7 @@ a.cc-value:hover { color: var(--gold); }
   display: flex;
   align-items: flex-start;
   gap: 12px;
-  cursor: none;
+  cursor: pointer;
 }
 .checkbox-wrap input[type="checkbox"] { position: absolute; opacity: 0; width: 0; height: 0; }
 .checkbox-custom {
@@ -168,7 +172,7 @@ a.cc-value:hover { color: var(--gold); }
   position: absolute;
   top: -1px; left: 2px;
   font-size: 0.75rem;
-  color: var(--black);
+  color: var(--cream);
   font-weight: 700;
 }
 .checkbox-wrap span:last-child {
@@ -176,7 +180,7 @@ a.cc-value:hover { color: var(--gold); }
   color: rgba(248, 245, 242, 0.78);
   line-height: 1.6;
 }
-.checkbox-wrap a { color: var(--gold); text-decoration: underline; }
+.checkbox-wrap a { color: var(--cream); text-decoration: underline; }
 .checkbox-wrap a:hover { color: var(--gold-light); }
 
 .form-submit { transition: opacity 0.3s, transform 0.3s; }
@@ -191,7 +195,7 @@ a.cc-value:hover { color: var(--gold); }
 .fs-icon {
   display: block;
   font-size: 2rem;
-  color: var(--gold);
+  color: var(--cream);
   margin-bottom: 16px;
   animation: spin 2s linear infinite;
 }
@@ -237,13 +241,13 @@ a.cc-value:hover { color: var(--gold); }
   gap: 20px;
   padding: 24px 0;
   text-align: left;
-  cursor: none;
+  cursor: pointer;
 }
 .faq-question span:first-child {
   font-family: var(--font-ui);
   font-size: clamp(0.9rem, 1.2vw, 1.05rem);
   font-weight: 500;
-  color: var(--off-white);
+  color: var(--green);
   transition: color 0.3s;
 }
 .faq-item.open .faq-question span:first-child,
@@ -262,7 +266,7 @@ a.cc-value:hover { color: var(--gold); }
 }
 .faq-answer p {
   font-size: 0.9rem;
-  color: rgba(248, 245, 242, 0.85);
+  color: var(--g80);
   line-height: 1.8;
   padding-right: 40px;
 }

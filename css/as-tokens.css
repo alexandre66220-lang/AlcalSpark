@@ -1,0 +1,232 @@
+/* ============================================================
+   AlcalSpark · Design System Tokens
+   Source de verite : couleurs, typo, espacement, effets
+   Lier AVANT le CSS existant du site.
+   ============================================================ */
+
+/* Polices chargees via <link> dans les HTML. */
+
+:root {
+
+  /* ==============================================================
+     COULEURS
+  =============================================================== */
+
+  /* ---- Pine · vert signature ---- */
+  --pine-50:  #eef2f0;
+  --pine-100: #d8e1dc;
+  --pine-200: #aec2b9;
+  --pine-300: #7e9a8d;
+  --pine-400: #557464;
+  --pine-500: #415a4d;
+  --pine-600: #385144;  /* couleur de marque */
+  --pine-700: #2c4035;
+  --pine-800: #213029;
+  --pine-900: #16201b;
+  --pine-950: #0e1512;  /* vert quasi-noir, fonds sombres */
+
+  /* ---- Bone · neutres chauds ---- */
+  --bone-0:   #ffffff;
+  --bone-50:  #faf8f6;
+  --bone-100: #f8f5f5;  /* fond papier du site */
+  --bone-200: #eeeae8;
+  --bone-300: #ddd8d4;
+  --bone-400: #bbb5b1;
+  --bone-500: #8e8884;
+  --bone-600: #645f5c;
+  --bone-700: #454140;
+  --bone-800: #2a2826;
+  --bone-900: #1a1918;
+  --ink:      #14130f;
+
+  /* ---- Spark · or champagne ---- */
+  --gold-100: #f4ecd6;
+  --gold-200: #e6d3a3;
+  --gold-300: #d8c089;
+  --gold-400: #c8aa6b;
+  --gold-500: #bf9d5b;  /* or champagne */
+  --gold-600: #a3823f;
+  --gold-700: #806528;
+  --gold-metallic: linear-gradient(135deg, #efe0b6 0%, #c8aa6b 38%, #9a7838 62%, #e3cf9c 100%);
+
+  /* ---- Semantique ---- */
+  --color-bg:             var(--bone-100);
+  --color-bg-elevated:    var(--bone-0);
+  --color-bg-inverse:     var(--pine-950);
+  --color-surface:        var(--bone-0);
+  --color-surface-sunken: var(--bone-200);
+
+  --color-text:         var(--pine-600);
+  --color-text-strong:  var(--pine-800);
+  --color-text-muted:   var(--pine-400);
+  --color-text-subtle:  var(--bone-500);
+  --color-text-inverse: var(--bone-100);
+  --color-text-on-pine: var(--bone-100);
+
+  --color-accent:        var(--gold-500);
+  --color-accent-strong: var(--gold-600);
+
+  --color-border:        #dfdcd6;
+  --color-border-strong: var(--pine-600);
+  --color-border-pine:   rgba(56, 81, 68, 0.16);
+
+  --color-success: #3f7d5d;
+  --color-warning: #bf9d5b;
+  --color-danger:  #b4503c;
+  --color-info:    #4a6f8c;
+
+  /* ==============================================================
+     TYPOGRAPHIE
+  =============================================================== */
+
+  --font-display: 'Cormorant Garamond', 'Times New Roman', Georgia, serif;
+  --font-sans:    'Hanken Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono:    'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+
+  --fw-light:    300;
+  --fw-regular:  400;
+  --fw-medium:   500;
+  --fw-semibold: 600;
+  --fw-bold:     700;
+
+  /* Echelle (base 16px) */
+  --text-2xs:  0.6875rem; /* 11px */
+  --text-xs:   0.75rem;   /* 12px */
+  --text-sm:   0.875rem;  /* 14px */
+  --text-base: 1rem;      /* 16px */
+  --text-lg:   1.125rem;  /* 18px */
+  --text-xl:   1.375rem;  /* 22px */
+  --text-2xl:  1.75rem;   /* 28px */
+  --text-3xl:  2.25rem;   /* 36px */
+  --text-4xl:  3rem;      /* 48px */
+  --text-5xl:  4rem;      /* 64px */
+  --text-6xl:  5.5rem;    /* 88px */
+  --text-7xl:  7.5rem;    /* 120px */
+
+  --leading-none:    1;
+  --leading-tight:   1.08;
+  --leading-snug:    1.25;
+  --leading-normal:  1.55;
+  --leading-relaxed: 1.7;
+
+  --tracking-display: -0.02em;
+  --tracking-normal:   0;
+  --tracking-wide:     0.08em;
+  --tracking-caps:     0.18em;   /* labels / nav / boutons */
+  --tracking-caps-lg:  0.24em;   /* eyebrows */
+
+  /* ==============================================================
+     ESPACEMENT (base 4px)
+  =============================================================== */
+
+  --space-0:   0;
+  --space-1:   0.25rem;  /*  4px */
+  --space-2:   0.5rem;   /*  8px */
+  --space-3:   0.75rem;  /* 12px */
+  --space-4:   1rem;     /* 16px */
+  --space-5:   1.5rem;   /* 24px */
+  --space-6:   2rem;     /* 32px */
+  --space-7:   3rem;     /* 48px */
+  --space-8:   4rem;     /* 64px */
+  --space-9:   6rem;     /* 96px */
+  --space-10:  8rem;     /* 128px */
+  --space-11: 11rem;     /* 176px */
+
+  --container:       1280px;
+  --container-wide:  1480px;
+  --container-prose: 680px;
+  --gutter: clamp(1.5rem, 5vw, 5rem);
+
+  --dot-color: rgba(56, 81, 68, 0.16);
+  --dot-size:  1.5px;
+  --dot-gap:   38px;
+
+  /* ==============================================================
+     EFFETS
+  =============================================================== */
+
+  /* Rayons */
+  --radius-none: 0;
+  --radius-xs:   2px;
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   14px;
+  --radius-xl:   22px;
+  --radius-full: 999px;
+
+  /* Traits */
+  --border-hairline: 1px solid var(--color-border);
+  --border-pine:     1px solid var(--color-border-pine);
+  --border-strong:   1.5px solid var(--color-border-strong);
+
+  /* Ombres chaudes */
+  --shadow-xs:   0 1px 2px rgba(20, 19, 15, 0.04);
+  --shadow-sm:   0 2px 6px rgba(20, 19, 15, 0.06);
+  --shadow-md:   0 8px 24px rgba(20, 19, 15, 0.08);
+  --shadow-lg:   0 18px 48px rgba(20, 19, 15, 0.12);
+  --shadow-pine: 0 18px 40px rgba(56, 81, 68, 0.22);
+  --shadow-gold: 0 0 0 1px rgba(191, 157, 91, 0.4), 0 8px 28px rgba(191, 157, 91, 0.28);
+
+  /* Flou */
+  --blur-sm: blur(8px);
+  --blur-md: blur(18px);
+
+  /* Motion */
+  --ease-out:    cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast:  140ms;
+  --dur-base:  240ms;
+  --dur-slow:  420ms;
+}
+
+/* ---- Fond signature : bone + trame de points ---- */
+.as-dotgrid {
+  background-color: var(--color-bg);
+  background-image: radial-gradient(var(--dot-color) var(--dot-size), transparent var(--dot-size));
+  background-size: var(--dot-gap) var(--dot-gap);
+  background-position: -1px -1px;
+}
+
+/* ---- Roles typographiques prets a l'emploi ---- */
+.as-display {
+  font-family: var(--font-display);
+  font-weight: var(--fw-semibold);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-display);
+  color: var(--color-text);
+}
+.as-display--italic { font-style: italic; }
+
+.as-eyebrow {
+  font-family: var(--font-sans);
+  font-weight: var(--fw-semibold);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-caps-lg);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.as-label {
+  font-family: var(--font-sans);
+  font-weight: var(--fw-semibold);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+}
+
+.as-meta {
+  font-family: var(--font-mono);
+  font-weight: var(--fw-regular);
+  font-size: var(--text-2xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-text-subtle);
+}
+
+.as-body {
+  font-family: var(--font-sans);
+  font-weight: var(--fw-regular);
+  font-size: var(--text-lg);
+  line-height: var(--leading-normal);
+  color: var(--color-text);
+}

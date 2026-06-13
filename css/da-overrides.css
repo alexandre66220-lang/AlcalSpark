@@ -1,0 +1,576 @@
+/* ============================================================
+   AlcalSpark · Application de la DA au site existant
+   Charge apres tous les autres CSS.
+   ============================================================ */
+
+/* ---- Override variable de police (gagne sur style.css) ---- */
+:root {
+  --font-sans:    'Hanken Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-serif:   var(--font-display); /* alias pour le CSS existant qui utilise --font-serif */
+  --font-display: 'Cormorant Garamond', 'Times New Roman', Georgia, serif;
+  --font-mono:    'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+}
+
+/* ============================================================
+   BODY / PAGE
+   ============================================================ */
+
+body {
+  background-color: var(--bone-100);
+  background-image: radial-gradient(var(--dot-color) var(--dot-size), transparent var(--dot-size));
+  background-size: var(--dot-gap) var(--dot-gap);
+  background-position: -1px -1px;
+  color: var(--pine-600);
+  font-family: var(--font-sans);
+}
+
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
+
+/* Navbar toujours claire (overrides etats transparent / scrolled / nav-dark) */
+#navbar,
+#navbar.scrolled,
+#navbar.nav-dark {
+  background: rgba(248, 245, 245, 0.94);
+  backdrop-filter: var(--blur-sm);
+  -webkit-backdrop-filter: var(--blur-sm);
+  color: var(--pine-600);
+  border-bottom: var(--border-hairline);
+}
+
+/* Logo : serif, vert fonce, italique sur Spark */
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: var(--fw-semibold);
+  letter-spacing: -0.01em;
+  color: var(--pine-700);
+}
+.nav-logo em {
+  font-style: italic;
+  font-weight: var(--fw-medium);
+  color: var(--pine-700);
+}
+
+/* Liens nav : CAPITALES espacees, pine-500 */
+.nav-link {
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-caps);
+  color: var(--pine-500);
+  opacity: 1;
+}
+.nav-link:hover,
+.nav-link.active {
+  color: var(--pine-700);
+  opacity: 1;
+}
+.nav-link::after { background: var(--pine-600); }
+
+/* CTA nav : contour pine, radius-xs */
+.nav-cta {
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-caps);
+  border: 1.5px solid var(--pine-600);
+  border-radius: var(--radius-xs);
+  color: var(--pine-600);
+  padding: 0.6rem 1.5rem;
+  opacity: 1;
+}
+#navbar .nav-cta:hover,
+#navbar.scrolled .nav-cta:hover,
+#navbar.nav-dark .nav-cta:hover {
+  background: var(--pine-600);
+  color: var(--bone-100);
+  border-color: var(--pine-600);
+}
+
+/* Mobile nav : fond pine-950 */
+.nav-mobile {
+  background: var(--pine-950);
+  color: var(--bone-100);
+}
+.nav-mobile a {
+  font-family: var(--font-display);
+  color: var(--bone-100);
+}
+
+/* Burger */
+.nav-burger span { background: var(--pine-600); }
+#navbar.scrolled .nav-burger span,
+#navbar.nav-dark .nav-burger span { background: var(--pine-600); }
+
+/* ============================================================
+   LOADING SCREEN & PAGE TRANSITION
+   (conserves : fond pine est correct)
+   ============================================================ */
+
+#loading-screen { background: var(--pine-950); }
+.loading-logo { font-family: var(--font-display); color: var(--bone-100); }
+.loading-bar-wrap { background: rgba(248, 245, 245, 0.15); }
+.loading-bar { background: var(--bone-100); }
+.loading-percent { color: rgba(248, 245, 245, 0.5); font-family: var(--font-mono); }
+.curtain { background: var(--pine-950); }
+.curtain-gold { background: var(--pine-700); }
+.logo-reveal { font-family: var(--font-display); color: var(--bone-100); }
+
+/* ============================================================
+   HERO SECTION
+   ============================================================ */
+
+.hero { background: transparent; }
+
+/* Ligne haute eyebrow */
+.hero-top {
+  border-bottom: var(--border-hairline);
+}
+.hero-label {
+  font-family: var(--font-sans);
+  font-size: var(--text-2xs);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-caps-lg);
+  color: var(--bone-500);
+}
+.hero-disciplines {
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  letter-spacing: var(--tracking-caps);
+  color: var(--bone-500);
+}
+
+/* Grand titre */
+.hero-title {
+  font-family: var(--font-display);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-display);
+  color: var(--pine-600);
+}
+.hero-line-2 { font-style: italic; font-weight: var(--fw-semibold); }
+
+/* Colonne droite */
+.hero-logo {
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-gold);
+  opacity: 1;
+  mix-blend-mode: normal;
+}
+
+/* Stat */
+.hero-stat strong {
+  font-family: var(--font-display);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-display);
+  color: var(--pine-600);
+}
+.hero-stat span {
+  font-family: var(--font-mono);
+  letter-spacing: var(--tracking-caps);
+  color: var(--bone-500);
+}
+
+/* Ligne basse */
+.hero-bottom { border-top: var(--border-hairline); }
+.hero-desc { color: var(--pine-500); font-size: var(--text-base); }
+
+/* Scroll hint */
+.hero-scroll-hint {
+  font-family: var(--font-mono);
+  letter-spacing: var(--tracking-caps);
+  color: var(--bone-500);
+}
+
+/* ============================================================
+   MARQUEE
+   ============================================================ */
+
+.marquee-track {
+  border-top: var(--border-hairline);
+  border-bottom: var(--border-hairline);
+}
+.marquee-inner span {
+  font-family: var(--font-sans);
+  letter-spacing: var(--tracking-caps-lg);
+  color: var(--pine-400);
+}
+.marquee-inner .accent { color: var(--gold-500); }
+
+/* ============================================================
+   BOUTONS
+   ============================================================ */
+
+.btn {
+  font-family: var(--font-sans);
+  letter-spacing: var(--tracking-caps);
+  border-radius: var(--radius-xs);
+}
+
+/* Plein pine */
+.btn-primary {
+  background: var(--pine-600);
+  color: var(--bone-100);
+  border-color: var(--pine-600);
+}
+.btn-primary:hover {
+  background: var(--pine-700);
+  color: var(--bone-100);
+  border-color: var(--pine-700);
+}
+
+/* Contour pine */
+.btn-outline {
+  border-color: var(--color-border-strong);
+  color: var(--pine-600);
+}
+.btn-outline:hover {
+  background: var(--pine-600);
+  color: var(--bone-100);
+  border-color: var(--pine-600);
+}
+
+/* Inverse (sur fond sombre) */
+.btn-inv {
+  background: var(--bone-100);
+  color: var(--pine-700);
+  border-color: var(--bone-100);
+}
+.btn-inv:hover {
+  background: transparent;
+  color: var(--bone-100);
+  border-color: var(--bone-100);
+}
+.btn-outline-inv {
+  border-color: rgba(248, 245, 245, 0.3);
+  color: var(--bone-100);
+}
+.btn-outline-inv:hover {
+  background: var(--bone-100);
+  color: var(--pine-700);
+  border-color: var(--bone-100);
+}
+
+/* Or metalique */
+.btn-gold {
+  background: var(--gold-metallic);
+  color: #3a2d12;
+  border: 1.5px solid transparent;
+  border-radius: var(--radius-xs);
+}
+.btn-gold:hover { filter: brightness(1.06); background: var(--gold-metallic); color: #3a2d12; }
+
+/* Ghost / fleche */
+.btn-ghost { color: var(--pine-600); font-family: var(--font-sans); }
+.arrow-line { background: var(--pine-600); }
+
+/* ============================================================
+   LABELS / EYEBROWS
+   ============================================================ */
+
+.label,
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: var(--text-2xs);
+  letter-spacing: var(--tracking-caps-lg);
+  color: var(--bone-500);
+}
+.label::before,
+.eyebrow::before { background: var(--gold-500); }
+
+/* ============================================================
+   SECTION SERVICES (homepage)
+   ============================================================ */
+
+.services-list { border-top: var(--border-hairline); }
+.service-item { border-bottom: var(--border-hairline); }
+.service-item::before { background: rgba(56, 81, 68, 0.04); }
+
+.svc-num {
+  font-family: var(--font-display);
+  font-style: italic;
+  color: var(--gold-600);
+}
+.svc-body h3 {
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 2.2vw, 2rem);
+  font-weight: var(--fw-semibold);
+  color: var(--pine-700);
+}
+.svc-body p { color: var(--pine-500); }
+.svc-arrow { color: var(--pine-600); font-family: var(--font-sans); }
+.svc-arrow::after { background: var(--pine-600); }
+
+/* ============================================================
+   SECTION PHILOSOPHIE (fond sombre)
+   ============================================================ */
+
+.philosophy-section { background: var(--pine-950); }
+.phil-item { border-color: rgba(248, 245, 245, 0.1); }
+.phil-item:first-child { border-left-color: rgba(248, 245, 245, 0.1); }
+.phil-item:last-child { border-right-color: rgba(248, 245, 245, 0.1); }
+.phil-item:hover { background: rgba(248, 245, 245, 0.05); }
+.phil-symbol { color: var(--gold-500); }
+.phil-item h3 {
+  font-family: var(--font-display);
+  color: var(--bone-100);
+}
+.phil-item p { color: rgba(248, 245, 245, 0.7); }
+
+/* ============================================================
+   PORTFOLIO (homepage preview)
+   ============================================================ */
+
+.portfolio-item {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.pi-image { border-radius: var(--radius-lg); }
+.pi-placeholder { border-radius: var(--radius-lg); }
+.pi-meta h4 {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: var(--fw-semibold);
+  color: var(--pine-700);
+}
+.pi-meta span { font-family: var(--font-mono); color: var(--pine-400); font-size: var(--text-2xs); }
+.pi-concept-badge {
+  border-radius: var(--radius-xs);
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  letter-spacing: var(--tracking-wide);
+}
+
+/* ============================================================
+   PROCESSUS (homepage)
+   ============================================================ */
+
+.ps-num {
+  font-family: var(--font-display);
+  font-style: italic;
+  color: var(--gold-500);
+}
+.process-step h4 {
+  font-family: var(--font-sans);
+  letter-spacing: var(--tracking-caps);
+  color: var(--pine-700);
+}
+
+/* ============================================================
+   CTA SECTION (dark band)
+   ============================================================ */
+
+.cta-section { background: transparent; }
+/* Le fond sombre du CTA est gere page par page */
+
+/* ============================================================
+   PAGE HEROES (pages interieures)
+   ============================================================ */
+
+.page-hero { background: transparent; }
+
+/* ============================================================
+   PORTFOLIO PAGE (portfolio.html)
+   ============================================================ */
+
+.pf-wrap { border-radius: var(--radius-lg); overflow: hidden; }
+.pf-hover { border-radius: var(--radius-lg); }
+
+.filter-btn {
+  font-family: var(--font-sans);
+  font-size: var(--text-2xs);
+  letter-spacing: var(--tracking-caps);
+  border-radius: var(--radius-xs);
+  border-color: var(--color-border);
+  color: var(--pine-500);
+}
+.filter-btn.active,
+.filter-btn:hover {
+  background: var(--pine-600);
+  color: var(--bone-100);
+  border-color: var(--pine-600);
+}
+
+.pf-cat {
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  letter-spacing: var(--tracking-wide);
+  color: var(--bone-500);
+}
+.pf-title {
+  font-family: var(--font-display);
+  font-weight: var(--fw-semibold);
+  color: var(--pine-700);
+}
+.pf-tech-tag {
+  border-radius: var(--radius-xs);
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+}
+
+/* ============================================================
+   SERVICES PAGE (services.html)
+   ============================================================ */
+
+.svc-xray pre, .xray-code { font-family: var(--font-mono); }
+
+/* ============================================================
+   ABOUT PAGE (about.html)
+   ============================================================ */
+
+/* ============================================================
+   CONTACT PAGE (contact.html)
+   ============================================================ */
+
+.contact-form input,
+.contact-form textarea,
+.contact-form select {
+  border: var(--border-hairline);
+  border-radius: var(--radius-xs);
+  background: var(--bone-0);
+  color: var(--pine-700);
+  font-family: var(--font-sans);
+}
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: var(--pine-600);
+  outline: none;
+  box-shadow: 0 0 0 3px var(--color-border-pine);
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+
+#footer {
+  background: var(--bone-100);
+  color: var(--pine-600);
+  border-top: var(--border-hairline);
+}
+
+.footer-grid { border-bottom: var(--border-hairline); }
+
+/* Logo lockup */
+.footer-logo-link {
+  font-family: var(--font-display);
+  font-size: 1.65rem;
+  font-weight: var(--fw-semibold);
+  color: var(--pine-700);
+  letter-spacing: -0.01em;
+}
+.footer-logo-link em {
+  font-style: italic;
+  font-weight: var(--fw-medium);
+}
+
+/* Monogramme footer */
+.footer-monogram {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.footer-tagline {
+  font-family: var(--font-display);
+  font-style: italic;
+  color: var(--pine-500);
+}
+
+.footer-brand p { color: var(--pine-400); }
+
+.footer-col h4 {
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  letter-spacing: 0.12em;
+  color: var(--bone-500);
+}
+
+.footer-col ul li { color: var(--pine-500); }
+.footer-col a {
+  color: var(--pine-500);
+  font-size: var(--text-sm);
+}
+.footer-col a:hover { color: var(--pine-700); }
+.footer-col span { color: var(--pine-500); }
+
+.footer-bottom {
+  color: var(--bone-500);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: var(--tracking-wide);
+}
+
+.social-icon {
+  border: 1px solid var(--color-border-pine);
+  color: var(--pine-500);
+  border-radius: var(--radius-xs);
+}
+.social-icon:hover {
+  background: var(--pine-600);
+  color: var(--bone-100);
+  border-color: var(--pine-600);
+}
+
+/* ============================================================
+   WHATSAPP FAB
+   ============================================================ */
+
+.whatsapp-btn {
+  background: var(--pine-600);
+  box-shadow: var(--shadow-pine);
+  border: none;
+}
+.whatsapp-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 8px 36px rgba(56, 81, 68, 0.4);
+}
+
+/* ============================================================
+   SEO PAGES (services/ subdirectory)
+   ============================================================ */
+
+.seo-hero { background: transparent; }
+.seo-service-card {
+  border: var(--border-hairline);
+  border-radius: var(--radius-lg);
+  background: var(--bone-0);
+  box-shadow: var(--shadow-sm);
+}
+.advantage-card {
+  border: var(--border-hairline);
+  border-radius: var(--radius-lg);
+  background: var(--bone-0);
+  box-shadow: var(--shadow-sm);
+}
+.seo-cta-section { background: var(--pine-950); border-radius: var(--radius-lg); }
+
+/* ============================================================
+   TITRES H1/H2/H3 - override global
+   ============================================================ */
+
+h1, h2, h3 { font-family: var(--font-display); }
+
+h1 em, h2 em, h3 em {
+  font-style: italic;
+  font-weight: inherit;
+}
+
+h4 {
+  font-family: var(--font-sans);
+  letter-spacing: var(--tracking-caps);
+}
+
+/* ============================================================
+   SCROLL PROGRESS
+   ============================================================ */
+
+#scroll-progress { background: var(--gold-500); }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 768px) {
+  .nav-burger span { background: var(--pine-600); }
+}

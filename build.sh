@@ -21,7 +21,7 @@ rsync -a \
 if [ -n "${NEXT_PUBLIC_SANITY_PROJECT_ID:-}" ]; then
   echo "[build] Variables Sanity detectees, build du blog..."
   cd blog-app
-  npm ci --prefer-offline
+  npm ci
   npm run build
   cd ..
   if [ -d blog-app/out/blog ]; then

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AlcalSpark · À propos</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background-color: var(--bone-100); background-image: radial-gradient(rgba(56,81,68,0.16) 1.5px, transparent 1.5px); background-size: 38px 38px; background-position: -1px -1px; font-family: var(--font-sans); color: var(--pine-600); min-height: 100vh; }
+  .wrap { max-width: 1280px; margin: 0 auto; padding: 0 48px; }
+  header { display: flex; align-items: center; justify-content: space-between; padding: 34px 0 26px; }
+  .logo { font-family: var(--font-display); font-size: 30px; font-weight: 600; letter-spacing: -0.01em; color: var(--pine-700); text-decoration: none; }
+  .logo .sp { font-style: italic; font-weight: 500; }
+  nav { display: flex; align-items: center; gap: 40px; }
+  nav a { font-size: 13px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--pine-500); text-decoration: none; transition: color 200ms ease; }
+  nav a:hover { color: var(--pine-700); }
+  nav a.active { color: var(--pine-700); border-bottom: 1.5px solid var(--pine-600); padding-bottom: 4px; }
+  .cta-top { font-size: 12px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--pine-600); border: 1.5px solid var(--pine-600); border-radius: var(--radius-xs); padding: 14px 26px; text-decoration: none; transition: all 200ms ease; }
+  .cta-top:hover { background: var(--pine-600); color: var(--bone-100); }
+  .eyebrow-row { display: flex; align-items: center; justify-content: space-between; padding: 18px 0 16px; border-bottom: 1px solid var(--color-border); }
+  .eyebrow { font-size: 12px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--bone-500); }
+  .disciplines { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--bone-500); }
+
+  .intro { display: grid; grid-template-columns: 1fr 200px; gap: 48px; align-items: center; padding: 64px 0 56px; }
+  .intro h1 { font-family: var(--font-display); font-weight: 600; font-size: clamp(48px, 6.5vw, 88px); line-height: 1.0; letter-spacing: -0.02em; margin: 0; color: var(--pine-600); }
+  .intro h1 em { font-style: italic; }
+  .intro-mark { width: 160px; height: 160px; border-radius: 50%; padding: 6px; background: var(--gold-metallic); display: grid; place-items: center; box-shadow: var(--shadow-gold); justify-self: end; }
+  .intro-mark .in { width: 100%; height: 100%; border-radius: 50%; background: var(--bone-100); display: grid; place-items: center; }
+  .intro-mark img { width: 56%; height: 56%; object-fit: contain; }
+
+  .story { display: grid; grid-template-columns: 1.2fr 1fr; gap: 56px; border-top: 1px solid var(--color-border); padding: 56px 0; }
+  .story p { font-size: 17px; line-height: 1.65; color: var(--pine-500); margin: 0 0 18px; }
+  .story p.lead { font-family: var(--font-display); font-style: italic; font-size: 24px; line-height: 1.4; color: var(--pine-600); }
+  .principles { display: flex; flex-direction: column; }
+  .principle { padding: 18px 0; border-top: 1px solid var(--color-border); }
+  .principle:first-child { border-top: 0; }
+  .principle h4 { font-family: var(--font-display); font-size: 22px; font-weight: 600; color: var(--pine-700); margin: 0 0 6px; }
+  .principle p { font-size: 14.5px; line-height: 1.55; color: var(--pine-500); margin: 0; }
+
+  /* Contact */
+  .contact { background: var(--pine-950); border-radius: var(--radius-lg); padding: 64px 56px; margin-top: 24px; display: grid; grid-template-columns: 1.2fr 1fr; gap: 48px; align-items: center; }
+  .contact h2 { font-family: var(--font-display); font-size: clamp(40px, 5vw, 68px); font-weight: 600; line-height: 1.0; color: var(--bone-100); margin: 0 0 18px; }
+  .contact h2 em { font-style: italic; color: var(--gold-300); }
+  .contact p { font-size: 16px; line-height: 1.6; color: rgba(248,245,245,0.7); margin: 0; max-width: 380px; }
+  .contact-side { display: flex; flex-direction: column; gap: 18px; align-items: flex-start; }
+  .clabel { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold-300); }
+  .cval { font-size: 18px; color: var(--bone-100); text-decoration: none; }
+  .cval:hover { color: var(--gold-200); }
+  .divider { height: 1px; width: 100%; background: rgba(248,245,245,0.12); }
+  .btn { display: inline-flex; align-items: center; justify-content: center; font-family: var(--font-sans); font-weight: 600; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; border-radius: var(--radius-xs); padding: 18px 32px; text-decoration: none; transition: all 200ms ease; }
+  .btn-gold { background: var(--gold-metallic); color: #3a2d12; border: 1.5px solid transparent; }
+  .btn-gold:hover { filter: brightness(1.06); }
+
+  footer.site { border-top: 1px solid var(--color-border); margin-top: 90px; padding: 48px 0 56px; display: flex; justify-content: space-between; align-items: flex-start; gap: 40px; flex-wrap: wrap; }
+  .foot-brand { display: flex; align-items: center; gap: 12px; }
+  .foot-brand img { height: 34px; }
+  .foot-word { font-family: var(--font-display); font-size: 26px; font-weight: 600; color: var(--pine-700); }
+  .foot-word .sp { font-style: italic; font-weight: 500; }
+  .foot-col { display: flex; flex-direction: column; gap: 8px; }
+  .foot-col a, .foot-col span { font-size: 13px; color: var(--pine-500); text-decoration: none; }
+  .foot-col a:hover { color: var(--pine-700); }
+  .foot-h { font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--bone-500); margin-bottom: 4px; }
+  .copy { font-family: var(--font-mono); font-size: 10.5px; color: var(--bone-500); text-transform: uppercase; letter-spacing: 0.08em; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <a class="logo" href="index.html">Alcal<span class="sp">Spark</span></a>
+      <nav>
+        <a href="index.html">Accueil</a>
+        <a href="services.html">Services</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a class="active" href="about.html">À propos</a>
+      </nav>
+      <a class="cta-top" href="#contact">Démarrer un projet</a>
+    </header>
+
+    <div class="eyebrow-row">
+      <span class="eyebrow">À propos · le studio</span>
+      <span class="disciplines">Castres, Tarn</span>
+    </div>
+
+    <section class="intro">
+      <h1>Un studio premium,<br><em>un seul projet à la fois.</em></h1>
+      <div class="intro-mark"><div class="in"><img src="assets/logo-monogram-pine.png" alt="AlcalSpark"></div></div>
+    </section>
+
+    <section class="story">
+      <div>
+        <p class="lead">AlcalSpark est né d'une conviction simple : une marque mérite mieux qu'un site de plus.</p>
+        <p>Studio digital indépendant basé à Castres, en Occitanie, AlcalSpark conçoit des sites, des produits SaaS et des identités visuelles pour les marques qui visent l'excellence.</p>
+        <p>Pas de chaîne de production, pas de raccourcis : un seul projet à la fois, mené avec le même soin du premier croquis à la dernière ligne de code. C'est la condition pour magnifier vraiment une marque.</p>
+      </div>
+      <div class="principles">
+        <div class="principle"><h4>Sur-mesure</h4><p>Aucun modèle réutilisé. Chaque projet part d'une page blanche et de vos objectifs.</p></div>
+        <div class="principle"><h4>Exigence</h4><p>Le détail fait la différence. On ne livre que ce dont on est fier.</p></div>
+        <div class="principle"><h4>Proximité</h4><p>Un interlocuteur unique, disponible, qui connaît votre projet par cœur.</p></div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div>
+        <h2>Parlons de<br><em>votre marque.</em></h2>
+        <p>Un projet, une idée, une envie de passer au niveau supérieur ? Écrivez-nous, la première conversation est toujours gratuite.</p>
+      </div>
+      <div class="contact-side">
+        <div><div class="clabel">E-mail</div><a class="cval" href="mailto:contact@alcalspark.com">contact@alcalspark.com</a></div>
+        <div class="divider"></div>
+        <div><div class="clabel">Studio</div><span class="cval">Castres, Tarn · Occitanie</span></div>
+        <div class="divider"></div>
+        <a class="btn btn-gold" href="mailto:contact@alcalspark.com">Démarrer un projet ✦</a>
+      </div>
+    </section>
+
+    <footer class="site">
+      <div class="foot-brand">
+        <img src="assets/logo-monogram-pine.png" alt="">
+        <div class="foot-word">Alcal<span class="sp">Spark</span></div>
+      </div>
+      <div class="foot-col"><span class="foot-h">Navigation</span><a href="index.html">Accueil</a><a href="services.html">Services</a><a href="portfolio.html">Portfolio</a><a href="about.html">À propos</a></div>
+      <div class="foot-col"><span class="foot-h">Studio</span><span>Castres, Tarn · Occitanie</span><a href="mailto:contact@alcalspark.com">contact@alcalspark.com</a><span>1 projet à la fois</span></div>
+      <div class="foot-col"><span class="foot-h">© 2026</span><span class="copy">AlcalSpark<br>Tous droits réservés</span></div>
+    </footer>
+  </div>
+</body>
+</html>

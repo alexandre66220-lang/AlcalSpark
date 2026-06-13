@@ -1,0 +1,11 @@
+/* ============================================================
+   AlcalSpark Design System · point d'entrée global
+   Les consommateurs ne lient QUE ce fichier.
+   (liste d'@import uniquement · aucune règle inline ici)
+   ============================================================ */
+
+@import url('./tokens/fonts.css');
+@import url('./tokens/colors.css');
+@import url('./tokens/typography.css');
+@import url('./tokens/spacing.css');
+@import url('./tokens/effects.css');

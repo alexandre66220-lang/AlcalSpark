@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AlcalSpark · Portfolio</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background-color: var(--bone-100); background-image: radial-gradient(rgba(56,81,68,0.16) 1.5px, transparent 1.5px); background-size: 38px 38px; background-position: -1px -1px; font-family: var(--font-sans); color: var(--pine-600); min-height: 100vh; }
+  .wrap { max-width: 1280px; margin: 0 auto; padding: 0 48px; }
+  header { display: flex; align-items: center; justify-content: space-between; padding: 34px 0 26px; }
+  .logo { font-family: var(--font-display); font-size: 30px; font-weight: 600; letter-spacing: -0.01em; color: var(--pine-700); text-decoration: none; }
+  .logo .sp { font-style: italic; font-weight: 500; }
+  nav { display: flex; align-items: center; gap: 40px; }
+  nav a { font-size: 13px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--pine-500); text-decoration: none; transition: color 200ms ease; }
+  nav a:hover { color: var(--pine-700); }
+  nav a.active { color: var(--pine-700); border-bottom: 1.5px solid var(--pine-600); padding-bottom: 4px; }
+  .cta-top { font-size: 12px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--pine-600); border: 1.5px solid var(--pine-600); border-radius: var(--radius-xs); padding: 14px 26px; text-decoration: none; transition: all 200ms ease; }
+  .cta-top:hover { background: var(--pine-600); color: var(--bone-100); }
+  .eyebrow-row { display: flex; align-items: center; justify-content: space-between; padding: 18px 0 16px; border-bottom: 1px solid var(--color-border); }
+  .eyebrow { font-size: 12px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--bone-500); }
+  .disciplines { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--bone-500); }
+
+  .page-head { padding: 64px 0 44px; display: flex; align-items: flex-end; justify-content: space-between; gap: 48px; flex-wrap: wrap; }
+  .page-head h1 { flex: 1 1 480px; font-family: var(--font-display); font-weight: 600; font-size: clamp(44px, 5.5vw, 84px); line-height: 0.98; letter-spacing: -0.02em; margin: 0; color: var(--pine-600); }
+  .page-head h1 em { font-style: italic; }
+  .page-head .note { flex: none; font-size: 15px; line-height: 1.55; color: var(--pine-500); max-width: 300px; }
+
+  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
+  .proj { display: flex; flex-direction: column; gap: 14px; }
+  .thumb { aspect-ratio: 4 / 3; border-radius: var(--radius-lg); border: 1px solid var(--color-border); background-image: repeating-linear-gradient(45deg, var(--bone-200), var(--bone-200) 10px, var(--bone-100) 10px, var(--bone-100) 20px); display: grid; place-items: center; position: relative; overflow: hidden; }
+  .thumb span { font-family: var(--font-mono); font-size: 11px; color: var(--bone-600); text-transform: uppercase; letter-spacing: 0.08em; background: rgba(248,245,245,0.85); padding: 8px 14px; border-radius: var(--radius-xs); }
+  .badge { position: absolute; top: 14px; left: 14px; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; background: var(--pine-600); color: var(--bone-100); padding: 5px 10px; border-radius: var(--radius-xs); }
+  .pmeta { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; }
+  .pname { font-family: var(--font-display); font-size: 26px; font-weight: 600; color: var(--pine-700); }
+  .pcat { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--bone-500); }
+
+  footer.site { border-top: 1px solid var(--color-border); margin-top: 90px; padding: 48px 0 56px; display: flex; justify-content: space-between; align-items: flex-start; gap: 40px; flex-wrap: wrap; }
+  .foot-brand { display: flex; align-items: center; gap: 12px; }
+  .foot-brand img { height: 34px; }
+  .foot-word { font-family: var(--font-display); font-size: 26px; font-weight: 600; color: var(--pine-700); }
+  .foot-word .sp { font-style: italic; font-weight: 500; }
+  .foot-col { display: flex; flex-direction: column; gap: 8px; }
+  .foot-col a, .foot-col span { font-size: 13px; color: var(--pine-500); text-decoration: none; }
+  .foot-col a:hover { color: var(--pine-700); }
+  .foot-h { font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--bone-500); margin-bottom: 4px; }
+  .copy { font-family: var(--font-mono); font-size: 10.5px; color: var(--bone-500); text-transform: uppercase; letter-spacing: 0.08em; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <a class="logo" href="index.html">Alcal<span class="sp">Spark</span></a>
+      <nav>
+        <a href="index.html">Accueil</a>
+        <a href="services.html">Services</a>
+        <a class="active" href="portfolio.html">Portfolio</a>
+        <a href="about.html">À propos</a>
+      </nav>
+      <a class="cta-top" href="about.html#contact">Démarrer un projet</a>
+    </header>
+
+    <div class="eyebrow-row">
+      <span class="eyebrow">Portfolio · sélection</span>
+      <span class="disciplines">1 projet à la fois</span>
+    </div>
+
+    <section class="page-head">
+      <h1>Des marques,<br><em>magnifiées.</em></h1>
+      <p class="note">Une sélection de réalisations. Remplacez chaque emplacement par les visuels de vos projets : captures, mockups, photos.</p>
+    </section>
+
+    <section class="grid">
+      <article class="proj">
+        <div class="thumb"><span class="badge">Web</span><span>projet 01 · visuel</span></div>
+        <div class="pmeta"><span class="pname">Projet à venir</span><span class="pcat">Site vitrine</span></div>
+      </article>
+      <article class="proj">
+        <div class="thumb"><span class="badge">Design</span><span>projet 02 · visuel</span></div>
+        <div class="pmeta"><span class="pname">Projet à venir</span><span class="pcat">Application SaaS</span></div>
+      </article>
+      <article class="proj">
+        <div class="thumb"><span class="badge">Visuels</span><span>projet 03 · visuel</span></div>
+        <div class="pmeta"><span class="pname">Projet à venir</span><span class="pcat">Identité visuelle</span></div>
+      </article>
+      <article class="proj">
+        <div class="thumb"><span class="badge">Web</span><span>projet 04 · visuel</span></div>
+        <div class="pmeta"><span class="pname">Projet à venir</span><span class="pcat">E-commerce</span></div>
+      </article>
+    </section>
+
+    <footer class="site">
+      <div class="foot-brand">
+        <img src="assets/logo-monogram-pine.png" alt="">
+        <div class="foot-word">Alcal<span class="sp">Spark</span></div>
+      </div>
+      <div class="foot-col"><span class="foot-h">Navigation</span><a href="index.html">Accueil</a><a href="services.html">Services</a><a href="portfolio.html">Portfolio</a><a href="about.html">À propos</a></div>
+      <div class="foot-col"><span class="foot-h">Studio</span><span>Castres, Tarn · Occitanie</span><a href="mailto:contact@alcalspark.com">contact@alcalspark.com</a><span>1 projet à la fois</span></div>
+      <div class="foot-col"><span class="foot-h">© 2026</span><span class="copy">AlcalSpark<br>Tous droits réservés</span></div>
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,10 @@
+/* ============================================================
+   AlcalSpark · Webfonts
+   Display : Cormorant Garamond  (serif éditoriale haute-contraste,
+             italique calligraphique · au plus près du serif du site).
+             ⚠ Substitut Google Fonts. Voir la carte "Titres · options".
+   UI/Texte : Hanken Grotesk   (grotesque nette, premium, très lisible)
+   Mono     : JetBrains Mono   (labels techniques, code, méta)
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Hanken+Grotesk:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=JetBrains+Mono:wght@400;500;600&display=swap');

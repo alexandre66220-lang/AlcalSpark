@@ -1,0 +1,40 @@
+/* ============================================================
+   AlcalSpark · Espacement & rythme
+   Base 4px · grille généreuse, beaucoup de blanc (éditorial)
+   ============================================================ */
+
+:root {
+  --space-0:   0;
+  --space-1:   0.25rem;  /* 4 */
+  --space-2:   0.5rem;   /* 8 */
+  --space-3:   0.75rem;  /* 12 */
+  --space-4:   1rem;     /* 16 */
+  --space-5:   1.5rem;   /* 24 */
+  --space-6:   2rem;     /* 32 */
+  --space-7:   3rem;     /* 48 */
+  --space-8:   4rem;     /* 64 */
+  --space-9:   6rem;     /* 96 */
+  --space-10:  8rem;     /* 128 */
+  --space-11: 11rem;     /* 176 · respirations de section */
+
+  /* Largeurs de contenu */
+  --container:      1280px;
+  --container-wide: 1480px;
+  --container-prose: 680px;
+
+  /* Gouttière de page */
+  --gutter: clamp(1.5rem, 5vw, 5rem);
+
+  /* Trame de points du fond (signature visuelle du site) */
+  --dot-color: rgba(56, 81, 68, 0.16);
+  --dot-size: 1.5px;
+  --dot-gap: 38px;
+}
+
+/* Fond bone + trame de points · utilitaire de page */
+.as-dotgrid {
+  background-color: var(--color-bg);
+  background-image: radial-gradient(var(--dot-color) var(--dot-size), transparent var(--dot-size));
+  background-size: var(--dot-gap) var(--dot-gap);
+  background-position: -1px -1px;
+}

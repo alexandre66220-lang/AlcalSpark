@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AlcalSpark · Services</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background-color: var(--bone-100); background-image: radial-gradient(rgba(56,81,68,0.16) 1.5px, transparent 1.5px); background-size: 38px 38px; background-position: -1px -1px; font-family: var(--font-sans); color: var(--pine-600); min-height: 100vh; }
+  .wrap { max-width: 1280px; margin: 0 auto; padding: 0 48px; }
+  header { display: flex; align-items: center; justify-content: space-between; padding: 34px 0 26px; }
+  .logo { font-family: var(--font-display); font-size: 30px; font-weight: 600; letter-spacing: -0.01em; color: var(--pine-700); text-decoration: none; }
+  .logo .sp { font-style: italic; font-weight: 500; }
+  nav { display: flex; align-items: center; gap: 40px; }
+  nav a { font-size: 13px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--pine-500); text-decoration: none; transition: color 200ms ease; }
+  nav a:hover { color: var(--pine-700); }
+  nav a.active { color: var(--pine-700); border-bottom: 1.5px solid var(--pine-600); padding-bottom: 4px; }
+  .cta-top { font-size: 12px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--pine-600); border: 1.5px solid var(--pine-600); border-radius: var(--radius-xs); padding: 14px 26px; text-decoration: none; transition: all 200ms ease; }
+  .cta-top:hover { background: var(--pine-600); color: var(--bone-100); }
+  .eyebrow-row { display: flex; align-items: center; justify-content: space-between; padding: 18px 0 16px; border-bottom: 1px solid var(--color-border); }
+  .eyebrow { font-size: 12px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--bone-500); }
+  .disciplines { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--bone-500); }
+
+  /* Page hero */
+  .page-head { padding: 64px 0 40px; max-width: 880px; }
+  .page-head h1 { font-family: var(--font-display); font-weight: 600; font-size: clamp(56px, 8vw, 104px); line-height: 0.96; letter-spacing: -0.02em; margin: 0 0 22px; color: var(--pine-600); }
+  .page-head h1 em { font-style: italic; }
+  .page-head p { font-size: 20px; line-height: 1.55; color: var(--pine-500); max-width: 560px; margin: 0; }
+
+  /* Service rows */
+  .services { border-top: 1px solid var(--color-border); }
+  .srow { display: grid; grid-template-columns: 120px 1.1fr 1fr; gap: 40px; padding: 48px 0; border-bottom: 1px solid var(--color-border); align-items: start; }
+  .snum { font-family: var(--font-display); font-style: italic; font-size: 44px; font-weight: 600; color: var(--gold-600); }
+  .stitle { font-family: var(--font-display); font-size: 38px; font-weight: 600; line-height: 1.05; color: var(--pine-700); margin: 0 0 14px; }
+  .sdesc { font-size: 16px; line-height: 1.6; color: var(--pine-500); margin: 0; }
+  .slist { display: flex; flex-direction: column; gap: 0; }
+  .slist .item { display: flex; align-items: center; gap: 12px; padding: 11px 0; border-top: 1px solid var(--color-border); font-size: 14.5px; color: var(--pine-600); }
+  .slist .item:first-child { border-top: 0; }
+  .slist .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold-500); flex: none; }
+
+  /* CTA band */
+  .cta-band { margin: 80px 0 0; background: var(--pine-950); border-radius: var(--radius-lg); padding: 56px 56px; display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap; }
+  .cta-band h2 { font-family: var(--font-display); font-size: clamp(34px, 4vw, 52px); font-weight: 600; line-height: 1.0; color: var(--bone-100); margin: 0; }
+  .cta-band h2 em { font-style: italic; color: var(--gold-300); }
+  .btn { display: inline-flex; align-items: center; justify-content: center; font-family: var(--font-sans); font-weight: 600; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; border-radius: var(--radius-xs); padding: 18px 32px; text-decoration: none; transition: all 200ms ease; white-space: nowrap; }
+  .btn-gold { background: var(--gold-metallic); color: #3a2d12; border: 1.5px solid transparent; }
+  .btn-gold:hover { filter: brightness(1.06); }
+
+  footer.site { border-top: 1px solid var(--color-border); margin-top: 90px; padding: 48px 0 56px; display: flex; justify-content: space-between; align-items: flex-start; gap: 40px; flex-wrap: wrap; }
+  .foot-brand { display: flex; align-items: center; gap: 12px; }
+  .foot-brand img { height: 34px; }
+  .foot-word { font-family: var(--font-display); font-size: 26px; font-weight: 600; color: var(--pine-700); }
+  .foot-word .sp { font-style: italic; font-weight: 500; }
+  .foot-col { display: flex; flex-direction: column; gap: 8px; }
+  .foot-col a, .foot-col span { font-size: 13px; color: var(--pine-500); text-decoration: none; }
+  .foot-col a:hover { color: var(--pine-700); }
+  .foot-h { font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--bone-500); margin-bottom: 4px; }
+  .copy { font-family: var(--font-mono); font-size: 10.5px; color: var(--bone-500); text-transform: uppercase; letter-spacing: 0.08em; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <a class="logo" href="index.html">Alcal<span class="sp">Spark</span></a>
+      <nav>
+        <a href="index.html">Accueil</a>
+        <a class="active" href="services.html">Services</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="about.html">À propos</a>
+      </nav>
+      <a class="cta-top" href="about.html#contact">Démarrer un projet</a>
+    </header>
+
+    <div class="eyebrow-row">
+      <span class="eyebrow">Services · ce que nous façonnons</span>
+      <span class="disciplines">Web · Design · Visuels</span>
+    </div>
+
+    <section class="page-head">
+      <h1>Trois disciplines,<br><em>une exigence.</em></h1>
+      <p>Chaque projet est mené de bout en bout, avec le même soin du détail. Un seul à la fois, pour que le vôtre reçoive toute notre attention.</p>
+    </section>
+
+    <section class="services">
+      <div class="srow">
+        <div class="snum">01</div>
+        <div>
+          <h3 class="stitle">Web</h3>
+          <p class="sdesc">Des sites qui ne se contentent pas d'exister : ils captivent dès la première seconde et transforment vos visiteurs en clients.</p>
+        </div>
+        <div class="slist">
+          <div class="item"><span class="dot"></span> Sites vitrines & one-page</div>
+          <div class="item"><span class="dot"></span> Boutiques e-commerce</div>
+          <div class="item"><span class="dot"></span> Plateformes & applications SaaS</div>
+          <div class="item"><span class="dot"></span> Performance & référencement</div>
+        </div>
+      </div>
+      <div class="srow">
+        <div class="snum">02</div>
+        <div>
+          <h3 class="stitle">Design</h3>
+          <p class="sdesc">L'expérience avant l'esthétique, puis l'esthétique au service de l'expérience. Des interfaces claires, désirables, pensées pour durer.</p>
+        </div>
+        <div class="slist">
+          <div class="item"><span class="dot"></span> UX / UI design</div>
+          <div class="item"><span class="dot"></span> Design systems</div>
+          <div class="item"><span class="dot"></span> Prototypes interactifs</div>
+          <div class="item"><span class="dot"></span> Audits d'interface</div>
+        </div>
+      </div>
+      <div class="srow">
+        <div class="snum">03</div>
+        <div>
+          <h3 class="stitle">Visuels</h3>
+          <p class="sdesc">Une identité cohérente, du logo à la moindre déclinaison. Le langage visuel qui rend votre marque reconnaissable entre toutes.</p>
+        </div>
+        <div class="slist">
+          <div class="item"><span class="dot"></span> Logo & monogramme</div>
+          <div class="item"><span class="dot"></span> Charte graphique</div>
+          <div class="item"><span class="dot"></span> Déclinaisons & supports</div>
+          <div class="item"><span class="dot"></span> Direction artistique</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-band">
+      <h2>Un projet en tête ?<br><em>Magnifions-le.</em></h2>
+      <a class="btn btn-gold" href="about.html#contact">Démarrer un projet ✦</a>
+    </section>
+
+    <footer class="site">
+      <div class="foot-brand">
+        <img src="assets/logo-monogram-pine.png" alt="">
+        <div class="foot-word">Alcal<span class="sp">Spark</span></div>
+      </div>
+      <div class="foot-col"><span class="foot-h">Navigation</span><a href="index.html">Accueil</a><a href="services.html">Services</a><a href="portfolio.html">Portfolio</a><a href="about.html">À propos</a></div>
+      <div class="foot-col"><span class="foot-h">Studio</span><span>Castres, Tarn · Occitanie</span><a href="mailto:contact@alcalspark.com">contact@alcalspark.com</a><span>1 projet à la fois</span></div>
+      <div class="foot-col"><span class="foot-h">© 2026</span><span class="copy">AlcalSpark<br>Tous droits réservés</span></div>
+    </footer>
+  </div>
+</body>
+</html>

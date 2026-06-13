@@ -3,6 +3,15 @@ import { PortableText } from "@portabletext/react";
 import { getAllSlugs, getArticleBySlug } from "../../../../lib/queries";
 import { notFound } from "next/navigation";
 
+const ARTICLE_IMAGES: Record<string, string> = {
+  "pourquoi-entreprise-castres-site-web-2026":
+    "/assets/lucid-origin_Cinematic_close-up_of_a_smartphone_screen_reflecting_gold_light_in_a_dark_modern-0.jpg",
+  "wordpress-vs-site-sur-mesure-artisan":
+    "/assets/lucid-origin_Abstract_split_composition_one_side_showing_generic_template_grid_patterns_in_mu-0.jpg",
+  "seo-local-doubler-visibilite-commerce-mazamet":
+    "/assets/lucid-origin_Cinematic_aerial_view_of_a_small_French_town_at_dusk_warm_golden_street_lights_d-0.jpg",
+};
+
 export async function generateStaticParams() {
   const slugs = await getAllSlugs();
   return slugs.map((slug) => ({ slug }));
@@ -56,9 +65,16 @@ export default async function ArticlePage({
   const article = await getArticleBySlug(params.slug);
   if (!article) notFound();
 
+  const heroImg = ARTICLE_IMAGES[params.slug];
+
   return (
     <>
       <article>
+        {heroImg && (
+          <div className="article-cover">
+            <img src={heroImg} alt={article.titre} />
+          </div>
+        )}
         <div className="article-hero">
           <a href="/blog/" className="back-link">
             <span aria-hidden="true">&#8592;</span> Retour au blog

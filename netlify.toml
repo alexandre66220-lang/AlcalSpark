@@ -1,5 +1,9 @@
 [build]
-  publish = "."
+  command = "bash build.sh"
+  publish = "out"
+
+[build.environment]
+  NODE_VERSION = "20"
 
 [build.processing]
   skip_processing = false
@@ -18,7 +22,7 @@
 [build.processing.images]
   compress = true
 
-# HTML — always revalidate
+# HTML -- toujours revalider
 [[headers]]
   for = "/*.html"
   [headers.values]
@@ -26,7 +30,7 @@
     X-Content-Type-Options = "nosniff"
     X-Frame-Options = "SAMEORIGIN"
 
-# CSS & JS — cache 7 days
+# CSS & JS -- cache 7 jours
 [[headers]]
   for = "/css/*"
   [headers.values]
@@ -37,7 +41,7 @@
   [headers.values]
     Cache-Control = "public, max-age=604800, stale-while-revalidate=86400"
 
-# Static assets — cache 1 year (images rarely change)
+# Assets statiques -- cache 1 an
 [[headers]]
   for = "/assets/*"
   [headers.values]
@@ -49,4 +53,8 @@
   [headers.values]
     Cache-Control = "public, max-age=2592000"
 
-# Fonts served from CDN — nothing to add here (controlled by Netlify CDN)
+# Blog Next.js -- pas de cache agressif sur les HTML
+[[headers]]
+  for = "/blog/*"
+  [headers.values]
+    Cache-Control = "no-cache, must-revalidate"

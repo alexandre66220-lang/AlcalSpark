@@ -568,6 +568,30 @@ h4 {
 #scroll-progress { background: var(--gold-500); }
 
 /* ============================================================
+   SEO INTERNAL LINKS (pages services)
+   Corrige les couleurs prevues pour fond sombre
+   ============================================================ */
+
+.seo-internal-links {
+  background: var(--bone-200);
+  border-top: var(--border-hairline);
+}
+
+.seo-il-label {
+  color: var(--pine-400);
+}
+
+.seo-il-list a {
+  color: var(--pine-700);
+  border-bottom-color: var(--color-border);
+}
+
+.seo-il-list a:hover {
+  color: var(--gold-600);
+  border-bottom-color: var(--gold-500);
+}
+
+/* ============================================================
    RESPONSIVE
    ============================================================ */
 

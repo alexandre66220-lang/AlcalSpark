@@ -28,6 +28,10 @@ if [ -n "${NEXT_PUBLIC_SANITY_PROJECT_ID:-}" ]; then
     echo "[build] Fusion des pages blog..."
     cp -r blog-app/out/blog out/blog
   fi
+  if [ -d blog-app/out/_next ]; then
+    echo "[build] Copie des assets Next.js (CSS/JS)..."
+    cp -r blog-app/out/_next out/_next
+  fi
 else
   echo "[build] Variables Sanity absentes, le blog est ignore (site statique seul)."
 fi

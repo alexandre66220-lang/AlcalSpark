@@ -32,10 +32,13 @@
   // pageshow fires for both normal loads and bfcache restores.
   // persisted=true means bfcache: JS state is frozen, curtain may be stuck.
   window.addEventListener('pageshow', function (e) {
-    if (!e.persisted) return;
-    forceHideLoader();
-    isTransitioning = false;
-    revealPage();
+    if (e.persisted || (window.performance && window.performance.navigation && window.performance.navigation.type === 2)) {
+      var ls = document.getElementById('loading-screen');
+      if (ls) ls.style.display = 'none';
+      document.body.style.overflow = 'auto';
+      isTransitioning = false;
+      revealPage();
+    }
   });
 
   // popstate fires on same-document history navigation.
@@ -47,9 +50,18 @@
   function runLoader() {
     if (!loadingScreen) return;
 
+    // Deprecated API check first - most reliable at synchronous execution time.
+    if (window.performance && window.performance.navigation && window.performance.navigation.type === 2) {
+      loadingScreen.style.display = 'none';
+      document.body.style.overflow = 'auto';
+      initPage();
+      return;
+    }
+
     // Back/forward navigation (full reload or bfcache): never show the loader.
     if (isBackForwardNav) {
       loadingScreen.style.display = 'none';
+      document.body.style.overflow = 'auto';
       initPage();
       return;
     }

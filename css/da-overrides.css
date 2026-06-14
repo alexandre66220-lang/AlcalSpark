@@ -120,7 +120,7 @@ body {
    HERO SECTION
    ============================================================ */
 
-.hero { background: transparent; }
+.hero { background: var(--bone-100); }
 
 /* Ligne haute eyebrow */
 .hero-top {

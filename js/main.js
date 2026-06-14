@@ -11,8 +11,48 @@
   const loadingBar    = document.querySelector('.loading-bar');
   const loadingPct    = document.querySelector('.loading-percent');
 
+  // Detect back/forward navigation before any animation starts.
+  // Navigation Timing API returns 'back_forward' for history traversal,
+  // covering both bfcache restores and full reloads triggered by back/forward.
+  var isBackForwardNav = (function () {
+    try {
+      var entries = performance.getEntriesByType('navigation');
+      if (entries.length) return entries[0].type === 'back_forward';
+      // Fallback: deprecated API, type 2 = back/forward
+      return !!(performance.navigation && performance.navigation.type === 2);
+    } catch (e) { return false; }
+  }());
+
+  function forceHideLoader() {
+    var ls = document.getElementById('loading-screen');
+    if (ls) { ls.style.cssText += ';display:none!important'; }
+    if (loadingScreen) { loadingScreen.style.cssText += ';display:none!important'; }
+  }
+
+  // pageshow fires for both normal loads and bfcache restores.
+  // persisted=true means bfcache: JS state is frozen, curtain may be stuck.
+  window.addEventListener('pageshow', function (e) {
+    if (!e.persisted) return;
+    forceHideLoader();
+    isTransitioning = false;
+    revealPage();
+  });
+
+  // popstate fires on same-document history navigation.
+  // Hide any loader that might be visible during the transition.
+  window.addEventListener('popstate', function () {
+    forceHideLoader();
+  });
+
   function runLoader() {
     if (!loadingScreen) return;
+
+    // Back/forward navigation (full reload or bfcache): never show the loader.
+    if (isBackForwardNav) {
+      loadingScreen.style.display = 'none';
+      initPage();
+      return;
+    }
 
     // Inter-page navigation: curtain already covers the screen, skip loader entirely
     if (sessionStorage.getItem('as-nav')) {
@@ -471,18 +511,6 @@
       });
     });
   }
-
-  /* ── Back/Forward Cache (bfcache) ───────────────────────── */
-  // When the browser restores a page from bfcache (back/forward navigation),
-  // DOMContentLoaded never fires again. The curtain may be stuck at scaleY(1)
-  // and the loading screen may still be in the DOM. Fix both immediately.
-  window.addEventListener('pageshow', function (e) {
-    if (!e.persisted) return;
-    var ls = document.getElementById('loading-screen');
-    if (ls) ls.style.display = 'none';
-    isTransitioning = false;
-    revealPage();
-  });
 
   /* ── Bootstrap ───────────────────────────────────────────── */
   if (document.readyState === 'loading') {

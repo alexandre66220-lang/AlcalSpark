@@ -10,6 +10,12 @@ const ARTICLE_IMAGES: Record<string, string> = {
     "/assets/lucid-origin_Abstract_split_composition_one_side_showing_generic_template_grid_patterns_in_mu-0.jpg",
   "seo-local-doubler-visibilite-commerce-mazamet":
     "/assets/lucid-origin_Cinematic_aerial_view_of_a_small_French_town_at_dusk_warm_golden_street_lights_d-0.jpg",
+  "combien-coute-site-web-artisan-occitanie":
+    "/assets/lucid-origin_a_cinematic_photo_of_Abstract_visualization_of_web_design_pricing_tiers_three_gl-0.jpg",
+  "5-signes-site-web-fait-fuir-clients":
+    "/assets/lucid-origin_a_cinematic_photo_of_Frustrated_business_owner_looking_at_an_old_laptop_blurred_-0.jpg",
+  "seo-local-apparaitre-premier-google-clients-pres-de-chez-vous":
+    "/assets/gpt-image-2_Close-up_of_a_smartphone_screen_showing_Google_search_results_for_a_local_busine-0.jpg",
 };
 
 function formatDate(dateStr: string) {

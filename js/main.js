@@ -472,6 +472,18 @@
     });
   }
 
+  /* ── Back/Forward Cache (bfcache) ───────────────────────── */
+  // When the browser restores a page from bfcache (back/forward navigation),
+  // DOMContentLoaded never fires again. The curtain may be stuck at scaleY(1)
+  // and the loading screen may still be in the DOM. Fix both immediately.
+  window.addEventListener('pageshow', function (e) {
+    if (!e.persisted) return;
+    var ls = document.getElementById('loading-screen');
+    if (ls) ls.style.display = 'none';
+    isTransitioning = false;
+    revealPage();
+  });
+
   /* ── Bootstrap ───────────────────────────────────────────── */
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', runLoader);

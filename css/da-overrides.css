@@ -1,594 +1,402 @@
 /* ============================================================
-   AlcalSpark · Application de la DA au site existant
+   AlcalSpark · DA Premium — Override final
+   Dark editorial. Cormorant hero / Syne UI / DM Sans body
    Charge apres tous les autres CSS.
    ============================================================ */
 
-/* ---- Override variable de police (gagne sur style.css) ---- */
-:root {
-  --font-sans:    'Hanken Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-serif:   var(--font-display); /* alias pour le CSS existant qui utilise --font-serif */
-  --font-display: 'Cormorant Garamond', 'Times New Roman', Georgia, serif;
-  --font-mono:    'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
-}
-
 /* ============================================================
-   BODY / PAGE
+   BODY — sombre uniforme
    ============================================================ */
 
 body {
-  background-color: var(--bone-100);
-  background-image: radial-gradient(var(--dot-color) var(--dot-size), transparent var(--dot-size));
-  background-size: var(--dot-gap) var(--dot-gap);
-  background-position: -1px -1px;
-  color: var(--pine-600);
-  font-family: var(--font-sans);
+  background-color: var(--bg);
+  background-image: none;
+  color: var(--cream);
+  font-family: var(--font-body);
+  font-weight: 300;
 }
 
 /* ============================================================
-   NAVIGATION
+   NAVIGATION — dark glass
    ============================================================ */
 
-/* Navbar toujours claire (overrides etats transparent / scrolled / nav-dark) */
 #navbar,
 #navbar.scrolled,
 #navbar.nav-dark {
-  background: rgba(248, 245, 245, 0.94);
-  backdrop-filter: var(--blur-sm);
-  -webkit-backdrop-filter: var(--blur-sm);
-  color: var(--pine-600);
-  border-bottom: var(--border-hairline);
+  background: rgba(10, 13, 11, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  color: var(--cream);
+  border-bottom: 1px solid var(--border);
 }
 
-/* Logo : serif, vert fonce, italique sur Spark */
+/* Logo : "Alcal" DM Sans, "Spark" Cormorant italic */
 .nav-logo {
-  font-family: var(--font-display);
-  font-size: 1.5rem;
-  font-weight: var(--fw-semibold);
-  letter-spacing: -0.01em;
-  color: var(--pine-700);
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--cream);
 }
 .nav-logo em {
+  font-family: var(--font-display);
   font-style: italic;
-  font-weight: var(--fw-medium);
-  color: var(--pine-700);
+  font-weight: 300;
+  font-size: 1.25rem;
+  color: var(--cream);
 }
 
-/* Liens nav : CAPITALES espacees, pine-500 */
+/* Liens nav */
 .nav-link {
-  font-family: var(--font-sans);
-  font-size: var(--text-xs);
-  letter-spacing: var(--tracking-caps);
-  color: var(--pine-500);
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
   opacity: 1;
 }
 .nav-link:hover,
 .nav-link.active {
-  color: var(--pine-700);
+  color: var(--cream);
   opacity: 1;
 }
-.nav-link::after { background: var(--pine-600); }
+.nav-link::after { background: var(--cream); }
 
-/* CTA nav : contour pine, radius-xs */
+/* CTA nav : fond cream, texte noir, pill */
 .nav-cta {
-  font-family: var(--font-sans);
-  font-size: var(--text-xs);
-  letter-spacing: var(--tracking-caps);
-  border: 1.5px solid var(--pine-600);
-  border-radius: var(--radius-xs);
-  color: var(--pine-600);
-  padding: 0.6rem 1.5rem;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  background: var(--cream);
+  color: #000;
+  border: none;
+  border-radius: 2rem;
+  padding: 0.52rem 1.35rem;
   opacity: 1;
+  transition: background 0.22s;
 }
 #navbar .nav-cta:hover,
 #navbar.scrolled .nav-cta:hover,
 #navbar.nav-dark .nav-cta:hover {
-  background: var(--pine-600);
-  color: var(--bone-100);
-  border-color: var(--pine-600);
+  background: rgba(248, 245, 242, 0.82);
+  color: #000;
+  border-color: transparent;
 }
 
-/* Mobile nav : fond pine-950 */
+/* Mobile nav */
 .nav-mobile {
-  background: var(--pine-950);
-  color: var(--bone-100);
+  background: var(--bg);
+  color: var(--cream);
 }
 .nav-mobile a {
-  font-family: var(--font-display);
-  color: var(--bone-100);
+  font-family: var(--font-ui);
+  color: var(--cream);
 }
 
 /* Burger */
-.nav-burger span { background: var(--pine-600); }
+.nav-burger span { background: var(--cream); }
 #navbar.scrolled .nav-burger span,
-#navbar.nav-dark .nav-burger span { background: var(--pine-600); }
+#navbar.nav-dark .nav-burger span { background: var(--cream); }
 
 /* ============================================================
-   LOADING SCREEN & PAGE TRANSITION
-   (conserves : fond pine est correct)
+   LOADING SCREEN & TRANSITIONS
    ============================================================ */
 
-#loading-screen { background: var(--pine-950); }
-.loading-logo { font-family: var(--font-display); color: var(--bone-100); }
-.loading-bar-wrap { background: rgba(248, 245, 245, 0.15); }
-.loading-bar { background: var(--bone-100); }
-.loading-percent { color: rgba(248, 245, 245, 0.5); font-family: var(--font-mono); }
-.curtain { background: var(--pine-950); }
-.curtain-gold { background: var(--pine-700); }
-.logo-reveal { font-family: var(--font-display); color: var(--bone-100); }
+#loading-screen { background: var(--bg); }
+.loading-logo { font-family: var(--font-ui); font-weight: 700; color: var(--cream); letter-spacing: 0.1em; }
+.loading-bar-wrap { background: var(--border); }
+.loading-bar { background: var(--cream); }
+.loading-percent { color: var(--muted); font-family: var(--font-body); }
+.curtain { background: var(--bg); }
+.curtain-gold { background: var(--green); }
+.logo-reveal { font-family: var(--font-ui); color: var(--cream); }
 
 /* ============================================================
-   HERO SECTION
+   TITRES GLOBAUX — Syne 700-800
    ============================================================ */
 
-.hero { background: var(--bone-100); }
-
-/* Ligne haute eyebrow */
-.hero-top {
-  border-bottom: var(--border-hairline);
+h1, h2, h3 {
+  font-family: var(--font-ui);
+  font-weight: 700;
+  color: var(--cream);
 }
-.hero-label {
-  font-family: var(--font-sans);
-  font-size: var(--text-2xs);
-  font-weight: var(--fw-semibold);
-  letter-spacing: var(--tracking-caps-lg);
-  color: var(--bone-500);
+h1 em, h2 em, h3 em { font-style: italic; font-weight: inherit; }
+h4 {
+  font-family: var(--font-ui);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cream);
 }
-.hero-disciplines {
-  font-family: var(--font-mono);
-  font-size: var(--text-2xs);
-  letter-spacing: var(--tracking-caps);
-  color: var(--bone-500);
-}
-
-/* Grand titre */
-.hero-title {
-  font-family: var(--font-display);
-  font-weight: var(--fw-semibold);
-  letter-spacing: var(--tracking-display);
-  color: var(--pine-600);
-}
-.hero-line-2 { font-style: italic; font-weight: var(--fw-semibold); }
-
-/* Colonne droite */
-.hero-logo {
-  border-radius: var(--radius-full);
-  box-shadow: var(--shadow-gold);
-  opacity: 1;
-  mix-blend-mode: normal;
-}
-
-/* Stat */
-.hero-stat strong {
-  font-family: var(--font-display);
-  font-weight: var(--fw-semibold);
-  letter-spacing: var(--tracking-display);
-  color: var(--pine-600);
-}
-.hero-stat span {
-  font-family: var(--font-mono);
-  letter-spacing: var(--tracking-caps);
-  color: var(--bone-500);
-}
-
-/* Ligne basse */
-.hero-bottom { border-top: var(--border-hairline); }
-.hero-desc { color: var(--pine-500); font-size: var(--text-base); }
-
-/* Scroll hint */
-.hero-scroll-hint {
-  font-family: var(--font-mono);
-  letter-spacing: var(--tracking-caps);
-  color: var(--bone-500);
-}
+p { font-family: var(--font-body); font-weight: 300; }
 
 /* ============================================================
-   MARQUEE
-   ============================================================ */
-
-.marquee-track {
-  border-top: var(--border-hairline);
-  border-bottom: var(--border-hairline);
-}
-.marquee-inner span {
-  font-family: var(--font-sans);
-  letter-spacing: var(--tracking-caps-lg);
-  color: var(--pine-400);
-}
-.marquee-inner .accent { color: var(--gold-500); }
-
-/* ============================================================
-   BOUTONS
-   ============================================================ */
-
-.btn {
-  font-family: var(--font-sans);
-  letter-spacing: var(--tracking-caps);
-  border-radius: var(--radius-xs);
-}
-
-/* Plein pine */
-.btn-primary {
-  background: var(--pine-600);
-  color: var(--bone-100);
-  border-color: var(--pine-600);
-}
-.btn-primary:hover {
-  background: var(--pine-700);
-  color: var(--bone-100);
-  border-color: var(--pine-700);
-}
-
-/* Contour pine */
-.btn-outline {
-  border-color: var(--color-border-strong);
-  color: var(--pine-600);
-}
-.btn-outline:hover {
-  background: var(--pine-600);
-  color: var(--bone-100);
-  border-color: var(--pine-600);
-}
-
-/* Inverse (sur fond sombre) */
-.btn-inv {
-  background: var(--bone-100);
-  color: var(--pine-700);
-  border-color: var(--bone-100);
-}
-.btn-inv:hover {
-  background: transparent;
-  color: var(--bone-100);
-  border-color: var(--bone-100);
-}
-.btn-outline-inv {
-  border-color: rgba(248, 245, 245, 0.3);
-  color: var(--bone-100);
-}
-.btn-outline-inv:hover {
-  background: var(--bone-100);
-  color: var(--pine-700);
-  border-color: var(--bone-100);
-}
-
-/* Or metalique */
-.btn-gold {
-  background: var(--gold-metallic);
-  color: #3a2d12;
-  border: 1.5px solid transparent;
-  border-radius: var(--radius-xs);
-}
-.btn-gold:hover { filter: brightness(1.06); background: var(--gold-metallic); color: #3a2d12; }
-
-/* Ghost / fleche */
-.btn-ghost { color: var(--pine-600); font-family: var(--font-sans); }
-.arrow-line { background: var(--pine-600); }
-
-/* ============================================================
-   LABELS / EYEBROWS
+   EYEBROWS / LABELS — Syne 600
    ============================================================ */
 
 .label,
 .eyebrow {
-  font-family: var(--font-sans);
-  font-size: var(--text-2xs);
-  letter-spacing: var(--tracking-caps-lg);
-  color: var(--bone-500);
+  font-family: var(--font-ui);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
 }
 .label::before,
-.eyebrow::before { background: var(--gold-500); }
+.eyebrow::before { background: var(--green-bright); }
 
 /* ============================================================
-   SECTION SERVICES (homepage)
+   BOUTONS — DM Sans 500-600
    ============================================================ */
 
-.services-list { border-top: var(--border-hairline); }
-.service-item { border-bottom: var(--border-hairline); }
-.service-item::before { background: rgba(56, 81, 68, 0.04); }
+.btn {
+  font-family: var(--font-body);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  border-radius: 2px;
+}
+.btn-primary {
+  background: var(--cream);
+  color: #0A0D0B;
+  border-color: var(--cream);
+}
+.btn-primary:hover {
+  background: rgba(248, 245, 242, 0.88);
+  color: #0A0D0B;
+  border-color: transparent;
+}
+.btn-outline {
+  border-color: var(--border);
+  color: var(--muted);
+}
+.btn-outline:hover {
+  background: rgba(248, 245, 242, 0.05);
+  color: var(--cream);
+  border-color: rgba(248, 245, 242, 0.18);
+}
+.btn-inv {
+  background: var(--cream);
+  color: #0A0D0B;
+  border-color: var(--cream);
+}
+.btn-inv:hover {
+  background: transparent;
+  color: var(--cream);
+  border-color: var(--border);
+}
+.btn-outline-inv {
+  border-color: var(--border);
+  color: var(--muted);
+}
+.btn-outline-inv:hover {
+  background: rgba(248, 245, 242, 0.05);
+  color: var(--cream);
+}
+.btn-ghost { color: var(--cream); font-family: var(--font-body); }
+.arrow-line { background: var(--cream); }
+
+/* ============================================================
+   SECTION SERVICES
+   ============================================================ */
+
+.services-list { border-top: 1px solid var(--border); }
+.service-item { border-bottom: 1px solid var(--border); }
+
+/* Pas de background coloré au hover */
+.service-item::before { display: none !important; }
 
 .svc-num {
   font-family: var(--font-display);
   font-style: italic;
-  color: var(--gold-600);
+  font-weight: 300;
+  color: var(--muted2);
 }
 .svc-body h3 {
-  font-family: var(--font-display);
-  font-size: clamp(1.35rem, 2.2vw, 2rem);
-  font-weight: var(--fw-semibold);
-  color: var(--pine-700);
+  font-family: var(--font-ui);
+  font-size: clamp(1.1rem, 2vw, 1.55rem);
+  font-weight: 700;
+  color: var(--muted);
+  letter-spacing: 0;
+  transition: color 0.28s;
 }
-.svc-body p { color: var(--pine-500); }
-.svc-arrow { color: var(--pine-600); font-family: var(--font-sans); }
-.svc-arrow::after { background: var(--pine-600); }
+.service-item:hover .svc-body h3 { color: var(--cream); }
+.svc-body p { color: var(--muted); font-family: var(--font-body); font-weight: 300; }
+.svc-arrow { color: var(--green-bright); font-family: var(--font-body); font-weight: 500; }
+.svc-arrow::after { background: var(--green-bright); }
+
+.services-intro p { color: var(--muted); font-family: var(--font-body); }
 
 /* ============================================================
-   SECTION PHILOSOPHIE (fond sombre)
+   PHILOSOPHIE
    ============================================================ */
 
-.philosophy-section { background: var(--pine-950); }
-.phil-item { border-color: rgba(248, 245, 245, 0.1); }
-.phil-item:first-child { border-left-color: rgba(248, 245, 245, 0.1); }
-.phil-item:last-child { border-right-color: rgba(248, 245, 245, 0.1); }
-.phil-item:hover { background: rgba(248, 245, 245, 0.05); }
-.phil-symbol { color: var(--gold-500); }
-.phil-item h3 {
-  font-family: var(--font-display);
-  color: var(--bone-100);
-}
-.phil-item p { color: rgba(248, 245, 245, 0.7); }
+.philosophy-section { background: var(--bg2); color: var(--cream); }
+.phil-item { border-color: var(--border); }
+.phil-item:first-child { border-left-color: var(--border); }
+.phil-item:last-child { border-right-color: var(--border); }
+.phil-item:hover { background: rgba(248, 245, 242, 0.025); }
+.phil-symbol { color: var(--green-bright); }
+.phil-item h3 { font-family: var(--font-ui); font-weight: 700; color: var(--cream); }
+.phil-item p { color: var(--muted); font-family: var(--font-body); }
 
 /* ============================================================
-   PORTFOLIO (homepage preview)
+   PORTFOLIO
    ============================================================ */
 
-.portfolio-item {
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-}
-.pi-image { border-radius: var(--radius-lg); }
-.pi-placeholder { border-radius: var(--radius-lg); }
-.pi-meta h4 {
-  font-family: var(--font-display);
-  font-size: 1.15rem;
-  font-weight: var(--fw-semibold);
-  color: var(--pine-700);
-}
-.pi-meta span { font-family: var(--font-mono); color: var(--pine-400); font-size: var(--text-2xs); }
-.pi-concept-badge {
-  border-radius: var(--radius-xs);
-  font-family: var(--font-mono);
-  font-size: var(--text-2xs);
-  letter-spacing: var(--tracking-wide);
-}
+.portfolio-item { background: rgba(248, 245, 242, 0.03); }
+.pi-image { border-radius: 0; }
+.pi-placeholder { border-radius: 0; }
+.pf-wrap { border-radius: 0; }
+.pi-meta { border-top: 1px solid var(--border); }
+.pi-meta h4 { font-family: var(--font-ui); font-weight: 600; color: var(--cream); }
+.pi-meta > div > span { color: var(--muted); font-family: var(--font-body); font-size: 0.72rem; }
+.pi-concept-badge { color: var(--muted); border-color: var(--border); font-family: var(--font-body); }
+.pi-info h3 { font-family: var(--font-ui); font-weight: 700; color: var(--cream); }
 
 /* ============================================================
-   PROCESSUS (homepage)
+   PROCESSUS
    ============================================================ */
 
-.ps-num {
-  font-family: var(--font-display);
-  font-style: italic;
-  color: var(--gold-500);
-}
-.process-step h4 {
-  font-family: var(--font-sans);
-  letter-spacing: var(--tracking-caps);
-  color: var(--pine-700);
-}
+.process-section { background: var(--bg2); }
+.process-steps { border-top-color: var(--border); border-left-color: var(--border); }
+.process-step { border-right-color: var(--border); border-bottom-color: var(--border); }
+.process-step:hover { background: rgba(248, 245, 242, 0.025); }
+.ps-num { font-family: var(--font-display); font-style: italic; font-weight: 300; color: var(--muted2); }
+.process-step h4 { font-family: var(--font-ui); font-weight: 700; color: var(--cream); }
+.process-step p { color: var(--muted); font-family: var(--font-body); }
+.process-intro .eyebrow { color: var(--muted); }
+.process-intro h2 { color: var(--cream); }
 
 /* ============================================================
-   CTA SECTION (dark band)
+   CTA SECTION
    ============================================================ */
 
-.cta-section { background: transparent; }
-/* Le fond sombre du CTA est gere page par page */
-
-/* ============================================================
-   PAGE HEROES (pages interieures)
-   ============================================================ */
-
-.page-hero { background: transparent; }
-
-/* ============================================================
-   PORTFOLIO PAGE (portfolio.html)
-   ============================================================ */
-
-.pf-wrap { border-radius: var(--radius-lg); overflow: hidden; }
-.pf-hover { border-radius: var(--radius-lg); }
-
-.filter-btn {
-  font-family: var(--font-sans);
-  font-size: var(--text-2xs);
-  letter-spacing: var(--tracking-caps);
-  border-radius: var(--radius-xs);
-  border-color: var(--color-border);
-  color: var(--pine-500);
-}
-.filter-btn.active,
-.filter-btn:hover {
-  background: var(--pine-600);
-  color: var(--bone-100);
-  border-color: var(--pine-600);
-}
-
-.pf-cat {
-  font-family: var(--font-mono);
-  font-size: var(--text-2xs);
-  letter-spacing: var(--tracking-wide);
-  color: var(--bone-500);
-}
-.pf-title {
-  font-family: var(--font-display);
-  font-weight: var(--fw-semibold);
-  color: var(--pine-700);
-}
-.pf-tech-tag {
-  border-radius: var(--radius-xs);
-  font-family: var(--font-mono);
-  font-size: var(--text-2xs);
-}
-
-/* ============================================================
-   SERVICES PAGE (services.html)
-   ============================================================ */
-
-.svc-xray pre, .xray-code { font-family: var(--font-mono); }
-
-/* ============================================================
-   ABOUT PAGE (about.html)
-   ============================================================ */
-
-/* ============================================================
-   CONTACT PAGE (contact.html)
-   ============================================================ */
-
-.contact-form input,
-.contact-form textarea,
-.contact-form select {
-  border: var(--border-hairline);
-  border-radius: var(--radius-xs);
-  background: var(--bone-0);
-  color: var(--pine-700);
-  font-family: var(--font-sans);
-}
-.contact-form input:focus,
-.contact-form textarea:focus {
-  border-color: var(--pine-600);
-  outline: none;
-  box-shadow: 0 0 0 3px var(--color-border-pine);
-}
+.cta-section .eyebrow { color: var(--muted); }
+.cta-section h2 { color: var(--cream); }
+.cta-section > .container > p { color: var(--muted); font-family: var(--font-body); }
 
 /* ============================================================
    FOOTER
    ============================================================ */
 
-#footer {
-  background: var(--bone-100);
-  color: var(--pine-600);
-  border-top: var(--border-hairline);
-}
-
-.footer-grid { border-bottom: var(--border-hairline); }
-
-/* Logo lockup */
+#footer { background: var(--bg2); color: var(--muted); border-top: 1px solid var(--border); }
+.footer-grid { border-bottom: 1px solid var(--border); }
 .footer-logo-link {
-  font-family: var(--font-display);
-  font-size: 1.65rem;
-  font-weight: var(--fw-semibold);
-  color: var(--pine-700);
-  letter-spacing: -0.01em;
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: var(--cream);
+  letter-spacing: 0.02em;
 }
 .footer-logo-link em {
-  font-style: italic;
-  font-weight: var(--fw-medium);
-}
-
-/* Monogramme footer */
-.footer-monogram {
-  width: 34px;
-  height: 34px;
-  object-fit: contain;
-  display: block;
-  margin-bottom: 0.75rem;
-}
-
-.footer-tagline {
   font-family: var(--font-display);
   font-style: italic;
-  color: var(--pine-500);
+  font-weight: 300;
+  font-size: 1.25rem;
 }
-
-.footer-brand p { color: var(--pine-400); }
-
+.footer-tagline { font-family: var(--font-display); font-style: italic; color: var(--muted); }
+.footer-brand p { color: var(--muted); font-family: var(--font-body); }
 .footer-col h4 {
-  font-family: var(--font-mono);
-  font-size: var(--text-2xs);
-  letter-spacing: 0.12em;
-  color: var(--bone-500);
+  font-family: var(--font-ui);
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  color: var(--muted2);
 }
+.footer-col ul li { color: var(--muted); }
+.footer-col a { color: var(--muted); font-family: var(--font-body); font-size: 0.85rem; }
+.footer-col a:hover { color: var(--cream); }
+.footer-col span { color: var(--muted); }
+.footer-bottom { color: var(--muted2); font-family: var(--font-body); font-size: 0.62rem; letter-spacing: 0.06em; }
+.social-icon { border: 1px solid var(--border); color: var(--muted); border-radius: 2px; }
+.social-icon:hover { background: var(--green); color: var(--cream); border-color: var(--green); }
 
-.footer-col ul li { color: var(--pine-500); }
-.footer-col a {
-  color: var(--pine-500);
-  font-size: var(--text-sm);
-}
-.footer-col a:hover { color: var(--pine-700); }
-.footer-col span { color: var(--pine-500); }
+/* ============================================================
+   SCROLL PROGRESS
+   ============================================================ */
 
-.footer-bottom {
-  color: var(--bone-500);
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  letter-spacing: var(--tracking-wide);
-}
-
-.social-icon {
-  border: 1px solid var(--color-border-pine);
-  color: var(--pine-500);
-  border-radius: var(--radius-xs);
-}
-.social-icon:hover {
-  background: var(--pine-600);
-  color: var(--bone-100);
-  border-color: var(--pine-600);
-}
+#scroll-progress { background: var(--green-bright); }
 
 /* ============================================================
    WHATSAPP FAB
    ============================================================ */
 
-.whatsapp-btn {
-  background: var(--pine-600);
-  box-shadow: var(--shadow-pine);
-  border: none;
-}
-.whatsapp-btn:hover {
-  transform: scale(1.08);
-  box-shadow: 0 8px 36px rgba(56, 81, 68, 0.4);
-}
+.whatsapp-btn { background: var(--green); border: none; box-shadow: 0 4px 24px rgba(56,81,68,0.35); }
+.whatsapp-btn:hover { transform: scale(1.08); box-shadow: 0 8px 36px rgba(56,81,68,0.45); }
 
 /* ============================================================
    SEO PAGES (services/ subdirectory)
    ============================================================ */
 
 .seo-hero { background: transparent; }
-.seo-service-card {
-  border: var(--border-hairline);
-  border-radius: var(--radius-lg);
-  background: var(--bone-0);
-  box-shadow: var(--shadow-sm);
-}
-.advantage-card {
-  border: var(--border-hairline);
-  border-radius: var(--radius-lg);
-  background: var(--bone-0);
-  box-shadow: var(--shadow-sm);
-}
-.seo-cta-section { background: var(--pine-950); border-radius: var(--radius-lg); }
+.seo-service-card { border: 1px solid var(--border); background: rgba(248,245,242,0.03); box-shadow: none; }
+.advantage-card { border: 1px solid var(--border); background: rgba(248,245,242,0.03); box-shadow: none; }
+.seo-cta-section { background: var(--bg2); border-radius: 2px; }
+.seo-internal-links { background: var(--bg2); border-top: 1px solid var(--border); }
+.seo-il-label { color: var(--muted); }
+.seo-il-list a { color: var(--cream); border-bottom-color: var(--border); }
+.seo-il-list a:hover { color: var(--green-bright); border-bottom-color: var(--green-bright); }
+
+/* SEO pages : texte clair sur fond sombre */
+.seo-content p,
+.seo-content li,
+.seo-service-card p,
+.advantage-card p { color: var(--muted); }
+.seo-content h2,
+.seo-content h3 { color: var(--cream); }
 
 /* ============================================================
-   TITRES H1/H2/H3 - override global
+   PAGES SERVICES (services.html) — typo
    ============================================================ */
 
-h1, h2, h3 { font-family: var(--font-display); }
-
-h1 em, h2 em, h3 em {
-  font-style: italic;
-  font-weight: inherit;
-}
-
-h4 {
-  font-family: var(--font-sans);
-  letter-spacing: var(--tracking-caps);
-}
+.svc-xray pre, .xray-code { font-family: var(--font-body); }
 
 /* ============================================================
-   SCROLL PROGRESS
+   PAGES PORTFOLIO
    ============================================================ */
 
-#scroll-progress { background: var(--gold-500); }
+.filter-btn {
+  font-family: var(--font-ui);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  border-color: var(--border);
+  color: var(--muted);
+}
+.filter-btn.active,
+.filter-btn:hover {
+  background: var(--cream);
+  color: #0A0D0B;
+  border-color: var(--cream);
+}
+.pf-cat { font-family: var(--font-body); font-size: 0.7rem; color: var(--muted); }
+.pf-title { font-family: var(--font-ui); font-weight: 700; color: var(--cream); }
+.pf-tech-tag { border-radius: 2px; font-family: var(--font-body); border-color: var(--border); color: var(--muted); }
 
 /* ============================================================
-   SEO INTERNAL LINKS (pages services)
-   Corrige les couleurs prevues pour fond sombre
+   CONTACT PAGE
    ============================================================ */
 
-.seo-internal-links {
-  background: var(--bone-200);
-  border-top: var(--border-hairline);
+.contact-form input,
+.contact-form textarea,
+.contact-form select {
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  background: rgba(248,245,242,0.03);
+  color: var(--cream);
+  font-family: var(--font-body);
 }
-
-.seo-il-label {
-  color: var(--pine-400);
-}
-
-.seo-il-list a {
-  color: var(--pine-700);
-  border-bottom-color: var(--color-border);
-}
-
-.seo-il-list a:hover {
-  color: var(--gold-600);
-  border-bottom-color: var(--gold-500);
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: var(--green-mid);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(56,81,68,0.1);
 }
 
 /* ============================================================
@@ -596,5 +404,5 @@ h4 {
    ============================================================ */
 
 @media (max-width: 768px) {
-  .nav-burger span { background: var(--pine-600); }
+  .nav-burger span { background: var(--cream); }
 }

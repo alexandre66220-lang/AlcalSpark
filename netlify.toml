@@ -13,7 +13,7 @@
 
 [build.processing.css]
   bundle = false
-  minify = true
+  minify = false
 
 [build.processing.js]
   bundle = false

@@ -216,6 +216,20 @@
 
     <ol class="services-list">
       <li class="service-item reveal">
+        <div class="svc-xray" aria-hidden="true">
+          <pre class="xray-code"><span class="xc-tag">&lt;section</span> <span class="xc-attr">class</span>=<span class="xc-val">"hero"</span><span class="xc-tag">&gt;</span>
+  <span class="xc-tag">&lt;h1&gt;</span><span class="xc-text">Votre marque</span><span class="xc-tag">&lt;/h1&gt;</span>
+  <span class="xc-tag">&lt;nav&gt;</span>
+    <span class="xc-prop">display</span>: <span class="xc-val">flex</span>;
+    <span class="xc-prop">gap</span>: <span class="xc-val">2rem</span>;
+  <span class="xc-tag">&lt;/nav&gt;</span>
+<span class="xc-tag">&lt;/section&gt;</span></pre>
+          <div class="xray-code-extra"><span class="xc-cmt">/* responsive */</span>
+<span class="xc-prop">@media</span> (max-width: <span class="xc-val">768px</span>) {
+  <span class="xc-prop">grid-template</span>: <span class="xc-val">1fr</span>;
+  <span class="xc-prop">gap</span>: <span class="xc-val">1rem</span>;
+}</div>
+        </div>
         <span class="svc-num">01</span>
         <div class="svc-body">
           <h3>Création Web</h3>
@@ -225,6 +239,20 @@
       </li>
 
       <li class="service-item reveal delay-1">
+        <div class="svc-xray" aria-hidden="true">
+          <div class="xray-wireframe">
+            <div class="xw-nav"></div>
+            <div class="xw-row"><div class="xw-box w2"></div><div class="xw-box"></div></div>
+            <div class="xw-row"><div class="xw-box"></div><div class="xw-box"></div><div class="xw-box"></div></div>
+            <span class="xw-label">wireframe / 12col</span>
+          </div>
+          <div class="xray-wireframe-detail">
+            <div class="xwd-comp">Button / Primary</div>
+            <div class="xwd-comp">Input / Text</div>
+            <div class="xwd-comp">Card / Default</div>
+            <div class="xwd-comp">Nav / Mobile</div>
+          </div>
+        </div>
         <span class="svc-num">02</span>
         <div class="svc-body">
           <h3>Design UI/UX</h3>
@@ -234,6 +262,24 @@
       </li>
 
       <li class="service-item reveal delay-2">
+        <div class="svc-xray" aria-hidden="true">
+          <div class="xray-brand">
+            <div class="xb-swatches">
+              <div class="xb-swatch" style="background:#0A0D0B;border-color:rgba(248,245,242,0.2)"></div>
+              <div class="xb-swatch" style="background:#5a8a6e"></div>
+              <div class="xb-swatch" style="background:#bf9d5b"></div>
+              <div class="xb-swatch" style="background:#F8F5F2"></div>
+              <div class="xb-swatch" style="background:#8ba88f"></div>
+            </div>
+            <div class="xb-type">Aa</div>
+            <div class="xb-label">Cormorant · Syne · DM Sans</div>
+          </div>
+          <div class="xray-brand-scale">
+            <div class="xbs-row"><span class="xbs-sample" style="font-size:1.4rem">H1</span><span style="font-size:0.6rem;color:rgba(90,138,110,0.8);font-family:monospace">Cormorant / 600 / 4rem</span></div>
+            <div class="xbs-row"><span class="xbs-sample" style="font-size:1rem">H2</span><span style="font-size:0.6rem;color:rgba(90,138,110,0.8);font-family:monospace">Syne / 700 / 1.8rem</span></div>
+            <div class="xbs-row"><span class="xbs-sample" style="font-size:0.75rem">body</span><span style="font-size:0.6rem;color:rgba(90,138,110,0.8);font-family:monospace">DM Sans / 400 / 1rem</span></div>
+          </div>
+        </div>
         <span class="svc-num">03</span>
         <div class="svc-body">
           <h3>Branding &amp; Identité</h3>
@@ -243,6 +289,26 @@
       </li>
 
       <li class="service-item reveal delay-3">
+        <div class="svc-xray" aria-hidden="true">
+          <div class="xray-seo">
+            <svg class="xs-chart" viewBox="0 0 110 44" fill="none" aria-hidden="true">
+              <polyline points="0,42 18,30 36,34 54,18 72,22 90,9 110,4" stroke="rgba(201,168,76,0.08)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+              <polyline points="0,42 18,30 36,34 54,18 72,22 90,9 110,4" stroke="rgba(201,168,76,0.55)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <line x1="0" y1="44" x2="110" y2="44" stroke="rgba(90,138,110,0.4)" stroke-width="1"/>
+            </svg>
+            <div class="xs-kpis">
+              <div class="xs-kpi"><strong>+247%</strong><span>trafic</span></div>
+              <div class="xs-kpi"><strong>#1</strong><span>Google</span></div>
+              <div class="xs-kpi"><strong>8.4%</strong><span>CTR</span></div>
+            </div>
+          </div>
+          <div class="xray-seo-tags">
+            <div class="xst-row">title: <span>"Votre marque | AlcalSpark"</span></div>
+            <div class="xst-row">meta[description]: <span>160 chars</span></div>
+            <div class="xst-row">canonical: <span>https://…</span></div>
+            <div class="xst-row">schema: <span>LocalBusiness</span></div>
+          </div>
+        </div>
         <span class="svc-num">04</span>
         <div class="svc-body">
           <h3>SEO &amp; Marketing</h3>
@@ -252,15 +318,43 @@
       </li>
 
       <li class="service-item reveal delay-4">
+        <div class="svc-xray" aria-hidden="true">
+          <div class="xray-arch">
+            <div class="xa-node">Frontend</div><span class="xa-line">──</span>
+            <div class="xa-node accent">API REST</div><span class="xa-line">──</span>
+            <div class="xa-node">Supabase</div><span class="xa-line">──</span>
+            <div class="xa-node">Auth</div>
+          </div>
+          <div class="xray-arch-detail">
+            <div class="xad-line">GET /api/users → <span>200 OK</span></div>
+            <div class="xad-line">POST /api/auth → <span>JWT token</span></div>
+            <div class="xad-line">SELECT * FROM <span>dashboard</span></div>
+            <div class="xad-line">role: <span>admin | user | guest</span></div>
+          </div>
+        </div>
         <span class="svc-num">05</span>
         <div class="svc-body">
           <h3>Applications SaaS &amp; Web App</h3>
-          <p>Tableaux de bord, outils métier et plateformes SaaS sur mesure — de l'idée au produit fonctionnel, avec une UX soignée dès le MVP.</p>
+          <p>Tableaux de bord, outils métier et plateformes SaaS sur mesure, de l'idée au produit fonctionnel, avec une UX soignée dès le MVP.</p>
         </div>
         <a href="services.html#saas" class="svc-arrow" aria-label="En savoir plus sur les Applications SaaS">En savoir plus</a>
       </li>
 
       <li class="service-item reveal delay-5">
+        <div class="svc-xray" aria-hidden="true">
+          <div class="xray-copy">
+            <div class="xc-h1-line"></div>
+            <div class="xc-lead-line"></div>
+            <div class="xc-body-lines"><div></div><div style="width:88%"></div><div style="width:70%"></div></div>
+            <div class="xc-cta-box">[ Lire la suite → ]</div>
+          </div>
+          <div class="xray-copy-meta">
+            <div class="xcm-block">H1 → <span>accroche principale</span></div>
+            <div class="xcm-block">lead → <span>160 chars max</span></div>
+            <div class="xcm-block">CTA → <span>verbe d'action</span></div>
+            <div class="xcm-block">SEO → <span>keyword density 1.2%</span></div>
+          </div>
+        </div>
         <span class="svc-num">06</span>
         <div class="svc-body">
           <h3>Contenu &amp; Copywriting</h3>
@@ -270,6 +364,20 @@
       </li>
 
       <li class="service-item reveal delay-5">
+        <div class="svc-xray" aria-hidden="true">
+          <div class="xray-flow">
+            <div class="xf-node">Audit</div><span class="xf-arr">→</span>
+            <div class="xf-node">Stratégie</div><span class="xf-arr">→</span>
+            <div class="xf-node">Roadmap</div><span class="xf-arr">→</span>
+            <div class="xf-node accent">Résultats</div>
+          </div>
+          <div class="xray-flow-detail">
+            <div class="xfd-item">KPI → <span>définis &amp; mesurés</span></div>
+            <div class="xfd-item">Q1 → <span>positionnement</span></div>
+            <div class="xfd-item">Q2 → <span>acquisition</span></div>
+            <div class="xfd-item">Q3 → <span>rétention</span></div>
+          </div>
+        </div>
         <span class="svc-num">07</span>
         <div class="svc-body">
           <h3>Conseil Stratégique</h3>

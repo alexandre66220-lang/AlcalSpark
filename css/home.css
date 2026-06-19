@@ -31,7 +31,7 @@
   white-space: nowrap;
   pointer-events: none;
   user-select: none;
-  top: 16%;
+  top: 22%;
 }
 
 /* Image abstraite — z-index 2 */
@@ -63,7 +63,7 @@
   white-space: nowrap;
   pointer-events: none;
   user-select: none;
-  bottom: 8%;
+  bottom: 14%;
 }
 
 /* Coins */

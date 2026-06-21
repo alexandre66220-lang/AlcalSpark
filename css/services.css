@@ -663,6 +663,17 @@
   flex-shrink: 0;
 }
 
+/* ── Tarif rapide (mini-label avant CTA) ─────────────────────── */
+.sr-price {
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--green-bright);
+}
+.sr-price strong { font-weight: 700; }
+
 /* ── Tags / compétences ────────────────────────────────────── */
 .tag-list {
   display: flex;

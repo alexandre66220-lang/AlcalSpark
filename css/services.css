@@ -588,6 +588,11 @@
 /* ── Pricing ────────────────────────────────────────────────── */
 .pricing-section { background: transparent; min-height: 360px; display: flex; align-items: center; }
 .pricing-section .container { width: 100%; }
+.pricing-section .section-header p {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
 .pricing-cta-block {
   display: flex;
   justify-content: center;
@@ -595,6 +600,10 @@
   flex-wrap: wrap;
   gap: 1rem;
   margin-top: 48px;
+  width: 100%;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 .pricing-cta-block .btn-outline {
   border-color: rgba(248, 245, 242, 0.4);

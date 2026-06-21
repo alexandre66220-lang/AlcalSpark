@@ -586,7 +586,25 @@
 }
 
 /* ── Pricing ────────────────────────────────────────────────── */
-.pricing-section { background: transparent; }
+.pricing-section { background: transparent; min-height: 360px; display: flex; align-items: center; }
+.pricing-section .container { width: 100%; }
+.pricing-cta-block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 48px;
+}
+.pricing-cta-block .btn-outline {
+  border-color: rgba(248, 245, 242, 0.4);
+  color: var(--cream);
+}
+.pricing-cta-block .btn-outline:hover {
+  background: rgba(248, 245, 242, 0.12);
+  color: var(--cream);
+  border-color: var(--cream);
+}
 .pricing-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

@@ -1,0 +1,80 @@
+/* ============================================================
+   AlcalSpark, Tarifs Page Styles
+   ============================================================ */
+
+/* ── Page Hero ─────────────────────────────────────────────── */
+.tarifs-hero { background: transparent; }
+.tarifs-hero .ph-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 20%, rgba(201, 168, 76, 0.06) 0%, transparent 70%);
+}
+
+/* ── Autres prestations (cards compactes) ─────────────────────── */
+.misc-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+.misc-card {
+  padding: 32px 28px;
+  border: 1px solid var(--border);
+  background: rgba(248, 245, 242, 0.03);
+  border-radius: 6px;
+}
+.misc-card h3 {
+  font-size: 1.05rem;
+  margin-bottom: 10px;
+}
+.misc-price {
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--green-bright);
+  margin-bottom: 14px;
+}
+.misc-card p {
+  font-size: 0.86rem;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+/* ── Accompagnement mensuel ────────────────────────────────────── */
+.abo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+.abo-card { padding: 44px 40px; }
+.abo-card .pc-price { margin-bottom: 18px; }
+.abo-per {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: rgba(248, 245, 242, 0.65);
+  margin-left: 4px;
+}
+.abo-card p {
+  font-size: 0.92rem;
+  color: rgba(248, 245, 242, 0.85);
+  line-height: 1.7;
+  margin-bottom: 28px;
+}
+
+/* ── Note de bas de page ───────────────────────────────────────── */
+.tarifs-footnote {
+  text-align: center;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+/* ── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 1100px) {
+  .misc-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 700px) {
+  .abo-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .misc-grid { grid-template-columns: 1fr; }
+}

@@ -202,9 +202,12 @@ blockquote {
 
 .solo-logo-wrap {
   position: relative;
+  width: 380px;
+  height: 380px;
+  border-radius: 50%;
 }
 .solo-logo {
-  width: 260px; height: 260px;
+  width: 380px; height: 380px;
   border-radius: 50%;
   object-fit: cover;
   object-position: center top;
@@ -358,6 +361,7 @@ blockquote {
   .tl-item { padding: 0 !important; justify-content: center; }
   .tl-dot  { display: none; }
   .tl-content { max-width: 100%; }
+  .solo-logo-wrap { width: 180px; height: 180px; }
   .solo-logo { width: 180px; height: 180px; }
 }
 @media (max-width: 480px) {

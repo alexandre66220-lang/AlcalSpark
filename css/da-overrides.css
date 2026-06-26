@@ -194,7 +194,7 @@ p { font-family: var(--font-body); font-weight: 300; }
 
 .hero-title-back {
   position: absolute !important;
-  z-index: 1;
+  z-index: 3;
   left: 0; right: 0;
   text-align: center;
   font-family: 'Cormorant Garamond', Georgia, serif !important;
@@ -207,7 +207,7 @@ p { font-family: var(--font-body); font-weight: 300; }
   white-space: nowrap;
   pointer-events: none;
   user-select: none;
-  top: 22%;
+  top: 14%;
 }
 
 .hero-img {

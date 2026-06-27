@@ -23,14 +23,19 @@
 <link rel="icon" type="image/png" sizes="96x96" href="favicon.png" />
 <link rel="icon" type="image/png" sizes="48x48" href="favicon-48.png" />
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
-<link rel="preload" as="image" href="assets/logo.webp" type="image/webp" fetchpriority="high" />
+<link rel="preload" as="image" href="assets/hero-bg.webp" type="image/webp" fetchpriority="high" />
 
 <link rel="stylesheet" href="css/as-tokens.css" />
 <link rel="stylesheet" href="css/style.css" />
 <link rel="stylesheet" href="css/home.css" />
 
+<link rel="dns-prefetch" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="dns-prefetch" href="https://fonts.gstatic.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+<link rel="preconnect" href="https://www.googletagmanager.com" />
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300;1,400;1,600&family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" crossorigin />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300;1,400;1,600&family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" media="print" onload="this.media='all'" crossorigin />
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300;1,400;1,600&family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" crossorigin /></noscript>
 <link rel="stylesheet" href="css/da-overrides.css?v=2" />
@@ -141,14 +146,19 @@
   <div class="hero-title-back" aria-hidden="true">Votre marque,</div>
 
   <!-- Image abstraite — z-index 2 -->
-  <img
-    class="hero-img"
-    src="assets/hero-bg.png"
-    alt=""
-    aria-hidden="true"
-    fetchpriority="high"
-    loading="eager"
-  />
+  <picture>
+    <source srcset="assets/hero-bg.webp" type="image/webp" />
+    <img
+      class="hero-img"
+      src="assets/hero-bg.png"
+      alt=""
+      aria-hidden="true"
+      fetchpriority="high"
+      loading="eager"
+      width="1672"
+      height="941"
+    />
+  </picture>
 
   <!-- Titre DEVANT l'image — z-index 3 -->
   <div class="hero-title-front" id="hero-title">magnifiée.</div>
@@ -436,12 +446,17 @@
     <!-- Auréa -->
     <a class="portfolio-item reveal delay-2" href="https://aurea-io.netlify.app" target="_blank" rel="noopener" aria-label="Voir le projet Auréa">
       <div class="pi-image">
-        <img
-          class="pi-real-img"
-          src="assets/lucid-origin_a_cinematic_photo_of_Elegant_luxury_jewelry_editorial_photography_close-up_of_a_-0.jpg"
-          alt="Auréa, Joaillerie premium"
-          loading="lazy"
-        />
+        <picture>
+          <source srcset="assets/lucid-origin_a_cinematic_photo_of_Elegant_luxury_jewelry_editorial_photography_close-up_of_a_-0.webp" type="image/webp" />
+          <img
+            class="pi-real-img"
+            src="assets/lucid-origin_a_cinematic_photo_of_Elegant_luxury_jewelry_editorial_photography_close-up_of_a_-0.jpg"
+            alt="Auréa, Joaillerie premium"
+            loading="lazy"
+            width="1344"
+            height="768"
+          />
+        </picture>
         <div class="pi-overlay">
           <div class="pi-info">
             <span class="badge">Création Web · UI/UX</span>
@@ -463,12 +478,17 @@
     <!-- Vitrum -->
     <a class="portfolio-item reveal delay-3" href="https://vitrum-io.netlify.app" target="_blank" rel="noopener" aria-label="Voir le projet Vitrum">
       <div class="pi-image">
-        <img
-          class="pi-real-img"
-          src="assets/gpt-image-2_a_cinematic_photo_of_Abstract_financial_data_visualization_glowing_amber_orange_-0.jpg"
-          alt="Vitrum, SaaS financier"
-          loading="lazy"
-        />
+        <picture>
+          <source srcset="assets/gpt-image-2_a_cinematic_photo_of_Abstract_financial_data_visualization_glowing_amber_orange_-0.webp" type="image/webp" />
+          <img
+            class="pi-real-img"
+            src="assets/gpt-image-2_a_cinematic_photo_of_Abstract_financial_data_visualization_glowing_amber_orange_-0.jpg"
+            alt="Vitrum, SaaS financier"
+            loading="lazy"
+            width="1344"
+            height="768"
+          />
+        </picture>
         <div class="pi-overlay">
           <div class="pi-info">
             <span class="badge">SaaS · Design UI/UX</span>
@@ -490,12 +510,17 @@
     <!-- Kairox Studios -->
     <a class="portfolio-item reveal delay-4" href="https://kairox-io.netlify.app" target="_blank" rel="noopener" aria-label="Voir le projet Kairox Studios">
       <div class="pi-image">
-        <img
-          class="pi-real-img"
-          src="assets/lucid-origin_a_cinematic_photo_of_Epic_dark_fantasy_game_environment_concept_art_stormy_drama-0.jpg"
-          alt="Kairox Studios, Game Studio"
-          loading="lazy"
-        />
+        <picture>
+          <source srcset="assets/lucid-origin_a_cinematic_photo_of_Epic_dark_fantasy_game_environment_concept_art_stormy_drama-0.webp" type="image/webp" />
+          <img
+            class="pi-real-img"
+            src="assets/lucid-origin_a_cinematic_photo_of_Epic_dark_fantasy_game_environment_concept_art_stormy_drama-0.jpg"
+            alt="Kairox Studios, Game Studio"
+            loading="lazy"
+            width="1344"
+            height="768"
+          />
+        </picture>
         <div class="pi-overlay">
           <div class="pi-info">
             <span class="badge">Game Studio · Web Design</span>
@@ -517,12 +542,17 @@
     <!-- Alchemist -->
     <a class="portfolio-item reveal delay-5" href="https://alchemist-io.netlify.app" target="_blank" rel="noopener" aria-label="Voir le projet Alchemist">
       <div class="pi-image">
-        <img
-          class="pi-real-img"
-          src="assets/lucid-origin_a_cinematic_photo_of_Luxury_whisky_bottle_product_photography_dark_oak_barrel_ba-0.jpg"
-          alt="Alchemist, Whisky"
-          loading="lazy"
-        />
+        <picture>
+          <source srcset="assets/lucid-origin_a_cinematic_photo_of_Luxury_whisky_bottle_product_photography_dark_oak_barrel_ba-0.webp" type="image/webp" />
+          <img
+            class="pi-real-img"
+            src="assets/lucid-origin_a_cinematic_photo_of_Luxury_whisky_bottle_product_photography_dark_oak_barrel_ba-0.jpg"
+            alt="Alchemist, Whisky"
+            loading="lazy"
+            width="1344"
+            height="768"
+          />
+        </picture>
         <div class="pi-overlay">
           <div class="pi-info">
             <span class="badge">Branding &amp; Web Design</span>
@@ -609,7 +639,10 @@
 <footer id="footer" role="contentinfo">
   <div class="footer-grid">
     <div class="footer-brand">
-      <img class="footer-monogram" src="assets/logo-monogram-pine.png" alt="" width="34" height="34" loading="lazy" />
+      <picture>
+        <source srcset="assets/logo-monogram-pine.webp" type="image/webp" />
+        <img class="footer-monogram" src="assets/logo-monogram-pine.png" alt="" width="34" height="34" loading="lazy" />
+      </picture>
       <a href="index.html" class="footer-logo-link" aria-label="AlcalSpark, Accueil">Alcal<em>Spark</em></a>
       <p class="footer-tagline">Votre marque, magnifiée.</p>
       <p>Agence digitale premium spécialisée en création web, design UI/UX et visuels.</p>

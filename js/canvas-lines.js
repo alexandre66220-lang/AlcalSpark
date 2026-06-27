@@ -113,7 +113,23 @@
     requestAnimationFrame(draw);
   }
 
-  resize();
-  window.addEventListener('resize', resize);
-  draw();
+  function start() {
+    resize();
+    window.addEventListener('resize', resize);
+    draw();
+  }
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          observer.disconnect();
+          start();
+        }
+      });
+    }, { rootMargin: '200px' });
+    observer.observe(zone);
+  } else {
+    start();
+  }
 })();

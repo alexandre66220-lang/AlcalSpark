@@ -165,6 +165,8 @@
 
   /* ── Services 3D floating icons ─────────────────────────── */
   function initServicesScene() {
+    if (window.innerWidth < 1024) return;
+
     const canvas = document.getElementById('services-canvas');
     if (!canvas || typeof THREE === 'undefined') return;
 
@@ -229,6 +231,8 @@
 
   /* ── About 3D sphere ─────────────────────────────────────── */
   function initAboutScene() {
+    if (window.innerWidth < 1024) return;
+
     const canvas = document.getElementById('about-canvas');
     if (!canvas || typeof THREE === 'undefined') return;
 

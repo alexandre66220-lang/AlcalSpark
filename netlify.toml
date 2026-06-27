@@ -58,3 +58,9 @@
   for = "/blog/*"
   [headers.values]
     Cache-Control = "no-cache, must-revalidate"
+
+# Blog Next.js -- assets buildes avec hash dans le nom de fichier, cache 1 an
+[[headers]]
+  for = "/_next/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

@@ -1,0 +1,271 @@
+/* ============================================================
+   AlcalSpark — Page Produits
+   ============================================================ */
+
+/* ── Hero ─────────────────────────────────────────────────── */
+.produits-hero { background: transparent; }
+.produits-hero .ph-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 55% at 20% 80%, rgba(199,93,59,0.05) 0%, transparent 60%),
+    radial-gradient(ellipse 80% 60% at 80% 20%, rgba(56,81,68,0.07) 0%, transparent 65%);
+}
+
+/* ── Grille produits ──────────────────────────────────────── */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+  align-items: start;
+}
+@media (max-width: 860px) {
+  .products-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Carte produit ────────────────────────────────────────── */
+.product-card {
+  position: relative;
+  background: rgba(248,245,242,0.03);
+  border: 1px solid rgba(248,245,242,0.07);
+  border-radius: 4px;
+  padding: 40px 36px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  overflow: hidden;
+  transition: border-color 0.3s, transform 0.35s cubic-bezier(0.22,1,0.36,1),
+              box-shadow 0.35s cubic-bezier(0.22,1,0.36,1);
+}
+.product-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(248,245,242,0.12);
+}
+
+/* Bande de couleur accent en haut de carte */
+.product-card-accent {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: #C75D3B;
+  opacity: 0.85;
+  transition: opacity 0.3s;
+}
+.product-card:hover .product-card-accent { opacity: 1; }
+
+/* Subtile lueur au hover */
+.product-card.estime-card:hover {
+  box-shadow: 0 24px 64px rgba(10,13,11,0.6), 0 0 48px rgba(199,93,59,0.08);
+}
+
+/* ── En-tête de carte ─────────────────────────────────────── */
+.product-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.product-card-meta { flex: 1; }
+.product-card-name {
+  font-family: var(--font-ui);
+  font-size: clamp(1.5rem, 2.8vw, 2rem);
+  font-weight: 700;
+  color: #F8F5F2;
+  line-height: 1.1;
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+.product-card-tag {
+  font-family: var(--font-ui);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(248,245,242,0.4);
+}
+.product-badge-disponible {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(56,81,68,0.25);
+  border: 1px solid rgba(90,138,110,0.35);
+  border-radius: 20px;
+  padding: 5px 13px;
+  font-family: var(--font-ui);
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #5a8a6e;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.product-badge-disponible::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #5a8a6e;
+  animation: pulseBadge 2.4s ease-in-out infinite;
+  flex-shrink: 0;
+}
+@keyframes pulseBadge {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.35; }
+}
+
+/* ── Séparateur ───────────────────────────────────────────── */
+.product-card-divider {
+  height: 1px;
+  background: rgba(248,245,242,0.06);
+  margin-bottom: 22px;
+}
+
+/* ── Description ──────────────────────────────────────────── */
+.product-card-desc {
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  font-weight: 300;
+  color: rgba(248,245,242,0.65);
+  line-height: 1.75;
+  margin-bottom: 28px;
+  max-width: 100%;
+}
+
+/* ── Stack pills ──────────────────────────────────────────── */
+.product-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 32px;
+}
+.stack-pill {
+  font-family: var(--font-body);
+  font-size: 0.66rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: rgba(248,245,242,0.5);
+  border: 1px solid rgba(248,245,242,0.1);
+  border-radius: 3px;
+  padding: 4px 11px;
+  background: rgba(248,245,242,0.03);
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+.product-card:hover .stack-pill {
+  color: rgba(248,245,242,0.72);
+  border-color: rgba(248,245,242,0.15);
+}
+
+/* ── CTA bouton ───────────────────────────────────────────── */
+.product-card-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  background: #C75D3B;
+  color: #F8F5F2;
+  border: 1px solid #C75D3B;
+  border-radius: 2px;
+  padding: 0.85rem 1.75rem;
+  text-decoration: none;
+  transition: background 0.25s, color 0.25s, border-color 0.25s;
+  align-self: flex-start;
+  margin-top: auto;
+}
+.product-card-cta:hover {
+  background: transparent;
+  color: #C75D3B;
+}
+.product-card-cta svg {
+  transition: transform 0.22s;
+}
+.product-card-cta:hover svg {
+  transform: translateX(3px);
+}
+
+/* ── Carte placeholder (a venir) ─────────────────────────── */
+.product-card.placeholder {
+  border: 1px dashed rgba(248,245,242,0.08);
+  background: rgba(248,245,242,0.015);
+  pointer-events: none;
+}
+.product-placeholder-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 32px 20px;
+  gap: 16px;
+  height: 100%;
+}
+.product-badge-soon {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(248,245,242,0.04);
+  border: 1px solid rgba(248,245,242,0.1);
+  border-radius: 20px;
+  padding: 5px 14px;
+  font-family: var(--font-ui);
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(248,245,242,0.3);
+}
+.product-placeholder-title {
+  font-family: var(--font-ui);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: rgba(248,245,242,0.2);
+}
+.product-placeholder-text {
+  font-family: var(--font-body);
+  font-size: 0.84rem;
+  font-weight: 300;
+  color: rgba(248,245,242,0.2);
+  line-height: 1.65;
+  max-width: 26ch;
+  margin: 0;
+}
+
+/* ── Section CTA bas de page ──────────────────────────────── */
+.products-cta-section {
+  background: #0D1210;
+  border-top: 1px solid rgba(248,245,242,0.06);
+  border-bottom: 1px solid rgba(248,245,242,0.06);
+  text-align: center;
+}
+.products-cta-section .eyebrow {
+  justify-content: center;
+}
+.products-cta-section h2 {
+  color: #F8F5F2;
+  margin-bottom: 20px;
+}
+.products-cta-section p {
+  color: rgba(248,245,242,0.55);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.8;
+  max-width: 52ch;
+  margin: 0 auto 40px;
+}
+.products-cta-btns {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ── Responsive ───────────────────────────────────────────── */
+@media (max-width: 560px) {
+  .product-card { padding: 32px 24px 28px; }
+  .product-card-name { font-size: 1.55rem; }
+}

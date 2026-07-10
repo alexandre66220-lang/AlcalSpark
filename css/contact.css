@@ -58,7 +58,7 @@
   font-size: 0.64rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(248, 245, 242, 0.4);
+  color: rgba(248, 245, 242, 0.60);
   margin-bottom: 4px;
 }
 .cc-value {
@@ -131,7 +131,7 @@ a.cc-value:hover { color: var(--gold); }
   font-weight: 500;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(248, 245, 242, 0.38);
+  color: rgba(248, 245, 242, 0.55);
   pointer-events: none;
   transition: color 0.22s ease;
   line-height: 1;
@@ -198,7 +198,7 @@ a.cc-value:hover { color: var(--gold); }
   font-weight: 500;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(248, 245, 242, 0.38);
+  color: rgba(248, 245, 242, 0.55);
   margin-bottom: 10px;
   transition: color 0.22s;
 }

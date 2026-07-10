@@ -82,7 +82,7 @@
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(248,245,242,0.4);
+  color: rgba(248,245,242,0.60);
 }
 .product-badge-disponible {
   display: inline-flex;

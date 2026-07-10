@@ -436,13 +436,15 @@ p { font-family: var(--font-body); font-weight: 300; }
   font-size: 0.58rem;
   font-weight: 600;
   letter-spacing: 0.16em;
-  color: var(--muted2);
+  color: rgba(248,245,242,0.45);
 }
 .footer-col ul li { color: var(--muted); }
 .footer-col a { color: var(--muted); font-family: var(--font-body); font-size: 0.85rem; }
 .footer-col a:hover { color: #F8F5F2; }
 .footer-col span { color: var(--muted); }
-.footer-bottom { color: var(--muted2); font-family: var(--font-body); font-size: 0.62rem; letter-spacing: 0.06em; }
+.footer-bottom { color: rgba(248,245,242,0.45); font-family: var(--font-body); font-size: 0.62rem; letter-spacing: 0.06em; }
+.footer-bottom a { color: rgba(248,245,242,0.55) !important; }
+.footer-col ul li { color: rgba(248,245,242,0.55) !important; }
 .social-icon { border: 1px solid var(--border); color: var(--muted); border-radius: 2px; }
 .social-icon:hover { background: var(--green); color: #F8F5F2; border-color: var(--green); }
 

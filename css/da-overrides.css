@@ -320,8 +320,8 @@ p { font-family: var(--font-body); font-weight: 300; }
    SECTION SERVICES
    ============================================================ */
 
-.services-list { border-top: 1px solid var(--border); }
-.service-item { border-bottom: 1px solid var(--border); }
+.services-list { border-top: 1px solid #2A2A2A; }
+.service-item { border-bottom: 1px solid #2A2A2A; }
 
 /* Supprimer le fond hover legacy */
 .service-item::before { display: none !important; }
@@ -330,20 +330,20 @@ p { font-family: var(--font-body); font-weight: 300; }
   font-family: var(--font-display);
   font-style: italic;
   font-weight: 300;
-  color: var(--muted2);
+  color: #6B6B6B;
 }
 
 .svc-body h3 {
   font-family: var(--font-ui);
   font-size: clamp(1.1rem, 2vw, 1.55rem);
   font-weight: 700;
-  color: var(--muted);
+  color: #F8F5F2;
   letter-spacing: 0;
   transition: color 0.28s;
 }
-.service-item:hover .svc-body h3 { color: #F8F5F2; }
+.service-item:hover .svc-body h3 { color: #FFFFFF; }
 
-.svc-body p { color: var(--muted); font-family: var(--font-body); font-weight: 300; }
+.svc-body p { color: #C8C4BE; font-family: var(--font-body); font-weight: 300; }
 
 /* Fleche hover : part de translateX(-6px) caché -> visible au hover */
 .svc-arrow {

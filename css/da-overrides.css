@@ -116,7 +116,14 @@ body {
 
 /* Mobile nav */
 .nav-mobile {
-  background: #0A0D0B;
+  background-color: #0A0D0B;
+  background-image:
+    linear-gradient(to bottom, transparent, #0A0D0B 85%),
+    linear-gradient(to bottom, transparent, rgba(0,0,0,.5));
+  background-repeat: no-repeat;
+  background-position: bottom, bottom;
+  background-size: 100% 64px, 100% 28px;
+  background-attachment: local, scroll;
   color: #F8F5F2;
 }
 .nav-mobile a {

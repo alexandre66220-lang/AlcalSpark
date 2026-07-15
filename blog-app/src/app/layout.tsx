@@ -30,6 +30,36 @@ export const metadata: Metadata = {
   },
 };
 
+const localBusinessJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": "https://alcalspark.com/#business",
+  name: "AlcalSpark",
+  description:
+    "Agence web à Castres (Tarn) spécialisée en création de site web pour artisans et PME d'Occitanie",
+  url: "https://alcalspark.com",
+  telephone: "+33663054481",
+  email: "contact@alcalspark.com",
+  foundingDate: "2026",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "90 avenue Georges Guynemer",
+    addressLocality: "Mazamet",
+    postalCode: "81200",
+    addressRegion: "Occitanie",
+    addressCountry: "FR",
+  },
+  areaServed: [
+    { "@type": "City", name: "Castres" },
+    { "@type": "City", name: "Mazamet" },
+    { "@type": "City", name: "Albi" },
+    { "@type": "City", name: "Toulouse" },
+    { "@type": "AdministrativeArea", name: "Occitanie" },
+  ],
+  priceRange: "€€€",
+  sameAs: ["https://www.instagram.com/alcalspark/"],
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -38,6 +68,10 @@ export default function RootLayout({
   return (
     <html lang="fr" className={`${cormorant.variable} ${raleway.variable}`}>
       <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
+        />
         <header className="blog-header">
           <div className="blog-header-inner">
             <a href="/" className="blog-logo">

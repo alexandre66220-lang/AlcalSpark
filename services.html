@@ -51,58 +51,91 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "name": "AlcalSpark",
-    "url": "https://alcalspark.com/services",
-    "telephone": "+33663054481",
-    "email": "contact@alcalspark.com",
-    "areaServed": { "@type": "AdministrativeArea", "name": "Occitanie" },
-    "hasOfferCatalog": {
-      "@type": "OfferCatalog",
-      "name": "Services digitaux AlcalSpark",
-      "itemListElement": [
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Création de site web",
-            "description": "Sites vitrine, e-commerce et applications web sur mesure pour artisans et PME du Tarn et d'Occitanie."
-          }
+    "@graph": [
+      {
+        "@type": "LocalBusiness",
+        "@id": "https://alcalspark.com/#business",
+        "name": "AlcalSpark",
+        "description": "Agence web à Castres (Tarn) spécialisée en création de site web pour artisans et PME d'Occitanie",
+        "url": "https://alcalspark.com",
+        "telephone": "+33663054481",
+        "email": "contact@alcalspark.com",
+        "foundingDate": "2026",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "90 avenue Georges Guynemer",
+          "addressLocality": "Mazamet",
+          "postalCode": "81200",
+          "addressRegion": "Occitanie",
+          "addressCountry": "FR"
         },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Design UI/UX",
-            "description": "Interfaces soignées et expériences utilisateur optimisées pour applications web et mobiles."
-          }
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Branding & Identité visuelle",
-            "description": "Logo, charte graphique et identité de marque sur mesure."
-          }
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "SEO & Référencement local",
-            "description": "Optimisation pour les moteurs de recherche et référencement local en Occitanie."
-          }
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Automatisation",
-            "description": "Automatisation de processus métier pour artisans et PME."
-          }
-        }
-      ]
-    }
+        "areaServed": [
+          { "@type": "City", "name": "Castres" },
+          { "@type": "City", "name": "Mazamet" },
+          { "@type": "City", "name": "Albi" },
+          { "@type": "City", "name": "Toulouse" },
+          { "@type": "AdministrativeArea", "name": "Occitanie" }
+        ],
+        "priceRange": "€€€",
+        "sameAs": ["https://www.instagram.com/alcalspark/"]
+      },
+      {
+        "@type": "Service",
+        "name": "Création Web",
+        "description": "Sites vitrine, e-commerce (Shopify, WooCommerce), applications web complexes et plateformes SaaS sur mesure, alliant esthétique premium et performance technique.",
+        "provider": { "@id": "https://alcalspark.com/#business" },
+        "areaServed": { "@type": "AdministrativeArea", "name": "Occitanie" },
+        "url": "https://alcalspark.com/services.html#web"
+      },
+      {
+        "@type": "Service",
+        "name": "Design UI/UX",
+        "description": "Wireframes, prototypes interactifs, design system, UX research et design responsive mobile-first pour des interfaces élégantes et intuitives.",
+        "provider": { "@id": "https://alcalspark.com/#business" },
+        "areaServed": { "@type": "AdministrativeArea", "name": "Occitanie" },
+        "url": "https://alcalspark.com/services.html#design"
+      },
+      {
+        "@type": "Service",
+        "name": "Branding",
+        "description": "Création de logo, charte graphique complète, guide de style et supports de communication pour une identité de marque mémorable.",
+        "provider": { "@id": "https://alcalspark.com/#business" },
+        "areaServed": { "@type": "AdministrativeArea", "name": "Occitanie" },
+        "url": "https://alcalspark.com/services.html#branding"
+      },
+      {
+        "@type": "Service",
+        "name": "SEO & Marketing",
+        "description": "Audit SEO technique et sémantique, stratégie de contenu, campagnes Google & Meta Ads et reporting analytics pour une visibilité maximale.",
+        "provider": { "@id": "https://alcalspark.com/#business" },
+        "areaServed": { "@type": "AdministrativeArea", "name": "Occitanie" },
+        "url": "https://alcalspark.com/services.html#seo"
+      },
+      {
+        "@type": "Service",
+        "name": "Applications SaaS",
+        "description": "Conception et développement d'applications web sur mesure — tableaux de bord, outils métier et plateformes SaaS, de l'idée au produit fonctionnel.",
+        "provider": { "@id": "https://alcalspark.com/#business" },
+        "areaServed": { "@type": "AdministrativeArea", "name": "Occitanie" },
+        "url": "https://alcalspark.com/services.html#saas"
+      },
+      {
+        "@type": "Service",
+        "name": "Copywriting",
+        "description": "Rédaction web SEO-friendly, articles de blog, scripts vidéo et email marketing pour engager votre audience et booster votre référencement.",
+        "provider": { "@id": "https://alcalspark.com/#business" },
+        "areaServed": { "@type": "AdministrativeArea", "name": "Occitanie" },
+        "url": "https://alcalspark.com/services.html#content"
+      },
+      {
+        "@type": "Service",
+        "name": "Conseil Stratégique",
+        "description": "Audit digital complet, stratégie de transformation digitale, formation et mentorat pour accélérer votre croissance.",
+        "provider": { "@id": "https://alcalspark.com/#business" },
+        "areaServed": { "@type": "AdministrativeArea", "name": "Occitanie" },
+        "url": "https://alcalspark.com/services.html#conseil"
+      }
+    ]
   }
   </script>
 </head>

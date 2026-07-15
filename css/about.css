@@ -59,7 +59,7 @@ blockquote {
   font-weight: 400;
   font-style: italic;
   line-height: 1.5;
-  color: var(--green);
+  color: var(--green-bright);
   padding-left: 10px;
 }
 .mq-author {
@@ -78,7 +78,7 @@ blockquote {
   font-family: var(--font-ui);
   font-size: 0.8rem;
   letter-spacing: 0.1em;
-  color: var(--g70);
+  color: var(--green-bright);
 }
 
 /* ── Values ─────────────────────────────────────────────────── */

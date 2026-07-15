@@ -526,7 +526,7 @@ p { font-family: var(--font-body); font-weight: 300; }
 .contact-form input,
 .contact-form textarea,
 .contact-form select {
-  border: 1px solid var(--border);
+  border: 1px solid rgba(248, 245, 242, 0.35);
   border-radius: 2px;
   background: rgba(248,245,242,0.03);
   color: #F8F5F2;

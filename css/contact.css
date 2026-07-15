@@ -131,7 +131,7 @@ a.cc-value:hover { color: var(--gold); }
   font-weight: 500;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(248, 245, 242, 0.55);
+  color: rgba(248, 245, 242, 0.72);
   pointer-events: none;
   transition: color 0.22s ease;
   line-height: 1;
@@ -147,7 +147,7 @@ a.cc-value:hover { color: var(--gold); }
   width: 100%;
   padding: 13px 15px;
   background: rgba(248, 245, 242, 0.03);
-  border: 1px solid rgba(248, 245, 242, 0.09);
+  border: 1px solid rgba(248, 245, 242, 0.35);
   border-radius: 2px;
   color: rgba(248, 245, 242, 0.90);
   font-family: var(--font-body);
@@ -161,7 +161,7 @@ a.cc-value:hover { color: var(--gold); }
 
 .form-group input::placeholder,
 .form-group textarea::placeholder {
-  color: rgba(248, 245, 242, 0.20);
+  color: rgba(248, 245, 242, 0.42);
   font-size: 0.88rem;
 }
 
@@ -174,7 +174,7 @@ a.cc-value:hover { color: var(--gold); }
 
 .form-group input:not(:placeholder-shown):not(:focus),
 .form-group textarea:not(:placeholder-shown):not(:focus) {
-  border-color: rgba(248, 245, 242, 0.14);
+  border-color: rgba(248, 245, 242, 0.45);
 }
 
 .contact-form textarea {
@@ -198,7 +198,7 @@ a.cc-value:hover { color: var(--gold); }
   font-weight: 500;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(248, 245, 242, 0.55);
+  color: rgba(248, 245, 242, 0.72);
   margin-bottom: 10px;
   transition: color 0.22s;
 }
@@ -210,7 +210,7 @@ a.cc-value:hover { color: var(--gold); }
 .select-wrap {
   position: relative;
   background: rgba(248, 245, 242, 0.03);
-  border: 1px solid rgba(248, 245, 242, 0.09);
+  border: 1px solid rgba(248, 245, 242, 0.35);
   border-radius: 2px;
   transition: border-color 0.22s ease, background 0.22s ease, box-shadow 0.22s ease;
 }
@@ -242,7 +242,7 @@ a.cc-value:hover { color: var(--gold); }
 
 .select-wrap select:invalid,
 .select-wrap select option[value=""] {
-  color: rgba(248, 245, 242, 0.28);
+  color: rgba(248, 245, 242, 0.42);
 }
 
 .select-arrow {

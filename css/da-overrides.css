@@ -202,34 +202,12 @@ p { font-family: var(--font-body); font-weight: 300; }
   justify-content: center !important;
 }
 
-.hero-img {
-  opacity: 0.12 !important;
-  mask-image: none !important;
-  -webkit-mask-image: none !important;
-}
-
 .hero-title {
   font-family: 'Cormorant Garamond', Georgia, serif !important;
   font-weight: 300 !important;
   font-style: italic !important;
   color: #F8F5F2 !important;
 }
-
-.hero-corner {
-  position: absolute !important;
-  z-index: 4;
-  font-family: 'DM Sans', sans-serif !important;
-  font-size: .65rem !important;
-  font-weight: 500;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: rgba(248,245,242,0.38) !important;
-  line-height: 1.6;
-}
-.hero-corner.tl { top: 5.5rem; left: 2.5rem; }
-.hero-corner.tr { top: 5.5rem; right: 2.5rem; text-align: right; }
-.hero-corner span { display: block; }
-.hero-corner .dim { color: rgba(248,245,242,0.18) !important; font-size: .58rem; margin-top: .2rem; }
 
 .scroll-hint {
   position: absolute !important;

@@ -15,16 +15,48 @@
   justify-content: center;
 }
 
-/* Image décorative basse opacité */
-.hero-img {
+/* Carrousel portfolio — arrière-plan */
+.hero-slides {
   position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  width: 70%; height: auto;
-  object-fit: contain;
+  inset: 0;
   z-index: 1;
-  opacity: .12;
   pointer-events: none;
+}
+
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  opacity: 0;
+  transition: opacity 2s ease;
+}
+.hero-slide.is-active { opacity: .18; }
+
+/* Dégradé bas : préserve la lisibilité du texte */
+.hero-slide-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    #0A0D0B 0%,
+    #0A0D0B 12%,
+    rgba(10,13,11,0.7) 45%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+/* Mobile : première image statique, pas de JS */
+@media (max-width: 767px) {
+  .hero-slide { display: none; }
+  .hero-slide:first-child {
+    display: block;
+    opacity: .14 !important;
+    transition: none !important;
+  }
 }
 
 /* Contenu centré */
@@ -82,25 +114,6 @@
   letter-spacing: 0.08em;
   color: rgba(248,245,242,0.28);
 }
-
-/* Coins */
-.hero-corner {
-  position: absolute;
-  z-index: 4;
-  font-family: 'DM Sans', sans-serif;
-  font-size: .65rem;
-  font-weight: 500;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: var(--muted);
-  line-height: 1.6;
-}
-.hero-corner.tl { top: 5.5rem; left: 2.5rem; }
-.hero-corner.tr { top: 5.5rem; right: 2.5rem; text-align: right; }
-.hero-corner.bl { bottom: 2.5rem; left: 2.5rem; }
-.hero-corner.br { bottom: 2.5rem; right: 2.5rem; text-align: right; }
-.hero-corner span { display: block; }
-.hero-corner .dim { color: var(--muted2); font-size: .58rem; margin-top: .2rem; }
 
 /* Scroll hint */
 .scroll-hint {
@@ -894,8 +907,6 @@
 
 @media (max-width: 768px) {
   .hero-title { font-size: clamp(3.5rem, 11vw, 6rem); }
-  .hero-img { display: none; }
-  .hero-corner.tl, .hero-corner.tr { display: none; }
   .scroll-hint { display: none; }
 
   .service-item { grid-template-columns: 4rem 1fr; }

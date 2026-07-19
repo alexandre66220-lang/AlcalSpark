@@ -149,20 +149,14 @@
 ══════════════════════════════════════ -->
 <section class="hero" id="hero" aria-labelledby="hero-title">
 
-  <!-- Image décorative basse opacité -->
-  <picture>
-    <source srcset="assets/hero-bg.webp" type="image/webp" />
-    <img
-      class="hero-img"
-      src="assets/hero-bg.png"
-      alt=""
-      aria-hidden="true"
-      fetchpriority="high"
-      loading="eager"
-      width="1672"
-      height="941"
-    />
-  </picture>
+  <!-- Carrousel portfolio — arrière-plan discret -->
+  <div class="hero-slides" aria-hidden="true">
+    <img class="hero-slide is-active" src="assets/portfolio/vitrum.jpg" alt="" loading="eager" />
+    <img class="hero-slide" src="assets/portfolio/kairox.jpg" alt="" loading="lazy" />
+    <img class="hero-slide" src="assets/portfolio/aurea.jpg" alt="" loading="lazy" />
+    <img class="hero-slide" src="assets/portfolio/estime.jpg" alt="" loading="lazy" />
+    <div class="hero-slide-overlay"></div>
+  </div>
 
   <!-- Contenu centré -->
   <div class="hero-content">
@@ -170,15 +164,6 @@
     <p class="hero-desc">Agence web premium à Castres. Sites vitrine, applications SaaS et identités visuelles sur mesure.</p>
     <a href="contact.html" class="btn hero-btn">Démarrer un projet</a>
     <p class="hero-info-line">7 services · Code sur mesure · Un projet à la fois · Livraison 2-3 semaines</p>
-  </div>
-
-  <div class="hero-corner tl" aria-hidden="true">
-    <span>AlcalSpark</span>
-    <span class="dim">Agence web premium</span>
-  </div>
-  <div class="hero-corner tr" aria-hidden="true">
-    <span>Castres · Tarn</span>
-    <span class="dim">Occitanie, FR</span>
   </div>
 
   <div class="scroll-hint" aria-hidden="true">scroll</div>
@@ -601,5 +586,6 @@
 
 <script src="js/xray.js" defer></script>
 <script src="js/cursor.js" defer></script>
+<script src="js/hero-slides.js" defer></script>
 </body>
 </html>

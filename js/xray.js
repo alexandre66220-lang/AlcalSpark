@@ -1,8 +1,32 @@
 (function () {
   'use strict';
 
-  // Only run on pointer devices
-  if (window.matchMedia('(hover: none)').matches) return;
+  // Mobile (touch): flash au tap, opacite permanente gérée en CSS
+  if (window.matchMedia('(hover: none)').matches) {
+    function initMobileItem(item) {
+      var xray = item.querySelector('.svc-xray');
+      if (!xray) return;
+      var timer = null;
+      item.addEventListener('touchstart', function () {
+        clearTimeout(timer);
+        xray.classList.add('xray-flash');
+      }, { passive: true });
+      item.addEventListener('touchend', function () {
+        timer = setTimeout(function () {
+          xray.classList.remove('xray-flash');
+        }, 300);
+      }, { passive: true });
+    }
+    function initMobile() {
+      document.querySelectorAll('.service-item').forEach(initMobileItem);
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initMobile);
+    } else {
+      initMobile();
+    }
+    return;
+  }
 
   function lerp(a, b, t) { return a + (b - a) * t; }
 

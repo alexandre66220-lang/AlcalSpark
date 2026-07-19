@@ -207,14 +207,15 @@ p { font-family: var(--font-body); font-weight: 300; }
   font-family: 'Cormorant Garamond', Georgia, serif !important;
   font-weight: 300 !important;
   font-style: italic !important;
-  font-size: clamp(5rem, 11vw, 12rem) !important;
+  font-size: clamp(6rem, 13vw, 16rem) !important;
   line-height: 1;
   letter-spacing: -.01em;
   color: #F8F5F2 !important;
   white-space: nowrap;
   pointer-events: none;
   user-select: none;
-  top: 14%;
+  top: calc(50% - 1.1em) !important;
+  bottom: auto !important;
 }
 
 .hero-img {
@@ -239,14 +240,15 @@ p { font-family: var(--font-body); font-weight: 300; }
   font-family: 'Cormorant Garamond', Georgia, serif !important;
   font-weight: 300 !important;
   font-style: italic !important;
-  font-size: clamp(5rem, 11vw, 12rem) !important;
+  font-size: clamp(6rem, 13vw, 16rem) !important;
   line-height: 1;
   letter-spacing: -.01em;
   color: #F8F5F2 !important;
   white-space: nowrap;
   pointer-events: none;
   user-select: none;
-  bottom: 14%;
+  top: 50% !important;
+  bottom: auto !important;
 }
 
 .hero-corner {
@@ -329,6 +331,9 @@ p { font-family: var(--font-body); font-weight: 300; }
 
 .services-list { border-top: 1px solid #2A2A2A; }
 .service-item { border-bottom: 1px solid #2A2A2A; }
+
+/* Homepage : 3 services premium — plus aérés */
+.services-list--home .service-item { padding: 2.75rem 0; }
 
 /* Supprimer le fond hover legacy */
 .service-item::before { display: none !important; }
@@ -413,9 +418,17 @@ p { font-family: var(--font-body); font-weight: 300; }
    CTA SECTION
    ============================================================ */
 
-.cta-section .eyebrow { color: var(--muted); }
 .cta-section h2 { color: #F8F5F2; }
 .cta-section > .container > p { color: var(--muted); font-family: var(--font-body); }
+
+.cta-trust {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  color: rgba(248,245,242,0.32);
+  margin-top: 1.75rem;
+}
 
 /* ============================================================
    FOOTER
@@ -446,14 +459,18 @@ p { font-family: var(--font-body); font-weight: 300; }
   color: rgba(248,245,242,0.58);
 }
 .footer-col ul li { color: var(--muted); }
-.footer-col a { color: var(--muted); font-family: var(--font-body); font-size: 0.85rem; }
+.footer-col a { color: rgba(248,245,242,0.72); font-family: var(--font-body); font-size: 0.85rem; }
 .footer-col a:hover { color: #F8F5F2; }
 .footer-col span { color: var(--muted); }
-.footer-bottom { color: rgba(248,245,242,0.58); font-family: var(--font-body); font-size: 0.62rem; letter-spacing: 0.06em; }
-.footer-bottom a { color: rgba(248,245,242,0.55) !important; }
-.footer-col ul li { color: rgba(248,245,242,0.55) !important; }
+.footer-bottom { color: rgba(248,245,242,0.6); font-family: var(--font-body); font-size: 0.62rem; letter-spacing: 0.06em; }
+.footer-bottom a { color: rgba(248,245,242,0.7) !important; }
+.footer-col ul li { color: rgba(248,245,242,0.72) !important; }
 .social-icon { border: 1px solid var(--border); color: var(--muted); border-radius: 2px; }
 .social-icon:hover { background: var(--green); color: #F8F5F2; border-color: var(--green); }
+
+@media (min-width: 1024px) {
+  .footer-col { border-left: 1px solid rgba(248,245,242,0.09); }
+}
 
 /* ============================================================
    SCROLL PROGRESS
@@ -547,13 +564,21 @@ p { font-family: var(--font-body); font-weight: 300; }
   .nav-burger span { background: #F8F5F2; }
   .hero-title-back,
   .hero-title-front { font-size: clamp(2.8rem, 12vw, 5rem) !important; white-space: normal; }
-  .hero-title-back { top: 20%; }
-  .hero-title-front { bottom: 18%; }
+  .hero-title-back { top: calc(50% - 1.1em) !important; bottom: auto !important; }
+  .hero-title-front { top: 50% !important; bottom: auto !important; }
   .hero-img { width: 95% !important; }
   .hero-corner.bl, .hero-corner.br { display: none; }
 }
 
-@media (max-width: 480px) {
-  .hero-title-back { top: 24%; }
-  .hero-title-front { bottom: 24%; }
+/* Mobile xray : visible en permanence (13%), flash au tap (40%) */
+@media (hover: none) {
+  .svc-xray {
+    clip-path: circle(100%) !important;
+    opacity: 0.13;
+    transition: opacity 0.4s ease;
+  }
+  .svc-xray.xray-flash {
+    opacity: 0.4;
+    transition: opacity 0.1s ease;
+  }
 }

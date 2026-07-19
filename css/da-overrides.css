@@ -195,11 +195,18 @@ p { font-family: var(--font-body); font-weight: 300; }
   position: relative !important;
   width: 100% !important;
   height: 100vh !important;
-  overflow: hidden !important;
   background: #0A0D0B !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+}
+
+@media (max-width: 767px) {
+  .hero {
+    display: flex !important;
+    flex-direction: column !important;
+    height: auto !important;
+    grid-template-columns: none !important;
+  }
 }
 
 .hero-title {

@@ -149,13 +149,9 @@
 ══════════════════════════════════════ -->
 <section class="hero" id="hero" aria-labelledby="hero-title">
 
-  <!-- Carrousel portfolio — arrière-plan discret -->
-  <div class="hero-slides" aria-hidden="true">
-    <img class="hero-slide is-active" src="assets/portfolio/vitrum.jpg" alt="" loading="eager" />
-    <img class="hero-slide" src="assets/portfolio/kairox.jpg" alt="" loading="lazy" />
-    <img class="hero-slide" src="assets/portfolio/aurea.jpg" alt="" loading="lazy" />
-    <img class="hero-slide" src="assets/portfolio/estime.jpg" alt="" loading="lazy" />
-    <div class="hero-slide-overlay"></div>
+  <!-- Animation blobs organique -->
+  <div class="hero-blobs" aria-hidden="true">
+    <canvas id="blobs-canvas"></canvas>
   </div>
 
   <!-- Contenu centré -->
@@ -586,6 +582,6 @@
 
 <script src="js/xray.js" defer></script>
 <script src="js/cursor.js" defer></script>
-<script src="js/hero-slides.js" defer></script>
+<script src="js/blob-hero.js" defer></script>
 </body>
 </html>

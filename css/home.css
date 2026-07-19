@@ -3,74 +3,51 @@
    DA Premium : hero editorial, dark, Cormorant / Syne / DM Sans
 ═══════════════════════════════════════════════════════════════ */
 
-/* ── Hero editorial ──────────────────────────────────────────── */
+/* ── Hero — split 50/50 ──────────────────────────────────────── */
 .hero {
   position: relative;
   width: 100%;
   height: 100vh;
+  background: #0A0D0B;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+/* Panneau gauche — blobs */
+.hero-blobs {
+  position: relative;
   overflow: hidden;
-  background: var(--bg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background: #0A0D0B;
 }
 
-/* Carrousel portfolio — arrière-plan */
-.hero-slides {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-}
-
-.hero-slide {
-  position: absolute;
-  inset: 0;
+#blobs-canvas {
+  display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center top;
-  opacity: 0;
-  transition: opacity 2s ease;
+  filter: blur(40px);
 }
-.hero-slide.is-active { opacity: .18; }
 
-/* Dégradé bas : préserve la lisibilité du texte */
-.hero-slide-overlay {
+/* Fondu vers le panneau texte */
+.hero-blobs::after {
+  content: '';
   position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to top,
-    #0A0D0B 0%,
-    #0A0D0B 12%,
-    rgba(10,13,11,0.7) 45%,
-    transparent 100%
-  );
+  inset: 0 0 0 auto;
+  width: 120px;
+  background: linear-gradient(to right, transparent, #0A0D0B);
   pointer-events: none;
 }
 
-/* Mobile : première image statique, pas de JS */
-@media (max-width: 767px) {
-  .hero-slide { display: none; }
-  .hero-slide:first-child {
-    display: block;
-    opacity: .14 !important;
-    transition: none !important;
-  }
-}
-
-/* Contenu centré */
+/* Panneau droit — contenu */
 .hero-content {
   position: relative;
   z-index: 2;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
+  align-items: flex-start;
+  justify-content: center;
+  text-align: left;
   gap: 2rem;
-  padding: 0 var(--pad-x);
-  max-width: 900px;
-  width: 100%;
+  padding: 0 8vw 0 5vw;
 }
 
 .hero-title {
@@ -118,7 +95,7 @@
 /* Scroll hint */
 .scroll-hint {
   position: absolute;
-  bottom: 2.5rem; left: 50%;
+  bottom: 2.5rem; left: 25%;
   transform: translateX(-50%);
   z-index: 4;
   font-family: 'DM Sans', sans-serif;
@@ -905,9 +882,37 @@
   .portfolio-grid > .portfolio-item:first-child .pi-image { min-height: 320px; }
 }
 
-@media (max-width: 768px) {
-  .hero-title { font-size: clamp(3.5rem, 11vw, 6rem); }
+@media (max-width: 767px) {
+  /* Hero mobile : colonne, blobs en haut */
+  .hero {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    min-height: auto;
+  }
+  .hero-blobs {
+    width: 100%;
+    height: 45vw;
+    flex-shrink: 0;
+  }
+  /* Fondu vers le bas sur mobile */
+  .hero-blobs::after {
+    inset: auto 0 0 0;
+    width: auto;
+    height: 60px;
+    background: linear-gradient(to bottom, transparent, #0A0D0B);
+  }
+  .hero-content {
+    padding: 2.5rem var(--pad-x) 3.5rem;
+    align-items: center;
+    text-align: center;
+    justify-content: flex-start;
+  }
+  .hero-title { font-size: clamp(3rem, 11vw, 5rem); }
   .scroll-hint { display: none; }
+}
+
+@media (max-width: 768px) {
 
   .service-item { grid-template-columns: 4rem 1fr; }
   .svc-arrow { display: none; }

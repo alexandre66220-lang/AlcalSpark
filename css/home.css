@@ -24,7 +24,7 @@
   display: block;
   width: 100%;
   height: 100%;
-  filter: blur(60px);
+  filter: blur(50px);
 }
 
 /* Fondu vers le panneau texte */

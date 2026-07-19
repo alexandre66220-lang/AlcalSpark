@@ -20,40 +20,41 @@
   }
 
   // ── Blobs ─────────────────────────────────────────────────────────
-  // cx/cy        : centre de base en fraction de W/H
-  // rBase        : rayon en fraction de min(W,H) — grand blob ~80% largeur zone
-  // amp / speed  : morphing sinusoïdal
-  // driftAmpX/Y  : dérive lente en fraction de W/H
-  // driftSpeed   : vitesse dérive rad/ms
-  // driftPhase   : décalage de phase pour asynchronicité
-  // cursorFactor : >0 suit curseur, <0 fuit curseur
-  // lerpFactor   : fluidité du suivi (bas = lent)
-  // drawCx/Cy    : position courante interpolée (runtime)
+  // rBase        : fraction de min(W,H) — 3 tailles très distinctes
+  // amp          : amplitude morphing
+  // speed        : vitesse morphing rad/ms
+  // driftAmpX/Y  : dérive en fraction de W/H (grande amplitude = traverse la zone)
+  // driftSpeed   : ~6s cycle = 2π/6000 ≈ 0.00105 rad/ms (valeurs différentes par blob)
+  // cursorFactor : >0 suit, <0 fuit
+  // lerpFactor   : douceur du suivi
   var DEFS = [
-    // Grand — vert forêt — suit le curseur doucement
+    // Grand — vert forêt — 35% opacité — suit curseur lerp 0.04
     {
       cx: 0.50, cy: 0.52,
-      rBase: 0.72, amp: 0.14, speed: 0.00055,
-      color: 'rgba(56,81,68,0.65)', comp: 'source-over',
-      driftAmpX: 0.18, driftAmpY: 0.13, driftSpeed: 0.00017, driftPhase: 0,
+      rBase: 0.68, amp: 0.14, speed: 0.00065,
+      color: 'rgba(56,81,68,0.35)', comp: 'source-over',
+      driftAmpX: 0.32, driftAmpY: 0.26,
+      driftSpeed: 0.00092, driftPhase: 0,
       cursorFactor: 0.30, lerpFactor: 0.04,
       phases: null, nPts: 0, drawCx: 0, drawCy: 0,
     },
-    // Moyen — vert sombre — fuit le curseur
+    // Moyen — vert sombre — 25% opacité — fuit curseur
     {
-      cx: 0.65, cy: 0.34,
-      rBase: 0.54, amp: 0.17, speed: 0.00070,
-      color: 'rgba(26,46,32,0.90)', comp: 'source-over',
-      driftAmpX: 0.15, driftAmpY: 0.18, driftSpeed: 0.00022, driftPhase: 2.1,
+      cx: 0.65, cy: 0.32,
+      rBase: 0.44, amp: 0.17, speed: 0.00085,
+      color: 'rgba(26,46,32,0.25)', comp: 'source-over',
+      driftAmpX: 0.30, driftAmpY: 0.35,
+      driftSpeed: 0.00112, driftPhase: 2.1,
       cursorFactor: -0.22, lerpFactor: 0.025,
       phases: null, nPts: 0, drawCx: 0, drawCy: 0,
     },
-    // Tiers — vert forêt subtil — ombre, suit plus vite
+    // Petit — vert forêt — 15% opacité — suit curseur lerp 0.08
     {
-      cx: 0.28, cy: 0.66,
-      rBase: 0.42, amp: 0.20, speed: 0.00080,
-      color: 'rgba(56,81,68,0.30)', comp: 'source-over',
-      driftAmpX: 0.13, driftAmpY: 0.11, driftSpeed: 0.00028, driftPhase: 4.5,
+      cx: 0.28, cy: 0.72,
+      rBase: 0.26, amp: 0.20, speed: 0.00102,
+      color: 'rgba(56,81,68,0.15)', comp: 'source-over',
+      driftAmpX: 0.25, driftAmpY: 0.23,
+      driftSpeed: 0.00128, driftPhase: 4.5,
       cursorFactor: 0.50, lerpFactor: 0.08,
       phases: null, nPts: 0, drawCx: 0, drawCy: 0,
     },
@@ -73,10 +74,10 @@
   }
 
   // ── Interaction curseur ────────────────────────────────────────────
-  var mouse      = { x: 0, y: 0 };
-  var mouseIn    = false;
-  var exitTs     = -1;
-  var FADE_MS    = 2000;
+  var mouse   = { x: 0, y: 0 };
+  var mouseIn = false;
+  var exitTs  = -1;
+  var FADE_MS = 2000;
 
   function influence(ts) {
     if (isTouch || mob()) return 0;
@@ -150,9 +151,9 @@
     ctx.clearRect(0, 0, W, H);
 
     DEFS.forEach(function (b) {
-      // Position automatique avec dérive lente sur toute la zone
+      // Dérive lente sur toute la surface
       var driftX = b.driftAmpX * Math.sin(ts * b.driftSpeed + b.driftPhase);
-      var driftY = b.driftAmpY * Math.cos(ts * b.driftSpeed * 0.7 + b.driftPhase + 1.3);
+      var driftY = b.driftAmpY * Math.cos(ts * b.driftSpeed * 0.71 + b.driftPhase + 1.3);
       var autoCx = (b.cx + driftX) * W;
       var autoCy = (b.cy + driftY) * H;
 

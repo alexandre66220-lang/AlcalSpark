@@ -32,10 +32,13 @@
   content: '';
   position: absolute;
   inset: 0 0 0 auto;
-  width: 120px;
+  width: 80px;
   background: linear-gradient(to right, transparent, #0A0D0B);
   pointer-events: none;
 }
+
+/* Masqué : le split layout rend le scroll-hint hors-propos dans la zone blobs */
+.scroll-hint { display: none; }
 
 /* Panneau droit — contenu */
 .hero-content {

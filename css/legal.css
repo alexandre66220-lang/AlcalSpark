@@ -59,7 +59,7 @@
   font-family: var(--font-display);
   font-size: clamp(1.5rem, 2.5vw, 2rem);
   font-weight: 500;
-  color: var(--gold);
+  color: #C9A84C;
   margin-bottom: 20px;
   padding-bottom: 14px;
   border-bottom: 1px solid rgba(201, 168, 76, 0.12);
@@ -137,7 +137,7 @@
   font-size: 0.9rem;
   color: rgba(248, 245, 242, 0.92);
 }
-.lib-value a { color: var(--gold); text-decoration: none; }
+.lib-value a { color: var(--gold-300); text-decoration: none; }
 .lib-value a:hover { text-decoration: underline; }
 
 /* ── Responsive ─────────────────────────────────────────────── */

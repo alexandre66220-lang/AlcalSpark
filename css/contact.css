@@ -439,6 +439,7 @@ a.cc-value:hover { color: var(--gold); }
 /* ── Active nav CTA ─────────────────────────────────────────── */
 .nav-cta.active-cta {
   background: var(--gold-light);
+  color: #F8F5F2;
   box-shadow: 0 4px 20px rgba(201, 168, 76, 0.3);
 }
 

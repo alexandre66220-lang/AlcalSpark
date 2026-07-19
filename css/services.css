@@ -94,12 +94,12 @@
   font-size: 0.55rem;
   flex-shrink: 0;
 }
-/* Service rows are on the cream body background — override to dark text */
+/* Service rows are on the dark body background — light text */
 .service-row .service-features li {
-  color: var(--g80);
+  color: var(--c72);
 }
 .service-row .service-features li::before {
-  color: var(--g40);
+  color: var(--c50);
 }
 
 .service-separator {
@@ -700,6 +700,9 @@
   color: var(--green-bright);
 }
 .sr-price strong { font-weight: 700; }
+/* Nested in a .card (green background): needs a lighter tone than the
+   green-bright used on the plain page background elsewhere. */
+.service-small-card .sr-price { color: var(--cream); }
 
 /* ── Tags / compétences ────────────────────────────────────── */
 .tag-list {
@@ -720,7 +723,7 @@
   transition: border-color 0.25s, color 0.25s;
 }
 .tag:hover {
-  border-color: var(--g40);
+  border-color: var(--c30);
   color: var(--green);
 }
 

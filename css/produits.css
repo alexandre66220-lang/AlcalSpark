@@ -217,19 +217,19 @@
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(248,245,242,0.3);
+  color: rgba(248,245,242,0.5);
 }
 .product-placeholder-title {
   font-family: var(--font-ui);
   font-size: 1.15rem;
   font-weight: 700;
-  color: rgba(248,245,242,0.2);
+  color: rgba(248,245,242,0.5);
 }
 .product-placeholder-text {
   font-family: var(--font-body);
   font-size: 0.84rem;
   font-weight: 300;
-  color: rgba(248,245,242,0.2);
+  color: rgba(248,245,242,0.5);
   line-height: 1.65;
   max-width: 26ch;
   margin: 0;

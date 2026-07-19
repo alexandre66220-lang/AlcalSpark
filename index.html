@@ -542,63 +542,75 @@
 
 <!-- Footer -->
 <footer id="footer" role="contentinfo">
-  <div class="footer-grid">
-    <div class="footer-brand">
-      <picture>
-        <source srcset="assets/logo-monogram-pine.webp" type="image/webp" />
-        <img class="footer-monogram" src="assets/logo-monogram-pine.png" alt="" width="34" height="34" loading="lazy" />
-      </picture>
-      <a href="index.html" class="footer-logo-link" aria-label="AlcalSpark, Accueil">Alcal<em>Spark</em></a>
-      <p class="footer-tagline">Votre marque, magnifiée.</p>
-      <p>Agence digitale premium spécialisée en création web, design UI/UX et visuels.</p>
-      <div class="footer-socials mt-sm">
-        <a href="https://www.instagram.com/alcalspark/" aria-label="Instagram AlcalSpark" class="social-icon" target="_blank" rel="noopener">ig</a>
+
+  <!-- Fondu depuis la section au-dessus -->
+  <div class="footer-fade" aria-hidden="true"></div>
+  <!-- Séparateur ultra-fin vert forêt -->
+  <div class="footer-top-rule"></div>
+
+  <div class="container">
+    <div class="footer-layout">
+
+      <!-- Colonne brand — 40% -->
+      <div class="footer-brand">
+        <a href="index.html" class="footer-logo-link" aria-label="AlcalSpark, Accueil">Alcal<em>Spark</em></a>
+        <p class="footer-tagline">Votre marque, magnifiée.</p>
+        <div class="footer-socials">
+          <a href="https://www.instagram.com/alcalspark/" aria-label="Instagram AlcalSpark" class="social-icon" target="_blank" rel="noopener">ig</a>
+        </div>
+        <p class="footer-copyright">© <span id="year">2026</span> AlcalSpark</p>
       </div>
+
+      <!-- Colonnes nav — 60% -->
+      <nav class="footer-nav" aria-label="Liens du footer">
+
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul role="list">
+            <li><a href="services.html">Création Web</a></li>
+            <li><a href="services.html">Design UI/UX</a></li>
+            <li><a href="services.html">Branding</a></li>
+            <li><a href="services.html">SEO &amp; Marketing</a></li>
+            <li><a href="services.html">Copywriting</a></li>
+          </ul>
+          <h4>Zones</h4>
+          <ul role="list">
+            <li><a href="services/creation-site-web-castres.html">Castres</a></li>
+            <li><a href="services/creation-site-web-mazamet.html">Mazamet</a></li>
+            <li><a href="services/creation-site-web-albi.html">Albi</a></li>
+            <li><a href="services/creation-site-web-toulouse.html">Toulouse</a></li>
+            <li><a href="services/creation-site-web-occitanie.html">Occitanie</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Agence</h4>
+          <ul role="list">
+            <li><a href="about.html">À propos</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="produits.html">Produits</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="mentions-legales.html">Mentions légales</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul role="list">
+            <li><a href="mailto:contact@alcalspark.com">contact@alcalspark.com</a></li>
+            <li><a href="tel:0663054481">06 63 05 44 81</a></li>
+            <li class="footer-address">90 av. Georges Guynemer,<br>81200 Mazamet</li>
+          </ul>
+        </div>
+
+      </nav>
+
     </div>
 
-    <div class="footer-col">
-      <h4>Services</h4>
-      <ul role="list">
-        <li><a href="services.html">Création Web</a></li>
-        <li><a href="services.html">Design UI/UX</a></li>
-        <li><a href="services.html">Branding</a></li>
-        <li><a href="services.html">SEO &amp; Marketing</a></li>
-        <li><a href="services.html">Copywriting</a></li>
-      </ul>
-      <h4 style="margin-top:1.25rem;">Zones</h4>
-      <ul role="list">
-        <li><a href="services/creation-site-web-castres.html">Castres</a></li>
-        <li><a href="services/creation-site-web-mazamet.html">Mazamet</a></li>
-        <li><a href="services/creation-site-web-albi.html">Albi</a></li>
-        <li><a href="services/creation-site-web-toulouse.html">Toulouse</a></li>
-        <li><a href="services/creation-site-web-occitanie.html">Occitanie</a></li>
-      </ul>
+    <div class="footer-legal">
+      <a href="mentions-legales.html">Mentions légales</a>
     </div>
 
-    <div class="footer-col">
-      <h4>Agence</h4>
-      <ul role="list">
-        <li><a href="about.html">À propos</a></li>
-        <li><a href="portfolio.html">Portfolio</a></li>
-        <li><a href="produits.html">Produits</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="mentions-legales.html">Mentions légales</a></li>
-      </ul>
-    </div>
-
-    <div class="footer-col">
-      <h4>Contact</h4>
-      <ul role="list">
-        <li><a href="mailto:contact@alcalspark.com">contact@alcalspark.com</a></li>
-        <li><a href="tel:0663054481">06 63 05 44 81</a></li>
-        <li style="color:var(--c50);font-size:.85rem;">90 av. Georges Guynemer,<br>81200 Mazamet</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="footer-bottom">
-    <p>© <span id="year">2026</span> AlcalSpark. Tous droits réservés.</p>
-    <a href="mentions-legales.html">Mentions légales</a>
   </div>
 </footer>
 

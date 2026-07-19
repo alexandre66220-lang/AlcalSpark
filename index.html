@@ -149,10 +149,7 @@
 ══════════════════════════════════════ -->
 <section class="hero" id="hero" aria-labelledby="hero-title">
 
-  <!-- Titre DERRIÈRE l'image — z-index 1 -->
-  <div class="hero-title-back" aria-hidden="true">Votre marque,</div>
-
-  <!-- Image abstraite — z-index 2 -->
+  <!-- Image décorative basse opacité -->
   <picture>
     <source srcset="assets/hero-bg.webp" type="image/webp" />
     <img
@@ -167,10 +164,14 @@
     />
   </picture>
 
-  <!-- Titre DEVANT l'image — z-index 3 -->
-  <h1 class="hero-title-front" id="hero-title" aria-label="Votre marque, magnifiée.">magnifiée.</h1>
+  <!-- Contenu centré -->
+  <div class="hero-content">
+    <h1 class="hero-title" id="hero-title">Votre marque,<br>magnifiée.</h1>
+    <p class="hero-desc">Agence web premium à Castres. Sites vitrine, applications SaaS et identités visuelles sur mesure.</p>
+    <a href="contact.html" class="btn hero-btn">Démarrer un projet</a>
+    <p class="hero-info-line">7 services · Code sur mesure · Un projet à la fois · Livraison 2-3 semaines</p>
+  </div>
 
-  <!-- Infos coins -->
   <div class="hero-corner tl" aria-hidden="true">
     <span>AlcalSpark</span>
     <span class="dim">Agence web premium</span>
@@ -179,39 +180,13 @@
     <span>Castres · Tarn</span>
     <span class="dim">Occitanie, FR</span>
   </div>
-  <div class="hero-corner bl" aria-hidden="true">
-    <span>Web · Design · Branding</span>
-    <span class="dim">Fondé en 2026</span>
-  </div>
-  <div class="hero-corner br" aria-hidden="true">
-    <span>1 projet à la fois</span>
-    <span class="dim">Studio premium</span>
-  </div>
 
   <div class="scroll-hint" aria-hidden="true">scroll</div>
 
 </section>
 
-<!-- BLOC STATS + CANVAS ANIMÉ — desktop only -->
+<!-- CANVAS ANIMÉ — desktop only -->
 <div class="interactive-block">
-  <div class="stats-grid">
-    <div class="stat-tab active" data-mode="0">
-      <div class="stat-num">7+</div>
-      <div class="stat-label">Services<br>digitaux</div>
-    </div>
-    <div class="stat-tab" data-mode="1">
-      <div class="stat-num">100%</div>
-      <div class="stat-label">Code sur mesure,<br>zéro WordPress</div>
-    </div>
-    <div class="stat-tab" data-mode="2">
-      <div class="stat-num">1</div>
-      <div class="stat-label">Projet à la fois,<br>attention totale</div>
-    </div>
-    <div class="stat-tab" data-mode="3">
-      <div class="stat-num">2-3</div>
-      <div class="stat-label">Semaines pour<br>un site livré</div>
-    </div>
-  </div>
   <div class="canvas-zone">
     <canvas id="lines-canvas"></canvas>
   </div>
@@ -305,7 +280,7 @@
     </ol>
 
     <div class="services-cta reveal">
-      <a href="services.html" class="btn btn-outline">Voir tous nos services</a>
+      <a href="services.html" class="svc-all-link">Voir tous nos services</a>
     </div>
   </div>
 </section>
@@ -531,7 +506,7 @@
     <h2 id="cta-title" class="reveal">Un projet en tête ? Parlons-en.</h2>
     <p class="reveal delay-1">30 minutes, un échange sans engagement. On vous dit franchement si on peut vous aider, et comment.</p>
     <div class="cta-actions reveal delay-2">
-      <a href="contact.html" class="btn btn-primary">Prendre rendez-vous</a>
+      <a href="contact.html" class="btn btn-outline">Prendre rendez-vous</a>
       <a href="portfolio.html" class="btn btn-outline">Voir nos projets</a>
     </div>
     <p class="cta-trust reveal delay-3">Réponse sous 24h · Un projet à la fois · Livraison 2-3 semaines</p>

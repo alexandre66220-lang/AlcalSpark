@@ -25,7 +25,6 @@
   border-radius: 50%;
   pointer-events: none;
   background: radial-gradient(circle, var(--glow-green) 0%, transparent 65%);
-  filter: blur(60px);
   z-index: 0;
 }
 
@@ -56,7 +55,6 @@
   height: min(60vw, 780px);
   border-radius: 50%;
   background: radial-gradient(circle, var(--glow-green-soft) 0%, transparent 62%);
-  filter: blur(70px);
   pointer-events: none;
   z-index: 0;
 }
@@ -78,7 +76,6 @@
   height: min(55vw, 700px);
   border-radius: 50%;
   background: radial-gradient(ellipse, rgba(56, 81, 68, 0.22) 0%, rgba(56, 81, 68, 0.08) 45%, transparent 72%);
-  filter: blur(90px);
   pointer-events: none;
   z-index: 0;
 }
@@ -405,13 +402,6 @@
    9. REVEALS CINÉMATIQUES — profondeur accrue
    ============================================================ */
 
-.reveal,
-.reveal-left,
-.reveal-right,
-.reveal-scale {
-  will-change: opacity, transform;
-}
-
 .reveal        { opacity: 0; transform: translateY(34px); transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1); }
 .reveal-left   { opacity: 0; transform: translateX(-40px); transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1); }
 .reveal-right  { opacity: 0; transform: translateX(40px); transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1); }
@@ -517,7 +507,6 @@
   height: min(55vw, 700px);
   border-radius: 50%;
   background: radial-gradient(ellipse, rgba(56, 81, 68, 0.22) 0%, rgba(56, 81, 68, 0.08) 45%, transparent 72%);
-  filter: blur(90px);
   pointer-events: none;
   z-index: 0;
 }
@@ -590,6 +579,26 @@
 }
 
 /* ============================================================
+   13. RENDU DIFFÉRÉ — les sections sous le pli ne sont pas
+   rendues tant qu'elles n'approchent pas du viewport
+   ============================================================ */
+
+.philosophy-section,
+.portfolio-teaser,
+.process-section,
+.cta-section,
+.faq-section,
+.si-section,
+.pricing-section,
+.products-cta-section,
+.solo-section,
+.manifesto-section,
+#footer {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 720px;
+}
+
+/* ============================================================
    11. RESPONSIVE & PERFORMANCE
    ============================================================ */
 
@@ -607,8 +616,34 @@
   .solo-section::before,
   .manifesto-section::before,
   .cta-section::before {
-    filter: blur(40px);
     opacity: 0.6;
+  }
+
+  /* backdrop-filter très coûteux sur GPU mobile : fond quasi opaque
+     à la place, rendu visuel équivalent sur fond sombre */
+  .card,
+  .pricing-card,
+  .abo-card,
+  .misc-card,
+  .pourquoi-card,
+  .value-card,
+  .product-card,
+  .estime-card,
+  .contact-card,
+  .contact-form-wrap,
+  .faq-item,
+  .skill-item,
+  .saas-mockup,
+  .seo-mockup,
+  .brand-mockup {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    background: rgba(17, 23, 20, 0.92) !important;
+  }
+  .pi-meta,
+  .filter-btn {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
   }
 
   /* Pas de lift au hover (tactile) */

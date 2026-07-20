@@ -96,7 +96,7 @@
       setTimeout(() => { clearInterval(interval); complete(); }, 60);
     } else {
       window.addEventListener('load', () => { clearInterval(interval); complete(); }, { once: true });
-      setTimeout(complete, 1000); // safety cap
+      setTimeout(complete, 600); // safety cap
     }
   }
 
@@ -376,7 +376,7 @@
     resize();
     window.addEventListener('resize', resize, { passive: true });
 
-    for (var i = 0; i < 36; i++) {
+    for (var i = 0; i < 28; i++) {
       particles.push({
         x:     Math.random() * canvas.width,
         y:     Math.random() * canvas.height,
@@ -388,7 +388,8 @@
       });
     }
 
-    (function tick() {
+    var particlesRaf = null;
+    function tick() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       particles.forEach(function (p) {
         p.x += p.vx; p.y += p.vy; p.phase += 0.008;
@@ -402,8 +403,17 @@
         ctx.fillStyle = 'rgba(' + G[0] + ',' + G[1] + ',' + G[2] + ',' + opacity.toFixed(3) + ')';
         ctx.fill();
       });
-      requestAnimationFrame(tick);
-    }());
+      particlesRaf = requestAnimationFrame(tick);
+    }
+    particlesRaf = requestAnimationFrame(tick);
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) {
+        cancelAnimationFrame(particlesRaf);
+        particlesRaf = null;
+      } else if (!particlesRaf) {
+        particlesRaf = requestAnimationFrame(tick);
+      }
+    });
   }
 
   /* ── Cinematic hero entrance — CSS-driven, JS adds trigger ── */

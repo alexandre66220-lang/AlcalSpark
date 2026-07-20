@@ -297,7 +297,6 @@
   width: 130px; height: 130px;
   border-radius: 50%;
   background: radial-gradient(circle, rgba(56,81,68,0.45) 0%, transparent 65%);
-  filter: blur(28px);
   top: -30px; right: -30px;
   pointer-events: none;
 }
@@ -1124,6 +1123,16 @@
 @media (max-width: 768px) {
 
   .svc-cards { grid-template-columns: 1fr; gap: 1.25rem; }
+
+  .svc-card,
+  .proc-card {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    background: rgba(17, 23, 20, 0.92);
+  }
+
+  /* Blur du canvas blobs allégé sur mobile */
+  #blobs-canvas { filter: blur(32px); }
 
   .philosophy-grid { grid-template-columns: 1fr; }
   .phil-item { padding: 2.5rem 0; }

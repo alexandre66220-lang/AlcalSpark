@@ -110,26 +110,49 @@
       ctx.stroke();
     }
 
-    requestAnimationFrame(draw);
+    rafId = requestAnimationFrame(draw);
+  }
+
+  // Boucle active uniquement quand la zone est visible et l'onglet actif
+  let rafId = null;
+  let inView = false;
+  let started = false;
+
+  function play() {
+    if (started && inView && !document.hidden && rafId === null) {
+      rafId = requestAnimationFrame(draw);
+    }
+  }
+  function pause() {
+    if (rafId !== null) {
+      cancelAnimationFrame(rafId);
+      rafId = null;
+    }
   }
 
   function start() {
+    if (started) return;
+    started = true;
     resize();
     window.addEventListener('resize', resize);
-    draw();
+    play();
   }
+
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden) pause(); else play();
+  });
 
   if ('IntersectionObserver' in window) {
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          observer.disconnect();
-          start();
-        }
+        inView = entry.isIntersecting;
+        if (inView) { start(); play(); }
+        else pause();
       });
     }, { rootMargin: '200px' });
     observer.observe(zone);
   } else {
+    inView = true;
     start();
   }
 })();

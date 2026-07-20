@@ -29,10 +29,10 @@
     'width:10px;height:10px;border-radius:50%;' +
     'background:' + G + ';' +
     'mix-blend-mode:difference;' +
-    'transform:translate(-50%,-50%);' +
+    'top:0;left:0;' +
+    'transform:translate(-200px,-200px);' +
     'transition:width .15s,height .15s,opacity .15s;' +
-    'top:-200px;left:-200px;' +
-    'will-change:top,left;';
+    'will-change:transform;';
   document.body.appendChild(dot);
 
   var lastX = null, lastY = null;
@@ -63,17 +63,21 @@
       'opacity:.5;' +
       'animation-duration:' + dur + 's;';
     document.body.appendChild(p);
+    liveParticles++;
 
     setTimeout(function () {
       if (p.parentNode) p.parentNode.removeChild(p);
+      liveParticles--;
     }, parseFloat(dur) * 1000 + 60);
   }
+
+  var liveParticles = 0;
+  var MAX_PARTICLES = 36;
 
   document.addEventListener('mousemove', function (e) {
     var mx = e.clientX;
     var my = e.clientY;
-    dot.style.left = mx + 'px';
-    dot.style.top  = my + 'px';
+    dot.style.transform = 'translate(' + (mx - 5) + 'px,' + (my - 5) + 'px)';
     hideCursor();
 
     if (lastX === null) { lastX = mx; lastY = my; return; }
@@ -83,9 +87,9 @@
     var dist = Math.sqrt(dx * dx + dy * dy);
 
     if (dist > 4) {
-      var step  = isHover ? 10 : 16;
-      var count = Math.max(1, Math.floor(dist / step));
-      for (var i = 0; i < count; i++) {
+      var step  = isHover ? 14 : 22;
+      var count = Math.min(Math.max(1, Math.floor(dist / step)), 4);
+      for (var i = 0; i < count && liveParticles < MAX_PARTICLES; i++) {
         var t = count > 1 ? i / (count - 1) : 0.5;
         spawnParticle(lastX + dx * t, lastY + dy * t);
       }
@@ -112,13 +116,15 @@
   document.querySelectorAll('a, button, [data-hover]').forEach(attachHover);
 
   document.addEventListener('mousedown', function () {
-    dot.style.transform = 'translate(-50%,-50%) scale(.6)';
+    dot.style.width  = '6px';
+    dot.style.height = '6px';
     if (lastX !== null) {
-      for (var i = 0; i < 4; i++) spawnParticle(lastX, lastY);
+      for (var i = 0; i < 3 && liveParticles < MAX_PARTICLES; i++) spawnParticle(lastX, lastY);
     }
   });
   document.addEventListener('mouseup', function () {
-    dot.style.transform = 'translate(-50%,-50%) scale(1)';
+    dot.style.width  = isHover ? '18px' : '10px';
+    dot.style.height = isHover ? '18px' : '10px';
   });
 
 }());

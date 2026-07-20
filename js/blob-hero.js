@@ -13,10 +13,16 @@
 
   function mob() { return window.innerWidth < 768; }
 
+  // Rendu en résolution réduite : le blur CSS de 50px masque totalement
+  // la perte, et le coût de remplissage GPU est divisé par 4 (desktop)
+  // voire 6 (mobile). Le canvas est étiré à 100% par le CSS.
+  var RES = 0.5;
+
   function resize() {
     var box = canvas.parentElement;
-    W = canvas.width  = box.offsetWidth;
-    H = canvas.height = box.offsetHeight;
+    RES = mob() ? 0.4 : 0.5;
+    W = canvas.width  = Math.max(1, Math.round(box.offsetWidth  * RES));
+    H = canvas.height = Math.max(1, Math.round(box.offsetHeight * RES));
     DEFS.forEach(function (b) {
       b.drawCx = pos(b, 0).x;
       b.drawCy = pos(b, 0).y;
@@ -122,8 +128,9 @@
   zone.addEventListener('mousemove', function (e) {
     if (isTouch || mob()) return;
     var r = zone.getBoundingClientRect();
-    mouse.x = e.clientX - r.left;
-    mouse.y = e.clientY - r.top;
+    // Conversion CSS px → unités canvas (résolution réduite)
+    mouse.x = (e.clientX - r.left) * RES;
+    mouse.y = (e.clientY - r.top) * RES;
     if (!mouseIn) { mouseIn = true; exitTs = -1; }
   });
   zone.addEventListener('mouseleave', function () {

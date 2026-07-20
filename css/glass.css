@@ -672,10 +672,12 @@
 }
 
 /* ============================================================
-   14. VAGUE DE FOND — courbe organique en filigrane, sous tout
-   le contenu, sur l'ensemble du site. z-index négatif : ne peut
-   jamais passer devant quoi que ce soit. Anim en transform seul
-   (compositor only, aucun repaint/reflow au fil du scroll).
+   14. VAGUE DE FOND — une seule vague en lignes fines qui
+   s'estompe sur ses propres bords (pas un pavage), en filigrane
+   sous tout le contenu, sur l'ensemble du site. z-index:0 (pas
+   négatif : un ::before est déjà premier dans l'ordre de peinture,
+   z-index:-1 combiné à position:fixed ne se peint pas correctement
+   dans ce contexte). Anim en transform seul (compositor only).
    ============================================================ */
 
 body::before {
@@ -683,36 +685,37 @@ body::before {
   position: fixed;
   top: 50%;
   left: 50%;
-  width: 155vmax;
-  height: 155vmax;
+  width: 130vw;
+  height: 55vh;
+  max-width: 1800px;
   background-image: url('../assets/bg-wave.svg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
-  opacity: 0.7;
+  opacity: 0.8;
   z-index: 0;
   pointer-events: none;
-  transform: translate(-50%, -50%) rotate(0deg);
-  animation: bg-wave-spin 150s linear infinite;
+  transform: translate(-50%, -50%) rotate(-6deg);
+  animation: bg-wave-sway 40s ease-in-out infinite alternate;
   will-change: transform;
 }
 
-@keyframes bg-wave-spin {
-  from { transform: translate(-50%, -50%) rotate(0deg); }
-  to   { transform: translate(-50%, -50%) rotate(360deg); }
+@keyframes bg-wave-sway {
+  from { transform: translate(-50%, -50%) rotate(-6deg); }
+  to   { transform: translate(-50%, -50%) rotate(6deg); }
 }
 
 @media (max-width: 767px) {
   body::before {
-    width: 210vmax;
-    height: 210vmax;
-    opacity: 0.4;
+    width: 220vw;
+    height: 38vh;
+    opacity: 0.7;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   body::before {
     animation: none;
-    transform: translate(-50%, -50%) rotate(35deg);
+    transform: translate(-50%, -50%) rotate(-2deg);
   }
 }

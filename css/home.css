@@ -117,32 +117,6 @@
   background: linear-gradient(to bottom, rgba(248,245,242,.18), transparent);
 }
 
-/* ── CANVAS ANIMÉ — desktop only ── */
-
-@media (max-width: 1023px) {
-  .interactive-block { display: none; }
-}
-
-.interactive-block {
-  border-top: 1px solid rgba(248,245,242,0.06);
-  background: #0A0D0B;
-}
-
-.canvas-zone {
-  position: relative;
-  overflow: hidden;
-  height: 400px;
-  cursor: crosshair;
-}
-
-#lines-canvas {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
 /* ── Services ────────────────────────────────────────────────── */
 .services-section { padding: var(--section-py) 0; }
 

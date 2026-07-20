@@ -20,7 +20,7 @@
 
   function resize() {
     var box = canvas.parentElement;
-    RES = mob() ? 0.4 : 0.5;
+    RES = mob() ? 0.35 : 0.5;
     W = canvas.width  = Math.max(1, Math.round(box.offsetWidth  * RES));
     H = canvas.height = Math.max(1, Math.round(box.offsetHeight * RES));
     DEFS.forEach(function (b) {
@@ -172,7 +172,7 @@
 
   // ── Boucle ─────────────────────────────────────────────────────
   function render(ts) {
-    if (mob() && ts - lastTs < 33) { rafId = requestAnimationFrame(render); return; }
+    if (mob() && ts - lastTs < 41) { rafId = requestAnimationFrame(render); return; }
     lastTs = ts;
 
     var inf = influence(ts);
@@ -208,10 +208,31 @@
     rafId = requestAnimationFrame(render);
   }
 
+  var heroVisible = true;
+
+  function playIfAllowed() {
+    if (!reducedMotion && heroVisible && !document.hidden && !rafId) {
+      rafId = requestAnimationFrame(render);
+    }
+  }
+  function pauseRender() {
+    if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
+  }
+
   document.addEventListener('visibilitychange', function () {
-    if (document.hidden) { cancelAnimationFrame(rafId); rafId = null; }
-    else if (!reducedMotion && !rafId) { rafId = requestAnimationFrame(render); }
+    if (document.hidden) pauseRender();
+    else playIfAllowed();
   });
+
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        heroVisible = entry.isIntersecting;
+        if (heroVisible) playIfAllowed();
+        else pauseRender();
+      });
+    }, { rootMargin: '80px' }).observe(canvas.parentElement);
+  }
 
   var resizeTimer;
   window.addEventListener('resize', function () {

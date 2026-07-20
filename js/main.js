@@ -50,6 +50,14 @@
   function runLoader() {
     if (!loadingScreen) return;
 
+    // Mobile : le loader coûte ~1s de perception, on le saute
+    if (window.innerWidth < 768) {
+      loadingScreen.style.display = 'none';
+      document.body.style.overflow = 'auto';
+      initPage();
+      return;
+    }
+
     // Deprecated API check first - most reliable at synchronous execution time.
     if (window.performance && window.performance.navigation && window.performance.navigation.type === 2) {
       loadingScreen.style.display = 'none';
@@ -351,10 +359,18 @@
   function initScrollProgress() {
     const bar = document.getElementById('scroll-progress');
     if (!bar) return;
+    bar.style.width = '100%';
+    bar.style.transformOrigin = 'left';
+    bar.style.transform = 'scaleX(0)';
+    let ticking = false;
     window.addEventListener('scroll', () => {
-      const h   = document.documentElement.scrollHeight - window.innerHeight;
-      const pct = h > 0 ? (window.scrollY / h) * 100 : 0;
-      bar.style.width = pct + '%';
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const h = document.documentElement.scrollHeight - window.innerHeight;
+        bar.style.transform = 'scaleX(' + (h > 0 ? (window.scrollY / h) : 0) + ')';
+        ticking = false;
+      });
     }, { passive: true });
   }
 

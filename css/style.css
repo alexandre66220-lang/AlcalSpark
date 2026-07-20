@@ -182,14 +182,21 @@ p { max-width: 62ch; text-wrap: pretty; }
 
 /* ── Grain / noise ───────────────────────────────────────────── */
 .noise-overlay {
+  /* Tuile 256px répétée : même rendu qu'avant mais la couche fait
+     la taille du viewport, pas 400% (16x moins de pixels à composer) */
   position: fixed;
-  inset: -200%;
-  width: 400%;
-  height: 400%;
+  inset: 0;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.05'/%3E%3C/svg%3E");
+  background-repeat: repeat;
   pointer-events: none;
   z-index: 9999;
   opacity: .3;
+}
+
+/* Grain quasi invisible sur petit écran : on économise une couche
+   de compositing plein viewport à chaque frame de scroll */
+@media (max-width: 767px) {
+  .noise-overlay { display: none; }
 }
 
 /* ── Loading screen ──────────────────────────────────────────── */

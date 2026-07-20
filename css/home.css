@@ -391,8 +391,8 @@
   position: absolute;
   inset: 0;
   background-image:
-    repeating-linear-gradient(0deg, rgba(201,168,76,0.025) 0px, rgba(201,168,76,0.025) 1px, transparent 1px, transparent 40px),
-    repeating-linear-gradient(90deg, rgba(201,168,76,0.025) 0px, rgba(201,168,76,0.025) 1px, transparent 1px, transparent 40px);
+    repeating-linear-gradient(0deg, rgba(56,81,68,0.025) 0px, rgba(56,81,68,0.025) 1px, transparent 1px, transparent 40px),
+    repeating-linear-gradient(90deg, rgba(56,81,68,0.025) 0px, rgba(56,81,68,0.025) 1px, transparent 1px, transparent 40px);
 }
 
 .pi-placeholder {
@@ -588,7 +588,7 @@
 }
 .xc-tag  { color: rgba(248,245,242,0.4); }
 .xc-attr { color: rgba(100,180,150,0.75); }
-.xc-val  { color: rgba(201,168,76,0.7); }
+.xc-val  { color: rgba(56,81,68,0.7); }
 .xc-text { color: rgba(248,245,242,0.75); }
 .xc-prop { color: rgba(100,180,150,0.6); }
 .xc-cmt  { color: rgba(90,138,110,0.7); font-style: italic; }
@@ -750,7 +750,7 @@
   color: rgba(90,138,110,0.8);
   white-space: nowrap;
 }
-.xst-row span { color: rgba(201,168,76,0.6); }
+.xst-row span { color: rgba(56,81,68,0.6); }
 
 /* SaaS architecture layer */
 .xray-arch {
@@ -770,9 +770,9 @@
   white-space: nowrap;
 }
 .xa-node.accent {
-  color: rgba(201,168,76,0.8);
-  border-color: rgba(201,168,76,0.4);
-  background: rgba(201,168,76,0.04);
+  color: rgba(56,81,68,0.8);
+  border-color: rgba(56,81,68,0.4);
+  background: rgba(56,81,68,0.04);
 }
 .xa-line { color: rgba(90,138,110,0.55); font-family: monospace; font-size: 0.75rem; flex-shrink: 0; }
 .xray-arch-detail {
@@ -789,7 +789,7 @@
   color: rgba(90,138,110,0.8);
   white-space: nowrap;
 }
-.xad-line span { color: rgba(201,168,76,0.55); }
+.xad-line span { color: rgba(56,81,68,0.55); }
 
 /* Copy / editorial layer */
 .xray-copy {
@@ -823,8 +823,8 @@
   margin-top: 6px;
   font-family: 'Courier New', monospace;
   font-size: 0.6rem;
-  color: rgba(201,168,76,0.65);
-  border: 1px solid rgba(201,168,76,0.3);
+  color: rgba(56,81,68,0.65);
+  border: 1px solid rgba(56,81,68,0.3);
   padding: 4px 10px;
   border-radius: 2px;
 }
@@ -859,7 +859,7 @@
   border-radius: 3px;
   white-space: nowrap;
 }
-.xf-node.accent { color: rgba(201,168,76,0.75); border-color: rgba(201,168,76,0.35); }
+.xf-node.accent { color: rgba(56,81,68,0.75); border-color: rgba(56,81,68,0.35); }
 .xf-arr { color: rgba(90,138,110,0.55); font-size: 0.85rem; flex-shrink: 0; }
 .xray-flow-detail {
   display: flex;

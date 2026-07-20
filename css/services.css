@@ -15,7 +15,7 @@
 .ph-bg {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 80% 60% at 50% 80%, rgba(201, 168, 76, 0.06) 0%, transparent 70%);
+  background: radial-gradient(ellipse 80% 60% at 50% 80%, rgba(56, 81, 68, 0.06) 0%, transparent 70%);
 }
 .ph-content {
   position: relative;
@@ -104,7 +104,7 @@
 
 .service-separator {
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.15), transparent);
+  background: linear-gradient(90deg, transparent, rgba(56, 81, 68, 0.15), transparent);
 }
 
 /* ── Visuals / Mockups ─────────────────────────────────────── */
@@ -113,15 +113,15 @@
 .sv-mockup {
   width: 100%;
   max-width: 440px;
-  border: 1px solid rgba(201, 168, 76, 0.15);
+  border: 1px solid rgba(56, 81, 68, 0.15);
   border-radius: 8px;
   background: var(--black-soft);
   overflow: hidden;
   transition: box-shadow 0.5s, border-color 0.5s, transform 0.5s var(--ease-out-expo);
 }
 .sv-mockup:hover {
-  box-shadow: 0 20px 60px rgba(26, 38, 32, 0.45), 0 0 44px rgba(201, 168, 76, 0.07);
-  border-color: rgba(201, 168, 76, 0.25);
+  box-shadow: 0 20px 60px rgba(26, 38, 32, 0.45), 0 0 44px rgba(56, 81, 68, 0.07);
+  border-color: rgba(56, 81, 68, 0.25);
   transform: translateY(-4px) rotate(-0.3deg);
 }
 
@@ -133,12 +133,12 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  border-bottom: 1px solid rgba(201, 168, 76, 0.1);
+  border-bottom: 1px solid rgba(56, 81, 68, 0.1);
 }
 .sv-dots { display: flex; gap: 6px; }
 .sv-dots span {
   width: 10px; height: 10px; border-radius: 50%;
-  background: rgba(201, 168, 76, 0.3);
+  background: rgba(56, 81, 68, 0.3);
 }
 .sv-url {
   flex: 1;
@@ -152,13 +152,13 @@
 .sv-screen { padding: 16px; }
 .sv-nav-mock {
   height: 28px;
-  background: rgba(201, 168, 76, 0.06);
+  background: rgba(56, 81, 68, 0.06);
   border-radius: 3px;
   margin-bottom: 12px;
 }
 .sv-hero-mock {
   height: 80px;
-  background: linear-gradient(135deg, rgba(201, 168, 76, 0.08), rgba(38, 58, 48, 0.1));
+  background: linear-gradient(135deg, rgba(56, 81, 68, 0.08), rgba(38, 58, 48, 0.1));
   border-radius: 3px;
   margin-bottom: 12px;
 }
@@ -169,8 +169,8 @@
 }
 .sv-cards-mock div {
   height: 50px;
-  background: rgba(201, 168, 76, 0.05);
-  border: 1px solid rgba(201, 168, 76, 0.1);
+  background: rgba(56, 81, 68, 0.05);
+  border: 1px solid rgba(56, 81, 68, 0.1);
   border-radius: 3px;
 }
 
@@ -187,14 +187,14 @@
 .ui-phone {
   width: 140px;
   background: var(--black-soft);
-  border: 1px solid rgba(201, 168, 76, 0.2);
+  border: 1px solid rgba(56, 81, 68, 0.2);
   border-radius: 20px;
   overflow: hidden;
   padding-top: 20px;
 }
 .ui-notch {
   width: 50px; height: 6px;
-  background: rgba(201, 168, 76, 0.3);
+  background: rgba(56, 81, 68, 0.3);
   border-radius: 3px;
   margin: 0 auto 12px;
 }
@@ -208,8 +208,8 @@
 }
 .ui-card {
   height: 50px;
-  background: rgba(201, 168, 76, 0.08);
-  border: 1px solid rgba(201, 168, 76, 0.15);
+  background: rgba(56, 81, 68, 0.08);
+  border: 1px solid rgba(56, 81, 68, 0.15);
   border-radius: 4px;
   margin-bottom: 6px;
 }
@@ -245,10 +245,10 @@
 .ui-el-3 span {
   width: 20px; height: 20px;
   border-radius: 50%;
-  background: rgba(201, 168, 76, 0.2);
-  border: 1px solid rgba(201, 168, 76, 0.3);
+  background: rgba(56, 81, 68, 0.2);
+  border: 1px solid rgba(56, 81, 68, 0.3);
 }
-.ui-el-3 span:first-child { background: rgba(201, 168, 76, 0.5); }
+.ui-el-3 span:first-child { background: rgba(56, 81, 68, 0.5); }
 
 /* Brand mockup */
 .brand-mockup {
@@ -273,7 +273,7 @@
 .brand-colors div {
   width: 36px; height: 36px;
   border-radius: 50%;
-  border: 1px solid rgba(201, 168, 76, 0.2);
+  border: 1px solid rgba(56, 81, 68, 0.2);
   transition: transform 0.3s var(--ease-spring);
 }
 .brand-colors div:hover { transform: scale(1.2); }
@@ -304,14 +304,14 @@
 .seo-bars div:last-child { opacity: 1; }
 .seo-line {
   height: 1px;
-  background: rgba(201, 168, 76, 0.2);
+  background: rgba(56, 81, 68, 0.2);
   margin-top: 8px;
 }
 .seo-kpis { display: flex; gap: 16px; }
 .seo-kpi {
   flex: 1;
-  background: rgba(201, 168, 76, 0.05);
-  border: 1px solid rgba(201, 168, 76, 0.15);
+  background: rgba(56, 81, 68, 0.05);
+  border: 1px solid rgba(56, 81, 68, 0.15);
   border-radius: 4px;
   padding: 14px;
   text-align: center;
@@ -341,7 +341,7 @@
 .saas-sidebar {
   width: 36px;
   background: rgba(248, 245, 242, 0.02);
-  border-right: 1px solid rgba(201, 168, 76, 0.1);
+  border-right: 1px solid rgba(56, 81, 68, 0.1);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -355,7 +355,7 @@
   border-radius: 2px;
   background: rgba(248, 245, 242, 0.12);
 }
-.saas-sidebar-dot.active { background: rgba(201, 168, 76, 0.65); }
+.saas-sidebar-dot.active { background: rgba(56, 81, 68, 0.65); }
 
 .saas-content {
   flex: 1;
@@ -372,14 +372,14 @@
   gap: 6px;
 }
 .saas-metric {
-  background: rgba(201, 168, 76, 0.04);
-  border: 1px solid rgba(201, 168, 76, 0.1);
+  background: rgba(56, 81, 68, 0.04);
+  border: 1px solid rgba(56, 81, 68, 0.1);
   border-radius: 3px;
   padding: 7px 8px;
 }
 .saas-metric-val {
   height: 7px;
-  background: rgba(201, 168, 76, 0.45);
+  background: rgba(56, 81, 68, 0.45);
   border-radius: 1px;
   margin-bottom: 4px;
 }
@@ -392,8 +392,8 @@
 
 .saas-chart-area {
   flex: 1;
-  background: rgba(201, 168, 76, 0.02);
-  border: 1px solid rgba(201, 168, 76, 0.08);
+  background: rgba(56, 81, 68, 0.02);
+  border: 1px solid rgba(56, 81, 68, 0.08);
   border-radius: 3px;
   padding: 8px 8px 0;
   overflow: hidden;
@@ -406,11 +406,11 @@
 }
 .saas-chart-bars span {
   flex: 1;
-  background: linear-gradient(to top, rgba(56, 81, 68, 0.55), rgba(201, 168, 76, 0.28));
+  background: linear-gradient(to top, rgba(56, 81, 68, 0.55), rgba(56, 81, 68, 0.28));
   border-radius: 1px 1px 0 0;
   transition: opacity 0.3s;
 }
-.saas-chart-bars span:last-child { background: linear-gradient(to top, rgba(56, 81, 68, 0.8), rgba(201, 168, 76, 0.5)); }
+.saas-chart-bars span:last-child { background: linear-gradient(to top, rgba(56, 81, 68, 0.8), rgba(56, 81, 68, 0.5)); }
 .saas-mockup:hover .saas-chart-bars span { opacity: 0.7; }
 .saas-mockup:hover .saas-chart-bars span:last-child { opacity: 1; }
 
@@ -440,7 +440,7 @@
   width: 24px;
   height: 5px;
   border-radius: 6px;
-  background: rgba(201, 168, 76, 0.3);
+  background: rgba(56, 81, 68, 0.3);
   flex-shrink: 0;
 }
 
@@ -480,8 +480,8 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 70% 50% at 50% 0%, rgba(201, 168, 76, 0.05) 0%, transparent 65%),
-    radial-gradient(ellipse 35% 40% at 100% 100%, rgba(201, 168, 76, 0.03) 0%, transparent 60%);
+    radial-gradient(ellipse 70% 50% at 50% 0%, rgba(56, 81, 68, 0.05) 0%, transparent 65%),
+    radial-gradient(ellipse 35% 40% at 100% 100%, rgba(56, 81, 68, 0.03) 0%, transparent 60%);
   pointer-events: none;
 }
 
@@ -512,14 +512,14 @@
   position: absolute;
   top: 0; left: 0; right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.55), transparent);
+  background: linear-gradient(90deg, transparent, rgba(56, 81, 68, 0.55), transparent);
   opacity: 0;
   transition: opacity 0.4s;
 }
 .si-card:hover {
-  border-color: rgba(201, 168, 76, 0.28);
+  border-color: rgba(56, 81, 68, 0.28);
   transform: translateY(-4px);
-  box-shadow: 0 14px 48px rgba(26, 38, 32, 0.4), 0 0 30px rgba(201, 168, 76, 0.05);
+  box-shadow: 0 14px 48px rgba(26, 38, 32, 0.4), 0 0 30px rgba(56, 81, 68, 0.05);
 }
 .si-card:hover::after { opacity: 1; }
 
@@ -569,7 +569,7 @@
 .si-cta {
   margin-top: 64px;
   padding-top: 56px;
-  border-top: 1px solid rgba(201, 168, 76, 0.1);
+  border-top: 1px solid rgba(56, 81, 68, 0.1);
 }
 .si-cta-desc {
   font-family: var(--font-display);
@@ -624,7 +624,7 @@
 .pricing-card.featured {
   border-color: transparent;
   transform: translateY(-12px);
-  box-shadow: 0 30px 80px rgba(26, 38, 32, 0.5), 0 0 60px rgba(201, 168, 76, 0.1);
+  box-shadow: 0 30px 80px rgba(26, 38, 32, 0.5), 0 0 60px rgba(56, 81, 68, 0.1);
 }
 .pc-featured-label {
   position: absolute;

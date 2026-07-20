@@ -8,7 +8,7 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 60% 55% at 20% 80%, rgba(199,93,59,0.05) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 55% at 20% 80%, rgba(56,81,68,0.10) 0%, transparent 60%),
     radial-gradient(ellipse 80% 60% at 80% 20%, rgba(56,81,68,0.07) 0%, transparent 65%);
 }
 
@@ -47,7 +47,7 @@
   position: absolute;
   top: 0; left: 0; right: 0;
   height: 3px;
-  background: #C75D3B;
+  background: #385144;
   opacity: 0.85;
   transition: opacity 0.3s;
 }
@@ -55,7 +55,7 @@
 
 /* Subtile lueur au hover */
 .product-card.estime-card:hover {
-  box-shadow: 0 24px 64px rgba(10,13,11,0.6), 0 0 48px rgba(199,93,59,0.08);
+  box-shadow: 0 24px 64px rgba(10,13,11,0.6), 0 0 48px rgba(56,81,68,0.18);
 }
 
 /* ── En-tête de carte ─────────────────────────────────────── */
@@ -167,9 +167,9 @@
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.04em;
-  background: #C75D3B;
+  background: #385144;
   color: #F8F5F2;
-  border: 1px solid #C75D3B;
+  border: 1px solid #385144;
   border-radius: 2px;
   padding: 0.85rem 1.75rem;
   text-decoration: none;
@@ -179,7 +179,8 @@
 }
 .product-card-cta:hover {
   background: transparent;
-  color: #C75D3B;
+  color: #5a8a6e;
+  border-color: #5a8a6e;
 }
 .product-card-cta svg {
   transition: transform 0.22s;

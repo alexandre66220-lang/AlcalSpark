@@ -5,7 +5,7 @@
 /* ── Page hero ──────────────────────────────────────────────── */
 .contact-hero { background: transparent; }
 .contact-hero .ph-bg {
-  background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(201, 168, 76, 0.06) 0%, transparent 70%);
+  background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(56, 81, 68, 0.06) 0%, transparent 70%);
 }
 
 /* ── Contact layout ─────────────────────────────────────────── */
@@ -440,7 +440,7 @@ a.cc-value:hover { color: var(--gold); }
 .nav-cta.active-cta {
   background: var(--gold-light);
   color: #F8F5F2;
-  box-shadow: 0 4px 20px rgba(201, 168, 76, 0.3);
+  box-shadow: 0 4px 20px rgba(56, 81, 68, 0.3);
 }
 
 /* ── Responsive ─────────────────────────────────────────────── */

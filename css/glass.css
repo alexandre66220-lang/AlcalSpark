@@ -74,12 +74,11 @@
   position: absolute;
   top: 50%; left: 50%;
   transform: translate(-50%, -50%);
-  width: min(70vw, 900px);
-  height: min(50vw, 620px);
+  width: min(80vw, 1100px);
+  height: min(55vw, 700px);
   border-radius: 50%;
-  background: radial-gradient(ellipse, var(--glow-green) 0%, transparent 60%);
-  filter: blur(80px);
-  opacity: 0.55;
+  background: radial-gradient(ellipse, rgba(56, 81, 68, 0.22) 0%, rgba(56, 81, 68, 0.08) 45%, transparent 72%);
+  filter: blur(90px);
   pointer-events: none;
   z-index: 0;
 }
@@ -411,6 +410,51 @@
 .service-row::after {
   background: radial-gradient(160px circle at var(--mx, 50%) var(--my, 50%),
               rgba(90, 138, 110, calc(0.08 * var(--sg, 0))), transparent 70%) !important;
+}
+
+/* ============================================================
+   10b. SECTIONS VERTES HÉRITÉES → dark + glow central
+   ============================================================ */
+
+.section-dark {
+  background: #0A0D0B !important;
+  color: var(--cream, #F8F5F2) !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.section-dark::before {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(80vw, 1100px);
+  height: min(55vw, 700px);
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(56, 81, 68, 0.22) 0%, rgba(56, 81, 68, 0.08) 45%, transparent 72%);
+  filter: blur(90px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.section-dark > * { position: relative; z-index: 1; }
+
+.section-dark .text-gradient {
+  color: var(--green-bright, #5a8a6e) !important;
+  -webkit-text-fill-color: var(--green-bright, #5a8a6e) !important;
+}
+
+.section-dark .btn-gold,
+.section-dark .btn-primary {
+  background: transparent !important;
+  color: rgba(248, 245, 242, 0.85) !important;
+  border: 1px solid rgba(248, 245, 242, 0.3) !important;
+}
+.section-dark .btn-gold:hover,
+.section-dark .btn-primary:hover {
+  border-color: rgba(248, 245, 242, 0.65) !important;
+  color: #F8F5F2 !important;
+  background: rgba(248, 245, 242, 0.04) !important;
 }
 
 /* ============================================================

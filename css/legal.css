@@ -4,7 +4,7 @@
 
 .legal-hero { background: transparent; }
 .legal-hero .ph-bg {
-  background: radial-gradient(ellipse 50% 60% at 50% 100%, rgba(201, 168, 76, 0.05) 0%, transparent 70%);
+  background: radial-gradient(ellipse 50% 60% at 50% 100%, rgba(56, 81, 68, 0.05) 0%, transparent 70%);
 }
 
 /* ── Legal layout ───────────────────────────────────────────── */
@@ -21,7 +21,7 @@
   position: sticky;
   top: 100px;
   background: var(--black);
-  border: 1px solid rgba(201, 168, 76, 0.1);
+  border: 1px solid rgba(56, 81, 68, 0.1);
   border-radius: 4px;
   padding: 24px 20px;
 }
@@ -41,7 +41,7 @@
 .legal-nav-link.active {
   color: var(--gold);
   border-left-color: var(--gold);
-  background: rgba(201, 168, 76, 0.05);
+  background: rgba(56, 81, 68, 0.05);
   padding-left: 18px;
 }
 
@@ -59,10 +59,10 @@
   font-family: var(--font-display);
   font-size: clamp(1.5rem, 2.5vw, 2rem);
   font-weight: 500;
-  color: #C9A84C;
+  color: #5a8a6e;
   margin-bottom: 20px;
   padding-bottom: 14px;
-  border-bottom: 1px solid rgba(201, 168, 76, 0.12);
+  border-bottom: 1px solid rgba(56, 81, 68, 0.12);
 }
 .legal-article h3 {
   font-family: var(--font-ui);
@@ -100,7 +100,7 @@
   content: '✦';
   position: absolute;
   left: 0;
-  color: rgba(201, 168, 76, 0.5);
+  color: rgba(56, 81, 68, 0.5);
   font-size: 0.5rem;
   top: 6px;
 }
@@ -108,7 +108,7 @@
 /* Info block (table-like) */
 .legal-info-block {
   background: var(--black);
-  border: 1px solid rgba(201, 168, 76, 0.1);
+  border: 1px solid rgba(56, 81, 68, 0.1);
   border-radius: 4px;
   overflow: hidden;
   margin-top: 16px;
@@ -118,11 +118,11 @@
   align-items: baseline;
   gap: 20px;
   padding: 12px 20px;
-  border-bottom: 1px solid rgba(201, 168, 76, 0.06);
+  border-bottom: 1px solid rgba(56, 81, 68, 0.06);
   transition: background 0.2s;
 }
 .lib-row:last-child { border-bottom: none; }
-.lib-row:hover { background: rgba(201, 168, 76, 0.03); }
+.lib-row:hover { background: rgba(56, 81, 68, 0.03); }
 .lib-label {
   font-family: var(--font-ui);
   font-size: 0.72rem;

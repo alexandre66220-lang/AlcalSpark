@@ -29,22 +29,20 @@ body {
 .noise-overlay { display: none !important; }
 .as-dotgrid { background-image: none !important; }
 
-/* Sections principales : fond sombre explicite */
-.hero,
+/* Hero page d'accueil : seule section à fond opaque protégé
+   (contient sa propre animation blobs, ne doit rien changer) */
+.hero {
+  background: #0A0D0B;
+}
+
+/* Toutes les autres sections : transparentes pour laisser voir la
+   vague de fond (body::before, glass.css) à travers tout le site */
 .services-section,
 .portfolio-teaser,
-.cta-section {
-  background: #0A0D0B;
-}
-
-/* Sections alternees : fond #0D1210 */
+.cta-section,
 .philosophy-section,
-#footer {
-  background: #0D1210;
-}
-
 .process-section {
-  background: #0A0D0B;
+  background: transparent;
 }
 
 /* ============================================================
@@ -374,7 +372,7 @@ p { font-family: var(--font-body); font-weight: 300; }
    ============================================================ */
 
 #footer {
-  background: #0A0D0B;
+  background: transparent;
   color: var(--muted);
   border-top: none;
   position: relative;

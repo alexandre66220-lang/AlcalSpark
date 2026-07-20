@@ -1,12 +1,26 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1600">
-  <path
-    d="M -200 1820
-       C 180 1360, 260 1600, 560 1180
-       C 830 800, 940 1060, 1180 660
-       C 1380 330, 1440 520, 1820 -200"
-    fill="none"
-    stroke="#385144"
-    stroke-width="190"
-    stroke-linecap="round"
-  />
+  <defs>
+    <linearGradient id="mgGreen" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%"  stop-color="#213329"/>
+      <stop offset="35%" stop-color="#385144"/>
+      <stop offset="55%" stop-color="#7cb897"/>
+      <stop offset="78%" stop-color="#385144"/>
+      <stop offset="100%" stop-color="#1a2820"/>
+    </linearGradient>
+    <linearGradient id="mgCarbon" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0%"   stop-color="#0a0c0b"/>
+      <stop offset="40%"  stop-color="#3d4340"/>
+      <stop offset="65%"  stop-color="#5a615d"/>
+      <stop offset="100%" stop-color="#0a0c0b"/>
+    </linearGradient>
+    <pattern id="wv" width="260" height="260" patternUnits="userSpaceOnUse" patternTransform="rotate(42) scale(1.25)">
+      <path d="M -60,80 L 70,220 L 200,80 L 330,220 L 460,80"
+            fill="none" stroke="url(#mgGreen)" stroke-width="98"
+            stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M -60,220 L 70,80 L 200,220 L 330,80 L 460,220"
+            fill="none" stroke="url(#mgCarbon)" stroke-width="86"
+            stroke-linecap="round" stroke-linejoin="round"/>
+    </pattern>
+  </defs>
+  <rect x="0" y="0" width="1600" height="1600" fill="url(#wv)"/>
 </svg>

@@ -466,8 +466,8 @@ body::before {
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
-  opacity: 0.22;
-  z-index: -1;
+  opacity: 0.7;
+  z-index: 0;
   pointer-events: none;
   transform: translate(-50%, -50%) rotate(0deg);
   animation: bg-wave-spin 150s linear infinite;
@@ -483,7 +483,7 @@ body::before {
   body::before {
     width: 210vmax;
     height: 210vmax;
-    opacity: 0.16;
+    opacity: 0.4;
   }
 }
 

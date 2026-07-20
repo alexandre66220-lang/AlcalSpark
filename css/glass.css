@@ -689,7 +689,7 @@ body::before {
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
-  opacity: 0.09;
+  opacity: 0.22;
   z-index: -1;
   pointer-events: none;
   transform: translate(-50%, -50%) rotate(0deg);
@@ -706,7 +706,7 @@ body::before {
   body::before {
     width: 210vmax;
     height: 210vmax;
-    opacity: 0.065;
+    opacity: 0.16;
   }
 }
 

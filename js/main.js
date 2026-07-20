@@ -508,7 +508,7 @@
   function initCardSpotlight() {
     if (window.matchMedia('(pointer: coarse)').matches) return;
 
-    var cards = document.querySelectorAll('.card, .phil-card, .si-card, .testi-card');
+    var cards = document.querySelectorAll('.card, .phil-card, .si-card, .testi-card, .pricing-card, .abo-card, .pourquoi-card, .value-card, .product-card, .estime-card, .contact-card, .faq-item, .service-row');
     cards.forEach(function (card) {
       card.addEventListener('mousemove', function (e) {
         var rect = card.getBoundingClientRect();

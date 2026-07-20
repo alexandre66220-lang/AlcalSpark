@@ -190,79 +190,65 @@
       </div>
     </div>
 
-    <ol class="services-list services-list--home">
-      <li class="service-item reveal">
-        <div class="svc-xray" aria-hidden="true">
-          <pre class="xray-code"><span class="xc-tag">&lt;section</span> <span class="xc-attr">class</span>=<span class="xc-val">"hero"</span><span class="xc-tag">&gt;</span>
-  <span class="xc-tag">&lt;h1&gt;</span><span class="xc-text">Votre marque</span><span class="xc-tag">&lt;/h1&gt;</span>
-  <span class="xc-tag">&lt;nav&gt;</span>
-    <span class="xc-prop">display</span>: <span class="xc-val">flex</span>;
-    <span class="xc-prop">gap</span>: <span class="xc-val">2rem</span>;
-  <span class="xc-tag">&lt;/nav&gt;</span>
-<span class="xc-tag">&lt;/section&gt;</span></pre>
-          <div class="xray-code-extra"><span class="xc-cmt">/* responsive */</span>
-<span class="xc-prop">@media</span> (max-width: <span class="xc-val">768px</span>) {
-  <span class="xc-prop">grid-template</span>: <span class="xc-val">1fr</span>;
-  <span class="xc-prop">gap</span>: <span class="xc-val">1rem</span>;
-}</div>
+    <div class="svc-cards">
+
+      <article class="svc-card reveal">
+        <div class="svc-visual" aria-hidden="true">
+          <div class="mock-browser">
+            <div class="mb-bar"><span></span><span></span><span></span></div>
+            <div class="mb-nav"><span class="mb-logo"></span><span class="mb-links"></span></div>
+            <div class="mb-hero"><span class="mb-title"></span><span class="mb-sub"></span></div>
+            <div class="mb-row"><span></span><span></span></div>
+          </div>
         </div>
-        <span class="svc-num">01</span>
-        <div class="svc-body">
+        <div class="svc-card-head">
           <h3>Création Web</h3>
-          <p>Sites vitrine, e-commerce et applications web sur mesure, optimisés pour les performances et l'expérience utilisateur.</p>
+          <span class="svc-card-num" aria-hidden="true">01</span>
         </div>
-        <a href="services/creation-web.html" class="svc-arrow" aria-label="En savoir plus sur la Création Web">En savoir plus</a>
-      </li>
+        <p>Sites vitrine, e-commerce et applications web sur mesure, optimisés pour les performances et l'expérience utilisateur.</p>
+        <a href="services/creation-web.html" class="svc-card-link" aria-label="En savoir plus sur la Création Web">En savoir plus</a>
+      </article>
 
-      <li class="service-item reveal delay-1">
-        <div class="svc-xray" aria-hidden="true">
-          <div class="xray-wireframe">
-            <div class="xw-nav"></div>
-            <div class="xw-row"><div class="xw-box w2"></div><div class="xw-box"></div></div>
-            <div class="xw-row"><div class="xw-box"></div><div class="xw-box"></div><div class="xw-box"></div></div>
-            <span class="xw-label">wireframe / 12col</span>
-          </div>
-          <div class="xray-wireframe-detail">
-            <div class="xwd-comp">Button / Primary</div>
-            <div class="xwd-comp">Input / Text</div>
-            <div class="xwd-comp">Card / Default</div>
-            <div class="xwd-comp">Nav / Mobile</div>
+      <article class="svc-card reveal delay-1">
+        <div class="svc-visual" aria-hidden="true">
+          <div class="mock-design">
+            <div class="md-swatches">
+              <span class="md-sw md-sw--1"></span><span class="md-sw md-sw--2"></span><span class="md-sw md-sw--3"></span><span class="md-sw md-sw--4"></span>
+            </div>
+            <div class="md-type"><span class="md-aa">Aa</span><span class="md-lines"><span></span><span></span></span></div>
+            <div class="md-grid"><span></span><span></span><span></span><span></span><span></span><span></span></div>
           </div>
         </div>
-        <span class="svc-num">02</span>
-        <div class="svc-body">
+        <div class="svc-card-head">
           <h3>Design UI/UX</h3>
-          <p>Interfaces élégantes et intuitives qui enchantent vos utilisateurs et renforcent votre image de marque premium.</p>
+          <span class="svc-card-num" aria-hidden="true">02</span>
         </div>
-        <a href="services/design-ui-ux.html" class="svc-arrow" aria-label="En savoir plus sur le Design UI/UX">En savoir plus</a>
-      </li>
+        <p>Interfaces élégantes et intuitives qui enchantent vos utilisateurs et renforcent votre image de marque premium.</p>
+        <a href="services/design-ui-ux.html" class="svc-card-link" aria-label="En savoir plus sur le Design UI/UX">En savoir plus</a>
+      </article>
 
-      <li class="service-item reveal delay-2">
-        <div class="svc-xray" aria-hidden="true">
-          <div class="xray-arch">
-            <div class="xa-node">Frontend</div><span class="xa-line">──</span>
-            <div class="xa-node accent">API REST</div><span class="xa-line">──</span>
-            <div class="xa-node">Supabase</div><span class="xa-line">──</span>
-            <div class="xa-node">Auth</div>
-          </div>
-          <div class="xray-arch-detail">
-            <div class="xad-line">GET /api/users → <span>200 OK</span></div>
-            <div class="xad-line">POST /api/auth → <span>JWT token</span></div>
-            <div class="xad-line">SELECT * FROM <span>dashboard</span></div>
-            <div class="xad-line">role: <span>admin | user | guest</span></div>
+      <article class="svc-card reveal delay-2">
+        <div class="svc-visual" aria-hidden="true">
+          <div class="mock-dash">
+            <div class="mdash-head"><span class="mdash-kpi">+64%</span><span class="mdash-lbl"></span></div>
+            <div class="mdash-bars">
+              <span style="height:34%"></span><span style="height:52%"></span><span style="height:41%"></span><span style="height:68%"></span><span style="height:57%"></span><span style="height:82%"></span><span style="height:74%"></span>
+            </div>
+            <div class="mdash-rows"><span></span><span></span></div>
           </div>
         </div>
-        <span class="svc-num">03</span>
-        <div class="svc-body">
+        <div class="svc-card-head">
           <h3>Applications SaaS &amp; Web App</h3>
-          <p>Tableaux de bord, outils métier et plateformes SaaS sur mesure, de l'idée au produit fonctionnel, avec une UX soignée dès le MVP.</p>
+          <span class="svc-card-num" aria-hidden="true">03</span>
         </div>
-        <a href="services/applications-saas.html" class="svc-arrow" aria-label="En savoir plus sur les Applications SaaS">En savoir plus</a>
-      </li>
-    </ol>
+        <p>Tableaux de bord, outils métier et plateformes SaaS sur mesure, de l'idée au produit fonctionnel, avec une UX soignée dès le MVP.</p>
+        <a href="services/applications-saas.html" class="svc-card-link" aria-label="En savoir plus sur les Applications SaaS">En savoir plus</a>
+      </article>
+
+    </div>
 
     <div class="services-cta reveal">
-      <a href="services.html" class="svc-all-link">Voir tous nos services</a>
+      <a href="services.html" class="svc-all-link">Voir tous nos services<span class="svc-all-arrow" aria-hidden="true">→</span></a>
     </div>
   </div>
 </section>
@@ -445,38 +431,52 @@
     <h2 id="process-title">Un processus <em>éprouvé</em></h2>
   </div>
 
-  <div class="process-steps">
-    <div class="process-step reveal">
-      <span class="ps-num">01</span>
-      <div>
+  <div class="proc-cards">
+
+    <article class="proc-card reveal">
+      <span class="proc-ghost" aria-hidden="true">01</span>
+      <div class="proc-icon" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="9.5" cy="9.5" r="6" stroke="currentColor" stroke-width="1.5"/><path d="M14 14l4.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </div>
+      <div class="proc-body">
         <h4>Découverte</h4>
         <p>Nous plongeons dans votre univers, vos objectifs et votre audience pour poser des bases solides.</p>
       </div>
-    </div>
+    </article>
 
-    <div class="process-step reveal delay-1">
-      <span class="ps-num">02</span>
-      <div>
+    <article class="proc-card reveal">
+      <span class="proc-ghost" aria-hidden="true">02</span>
+      <div class="proc-icon" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M3 17V5.5a1.5 1.5 0 011.5-1.5h4L11 6.5h6.5A1.5 1.5 0 0119 8v9a1.5 1.5 0 01-1.5 1.5h-13A1.5 1.5 0 013 17z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M7 12.5h8M7 15h5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+      </div>
+      <div class="proc-body">
         <h4>Stratégie</h4>
         <p>Conception d'une feuille de route claire, alignée sur vos ambitions et votre budget.</p>
       </div>
-    </div>
+    </article>
 
-    <div class="process-step reveal delay-2">
-      <span class="ps-num">03</span>
-      <div>
+    <article class="proc-card reveal">
+      <span class="proc-ghost" aria-hidden="true">03</span>
+      <div class="proc-icon" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M14.5 3.5l4 4L7 19H3v-4L14.5 3.5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M12 6l4 4" stroke="currentColor" stroke-width="1.3"/></svg>
+      </div>
+      <div class="proc-body">
         <h4>Création</h4>
         <p>Design et développement avec une attention obsessionnelle aux détails et à la qualité.</p>
       </div>
-    </div>
+    </article>
 
-    <div class="process-step reveal delay-3">
-      <span class="ps-num">04</span>
-      <div>
+    <article class="proc-card reveal">
+      <span class="proc-ghost" aria-hidden="true">04</span>
+      <div class="proc-icon" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 18.5V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M6.5 13.5L11 9l4.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 4h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </div>
+      <div class="proc-body">
         <h4>Lancement</h4>
         <p>Mise en ligne soignée, tests rigoureux et suivi post-lancement pour un démarrage optimal.</p>
       </div>
-    </div>
+    </article>
+
   </div>
 </section>
 
@@ -574,14 +574,12 @@
 <!-- Scripts -->
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 <script src="js/main.js" defer></script>
-<script src="js/dots.js" defer></script>
 <script src="js/canvas-lines.js" defer></script>
 
 <a href="https://wa.me/33663054481" class="whatsapp-btn" target="_blank" rel="noopener" aria-label="Contactez AlcalSpark sur WhatsApp">
   <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
-<script src="js/xray.js" defer></script>
 <script src="js/cursor.js" defer></script>
 <script src="js/blob-hero.js" defer></script>
 </body>

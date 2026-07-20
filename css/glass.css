@@ -670,3 +670,49 @@
     transition: none !important;
   }
 }
+
+/* ============================================================
+   14. VAGUE DE FOND — courbe organique en filigrane, sous tout
+   le contenu, sur l'ensemble du site. z-index négatif : ne peut
+   jamais passer devant quoi que ce soit. Anim en transform seul
+   (compositor only, aucun repaint/reflow au fil du scroll).
+   ============================================================ */
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 155vmax;
+  height: 155vmax;
+  background-image: url('../assets/bg-wave.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  opacity: 0.09;
+  z-index: -1;
+  pointer-events: none;
+  transform: translate(-50%, -50%) rotate(0deg);
+  animation: bg-wave-spin 150s linear infinite;
+  will-change: transform;
+}
+
+@keyframes bg-wave-spin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to   { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@media (max-width: 767px) {
+  body::before {
+    width: 210vmax;
+    height: 210vmax;
+    opacity: 0.065;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::before {
+    animation: none;
+    transform: translate(-50%, -50%) rotate(35deg);
+  }
+}

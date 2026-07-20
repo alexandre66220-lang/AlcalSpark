@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://alcalspark.com/sitemap.xml
+Sitemap: https://alcalspark.com/blog/sitemap.xml

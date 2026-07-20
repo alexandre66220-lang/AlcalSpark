@@ -28,11 +28,15 @@ export async function generateMetadata({
   return {
     title: article.titre,
     description: article.extrait,
+    alternates: {
+      canonical: `/blog/${params.slug}/`,
+    },
     openGraph: {
       title: article.titre,
       description: article.extrait,
       type: "article",
       publishedTime: article.date,
+      url: `/blog/${params.slug}/`,
     },
   };
 }
@@ -67,8 +71,40 @@ export default async function ArticlePage({
 
   const heroImg = ARTICLE_IMAGES[params.slug];
 
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: article.titre,
+    description: article.extrait,
+    datePublished: article.date,
+    inLanguage: "fr-FR",
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `https://alcalspark.com/blog/${params.slug}/`,
+    },
+    author: {
+      "@type": "Organization",
+      "@id": "https://alcalspark.com/#business",
+      name: "AlcalSpark",
+    },
+    publisher: {
+      "@type": "Organization",
+      "@id": "https://alcalspark.com/#business",
+      name: "AlcalSpark",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://alcalspark.com/assets/logo.png",
+      },
+    },
+    ...(heroImg ? { image: `https://alcalspark.com${heroImg}` } : {}),
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
       <article>
         {heroImg && (
           <div className="article-cover">

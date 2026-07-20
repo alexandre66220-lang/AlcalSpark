@@ -17,6 +17,7 @@ const raleway = Raleway({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://alcalspark.com"),
   title: {
     default: "Blog - AlcalSpark | Studio web premium",
     template: "%s | AlcalSpark Blog",
@@ -27,6 +28,17 @@ export const metadata: Metadata = {
     siteName: "AlcalSpark Blog",
     locale: "fr_FR",
     type: "website",
+    images: [
+      {
+        url: "/assets/og-cover.jpg",
+        width: 1200,
+        height: 630,
+        alt: "AlcalSpark, agence web premium à Castres dans le Tarn",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
   },
 };
 

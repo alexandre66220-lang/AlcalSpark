@@ -6,11 +6,13 @@
 <meta name="theme-color" content="#0A0D0B" />
 <meta name="description" content="Agence web à Castres (Tarn) spécialisée en création de site web pour artisans et PME d'Occitanie. Identité visuelle, design UI/UX et SEO. Devis gratuit." />
 <meta property="og:site_name" content="AlcalSpark" />
+<meta property="og:locale" content="fr_FR" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://alcalspark.com/" />
 <meta property="og:title" content="AlcalSpark - Agence web à Castres, Tarn & Occitanie" />
 <meta property="og:description" content="Agence web à Castres (Tarn) spécialisée en création de site web pour artisans et PME d'Occitanie. Identité visuelle, design UI/UX et SEO. Devis gratuit." />
-<meta property="og:image" content="https://alcalspark.com/assets/logo.png" />
+<meta property="og:image" content="https://alcalspark.com/assets/og-cover.jpg" />
+<meta property="og:image:alt" content="AlcalSpark, agence web premium à Castres dans le Tarn" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta name="twitter:card" content="summary_large_image" />
@@ -24,7 +26,6 @@
 <link rel="icon" type="image/png" sizes="96x96" href="favicon.png" />
 <link rel="icon" type="image/png" sizes="48x48" href="favicon-48.png" />
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
-<link rel="preload" as="image" href="assets/hero-bg.webp" type="image/webp" fetchpriority="high" />
 
 <link rel="stylesheet" href="css/as-tokens.css" />
 <link rel="stylesheet" href="css/style.css" />
@@ -53,39 +54,57 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "@id": "https://alcalspark.com/#business",
-  "name": "AlcalSpark",
-  "description": "Agence web à Castres (Tarn) spécialisée en création de site web pour artisans et PME d'Occitanie",
-  "url": "https://alcalspark.com",
-  "telephone": "+33663054481",
-  "email": "contact@alcalspark.com",
-  "foundingDate": "2026",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "90 avenue Georges Guynemer",
-    "addressLocality": "Mazamet",
-    "postalCode": "81200",
-    "addressRegion": "Occitanie",
-    "addressCountry": "FR"
-  },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": 43.4914,
-    "longitude": 2.3769
-  },
-  "areaServed": [
-    { "@type": "City", "name": "Castres" },
-    { "@type": "City", "name": "Mazamet" },
-    { "@type": "City", "name": "Albi" },
-    { "@type": "City", "name": "Toulouse" },
-    { "@type": "AdministrativeArea", "name": "Tarn" },
-    { "@type": "AdministrativeArea", "name": "Occitanie" }
-  ],
-  "priceRange": "€€€",
-  "image": "https://alcalspark.com/assets/logo.png",
-  "sameAs": [
-    "https://www.instagram.com/alcalspark/"
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://alcalspark.com/#website",
+      "url": "https://alcalspark.com/",
+      "name": "AlcalSpark",
+      "inLanguage": "fr-FR",
+      "publisher": { "@id": "https://alcalspark.com/#business" }
+    },
+    {
+      "@type": "LocalBusiness",
+      "@id": "https://alcalspark.com/#business",
+      "name": "AlcalSpark",
+      "description": "Agence web à Castres (Tarn) spécialisée en création de site web pour artisans et PME d'Occitanie",
+      "url": "https://alcalspark.com",
+      "telephone": "+33663054481",
+      "email": "contact@alcalspark.com",
+      "foundingDate": "2026",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "90 avenue Georges Guynemer",
+        "addressLocality": "Mazamet",
+        "postalCode": "81200",
+        "addressRegion": "Occitanie",
+        "addressCountry": "FR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 43.4914,
+        "longitude": 2.3769
+      },
+      "areaServed": [
+        { "@type": "City", "name": "Castres" },
+        { "@type": "City", "name": "Mazamet" },
+        { "@type": "City", "name": "Albi" },
+        { "@type": "City", "name": "Toulouse" },
+        { "@type": "AdministrativeArea", "name": "Tarn" },
+        { "@type": "AdministrativeArea", "name": "Occitanie" }
+      ],
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "09:00",
+        "closes": "18:00"
+      },
+      "priceRange": "€€€",
+      "image": "https://alcalspark.com/assets/logo.png",
+      "sameAs": [
+        "https://www.instagram.com/alcalspark/"
+      ]
+    }
   ]
 }
 </script>
@@ -524,10 +543,10 @@
         <div class="footer-col">
           <h4>Services</h4>
           <ul role="list">
-            <li><a href="services.html">Création Web</a></li>
-            <li><a href="services.html">Design UI/UX</a></li>
-            <li><a href="services.html">Branding</a></li>
-            <li><a href="services.html">SEO &amp; Marketing</a></li>
+            <li><a href="services/creation-web.html">Création Web</a></li>
+            <li><a href="services/design-ui-ux.html">Design UI/UX</a></li>
+            <li><a href="services/branding.html">Branding</a></li>
+            <li><a href="services/seo-marketing.html">SEO &amp; Marketing</a></li>
             <li><a href="services.html">Copywriting</a></li>
           </ul>
           <h4>Zones</h4>

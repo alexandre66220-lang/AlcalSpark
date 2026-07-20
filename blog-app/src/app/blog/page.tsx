@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   title: "Blog - Conseils creation web et SEO",
   description:
     "Articles et conseils sur la creation de sites web, le SEO local et la strategie digitale pour les entreprises du Tarn et d'Occitanie, par AlcalSpark.",
+  alternates: {
+    canonical: "/blog/",
+  },
   openGraph: {
     title: "Blog AlcalSpark - Creation web et SEO en Occitanie",
     description:

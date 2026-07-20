@@ -233,15 +233,49 @@
   background: linear-gradient(to right, transparent, rgba(90, 138, 110, 0.55), transparent);
 }
 
-.pc-featured-label,
-.pc-badge {
-  background: rgba(56, 81, 68, 0.85) !important;
+/* Pill réservé au label "Populaire" — repositionné À L'INTÉRIEUR de la
+   carte (les cartes verre ont overflow:hidden, un pill à cheval sur le
+   bord serait rogné) */
+.pc-featured-label {
+  position: absolute !important;
+  top: 18px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  background: rgba(56, 81, 68, 0.92) !important;
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
   color: #F8F5F2 !important;
   border: 1px solid rgba(90, 138, 110, 0.4) !important;
   border-radius: 999px !important;
   letter-spacing: 0.14em;
+  z-index: 2;
+}
+
+/* Catégorie de plan : label typographique, pas un pill.
+   Un tiret vert introduit le texte, aucun fond qui déborde. */
+.pc-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: none !important;
+  border: none !important;
+  color: rgba(248, 245, 242, 0.6) !important;
+  font-size: 0.68rem !important;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+.pc-badge::before {
+  content: '';
+  width: 1.4rem;
+  height: 1px;
+  background: rgba(90, 138, 110, 0.7);
+  flex-shrink: 0;
+}
+
+/* La carte featured porte le pill absolu : on réserve l'espace en haut
+   pour que le label de catégorie ne vienne jamais le toucher. */
+.pricing-card.featured {
+  padding-top: 68px !important;
 }
 
 /* ============================================================
@@ -413,6 +447,57 @@
 }
 
 /* ============================================================
+   9b. EN-TÊTES DE CARTES SERVICES — icône à gauche, numéro à
+   droite, dans le flux : plus aucun chevauchement possible
+   ============================================================ */
+
+.ssc-head,
+.si-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 22px;
+}
+
+.ssc-head .ssc-icon,
+.si-head .si-icon {
+  margin-bottom: 0;
+}
+
+/* Numéro fantôme : plus d'absolu, typo serif italique intentionnelle */
+.ssc-num,
+.si-num {
+  position: static !important;
+  top: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-style: italic;
+  font-weight: 300 !important;
+  font-size: 3rem !important;
+  line-height: 0.9 !important;
+  color: rgba(90, 138, 110, 0.30) !important;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   10a. LISTES À PUCES — la puce reste ancrée sur la 1re ligne
+   même quand le texte passe sur plusieurs lignes
+   ============================================================ */
+
+.service-features li,
+.pc-features li {
+  align-items: flex-start !important;
+}
+.service-features li::before,
+.pc-features li::before {
+  margin-top: 0.5em;
+  line-height: 1;
+}
+
+/* ============================================================
    10b. SECTIONS VERTES HÉRITÉES → dark + glow central
    ============================================================ */
 
@@ -455,6 +540,53 @@
   border-color: rgba(248, 245, 242, 0.65) !important;
   color: #F8F5F2 !important;
   background: rgba(248, 245, 242, 0.04) !important;
+}
+
+/* ============================================================
+   12. COMPOSITIONS ASYMÉTRIQUES — casser la grille uniforme
+   (margin-top plutôt que transform : compatible reveals)
+   ============================================================ */
+
+@media (min-width: 1024px) {
+
+  /* Accueil — philosophie : colonnes en escalier */
+  .philosophy-grid .phil-item:nth-child(2) { margin-top: 2.75rem; }
+  .philosophy-grid .phil-item:nth-child(3) { margin-top: 5.5rem; }
+
+  /* Services — systèmes intelligents : première carte dominante,
+     les suivantes descendent en cascade */
+  .si-cards {
+    grid-template-columns: 1.18fr 1fr 1fr !important;
+    align-items: start !important;
+  }
+  .si-cards .si-card:nth-child(2) { margin-top: 2.75rem; }
+  .si-cards .si-card:nth-child(3) { margin-top: 5.5rem; }
+
+  /* Services — cartes 06/07 : duo décalé */
+  .services-two-col {
+    align-items: start !important;
+  }
+  .services-two-col .service-small-card:nth-child(2) { margin-top: 3rem; }
+
+  /* Tarifs — le plan featured domine la composition */
+  .pricing-grid {
+    grid-template-columns: 1fr 1.16fr 1fr !important;
+    align-items: start !important;
+  }
+  .pricing-grid .pricing-card:nth-child(1) { margin-top: 2rem; }
+  .pricing-grid .pricing-card:nth-child(3) { margin-top: 2rem; }
+
+  /* Tarifs — prestations complémentaires : rythme alterné */
+  .misc-grid { align-items: start !important; }
+  .misc-grid .misc-card:nth-child(even) { margin-top: 2rem; }
+
+  /* À propos — cartes pourquoi : rythme alterné */
+  .pourquoi-grid { align-items: start !important; }
+  .pourquoi-grid .pourquoi-card:nth-child(even) { margin-top: 2.5rem; }
+
+  /* Produits : carte à venir légèrement en retrait */
+  .products-grid { align-items: start !important; }
+  .products-grid > *:nth-child(2) { margin-top: 2.5rem; }
 }
 
 /* ============================================================

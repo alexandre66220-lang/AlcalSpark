@@ -33,7 +33,7 @@ export const metadata: Metadata = {
         url: "/assets/og-cover.jpg",
         width: 1200,
         height: 630,
-        alt: "AlcalSpark, agence web premium à Castres dans le Tarn",
+        alt: "AlcalSpark, agence digitale premium à Castres dans le Tarn",
       },
     ],
   },
@@ -48,7 +48,7 @@ const localBusinessJsonLd = {
   "@id": "https://alcalspark.com/#business",
   name: "AlcalSpark",
   description:
-    "Agence web à Castres (Tarn) spécialisée en création de site web pour artisans et PME d'Occitanie",
+    "Agence digitale à Castres (Tarn) spécialisée en création de site web pour artisans et PME d'Occitanie",
   url: "https://alcalspark.com",
   telephone: "+33663054481",
   email: "contact@alcalspark.com",

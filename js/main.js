@@ -195,13 +195,23 @@
     );
     if (isDarkHero) navbar.classList.add('nav-dark');
 
-    const handleScroll = () => {
+    // Throttlé via rAF : au plus une mise à jour de classe par frame,
+    // même si l'événement scroll se déclenche des dizaines de fois
+    // pendant un scroll rapide (rebond iOS notamment).
+    let scrollTicking = false;
+    function applyScrollState() {
       const scrolled = window.scrollY > 40;
       navbar.classList.toggle('scrolled', scrolled);
       if (isDarkHero) navbar.classList.toggle('nav-dark', !scrolled);
-    };
+      scrollTicking = false;
+    }
+    function handleScroll() {
+      if (scrollTicking) return;
+      scrollTicking = true;
+      requestAnimationFrame(applyScrollState);
+    }
     window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
+    applyScrollState();
 
     // Active link
     const path = window.location.pathname.split('/').pop() || 'index.html';

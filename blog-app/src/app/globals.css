@@ -479,6 +479,20 @@ body::before {
   to   { transform: translate(-50%, -50%) rotate(20deg); }
 }
 
+/* Desktop : balancement bien plus ample, lecture "elle tourne sur
+   elle-même" en continu. Reste borné (jamais proche de 90deg) pour
+   ne pas réduire la bande à une mince tranche verticale. */
+@media (min-width: 768px) {
+  body::before {
+    animation: bg-wave-sway-desktop 55s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes bg-wave-sway-desktop {
+  from { transform: translate(-50%, -50%) rotate(-20deg); }
+  to   { transform: translate(-50%, -50%) rotate(50deg); }
+}
+
 @media (max-width: 768px) {
   body::before {
     width: 240vw;

@@ -732,3 +732,16 @@ body::before {
     transform: translate(-50%, -50%) rotate(-2deg);
   }
 }
+
+/* Tout le contenu de page (main) forme un unique contexte
+   d'empilement au-dessus de la vague (z-index:0), quel que soit
+   le texte concerné et sans avoir à positionner chaque élément
+   individuellement. #footer reçoit le même traitement de façon
+   explicite (déterministe, indépendant de l'ordre du DOM). */
+main {
+  position: relative;
+  z-index: 1;
+}
+#footer {
+  z-index: 1;
+}

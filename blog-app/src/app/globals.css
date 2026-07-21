@@ -507,3 +507,14 @@ body::before {
     transform: translate(-50%, -50%) rotate(-2deg);
   }
 }
+
+/* Tout le contenu de page (main) forme un unique contexte
+   d'empilement au-dessus de la vague (z-index:0). */
+main {
+  position: relative;
+  z-index: 1;
+}
+.blog-footer {
+  position: relative;
+  z-index: 1;
+}

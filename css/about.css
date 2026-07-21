@@ -230,7 +230,7 @@ blockquote {
   display: flex;
   align-items: flex-start;
   gap: 16px;
-  padding: 16px 20px;
+  padding: 24px;
   background: var(--black-soft);
   border: 1px solid rgba(56, 81, 68, 0.08);
   border-radius: 4px;
@@ -328,7 +328,6 @@ blockquote {
 .pourquoi-card .pq-icon {
   font-size: 1.6rem;
   color: var(--cream);
-  display: block;
   margin-bottom: 16px;
 }
 .pourquoi-card h4 {

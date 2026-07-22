@@ -1,0 +1,10 @@
+{
+  "name": "alcalspark-site",
+  "private": true,
+  "description": "Dependances des Netlify Functions du site AlcalSpark (le site principal est statique HTML/CSS/JS).",
+  "dependencies": {
+    "stripe": "^17.4.0",
+    "@supabase/supabase-js": "^2.47.10",
+    "resend": "^4.0.1"
+  }
+}

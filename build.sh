@@ -15,6 +15,10 @@ rsync -a \
   --exclude="*.toml" \
   --exclude="*.sh" \
   --exclude=design_handoff_alcalspark_da \
+  --exclude=netlify \
+  --exclude=package.json \
+  --exclude=package-lock.json \
+  --exclude=node_modules \
   . out/
 
 # Build Next.js blog uniquement si les variables Sanity sont disponibles

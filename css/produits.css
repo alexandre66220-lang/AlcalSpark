@@ -54,7 +54,8 @@
 .product-card:hover .product-card-accent { opacity: 1; }
 
 /* Subtile lueur au hover */
-.product-card.estime-card:hover {
+.product-card.estime-card:hover,
+.product-card.ebook-card:hover {
   box-shadow: 0 24px 64px rgba(10,13,11,0.6), 0 0 48px rgba(56,81,68,0.18);
 }
 

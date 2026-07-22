@@ -1,11 +1,7 @@
 const Stripe = require('stripe');
-const { createClient } = require('@supabase/supabase-js');
 const { Resend } = require('resend');
 const { notifyError } = require('./utils/notify-error');
 
-const EBOOK_BUCKET = 'ebooks';
-const EBOOK_FILE = 'saas-claude-code.pdf';
-const SIGNED_URL_TTL_SECONDS = 48 * 60 * 60; // 48h
 const DELIVERY_FROM = 'contact@alcalspark.com';
 
 /**
@@ -29,12 +25,11 @@ function isEbookPurchase(session) {
   return false;
 }
 
-function buildDeliveryEmailHtml(signedUrl) {
+function buildDeliveryEmailHtml(downloadUrl) {
   return `
     <p>Bonjour,</p>
     <p>Merci pour votre achat ! Votre ebook <strong>Lancer son SaaS en 3 semaines avec Claude Code</strong> est pret a etre telecharge.</p>
-    <p><a href="${signedUrl}">Telecharger l'ebook (PDF)</a></p>
-    <p>Ce lien expire dans 48 heures.</p>
+    <p><a href="${downloadUrl}">Telecharger l'ebook (PDF)</a></p>
     <p>Un souci pour acceder au fichier ? Ecrivez a <a href="mailto:spark@alcalspark.com">spark@alcalspark.com</a>, nous vous le renverrons directement.</p>
     <p>Bonne lecture,<br />L'equipe AlcalSpark</p>
   `;
@@ -96,31 +91,15 @@ exports.handler = async (event) => {
     return { statusCode: 200, body: 'Received (missing buyer email, alert sent)' };
   }
 
-  // 1. Genere une URL signee vers le PDF sur le bucket prive Supabase.
-  let signedUrl;
-  try {
-    const supabaseUrl = process.env.ALCALSPARK_SUPABASE_URL;
-    const supabaseServiceKey = process.env.ALCALSPARK_SUPABASE_SERVICE_KEY;
-    if (!supabaseUrl || !supabaseServiceKey) {
-      throw new Error(
-        'Variables Supabase manquantes (ALCALSPARK_SUPABASE_URL / ALCALSPARK_SUPABASE_SERVICE_KEY)'
-      );
-    }
-    const supabase = createClient(supabaseUrl, supabaseServiceKey);
-    const { data, error } = await supabase.storage
-      .from(EBOOK_BUCKET)
-      .createSignedUrl(EBOOK_FILE, SIGNED_URL_TTL_SECONDS);
-    if (error || !data || !data.signedUrl) {
-      throw new Error((error && error.message) || 'createSignedUrl a renvoye une reponse vide');
-    }
-    signedUrl = data.signedUrl;
-  } catch (err) {
+  // 1. Recupere l'URL de telechargement Google Drive (statique).
+  const downloadUrl = process.env.EBOOK_DOWNLOAD_URL;
+  if (!downloadUrl) {
     await notifyError({
-      subject: "Echec generation de l'URL signee ebook",
-      context: `Session Stripe ${session.id}. Erreur : ${err.message}`,
+      subject: "URL de telechargement ebook manquante (EBOOK_DOWNLOAD_URL)",
+      context: `Session Stripe ${session.id}. Variable EBOOK_DOWNLOAD_URL non configuree.`,
       buyerEmail,
     });
-    return { statusCode: 200, body: 'Received (signed URL generation failed, alert sent)' };
+    return { statusCode: 200, body: 'Received (missing EBOOK_DOWNLOAD_URL, alert sent)' };
   }
 
   // 2. Envoie l'email de livraison a l'acheteur via Resend.
@@ -134,7 +113,7 @@ exports.handler = async (event) => {
       from: DELIVERY_FROM,
       to: buyerEmail,
       subject: 'Votre ebook est prêt à télécharger',
-      html: buildDeliveryEmailHtml(signedUrl),
+      html: buildDeliveryEmailHtml(downloadUrl),
     });
     if (error) {
       throw new Error(error.message || 'Resend a renvoye une erreur');
@@ -142,7 +121,7 @@ exports.handler = async (event) => {
   } catch (err) {
     await notifyError({
       subject: "Echec envoi de l'email de livraison ebook",
-      context: `Session Stripe ${session.id}. URL signee generee mais email non envoye (livrer manuellement). Erreur : ${err.message}. URL signee : ${signedUrl}`,
+      context: `Session Stripe ${session.id}. Email non envoye (livrer manuellement). Erreur : ${err.message}. URL de telechargement : ${downloadUrl}`,
       buyerEmail,
     });
     return { statusCode: 200, body: 'Received (email send failed, alert sent)' };

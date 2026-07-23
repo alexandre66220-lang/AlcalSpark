@@ -467,11 +467,10 @@ body::before {
   background-position: center;
   background-size: cover;
   opacity: 0.75;
-  z-index: 0;
+  z-index: -1;
   pointer-events: none;
   transform: translate(-50%, -50%) rotate(14deg);
   animation: bg-wave-sway 40s ease-in-out infinite alternate;
-  will-change: transform;
 }
 
 @keyframes bg-wave-sway {

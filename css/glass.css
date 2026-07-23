@@ -674,10 +674,20 @@
 /* ============================================================
    14. VAGUE DE FOND — une seule vague en lignes fines qui
    s'estompe sur ses propres bords (pas un pavage), en filigrane
-   sous tout le contenu, sur l'ensemble du site. z-index:0 (pas
-   négatif : un ::before est déjà premier dans l'ordre de peinture,
-   z-index:-1 combiné à position:fixed ne se peint pas correctement
-   dans ce contexte). Anim en transform seul (compositor only).
+   sous tout le contenu, sur l'ensemble du site.
+
+   z-index:-1 : place la vague sous tout élément non explicitement
+   négatif, quel que soit le navigateur. Fonctionne de façon fiable
+   ici car `main` (et #footer) déclarent leur propre contexte
+   d'empilement via position:relative + z-index:1 — sans cela, un
+   z-index négatif sur un ::before pouvait rester masqué par des
+   éléments non positionnés qui peignent après le fond de la page
+   mais avant tout contenu positionné (canvas de particules, anciens
+   fonds de section opaques). Pas de will-change : sur certains
+   moteurs (WebKit notamment), la promotion de calque combinée à une
+   animation de transform sur un élément fixed peut faire dériver
+   l'ordre d'empilement pendant l'animation. L'anim reste en
+   transform seul (compositor only) sans ce hint.
    ============================================================ */
 
 body::before {
@@ -692,11 +702,10 @@ body::before {
   background-position: center;
   background-size: cover;
   opacity: 0.75;
-  z-index: 0;
+  z-index: -1;
   pointer-events: none;
   transform: translate(-50%, -50%) rotate(14deg);
   animation: bg-wave-sway 40s ease-in-out infinite alternate;
-  will-change: transform;
 }
 
 @keyframes bg-wave-sway {
@@ -734,14 +743,16 @@ body::before {
 }
 
 /* Tout le contenu de page (main) forme un unique contexte
-   d'empilement au-dessus de la vague (z-index:0), quel que soit
+   d'empilement au-dessus de la vague (z-index:-1), quel que soit
    le texte concerné et sans avoir à positionner chaque élément
    individuellement. #footer reçoit le même traitement de façon
-   explicite (déterministe, indépendant de l'ordre du DOM). */
+   explicite et autonome (position + z-index déclarés ici, sans
+   dépendre d'une règle position:relative définie ailleurs). */
 main {
   position: relative;
   z-index: 1;
 }
 #footer {
+  position: relative;
   z-index: 1;
 }

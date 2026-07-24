@@ -532,6 +532,45 @@ p { font-family: var(--font-body); font-weight: 300; }
   transform: none !important;
 }
 
+/* Certifications — badge discret, sous la ligne légale */
+.footer-certifications {
+  border-top: 1px solid rgba(56,81,68,0.12);
+  padding: 1.25rem 0 0.25rem;
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+.footer-cert-label {
+  font-family: var(--font-body);
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(248,245,242,0.3);
+}
+.footer-cert-badge {
+  display: inline-block;
+  line-height: 0;
+  opacity: 0.9;
+  transition: opacity 0.22s;
+}
+.footer-cert-badge:hover { opacity: 1; }
+.footer-cert-badge img {
+  height: 80px;
+  width: auto;
+  max-width: 100%;
+  display: block;
+}
+.footer-cert-caption {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  color: rgba(248,245,242,0.4);
+}
+
 /* Mobile */
 @media (max-width: 768px) {
   .footer-layout {

@@ -4,7 +4,7 @@
   --gold: #5a8a6e;
   --green: #385144;
   --muted: rgba(248, 245, 242, 0.55);
-  --card-bg: rgba(20, 27, 23, 0.6);
+  --card-bg: rgba(255, 255, 255, 0.04);
   --border: rgba(248, 245, 242, 0.08);
   --font-heading: var(--font-cormorant), "Georgia", serif;
   --font-body: var(--font-raleway), system-ui, sans-serif;
@@ -165,18 +165,47 @@ a {
 }
 
 .blog-card {
+  position: relative;
   background: var(--card-bg);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(20px) saturate(180%);
   border: 1px solid var(--border);
   border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.08);
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  transition: transform 0.25s, border-color 0.25s;
+  transition: transform 0.3s ease, border-color 0.3s ease,
+              backdrop-filter 0.3s ease, -webkit-backdrop-filter 0.3s ease,
+              box-shadow 0.3s ease;
+}
+
+.blog-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0) 55%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.blog-card > * {
+  position: relative;
+  z-index: 1;
 }
 
 .blog-card:hover {
   transform: translateY(-4px);
   border-color: var(--gold);
+  -webkit-backdrop-filter: blur(24px) saturate(200%);
+  backdrop-filter: blur(24px) saturate(200%);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .blog-card {
+    background: rgba(15, 20, 30, 0.85);
+  }
 }
 
 .blog-card-img {

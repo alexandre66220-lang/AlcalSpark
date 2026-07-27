@@ -158,14 +158,16 @@
   flex-direction: column;
   gap: 1rem;
   padding: 1.75rem 1.75rem 2rem;
-  background: rgba(20, 27, 23, 0.42);
-  -webkit-backdrop-filter: blur(18px);
-  backdrop-filter: blur(18px);
-  border: 1px solid rgba(248,245,242,0.08);
+  background: rgba(255, 255, 255, 0.04);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.10);
   border-radius: 14px;
   overflow: hidden;
-  transition: border-color .35s var(--ease), background .35s var(--ease),
-              transform .45s var(--ease), box-shadow .45s var(--ease);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transition: border-color .3s ease, background .3s ease,
+              backdrop-filter .3s ease, -webkit-backdrop-filter .3s ease,
+              box-shadow .3s ease, transform .45s var(--ease);
 }
 .svc-card::after {
   content: '';
@@ -176,10 +178,12 @@
   pointer-events: none;
 }
 .svc-card:hover {
-  background: rgba(28, 38, 32, 0.55);
-  border-color: rgba(248,245,242,0.16);
+  background: rgba(255, 255, 255, 0.07);
+  -webkit-backdrop-filter: blur(24px) saturate(200%);
+  backdrop-filter: blur(24px) saturate(200%);
+  border-color: rgba(255, 255, 255, 0.18);
   transform: translateY(-4px);
-  box-shadow: 0 24px 60px rgba(0,0,0,0.45), 0 0 40px rgba(56,81,68,0.20);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.12);
 }
 
 /* Composition décalée sur desktop */
@@ -632,14 +636,16 @@
   gap: 1.75rem;
   width: min(100%, 780px);
   padding: 2.25rem 2.5rem;
-  background: rgba(20, 27, 23, 0.42);
-  -webkit-backdrop-filter: blur(18px);
-  backdrop-filter: blur(18px);
-  border: 1px solid rgba(248,245,242,0.08);
+  background: rgba(255, 255, 255, 0.04);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.10);
   border-radius: 14px;
   overflow: hidden;
-  transition: border-color .35s var(--ease), background .35s var(--ease),
-              transform .45s var(--ease), box-shadow .45s var(--ease);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transition: border-color .3s ease, background .3s ease,
+              backdrop-filter .3s ease, -webkit-backdrop-filter .3s ease,
+              box-shadow .3s ease, transform .45s var(--ease);
 }
 .proc-card::after {
   content: '';
@@ -650,10 +656,12 @@
   pointer-events: none;
 }
 .proc-card:hover {
-  background: rgba(28, 38, 32, 0.55);
-  border-color: rgba(248,245,242,0.16);
+  background: rgba(255, 255, 255, 0.07);
+  -webkit-backdrop-filter: blur(24px) saturate(200%);
+  backdrop-filter: blur(24px) saturate(200%);
+  border-color: rgba(255, 255, 255, 0.18);
   transform: translateY(-3px);
-  box-shadow: 0 20px 55px rgba(0,0,0,0.45), 0 0 36px rgba(56,81,68,0.18);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.12);
 }
 
 /* Décalage alterné : rythme d'escalier */

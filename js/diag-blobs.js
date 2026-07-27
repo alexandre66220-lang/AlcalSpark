@@ -120,6 +120,12 @@
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(resize, 200);
     });
+
+    // La carte grandit dynamiquement (questions ajoutées) : le canvas
+    // plein cadre doit suivre sa hauteur sans attendre un resize fenêtre.
+    if ('ResizeObserver' in window) {
+      new ResizeObserver(function () { resize(); }).observe(canvas.parentElement);
+    }
   }
 
   canvases.forEach(initField);

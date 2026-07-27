@@ -558,7 +558,7 @@ p { font-family: var(--font-body); font-weight: 300; }
 }
 .footer-cert-badge:hover { opacity: 1; }
 .footer-cert-badge img {
-  height: 16px;
+  height: 24px;
   width: auto;
   max-width: 100%;
   display: block;

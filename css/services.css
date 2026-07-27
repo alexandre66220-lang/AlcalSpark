@@ -39,7 +39,7 @@
   font-family: var(--font-ui);
   font-size: 0.75rem;
   letter-spacing: 0.1em;
-  color: var(--g50);
+  color: var(--c50);
 }
 .ph-breadcrumb a { color: var(--gold); transition: color 0.3s; }
 .ph-breadcrumb a:hover { color: var(--gold-light); }
@@ -574,7 +574,7 @@
 .si-cta-desc {
   font-family: var(--font-display);
   font-size: clamp(1.05rem, 1.6vw, 1.35rem);
-  color: var(--g70);
+  color: var(--c70);
   margin-bottom: 0;
 }
 

@@ -816,7 +816,7 @@ p { max-width: 62ch; text-wrap: pretty; }
 
 .section-desc {
   font-size: clamp(.9rem, 1.2vw, 1.05rem);
-  color: var(--g70);
+  color: var(--c70);
   max-width: 54ch;
 }
 .section-dark .section-desc { color: var(--c70); }

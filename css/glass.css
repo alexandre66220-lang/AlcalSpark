@@ -38,7 +38,8 @@
 .faq-section,
 .products-cta-section,
 .solo-section,
-.manifesto-section {
+.manifesto-section,
+.diagnostic-section {
   position: relative;
   overflow: hidden;
 }
@@ -49,7 +50,8 @@
 .portfolio-section::before,
 .faq-section::before,
 .solo-section::before,
-.manifesto-section::before {
+.manifesto-section::before,
+.diagnostic-section::before {
   content: '';
   position: absolute;
   width: min(60vw, 780px);
@@ -67,6 +69,7 @@
 .faq-section::before        { bottom: -20%; right: -15%; }
 .solo-section::before       { top: -10%; left: -18%; }
 .manifesto-section::before  { bottom: -25%; right: -12%; }
+.diagnostic-section::before { top: -18%; left: -16%; }
 
 .cta-section::before {
   content: '';
@@ -89,7 +92,8 @@
 .faq-section > *,
 .products-cta-section > *,
 .solo-section > *,
-.manifesto-section > * {
+.manifesto-section > *,
+.diagnostic-section > * {
   position: relative;
   z-index: 1;
 }

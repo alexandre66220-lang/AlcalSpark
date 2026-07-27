@@ -1,0 +1,370 @@
+/* ============================================================
+   AlcalSpark — Diagnostic interactif (accueil, après le hero)
+   Trois axes explorables en parallèle + synthèse finale.
+   ============================================================ */
+
+.diagnostic-section {
+  padding: var(--section-py) 0;
+  background: transparent;
+}
+
+.diagnostic-intro {
+  max-width: 660px;
+  margin: 0 auto 3rem;
+  text-align: center;
+}
+.diagnostic-intro .eyebrow { justify-content: center; }
+.diagnostic-intro h2 { margin-bottom: 1rem; }
+.diagnostic-intro > p {
+  margin: 0 auto;
+  color: var(--muted);
+}
+
+/* ── Barre de progression globale ─────────────────────────── */
+.diag-progress {
+  max-width: 420px;
+  margin: 0 auto 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+}
+.diag-progress-label {
+  font-family: var(--font-ui);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.diag-progress-bar {
+  width: 100%;
+  height: 3px;
+  border-radius: 999px;
+  background: rgba(248, 245, 242, 0.08);
+  overflow: hidden;
+}
+.diag-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--green-bright);
+  border-radius: 999px;
+  transition: width 0.6s var(--ease-out, ease);
+}
+
+/* ── Grille des 3 axes ────────────────────────────────────── */
+.diag-axes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .diag-axes { grid-template-columns: 1fr; }
+}
+
+.diag-axis {
+  padding: 0;
+  cursor: default;
+}
+
+/* Zone visuelle blob en tête de carte (même logique que .svc-visual) */
+.diag-axis-blobs {
+  position: relative;
+  height: 190px;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0.55;
+}
+.diag-blob-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  filter: blur(28px);
+}
+
+.diag-axis-toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.6rem 1.5rem;
+  background: none;
+  border: none;
+  color: #F8F5F2;
+  text-align: left;
+  cursor: pointer;
+  font-family: inherit;
+  -webkit-tap-highlight-color: transparent;
+}
+.diag-axis-toggle:focus-visible { outline: 2px solid var(--green-bright); outline-offset: -2px; }
+
+.diag-axis-icon {
+  flex-shrink: 0;
+  width: 46px;
+  height: 46px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: rgba(56, 81, 68, 0.22);
+  border: 1px solid rgba(90, 138, 110, 0.28);
+  font-size: 1.1rem;
+  transition: transform 0.35s var(--ease-out, ease);
+}
+.diag-axis.is-open .diag-axis-icon { transform: scale(1.08); }
+
+.diag-axis-heading {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+.diag-axis-eyebrow {
+  font-family: var(--font-ui);
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(248, 245, 242, 0.4);
+}
+.diag-axis-title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 400;
+  line-height: 1.25;
+}
+
+.diag-axis-status {
+  flex-shrink: 0;
+  font-family: var(--font-ui);
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(248, 245, 242, 0.4);
+  transition: color 0.3s ease;
+}
+.diag-axis.is-started .diag-axis-status { color: var(--green-bright); }
+.diag-axis.is-complete .diag-axis-status { color: #F8F5F2; }
+
+.diag-axis-chevron {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  position: relative;
+}
+.diag-axis-chevron::before,
+.diag-axis-chevron::after {
+  content: '';
+  position: absolute;
+  left: 3px;
+  top: 8px;
+  width: 7px;
+  height: 1.5px;
+  background: rgba(248, 245, 242, 0.5);
+  transition: transform 0.35s var(--ease-out, ease);
+}
+.diag-axis-chevron::before { transform: rotate(45deg); transform-origin: right; }
+.diag-axis-chevron::after  { left: 8px; transform: rotate(-45deg); transform-origin: left; }
+.diag-axis.is-open .diag-axis-chevron::before { transform: rotate(-45deg); }
+.diag-axis.is-open .diag-axis-chevron::after  { transform: rotate(45deg); }
+
+/* ── Corps déplié : questions / réponses ─────────────────── */
+.diag-axis-body {
+  padding: 0 1.5rem 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.diag-step {
+  padding-top: 1.1rem;
+  border-top: 1px solid rgba(248, 245, 242, 0.08);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.45s var(--ease-out, ease), transform 0.45s var(--ease-out, ease);
+}
+.diag-step.is-visible { opacity: 1; transform: translateY(0); }
+
+.diag-question {
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  color: rgba(248, 245, 242, 0.88);
+  margin-bottom: 0.9rem;
+}
+
+.diag-answers {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.diag-answer {
+  flex: 1;
+  padding: 0.6rem 1rem;
+  font-family: var(--font-ui);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #F8F5F2;
+  background: rgba(248, 245, 242, 0.03);
+  border: 1px solid rgba(248, 245, 242, 0.16);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: border-color 0.25s ease, background 0.25s ease, color 0.25s ease, opacity 0.25s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.diag-answer:hover:not(:disabled) {
+  border-color: var(--green-bright);
+  background: rgba(56, 81, 68, 0.28);
+}
+.diag-answer:focus-visible { outline: 2px solid var(--green-bright); outline-offset: 2px; }
+.diag-answer:disabled { cursor: default; opacity: 0.35; }
+.diag-answer.is-chosen {
+  opacity: 1;
+  border-color: var(--green-bright);
+  background: var(--green);
+  color: #F8F5F2;
+}
+
+.diag-leaf {
+  padding-top: 1.1rem;
+  border-top: 1px solid rgba(90, 138, 110, 0.25);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.5s var(--ease-out, ease), transform 0.5s var(--ease-out, ease);
+}
+.diag-leaf.is-visible { opacity: 1; transform: translateY(0); }
+
+.diag-leaf-tag {
+  display: inline-flex;
+  font-family: var(--font-ui);
+  font-size: 0.64rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--green-bright);
+  background: rgba(56, 81, 68, 0.22);
+  border: 1px solid rgba(90, 138, 110, 0.3);
+  border-radius: 999px;
+  padding: 0.35rem 0.85rem;
+  margin-bottom: 0.7rem;
+}
+.diag-leaf.is-optional .diag-leaf-tag {
+  color: rgba(248, 245, 242, 0.65);
+  background: rgba(248, 245, 242, 0.05);
+  border-color: rgba(248, 245, 242, 0.15);
+}
+.diag-leaf-title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+}
+.diag-leaf-desc {
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  color: rgba(248, 245, 242, 0.7);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ============================================================
+   Synthèse finale
+   ============================================================ */
+
+.diag-final {
+  margin-top: 4rem;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s var(--ease-out, ease), transform 0.7s var(--ease-out, ease);
+}
+.diag-final.is-visible { opacity: 1; transform: translateY(0); }
+.diag-final[hidden] { display: none; }
+
+.diag-final-recap {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 2.75rem;
+}
+.diag-final-recap .eyebrow { justify-content: center; }
+.diag-final-heading { margin-bottom: 1.75rem; }
+
+.diag-recap-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+@media (max-width: 900px) {
+  .diag-recap-list { grid-template-columns: 1fr; }
+}
+
+.diag-recap-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding: 1.1rem 1.2rem;
+  text-align: left;
+  border-radius: 12px;
+}
+
+.diag-recap-icon {
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: rgba(56, 81, 68, 0.22);
+  border: 1px solid rgba(90, 138, 110, 0.28);
+  font-size: 0.95rem;
+}
+
+.diag-recap-body { display: flex; flex-direction: column; gap: 0.3rem; min-width: 0; }
+.diag-recap-axis {
+  font-family: var(--font-ui);
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(248, 245, 242, 0.4);
+}
+.diag-recap-tag {
+  font-family: var(--font-body);
+  font-size: 0.86rem;
+  font-weight: 500;
+  color: #F8F5F2;
+  line-height: 1.35;
+}
+
+/* ── Split : formulaire + coordonnées ─────────────────────── */
+.diag-final-layout {
+  display: grid;
+  grid-template-columns: 1.45fr 1fr;
+  gap: 56px;
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .diag-final-layout { grid-template-columns: 1fr; gap: 40px; }
+}
+
+.diag-final-form-wrap h4 {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+}
+.diag-final-form-wrap > p {
+  color: rgba(248, 245, 242, 0.65);
+  font-size: 0.9rem;
+  margin-bottom: 1.75rem;
+}
+
+.diag-final-info .eyebrow { margin-bottom: 1.25rem; }

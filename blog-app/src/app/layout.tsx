@@ -86,8 +86,8 @@ export default function RootLayout({
         />
         <header className="blog-header">
           <div className="blog-header-inner">
-            <a href="/" className="blog-logo">
-              AlcalSpark
+            <a href="/" className="blog-logo" aria-label="AlcalSpark, Accueil">
+              Alcal<em>Spark</em>
             </a>
             <nav className="blog-nav">
               <a href="/">Accueil</a>

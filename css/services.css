@@ -451,6 +451,11 @@
   gap: 24px;
   padding-top: 60px;
 }
+.services-two-col--single {
+  grid-template-columns: 1fr;
+  max-width: 560px;
+  margin: 0 auto;
+}
 .service-small-card { position: relative; padding: 44px; }
 .ssc-icon {
   font-size: 2rem;

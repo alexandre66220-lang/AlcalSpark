@@ -819,6 +819,15 @@ p { max-width: 62ch; text-wrap: pretty; }
   color: var(--c70);
   max-width: 54ch;
 }
+
+/* Mention "projets de démonstration" (accueil + portfolio) */
+.portfolio-disclaimer {
+  margin-top: 0.85rem;
+  margin-bottom: 0.85rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+  max-width: 46ch;
+}
 .section-dark .section-desc { color: var(--c70); }
 
 /* Espacements utilitaires */

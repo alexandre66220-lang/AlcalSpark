@@ -833,20 +833,35 @@ p { max-width: 62ch; text-wrap: pretty; }
 .section-header.text-center .gold-line-center { margin: 1.5rem auto; }
 .section-header.text-center .eyebrow { justify-content: center; }
 
-/* Bandeau cookie */
+/* Bandeau cookie — même liquid glass que les cards du site */
 #cookie-banner {
   position: fixed;
   bottom: -150px;
   left: 1rem; right: 1rem;
   max-width: 700px;
   margin: 0 auto;
-  background: #0A0D0B;
+  background: var(--glass-bg, rgba(255, 255, 255, 0.04));
+  -webkit-backdrop-filter: var(--glass-blur, blur(20px) saturate(180%));
+  backdrop-filter: var(--glass-blur, blur(20px) saturate(180%));
   color: var(--cream);
   z-index: 8000;
   padding: 1.5rem 2rem;
-  border: 1px solid rgba(56, 81, 68, 0.4);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
-  transition: bottom .5s var(--ease);
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.10));
+  border-radius: var(--glass-radius, 14px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  transition: bottom .5s var(--ease), background .3s ease, border-color .3s ease;
+}
+#cookie-banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0) 55%);
+  pointer-events: none;
+}
+#cookie-banner > * {
+  position: relative;
+  z-index: 1;
 }
 #cookie-banner.show { bottom: 1.5rem; }
 .cookie-inner { display: flex; gap: 2rem; align-items: center; flex-wrap: wrap; }

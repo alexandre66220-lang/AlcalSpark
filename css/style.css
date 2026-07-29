@@ -840,11 +840,12 @@ p { max-width: 62ch; text-wrap: pretty; }
   left: 1rem; right: 1rem;
   max-width: 700px;
   margin: 0 auto;
-  background: var(--green);
+  background: #0A0D0B;
   color: var(--cream);
   z-index: 8000;
   padding: 1.5rem 2rem;
-  border: 1px solid var(--c15);
+  border: 1px solid rgba(56, 81, 68, 0.4);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
   transition: bottom .5s var(--ease);
 }
 #cookie-banner.show { bottom: 1.5rem; }

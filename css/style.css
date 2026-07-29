@@ -796,6 +796,12 @@ p { max-width: 62ch; text-wrap: pretty; }
 }
 
 /* Ligne décorative dorée → verte */
+.gold-line {
+  width: 3rem;
+  height: 1px;
+  background: var(--g30);
+  margin: 1.5rem 0;
+}
 .gold-line-center {
   width: 3rem;
   height: 1px;

@@ -292,7 +292,7 @@ blockquote {
   font-family: var(--font-display);
   font-size: clamp(1.4rem, 2.2vw, 1.9rem);
   font-weight: 500;
-  color: var(--gold);
+  color: #F8F5F2;
   margin-bottom: 18px;
   padding-bottom: 14px;
   border-bottom: 1px solid rgba(56, 81, 68, 0.12);

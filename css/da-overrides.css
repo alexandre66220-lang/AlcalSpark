@@ -453,14 +453,14 @@ p { font-family: var(--font-body); font-weight: 300; }
   align-items: start;
 }
 
-/* Labels : vert forêt, caps, large spacing */
+/* Labels : blanc cassé discret, caps, large spacing */
 .footer-col h4 {
   font-family: var(--font-ui) !important;
   font-size: 0.6rem !important;
   font-weight: 600 !important;
   letter-spacing: 0.22em !important;
   text-transform: uppercase !important;
-  color: #385144 !important;
+  color: rgba(248, 245, 242, 0.55) !important;
   margin-bottom: 1rem;
   margin-top: 0;
 }

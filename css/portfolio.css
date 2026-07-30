@@ -225,25 +225,54 @@
   pointer-events: none;
   transform: translateY(0);
   transition: opacity 0.45s var(--ease-out-expo);
+  overflow: hidden;
 }
-.pf-wrap:hover .pf-hover {
+.pf-wrap:hover .pf-hover,
+.pf-wrap:focus-within .pf-hover {
   opacity: 1;
   pointer-events: auto;
 }
 
+/* Le contenu ne doit jamais déborder de la carte : s'il dépasse la
+   hauteur disponible (texte long, beaucoup de tags), il défile en
+   interne plutôt que de chevaucher le badge du dessus ou le bandeau
+   méta en dessous. */
 .pf-hover-content {
+  max-height: 100%;
+  overflow-y: auto;
+  scrollbar-width: thin;
   transform: translateY(20px);
   transition: transform 0.45s var(--ease-out-expo);
 }
-.pf-wrap:hover .pf-hover-content { transform: translateY(0); }
+.pf-wrap:hover .pf-hover-content,
+.pf-wrap:focus-within .pf-hover-content { transform: translateY(0); }
+.pf-hover-content::-webkit-scrollbar { width: 4px; }
+.pf-hover-content::-webkit-scrollbar-thumb {
+  background: rgba(248, 245, 242, 0.25);
+  border-radius: 4px;
+}
 
 .pf-hover-content h2 {
   font-size: clamp(1.4rem, 3vw, 2.2rem);
   color: var(--off-white);
-  margin: 10px 0 10px;
+  margin: 8px 0;
 }
-.pf-hover-content p { font-size: 0.85rem; margin-bottom: 12px; color: var(--c90); }
-.pf-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+.pf-hover-content p {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  margin-bottom: 8px;
+  color: var(--c90);
+}
+.pf-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+
+/* CTA compact dans l'overlay : le bouton standard (padding généreux
+   pensé pour des CTA pleine page) est trop grand pour tenir dans une
+   carte au format 4/3 avec titre + description + tags. */
+.pf-hover-content .btn {
+  padding: 0.7rem 1.5rem;
+  margin-top: 12px;
+  font-size: 0.68rem;
+}
 
 /* Meta below image */
 .pf-meta {

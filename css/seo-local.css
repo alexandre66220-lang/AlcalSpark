@@ -226,3 +226,74 @@
   .advantages-grid { grid-template-columns: 1fr; }
   .seo-il-list { flex-direction: column; gap: .75rem; align-items: flex-start; }
 }
+
+/* ── FAQ (reprend le pattern de contact.css) ────────────────── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.faq-section { background: transparent; }
+
+.faq-list {
+  max-width: 760px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.faq-item {
+  border-bottom: 1px solid rgba(248, 245, 242, 0.07);
+  transition: background 0.3s;
+}
+
+.faq-item.open { background: rgba(56, 81, 68, 0.04); }
+
+.faq-question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 24px 28px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.faq-question span:first-child {
+  font-family: var(--font-ui);
+  font-size: clamp(0.88rem, 1.2vw, 1.02rem);
+  font-weight: 500;
+  color: rgba(248, 245, 242, 0.75);
+  transition: color 0.3s;
+}
+
+.faq-item.open .faq-question span:first-child,
+.faq-question:hover span:first-child { color: var(--gold); }
+
+.faq-icon {
+  font-size: 1.4rem;
+  color: var(--gold);
+  flex-shrink: 0;
+  transition: transform 0.4s var(--ease-out-expo);
+  line-height: 1;
+}
+
+.faq-item.open .faq-icon { transform: rotate(45deg); }
+
+.faq-answer {
+  padding: 0 28px 24px;
+  animation: fadeInUp 0.4s var(--ease-out-expo);
+}
+
+.faq-answer p {
+  font-size: 0.88rem;
+  color: rgba(248, 245, 242, 0.55);
+  line-height: 1.85;
+}
+
+@media (max-width: 600px) {
+  .faq-question { padding: 24px; }
+  .faq-answer { padding: 0 24px 24px; }
+}

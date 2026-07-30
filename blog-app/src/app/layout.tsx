@@ -48,7 +48,7 @@ const localBusinessJsonLd = {
   "@id": "https://alcalspark.com/#business",
   name: "AlcalSpark",
   description:
-    "Agence digitale à Castres (Tarn) spécialisée en création de site web pour artisans et PME d'Occitanie",
+    "Agence digitale à Castres (Tarn) : stratégie et conseil, création de sites, identité visuelle, performance et conversion, SaaS custom et automatisation pour PME et artisans d'Occitanie",
   url: "https://alcalspark.com",
   telephone: "+33663054481",
   email: "contact@alcalspark.com",

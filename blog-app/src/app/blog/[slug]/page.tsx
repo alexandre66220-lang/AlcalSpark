@@ -96,7 +96,9 @@ export default async function ArticlePage({
         url: "https://alcalspark.com/assets/logo.png",
       },
     },
-    ...(heroImg ? { image: `https://alcalspark.com${heroImg}` } : {}),
+    image: heroImg
+      ? `https://alcalspark.com${heroImg}`
+      : "https://alcalspark.com/assets/og-cover.jpg",
   };
 
   return (

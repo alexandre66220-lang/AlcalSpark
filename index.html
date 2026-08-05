@@ -44,6 +44,7 @@
 <link rel="stylesheet" href="css/da-overrides.css?v=2" />
 <link rel="stylesheet" href="css/glass.css?v=1" />
 <link rel="stylesheet" href="css/diagnostic.css?v=2" />
+<link rel="stylesheet" href="css/reposition.css?v=1" />
 
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -246,10 +247,9 @@
 
   <!-- Contenu centré -->
   <div class="hero-content">
-    <h1 class="hero-title" id="hero-title">Votre marque,<br>magnifiée.</h1>
-    <p class="hero-desc">Stratégie et conseil, création de sites, identité visuelle, performance et conversion, SaaS custom et automatisation : votre partenaire digital à Mazamet, du diagnostic à l'exécution.</p>
+    <h1 class="hero-title" id="hero-title">Studio d'un seul expert.<br>Exigence d'une équipe entière.</h1>
+    <p class="hero-desc">Sites web, SaaS et automatisation pour artisans ambitieux et entreprises en croissance d'Occitanie. Une seule personne pense, conçoit et code votre projet, du brief au déploiement, avec l'IA comme accélérateur.</p>
     <a href="contact.html" class="btn hero-btn">Démarrer un projet</a>
-    <p class="hero-info-line">6 services · Code sur mesure · Un projet à la fois · Livraison 2-3 semaines</p>
   </div>
 
   <div class="scroll-hint" aria-hidden="true">scroll</div>
@@ -257,21 +257,76 @@
 </section>
 
 <!-- ══════════════════════════════════════
-  DIAGNOSTIC INTERACTIF — 3 axes en parallèle
+  BANDEAU DE PREUVE IMMÉDIATE
+══════════════════════════════════════ -->
+<section class="proof-section" aria-label="Ce qui est vérifiable avant contact">
+  <div class="container">
+    <p class="proof-intro reveal">Ce que vous pouvez vérifier avant même de nous contacter.</p>
+    <div class="proof-grid">
+      <div class="proof-item reveal">
+        <span class="proof-num">2 à 3 semaines</span>
+        <span class="proof-label">Délai de livraison moyen</span>
+      </div>
+      <div class="proof-item reveal delay-1">
+        <span class="proof-num">1 seul<br>interlocuteur</span>
+        <span class="proof-label">Du brief au déploiement</span>
+      </div>
+      <div class="proof-item reveal delay-2">
+        <span class="proof-num">1 projet<br>à la fois</span>
+        <span class="proof-label">Jamais partagé</span>
+      </div>
+      <div class="proof-item reveal delay-3">
+        <span class="proof-num">IA<br>intégrée</span>
+        <span class="proof-label">À chaque étape de production</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+  SEGMENTATION — "Vous êtes..."
+══════════════════════════════════════ -->
+<section class="segmentation-section" aria-labelledby="segmentation-title">
+  <div class="container">
+
+    <div class="segmentation-intro">
+      <h2 id="segmentation-title" class="reveal">Vous êtes…</h2>
+      <p class="reveal delay-1">Deux chemins, <em>une même exigence</em>.</p>
+    </div>
+
+    <div class="segment-grid">
+      <article class="segment-card card reveal delay-1">
+        <h3>Artisan ou commerçant local</h3>
+        <p>Vous voulez un site qui vous ramène des clients, sans jargon ni mauvaise surprise contractuelle.</p>
+        <a href="#diagnostic" class="btn btn-outline-inv segment-btn" data-segment="artisan">Faire mon diagnostic gratuit</a>
+      </article>
+      <article class="segment-card card reveal delay-2">
+        <h3>Entreprise en croissance</h3>
+        <p>Vous cherchez un partenaire technique direct pour un projet SaaS, une refonte stratégique ou de l'automatisation.</p>
+        <a href="#contact-direct" class="btn btn-outline-inv segment-btn" data-segment="entreprise">Échanger sur mon projet</a>
+      </article>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+  4a. DIAGNOSTIC INTERACTIF — 3 axes en parallèle (persona A)
 ══════════════════════════════════════ -->
 <section class="diagnostic-section" id="diagnostic" aria-labelledby="diagnostic-title">
   <div class="container">
 
     <div class="diagnostic-intro">
       <div class="eyebrow reveal">Diagnostic express</div>
-      <h2 id="diagnostic-title" class="reveal delay-1">Où en est votre marque<br /><em>aujourd'hui ?</em></h2>
-      <p class="reveal delay-2">Trois axes, quelques clics : explorez-les dans l'ordre de votre choix et découvrez vos priorités digitales.</p>
+      <h2 id="diagnostic-title" class="reveal delay-1">Où en est votre<br />présence digitale ?</h2>
+      <p class="reveal delay-2">Trois axes, quelques clics. Repartez avec une vision claire de vos priorités, sans engagement, et un retour humain sous 24h, pas un email automatique.</p>
     </div>
 
     <div class="diag-progress reveal delay-2" aria-live="polite">
       <span class="diag-progress-label" id="diag-progress-label">0/3 axes complétés</span>
       <div class="diag-progress-bar"><div class="diag-progress-fill" id="diag-progress-fill"></div></div>
     </div>
+    <p class="diag-step-indicator" id="diag-step-indicator" aria-live="polite"></p>
 
     <div class="diag-axes" id="diag-axes">
 
@@ -412,6 +467,15 @@
                 <a href="tel:0663054481" class="cc-value">06 63 05 44 81</a>
               </div>
             </div>
+            <div class="contact-card">
+              <div class="cc-icon">
+                <svg viewBox="0 0 24 24" fill="none" width="20" height="20" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884" fill="currentColor"/></svg>
+              </div>
+              <div>
+                <span class="cc-label">WhatsApp</span>
+                <a href="https://wa.me/33663054481" class="cc-value" target="_blank" rel="noopener">06 63 05 44 81</a>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -422,103 +486,58 @@
 </section>
 
 <!-- ══════════════════════════════════════
-  SERVICES — Liste éditoriale
+  4b. CONTACT DIRECT (persona B)
 ══════════════════════════════════════ -->
-<section class="services-section" id="services" aria-labelledby="services-title">
+<section class="contact-direct-section" id="contact-direct" aria-labelledby="contact-direct-title">
+  <div class="container">
+    <div class="contact-direct-card card reveal">
+      <div class="eyebrow">Projet direct</div>
+      <h2 id="contact-direct-title">Un projet précis en tête ?</h2>
+      <p>SaaS interne, refonte avec stratégie de conversion, automatisation de vos process. Décrivez votre besoin, vous aurez une réponse sous 24h avec un avis franc, pas un argumentaire commercial.</p>
+      <div class="contact-direct-actions">
+        <a href="contact.html" class="btn btn-outline-inv">Décrire mon projet</a>
+        <a href="https://wa.me/33663054481" class="whatsapp-inline-link" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884" fill="currentColor"/></svg>
+          WhatsApp direct
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+  LA MÉTHODE
+══════════════════════════════════════ -->
+<section class="methode-section" id="methode" aria-labelledby="methode-title">
   <div class="container">
 
-    <div class="services-intro">
-      <div>
-        <div class="eyebrow reveal">Ce que nous faisons</div>
-        <h2 id="services-title" class="reveal delay-1">Des solutions digitales<br /><em>sur mesure</em></h2>
+    <div class="methode-intro">
+      <div class="eyebrow reveal">La méthode</div>
+      <h2 id="methode-title" class="reveal delay-1">Pourquoi un seul expert<br />va plus vite qu'<em>une agence</em></h2>
+      <p class="reveal delay-2">La plupart des agences ajoutent des étapes pour paraître sérieuses : chef de projet, comptes-rendus, validations en cascade. Chez AlcalSpark, ces couches n'existent pas.</p>
+    </div>
+
+    <div class="methode-grid">
+
+      <article class="methode-point methode-point--lead card reveal delay-2">
+        <span class="methode-point-num" aria-hidden="true">01</span>
+        <h3>Zéro dilution</h3>
+        <p>La personne qui comprend votre besoin est la même qui conçoit et code votre projet. Rien ne se perd dans la traduction entre plusieurs interlocuteurs.</p>
+      </article>
+
+      <div class="methode-secondary">
+        <article class="methode-point reveal delay-3">
+          <span class="methode-point-num" aria-hidden="true">02</span>
+          <h4>L'IA comme accélérateur, pas comme argument</h4>
+          <p>Claude Code et l'automatisation permettent de livrer en 2 à 3 semaines ce qu'une agence classique livre en 2 à 3 mois, sans sacrifier la qualité.</p>
+        </article>
+        <article class="methode-point reveal delay-4">
+          <span class="methode-point-num" aria-hidden="true">03</span>
+          <h4>Sélectivité réelle</h4>
+          <p>Un seul projet à la fois, par contrainte de capacité assumée, pas par posture marketing.</p>
+        </article>
       </div>
-      <div class="services-intro-right reveal delay-2">
-        <p>De la conception à la mise en ligne, nous accompagnons chaque projet avec expertise et passion.</p>
-      </div>
-    </div>
 
-    <div class="svc-cards">
-
-      <article class="svc-card reveal">
-        <div class="svc-visual" aria-hidden="true">
-          <div class="mock-browser">
-            <div class="mb-bar"><span></span><span></span><span></span></div>
-            <div class="mb-nav"><span class="mb-logo"></span><span class="mb-links"></span></div>
-            <div class="mb-hero"><span class="mb-title"></span><span class="mb-sub"></span></div>
-            <div class="mb-row"><span></span><span></span></div>
-          </div>
-        </div>
-        <div class="svc-card-head">
-          <h3>Création Web</h3>
-          <span class="svc-card-num" aria-hidden="true">01</span>
-        </div>
-        <p>Sites vitrine, e-commerce et applications web sur mesure, optimisés pour les performances et l'expérience utilisateur.</p>
-        <a href="services/creation-web.html" class="svc-card-link" aria-label="En savoir plus sur la Création Web">En savoir plus</a>
-      </article>
-
-      <article class="svc-card reveal delay-1">
-        <div class="svc-visual" aria-hidden="true">
-          <div class="mock-design">
-            <div class="md-swatches">
-              <span class="md-sw md-sw--1"></span><span class="md-sw md-sw--2"></span><span class="md-sw md-sw--3"></span><span class="md-sw md-sw--4"></span>
-            </div>
-            <div class="md-type"><span class="md-aa">Aa</span><span class="md-lines"><span></span><span></span></span></div>
-            <div class="md-grid"><span></span><span></span><span></span><span></span><span></span><span></span></div>
-          </div>
-        </div>
-        <div class="svc-card-head">
-          <h3>Design UI/UX</h3>
-          <span class="svc-card-num" aria-hidden="true">02</span>
-        </div>
-        <p>Interfaces élégantes et intuitives qui enchantent vos utilisateurs et renforcent votre image de marque premium.</p>
-        <a href="services/design-ui-ux.html" class="svc-card-link" aria-label="En savoir plus sur le Design UI/UX">En savoir plus</a>
-      </article>
-
-      <article class="svc-card reveal delay-2">
-        <div class="svc-visual" aria-hidden="true">
-          <div class="mock-dash">
-            <div class="mdash-head"><span class="mdash-kpi">-50%</span><span class="mdash-lbl"></span></div>
-            <div class="mdash-bars">
-              <span style="height:34%"></span><span style="height:52%"></span><span style="height:41%"></span><span style="height:68%"></span><span style="height:57%"></span><span style="height:82%"></span><span style="height:74%"></span>
-            </div>
-            <div class="mdash-rows"><span></span><span></span></div>
-          </div>
-        </div>
-        <div class="svc-card-head">
-          <h3>Applications SaaS &amp; Web App</h3>
-          <span class="svc-card-num" aria-hidden="true">03</span>
-        </div>
-        <p>Tableaux de bord, outils métier et plateformes SaaS sur mesure, de l'idée au produit fonctionnel, avec une UX soignée dès le MVP.</p>
-        <a href="services/applications-saas.html" class="svc-card-link" aria-label="En savoir plus sur les Applications SaaS">En savoir plus</a>
-      </article>
-
-    </div>
-
-    <div class="services-cta reveal">
-      <a href="services.html" class="svc-all-link">Voir tous nos services<span class="svc-all-arrow" aria-hidden="true">→</span></a>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════
-  PHILOSOPHIE
-══════════════════════════════════════ -->
-<section class="philosophy-section" aria-label="Notre philosophie">
-  <div class="philosophy-grid">
-    <div class="phil-item reveal">
-      <span class="phil-symbol" aria-hidden="true">◈</span>
-      <h3>Obsession du détail</h3>
-      <p>Chaque projet est traité avec une précision chirurgicale, du premier pixel au dernier commit. Rien n'est laissé au hasard.</p>
-    </div>
-    <div class="phil-item reveal delay-2">
-      <span class="phil-symbol" aria-hidden="true">✦</span>
-      <h3>Design qui convertit</h3>
-      <p>L'esthétique au service de la performance. Beau et efficace, pas l'un ou l'autre, les deux ensemble, sans compromis.</p>
-    </div>
-    <div class="phil-item reveal delay-4">
-      <span class="phil-symbol" aria-hidden="true">◎</span>
-      <h3>Engagement total</h3>
-      <p>Un seul projet à la fois. Votre projet mérite une attention entière, pas partagée. C'est ce que vous obtenez avec AlcalSpark.</p>
     </div>
   </div>
 </section>
@@ -532,7 +551,7 @@
     <div>
       <div class="eyebrow reveal">Nos réalisations</div>
       <h2 id="portfolio-title" class="reveal delay-1">Des projets qui<br /><em>parlent d'eux-mêmes</em></h2>
-      <p class="portfolio-disclaimer reveal delay-2">Projets de démonstration réalisés pour illustrer notre savoir-faire technique et créatif.</p>
+      <p class="portfolio-disclaimer reveal delay-2">Ces projets sont des démonstrations techniques complètes, pensées et réalisées de bout en bout pour prouver un savoir-faire, pas des clients anonymisés maquillés en projets réels. <em>La transparence, ça commence ici.</em></p>
     </div>
     <a href="portfolio.html" class="btn btn-outline reveal delay-3">Voir tout</a>
   </div>
@@ -671,59 +690,77 @@
 </section>
 
 <!-- ══════════════════════════════════════
-  PROCESSUS
+  DISPONIBILITÉ ET CAPACITÉ
 ══════════════════════════════════════ -->
-<section class="process-section" aria-labelledby="process-title">
-  <div class="process-intro">
-    <div class="eyebrow">Notre approche</div>
-    <h2 id="process-title">Un processus <em>éprouvé</em></h2>
+<section class="disponibilite-section" aria-labelledby="dispo-title">
+  <div class="container">
+    <div class="dispo-inner reveal">
+      <span class="dispo-dot" aria-hidden="true"></span>
+      <div class="dispo-copy">
+        <h2 id="dispo-title">Disponibilité actuelle</h2>
+        <p>Un projet à la fois, c'est une contrainte réelle, pas un argument de vente. <span id="dispo-slot"></span> Réservez le vôtre avant qu'il ne soit pris.</p>
+      </div>
+    </div>
   </div>
+</section>
 
-  <div class="proc-cards">
+<!-- ══════════════════════════════════════
+  FAQ — OBJECTIONS
+══════════════════════════════════════ -->
+<section class="section faq-section" id="faq" aria-labelledby="faq-title">
+  <div class="container">
+    <div class="section-header text-center">
+      <div class="eyebrow reveal">Questions fréquentes</div>
+      <h2 id="faq-title" class="reveal delay-1">Ce que vous vous demandez<br /><em>avant de nous contacter</em></h2>
+    </div>
 
-    <article class="proc-card reveal">
-      <span class="proc-ghost" aria-hidden="true">01</span>
-      <div class="proc-icon" aria-hidden="true">
-        <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="9.5" cy="9.5" r="6" stroke="currentColor" stroke-width="1.5"/><path d="M14 14l4.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    <div class="faq-group">
+      <h3 class="faq-group-title reveal">Pour les artisans et commerçants</h3>
+      <div class="faq-list">
+        <div class="faq-item reveal delay-1">
+          <button class="faq-question" aria-expanded="false">
+            <span>Est-ce que je m'engage sur plusieurs années comme certaines offres que j'ai déjà reçues ?</span>
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer" hidden>
+            <p>Non. Chaque devis est détaillé et sans engagement caché. Pas de reconduction automatique dissimulée dans les petites lignes.</p>
+          </div>
+        </div>
+        <div class="faq-item reveal delay-2">
+          <button class="faq-question" aria-expanded="false">
+            <span>Comment être sûr que le site sera vraiment visible sur Google ?</span>
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer" hidden>
+            <p>Aucune agence sérieuse, nous y compris, ne peut garantir une position sur Google. Ce qu'on peut garantir : une structure technique propre (sitemap, données structurées, temps de chargement) dès le premier jour, condition nécessaire pour être visible.</p>
+          </div>
+        </div>
       </div>
-      <div class="proc-body">
-        <h4>Découverte</h4>
-        <p>Nous plongeons dans votre univers, vos objectifs et votre audience pour poser des bases solides.</p>
-      </div>
-    </article>
+    </div>
 
-    <article class="proc-card reveal">
-      <span class="proc-ghost" aria-hidden="true">02</span>
-      <div class="proc-icon" aria-hidden="true">
-        <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M3 17V5.5a1.5 1.5 0 011.5-1.5h4L11 6.5h6.5A1.5 1.5 0 0119 8v9a1.5 1.5 0 01-1.5 1.5h-13A1.5 1.5 0 013 17z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M7 12.5h8M7 15h5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+    <div class="faq-group">
+      <h3 class="faq-group-title reveal">Pour les entreprises en croissance</h3>
+      <div class="faq-list">
+        <div class="faq-item reveal delay-1">
+          <button class="faq-question" aria-expanded="false">
+            <span>Une seule personne peut-elle vraiment gérer un projet stratégique ?</span>
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer" hidden>
+            <p>C'est précisément la question à se poser avec n'importe quel prestataire, agence ou solo. La différence ici : vous parlez directement à la personne qui exécute, pas à un commercial qui transmettra votre besoin à quelqu'un d'autre. Le portfolio et un premier échange permettent de juger la compétence technique avant de vous engager.</p>
+          </div>
+        </div>
+        <div class="faq-item reveal delay-2">
+          <button class="faq-question" aria-expanded="false">
+            <span>Que se passe-t-il si le projet grossit plus vite que prévu ?</span>
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer" hidden>
+            <p>La sélectivité (un projet à la fois) existe justement pour garantir que la capacité suit l'engagement pris. Si un projet dépasse le cadre initial, on en discute avant, pas après.</p>
+          </div>
+        </div>
       </div>
-      <div class="proc-body">
-        <h4>Stratégie</h4>
-        <p>Conception d'une feuille de route claire, alignée sur vos ambitions et votre budget.</p>
-      </div>
-    </article>
-
-    <article class="proc-card reveal">
-      <span class="proc-ghost" aria-hidden="true">03</span>
-      <div class="proc-icon" aria-hidden="true">
-        <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M14.5 3.5l4 4L7 19H3v-4L14.5 3.5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M12 6l4 4" stroke="currentColor" stroke-width="1.3"/></svg>
-      </div>
-      <div class="proc-body">
-        <h4>Création</h4>
-        <p>Design et développement avec une attention obsessionnelle aux détails et à la qualité.</p>
-      </div>
-    </article>
-
-    <article class="proc-card reveal">
-      <span class="proc-ghost" aria-hidden="true">04</span>
-      <div class="proc-icon" aria-hidden="true">
-        <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 18.5V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M6.5 13.5L11 9l4.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 4h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-      </div>
-      <div class="proc-body">
-        <h4>Lancement</h4>
-        <p>Mise en ligne soignée, tests rigoureux et suivi post-lancement pour un démarrage optimal.</p>
-      </div>
-    </article>
+    </div>
 
   </div>
 </section>
@@ -734,12 +771,12 @@
 <section class="cta-section section" aria-labelledby="cta-title">
   <div class="container">
     <h2 id="cta-title" class="reveal">Un projet en tête ? Parlons-en.</h2>
-    <p class="reveal delay-1">30 minutes, un échange sans engagement. On vous dit franchement si on peut vous aider, et comment.</p>
+    <p class="reveal delay-1">30 minutes, un échange sans engagement. Une réponse franche : si on peut vous aider, et comment. Si ce n'est pas le cas, vous repartez avec au moins une piste.</p>
     <div class="cta-actions reveal delay-2">
       <a href="contact.html" class="btn btn-outline">Prendre rendez-vous</a>
       <a href="portfolio.html" class="btn btn-outline">Voir nos projets</a>
     </div>
-    <p class="cta-trust reveal delay-3">Réponse sous 24h · Un projet à la fois · Livraison 2-3 semaines</p>
+    <p class="cta-trust reveal delay-3">Réponse sous 24h · Un projet à la fois · Livraison 2 à 3 semaines</p>
   </div>
 </section>
 
@@ -843,5 +880,8 @@
 <script src="js/blob-hero.js" defer></script>
 <script src="js/diag-blobs.js" defer></script>
 <script src="js/diagnostic.js" defer></script>
+<script src="js/segmentation.js" defer></script>
+<script src="js/faq.js" defer></script>
+<script src="js/availability-config.js" defer></script>
 </body>
 </html>

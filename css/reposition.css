@@ -193,14 +193,14 @@
   gap: 0.6rem;
   flex: 1 1 0;
   min-width: 160px;
-  padding-right: 1.5rem;
+  padding-right: 2.25rem;
   position: relative;
 }
 .ms-step:not(:last-child)::after {
   content: '→';
   position: absolute;
-  top: 0;
-  right: -0.15rem;
+  top: 0.05rem;
+  right: 0.85rem;
   font-family: var(--font-display);
   font-size: 1.1rem;
   color: rgba(90, 138, 110, 0.5);

@@ -84,12 +84,36 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
         />
+        {/* Menu mobile : bascule CSS pure (case a cocher), sans JS, pour
+            ne pas dependre de l'hydratation React. La case et le nav
+            vivent HORS du <header> : le header a un backdrop-filter, qui
+            cree un nouveau containing block pour tout descendant en
+            position:fixed (le nav se retrouverait alors coince dans les
+            64px du header au lieu de couvrir l'ecran). Le combinateur ~
+            fonctionne quand meme, la case et le nav restent freres
+            directs de <body>. */}
+        <input
+          type="checkbox"
+          id="blog-nav-toggle"
+          className="blog-nav-toggle-input"
+          aria-hidden="true"
+        />
         <header className="blog-header">
           <div className="blog-header-inner">
             <a href="/" className="blog-logo" aria-label="AlcalSpark, Accueil">
               Alcal<em>Spark</em>
             </a>
-            <nav className="blog-nav">
+            <label
+              htmlFor="blog-nav-toggle"
+              className="blog-nav-toggle-label"
+              role="button"
+              aria-label="Ouvrir le menu"
+            >
+              <span></span>
+              <span></span>
+              <span></span>
+            </label>
+            <nav className="blog-nav blog-nav-desktop">
               <a href="/">Accueil</a>
               <a href="/services.html">Services</a>
               <a href="/portfolio.html">Portfolio</a>
@@ -102,6 +126,17 @@ export default function RootLayout({
             </nav>
           </div>
         </header>
+        <nav className="blog-nav blog-nav-mobile">
+          <a href="/">Accueil</a>
+          <a href="/services.html">Services</a>
+          <a href="/portfolio.html">Portfolio</a>
+          <a href="/blog/" aria-current="page">
+            Blog
+          </a>
+          <a href="/contact.html" className="blog-nav-cta">
+            Nous contacter
+          </a>
+        </nav>
         <main>{children}</main>
         <footer className="blog-footer">
           <div className="blog-footer-inner">

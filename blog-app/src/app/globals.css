@@ -53,6 +53,7 @@ a {
 }
 
 .blog-header-inner {
+  position: relative;
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1.5rem;
@@ -60,6 +61,46 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+/* ---- Burger mobile (case a cocher masquee + label = bouton) ---- */
+.blog-nav-toggle-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  overflow: hidden;
+}
+
+.blog-nav-toggle-label {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  z-index: 101;
+}
+.blog-nav-toggle-label span {
+  display: block;
+  width: 100%;
+  height: 1.5px;
+  background: var(--text);
+  transition: transform 0.35s ease, opacity 0.25s ease;
+}
+/* Le label vit dans le header (pour l'alignement flex avec le logo),
+   la case est hors du header (pour que le nav mobile en position:fixed
+   echappe au containing block cree par le backdrop-filter du header).
+   Ils ne sont donc plus freres directs : :has() remplace ~ ici. */
+body:has(#blog-nav-toggle:checked) .blog-nav-toggle-label span:nth-child(1) {
+  transform: translateY(6.5px) rotate(45deg);
+}
+body:has(#blog-nav-toggle:checked) .blog-nav-toggle-label span:nth-child(2) {
+  opacity: 0;
+}
+body:has(#blog-nav-toggle:checked) .blog-nav-toggle-label span:nth-child(3) {
+  transform: translateY(-6.5px) rotate(-45deg);
 }
 
 .blog-logo {
@@ -81,6 +122,13 @@ a {
   font-weight: 500;
   letter-spacing: 0.04em;
   text-transform: uppercase;
+}
+
+/* Deux navs distincts (desktop en flux normal, mobile en overlay) :
+   duplication volontaire, voir le commentaire dans layout.tsx. Un
+   seul des deux est visible/accessible a la fois selon la largeur. */
+.blog-nav-mobile {
+  display: none;
 }
 
 .blog-nav a {
@@ -468,8 +516,44 @@ a {
 
 /* ---- Responsive ---- */
 @media (max-width: 768px) {
-  .blog-nav {
+  .blog-nav-toggle-label {
+    display: flex;
+  }
+
+  .blog-nav-desktop {
     display: none;
+  }
+
+  .blog-nav-mobile {
+    display: flex;
+    position: fixed;
+    inset: 64px 0 0 0;
+    z-index: 100;
+    background: var(--bg);
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 1.75rem;
+    padding: 2.5rem 1.5rem;
+    font-size: 1.4rem;
+    text-transform: none;
+    letter-spacing: normal;
+    transform: translateY(-8px);
+    opacity: 0;
+    visibility: hidden;
+    transition: transform 0.3s ease, opacity 0.25s ease, visibility 0s linear 0.3s;
+    overflow-y: auto;
+  }
+
+  .blog-nav-toggle-input:checked ~ .blog-nav-mobile {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+    transition: transform 0.3s ease, opacity 0.25s ease, visibility 0s linear 0s;
+  }
+
+  .blog-nav-mobile .blog-nav-cta {
+    align-self: flex-start;
   }
 
   .blog-grid {

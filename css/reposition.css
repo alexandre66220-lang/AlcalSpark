@@ -1,0 +1,330 @@
+/* ============================================================
+   AlcalSpark — Repositionnement stratégique (accueil uniquement)
+   Bandeau de preuve, Segmentation, Contact direct, La méthode,
+   Disponibilité, FAQ objections.
+   Charge après home.css / diagnostic.css / glass.css.
+   Palette stricte : #0A0D0B / #385144 / #F8F5F2 / blanc, sans doré.
+   Animations : transitions CSS légères uniquement (pas de 3D ici,
+   réservé au hero et au portfolio).
+   ============================================================ */
+
+/* ── Preuve immédiate — chiffres massifs ─────────────────────── */
+.proof-section {
+  padding: clamp(3.5rem, 7vw, 6rem) 0;
+  border-top: 1px solid rgba(248, 245, 242, 0.07);
+  border-bottom: 1px solid rgba(248, 245, 242, 0.07);
+}
+
+.proof-intro {
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: rgba(248, 245, 242, 0.62);
+  text-align: center;
+  margin-bottom: 2.75rem;
+}
+
+.proof-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.proof-item {
+  text-align: center;
+  padding: 0 0.75rem;
+}
+.proof-item + .proof-item {
+  border-left: 1px solid rgba(248, 245, 242, 0.08);
+}
+
+.proof-num {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-style: italic;
+  font-size: clamp(2.4rem, 4.4vw, 3.6rem);
+  line-height: 1;
+  color: #F8F5F2;
+  margin-bottom: 0.6rem;
+}
+
+.proof-label {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  color: rgba(248, 245, 242, 0.55);
+  line-height: 1.5;
+}
+
+@media (max-width: 900px) {
+  .proof-grid { grid-template-columns: repeat(2, 1fr); gap: 2.25rem 1.25rem; }
+  .proof-item:nth-child(2) { border-left: 1px solid rgba(248, 245, 242, 0.08); }
+  .proof-item:nth-child(3) { border-left: none; }
+  .proof-item:nth-child(odd) { border-left: none; }
+}
+@media (max-width: 520px) {
+  .proof-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .proof-item { border-left: none !important; padding-top: 1.75rem; border-top: 1px solid rgba(248, 245, 242, 0.08); }
+  .proof-item:first-child { border-top: none; padding-top: 0; }
+}
+
+/* ── Segmentation — "Vous êtes..." ────────────────────────────── */
+.segmentation-section { padding: var(--section-py) 0; }
+
+.segmentation-intro { max-width: 660px; margin: 0 auto 3.5rem; text-align: center; }
+.segmentation-intro .eyebrow { justify-content: center; }
+.segmentation-intro > p { margin: 0 auto; color: var(--muted); }
+
+.segment-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  align-items: stretch;
+}
+
+/* Poids visuel strictement identique : même padding, même taille de
+   texte, aucune carte "featured" — voir tâche 3. */
+.segment-card {
+  padding: 2.5rem 2.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.segment-card h3 {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 2vw, 1.75rem);
+  font-weight: 400;
+  color: #F8F5F2;
+}
+
+.segment-card p {
+  font-size: 0.92rem;
+  color: rgba(248, 245, 242, 0.62);
+  line-height: 1.7;
+  flex: 1;
+}
+
+.segment-card .btn { align-self: flex-start; }
+
+@media (max-width: 800px) {
+  .segment-grid { grid-template-columns: 1fr; }
+}
+
+/* ── 4b. Contact direct ──────────────────────────────────────── */
+.contact-direct-section { padding: var(--section-py) 0; }
+
+.contact-direct-card {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 3rem clamp(1.75rem, 5vw, 3.5rem);
+  text-align: center;
+}
+.contact-direct-card .eyebrow { justify-content: center; }
+.contact-direct-card h2 { margin-bottom: 1.1rem; }
+.contact-direct-card > p {
+  margin: 0 auto 2rem;
+  max-width: 56ch;
+  color: rgba(248, 245, 242, 0.62);
+}
+
+.contact-direct-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.whatsapp-inline-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: rgba(248, 245, 242, 0.75);
+  border-bottom: 1px solid rgba(248, 245, 242, 0.25);
+  padding-bottom: 0.15rem;
+  transition: color 0.25s ease, border-color 0.25s ease;
+}
+.whatsapp-inline-link svg { width: 18px; height: 18px; flex-shrink: 0; }
+.whatsapp-inline-link:hover { color: var(--green-bright); border-color: var(--green-bright); }
+
+/* ── Diagnostic : indicateur de progression visible ──────────── */
+.diag-step-indicator {
+  text-align: center;
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: rgba(248, 245, 242, 0.85);
+  margin: -1.5rem auto 2rem;
+  min-height: 1.2em;
+  transition: opacity 0.3s ease;
+}
+.diag-step-indicator:empty { opacity: 0; }
+
+/* ── La méthode — composition asymétrique ────────────────────── */
+.methode-section { padding: var(--section-py) 0; }
+
+.methode-intro { max-width: 720px; margin-bottom: 3.5rem; }
+.methode-intro h2 { margin-bottom: 1.25rem; }
+.methode-intro > p { color: var(--muted); }
+
+.methode-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+.methode-point-num {
+  display: block;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 300;
+  font-size: 1.6rem;
+  color: rgba(90, 138, 110, 0.55);
+  margin-bottom: 0.85rem;
+}
+
+/* Point 1 : mis en avant, carte verre pleine, typographie large */
+.methode-point--lead {
+  padding: 2.75rem 2.5rem;
+}
+.methode-point--lead .methode-point-num { font-size: 2rem; }
+.methode-point--lead h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-style: italic;
+  font-size: clamp(2rem, 3.2vw, 2.9rem);
+  color: #F8F5F2;
+  margin-bottom: 1rem;
+}
+.methode-point--lead p {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: rgba(248, 245, 242, 0.68);
+  max-width: 46ch;
+}
+
+/* Points 2 et 3 : traitement discret, sans carte, séparés par un
+   simple trait fin (même principe que les colonnes du footer). */
+.methode-secondary {
+  display: flex;
+  flex-direction: column;
+}
+.methode-secondary .methode-point {
+  padding: 1.75rem 0;
+}
+.methode-secondary .methode-point + .methode-point {
+  border-top: 1px solid rgba(248, 245, 242, 0.1);
+}
+.methode-secondary h4 {
+  font-family: var(--font-ui);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: none;
+  color: #F8F5F2;
+  margin-bottom: 0.6rem;
+  line-height: 1.3;
+}
+.methode-secondary p {
+  font-size: 0.85rem;
+  line-height: 1.65;
+  color: rgba(248, 245, 242, 0.58);
+}
+
+@media (max-width: 900px) {
+  .methode-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Portfolio : ligne de transparence en emphase réelle ─────── */
+.portfolio-teaser .portfolio-disclaimer {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(1.15rem, 1.9vw, 1.5rem);
+  line-height: 1.5;
+  color: rgba(248, 245, 242, 0.82);
+  max-width: 62ch;
+  margin: 0.75rem 0 0;
+}
+
+/* ── Disponibilité — indicateur de statut discret ────────────── */
+.disponibilite-section { padding: clamp(3rem, 6vw, 5rem) 0; }
+
+.dispo-inner {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.1rem;
+  max-width: 720px;
+}
+
+.dispo-dot {
+  flex-shrink: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--green-bright);
+  margin-top: 0.5rem;
+  box-shadow: 0 0 0 0 rgba(90, 138, 110, 0.55);
+  animation: dispo-pulse 2.6s ease-out infinite;
+}
+@keyframes dispo-pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(90, 138, 110, 0.55); }
+  70%  { box-shadow: 0 0 0 10px rgba(90, 138, 110, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(90, 138, 110, 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dispo-dot { animation: none; }
+}
+
+.dispo-copy h2 {
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(248, 245, 242, 0.85);
+  margin-bottom: 0.6rem;
+}
+.dispo-copy p {
+  font-size: 0.88rem;
+  line-height: 1.7;
+  color: rgba(248, 245, 242, 0.55);
+  max-width: 58ch;
+}
+#dispo-slot { color: rgba(248, 245, 242, 0.85); font-weight: 500; }
+
+/* ── FAQ objections — groupes par persona ────────────────────── */
+.faq-group + .faq-group { margin-top: 3rem; }
+
+.faq-group-title {
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--green-bright);
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+/* ── Responsive & animation budget ────────────────────────────
+   Les sections ci-dessus n'utilisent que .reveal (fade + léger
+   déplacement, déjà défini dans style.css / glass.css) : aucune
+   animation 3D ou lourde n'est ajoutée ici. */
+@media (max-width: 767px) {
+  .segment-card,
+  .contact-direct-card,
+  .methode-point--lead {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}

@@ -296,6 +296,15 @@
     }, 400);
   }
 
+  /* ── Indicateur visible "Axe X sur 3" (au-delà du compteur discret) */
+  var stepIndicator = document.getElementById('diag-step-indicator');
+  function updateStepIndicator(openAxisId) {
+    if (!stepIndicator) return;
+    if (!openAxisId) { stepIndicator.textContent = ''; return; }
+    var position = AXIS_ORDER.indexOf(openAxisId) + 1;
+    stepIndicator.textContent = 'Axe ' + position + ' sur ' + AXIS_ORDER.length + ' · ' + AXIS_META[openAxisId].label;
+  }
+
   /* ── Ouverture / fermeture des cartes-axes ─────────────────── */
   axesRoot.querySelectorAll('.diag-axis').forEach(function (axisEl) {
     var toggle = axisEl.querySelector('.diag-axis-toggle');
@@ -306,6 +315,7 @@
       var isOpen = axisEl.classList.toggle('is-open');
       toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
       body.hidden = !isOpen;
+      updateStepIndicator(isOpen ? axisId : null);
 
       if (isOpen && !axisEl.dataset.started) {
         axisEl.dataset.started = '1';

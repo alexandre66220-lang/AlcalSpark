@@ -10,13 +10,15 @@
 .about-hero .ph-bg {
   background: radial-gradient(ellipse 60% 80% at 10% 50%, rgba(38, 58, 48, 0.2) 0%, transparent 60%);
 }
-/* Text block: left-aligned, occupies left ~55% — sphere lives in the right 45% */
+/* Bloc de texte centré sur toute la largeur (pas de visuel en colonne droite) */
 .about-hero .ph-content {
-  width: 55%;
-  max-width: 700px;
-  margin-left: 0;
-  margin-right: auto;
-  text-align: left;
+  width: 100%;
+  max-width: 780px;
+  margin: 0 auto;
+  text-align: center;
+}
+.about-hero .eyebrow {
+  justify-content: center;
 }
 .about-hero .ph-content h1 {
   font-size: clamp(3rem, 7vw, 6.5rem);
@@ -24,6 +26,8 @@
 }
 .about-hero .ph-desc {
   max-width: 48ch;
+  margin-left: auto;
+  margin-right: auto;
 }
 .about-hero .ph-content h1.ph-title-long {
   font-size: clamp(2rem, 4vw, 3.4rem);

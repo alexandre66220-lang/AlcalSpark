@@ -25,6 +25,10 @@
 .about-hero .ph-desc {
   max-width: 48ch;
 }
+.about-hero .ph-content h1.ph-title-long {
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  line-height: 1.28;
+}
 @media (max-width: 860px) {
   .about-hero .ph-content {
     width: 100%;
@@ -259,6 +263,61 @@ blockquote {
   color: rgba(248, 245, 242, 0.72);
 }
 
+/* ── Disciplines réunies — sobre, sans icônes colorées ───────── */
+.disciplines-section { background: transparent; }
+.disciplines-intro {
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: rgba(248, 245, 242, 0.72);
+}
+.disciplines-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2.5rem 2rem;
+}
+.discipline-item {
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(56, 81, 68, 0.18);
+}
+.discipline-item h4 {
+  font-family: var(--font-ui);
+  font-size: 0.84rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--off-white);
+  margin-bottom: 0.6rem;
+}
+.discipline-item p {
+  font-size: 0.85rem;
+  line-height: 1.65;
+  color: rgba(248, 245, 242, 0.6);
+}
+
+/* ── Ce que vous évitez — sobre, centré ──────────────────────── */
+.evitez-section { padding: var(--section-py) 0; }
+.evitez-inner { max-width: 680px; margin: 0 auto; text-align: center; }
+.evitez-inner h2 { margin-bottom: 2.25rem; }
+.evitez-body p {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.85;
+  color: rgba(248, 245, 242, 0.62);
+  margin: 0 0 1.1rem;
+}
+.evitez-body p:last-child { margin-bottom: 0; }
+.evitez-body p.evitez-punch {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(1.25rem, 2vw, 1.6rem);
+  color: #F8F5F2;
+  line-height: 1.5;
+  margin-top: 1.75rem;
+}
+
 /* ── Stats ──────────────────────────────────────────────────── */
 .section-stats {
   padding: 0;
@@ -352,6 +411,7 @@ blockquote {
   .solo-visual  { flex-direction: row; flex-wrap: wrap; justify-content: center; }
   .about-story-grid { grid-template-columns: 1fr; gap: 40px; }
   .pourquoi-grid { grid-template-columns: 1fr; }
+  .disciplines-grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 768px) {
   .manifesto-layout { grid-template-columns: 1fr; gap: 50px; }
@@ -365,4 +425,5 @@ blockquote {
 }
 @media (max-width: 480px) {
   .values-grid { grid-template-columns: 1fr; }
+  .disciplines-grid { grid-template-columns: 1fr; }
 }

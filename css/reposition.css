@@ -76,8 +76,6 @@
 .raison-inner { max-width: 620px; margin: 0 auto; text-align: center; }
 .raison-inner h2 { margin-bottom: 2.5rem; }
 
-.raison-body { text-align: left; }
-
 .raison-body p {
   font-family: var(--font-body);
   font-size: 1.02rem;

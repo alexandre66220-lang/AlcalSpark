@@ -73,8 +73,10 @@
 /* ── Pourquoi AlcalSpark existe — sobre, centré, sans icônes ─── */
 .raison-section { padding: var(--section-py) 0; }
 
-.raison-inner { max-width: 680px; margin: 0 auto; text-align: center; }
+.raison-inner { max-width: 620px; margin: 0 auto; text-align: center; }
 .raison-inner h2 { margin-bottom: 2.5rem; }
+
+.raison-body { text-align: left; }
 
 .raison-body p {
   font-family: var(--font-body);

@@ -309,7 +309,7 @@ blockquote {
   font-size: 1rem;
   line-height: 1.85;
   color: rgba(248, 245, 242, 0.62);
-  margin: 0 0 1.1rem;
+  margin: 0 auto 1.1rem;
 }
 .evitez-body p:last-child { margin-bottom: 0; }
 .evitez-body p.evitez-punch {

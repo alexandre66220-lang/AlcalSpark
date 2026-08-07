@@ -79,6 +79,18 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fr" className={`${cormorant.variable} ${raleway.variable}`}>
+      <head>
+        {/* Google tag (gtag.js) */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-GH6PR00V1L" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-GH6PR00V1L');`,
+          }}
+        />
+      </head>
       <body>
         <script
           type="application/ld+json"

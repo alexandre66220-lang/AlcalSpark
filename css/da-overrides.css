@@ -208,9 +208,9 @@ p { font-family: var(--font-body); font-weight: 300; }
 }
 
 .hero-title {
-  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-family: var(--font-ui) !important;
   font-weight: 300 !important;
-  font-style: italic !important;
+  font-style: normal !important;
   color: #F8F5F2 !important;
 }
 

@@ -10,7 +10,8 @@
     btn.addEventListener('click', function () {
       if (typeof window.gtag !== 'function') return;
       window.gtag('event', 'segment_click', {
-        segment: btn.dataset.segment
+        segment: btn.dataset.segment,
+        event_category: 'Segmentation'
       });
     });
   });

@@ -152,14 +152,14 @@ export default async function ArticlePage({
 
       <section className="article-cta">
         <div className="article-cta-inner">
-          <h2>Votre projet merite un site a la hauteur</h2>
+          <h2>Vous avez un problème à résoudre, pas forcément un site à commander.</h2>
           <p>
-            AlcalSpark cree des sites web sur mesure pour les entreprises
-            ambitieuses du Tarn et d&apos;Occitanie. Un projet a la fois,
-            100% personalise.
+            Commençons par comprendre votre situation. Si une solution digitale
+            est le bon levier, on la conçoit et on la réalise. Sinon, on vous le
+            dit clairement.
           </p>
           <a href="/contact.html" className="article-cta-btn">
-            Demarrer mon projet <span aria-hidden="true">&#8594;</span>
+            Prendre 30 minutes pour en parler <span aria-hidden="true">&#8594;</span>
           </a>
         </div>
       </section>

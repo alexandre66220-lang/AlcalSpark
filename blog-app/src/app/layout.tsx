@@ -19,11 +19,11 @@ const raleway = Raleway({
 export const metadata: Metadata = {
   metadataBase: new URL("https://alcalspark.com"),
   title: {
-    default: "Blog - AlcalSpark | Studio web premium",
+    default: "Blog - AlcalSpark | Studio stratégique",
     template: "%s | AlcalSpark Blog",
   },
   description:
-    "Conseils, strategies digitales et expertises web par AlcalSpark, studio de creation web premium base a Mazamet.",
+    "Conseils, strategies digitales et expertises web par AlcalSpark, studio stratégique base a Mazamet.",
   openGraph: {
     siteName: "AlcalSpark Blog",
     locale: "fr_FR",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
         url: "/assets/og-cover.jpg",
         width: 1200,
         height: 630,
-        alt: "AlcalSpark, agence digitale premium à Castres dans le Tarn",
+        alt: "AlcalSpark, studio stratégique à Mazamet dans le Tarn",
       },
     ],
   },
@@ -48,7 +48,7 @@ const localBusinessJsonLd = {
   "@id": "https://alcalspark.com/#business",
   name: "AlcalSpark",
   description:
-    "Agence digitale à Castres (Tarn) : stratégie et conseil, création de sites, identité visuelle, performance et conversion, SaaS custom et automatisation pour PME et artisans d'Occitanie",
+    "Studio de croissance digitale à Mazamet (Tarn) : analyse stratégique, identification des leviers de croissance, puis conception et réalisation de systèmes digitaux (sites de conversion, SaaS, automatisation) pour PME et artisans d'Occitanie",
   url: "https://alcalspark.com",
   telephone: "+33663054481",
   email: "contact@alcalspark.com",
@@ -128,12 +128,15 @@ export default function RootLayout({
             <nav className="blog-nav blog-nav-desktop">
               <a href="/">Accueil</a>
               <a href="/services.html">Services</a>
+              <a href="/tarifs.html">Tarifs</a>
               <a href="/portfolio.html">Portfolio</a>
+              <a href="/about.html">À propos</a>
               <a href="/blog/" aria-current="page">
                 Blog
               </a>
+              <a href="/produits.html">Produits</a>
               <a href="/contact.html" className="blog-nav-cta">
-                Nous contacter
+                Démarrer un projet
               </a>
             </nav>
           </div>
@@ -141,19 +144,22 @@ export default function RootLayout({
         <nav className="blog-nav blog-nav-mobile">
           <a href="/">Accueil</a>
           <a href="/services.html">Services</a>
+          <a href="/tarifs.html">Tarifs</a>
           <a href="/portfolio.html">Portfolio</a>
+          <a href="/about.html">À propos</a>
           <a href="/blog/" aria-current="page">
             Blog
           </a>
+          <a href="/produits.html">Produits</a>
           <a href="/contact.html" className="blog-nav-cta">
-            Nous contacter
+            Démarrer un projet
           </a>
         </nav>
         <main>{children}</main>
         <footer className="blog-footer">
           <div className="blog-footer-inner">
             <p>
-              &copy; {new Date().getFullYear()} AlcalSpark. Studio web premium.
+              &copy; {new Date().getFullYear()} AlcalSpark. Studio stratégique.
             </p>
             <nav>
               <a href="/mentions-legales.html">Mentions legales</a>

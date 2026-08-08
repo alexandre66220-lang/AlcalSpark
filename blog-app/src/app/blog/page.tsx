@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Blog AlcalSpark - Creation web et SEO en Occitanie",
     description:
-      "Conseils en creation web, referencement local et strategie digitale par AlcalSpark, studio premium base a Mazamet.",
+      "Conseils en creation web, referencement local et strategie digitale par AlcalSpark, studio strategique base a Mazamet.",
     type: "website",
   },
 };

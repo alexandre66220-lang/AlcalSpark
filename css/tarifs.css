@@ -10,6 +10,43 @@
   background: radial-gradient(ellipse 80% 60% at 50% 20%, rgba(56, 81, 68, 0.06) 0%, transparent 70%);
 }
 
+/* ── Intro de section, centrée, sous le h2 ─────────────────────── */
+.tarifs-section-intro {
+  max-width: 640px;
+  margin: 0 auto 1.5rem;
+  text-align: center;
+}
+.tarifs-section-intro p {
+  margin: 0 auto;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.75;
+}
+
+/* ── Carte unique centrée (réalisation, accompagnement, formation) ── */
+.pricing-single {
+  max-width: 460px;
+  margin: 0 auto;
+}
+.pc-price-note {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin: -14px 0 24px;
+}
+
+/* ── Grille à deux cartes (analyse stratégique) ─────────────────── */
+.pricing-grid-2 { grid-template-columns: repeat(2, 1fr); }
+
+/* ── Note de transparence finale, sobre, sans carte ─────────────── */
+.tarifs-transparency-section { padding: var(--section-py) 0; }
+.tarifs-transparency-inner { max-width: 620px; margin: 0 auto; text-align: center; }
+.tarifs-transparency-inner p {
+  margin: 0 auto 2rem;
+  color: rgba(248, 245, 242, 0.62);
+  font-size: 1.02rem;
+  line-height: 1.85;
+}
+
 /* ── Autres prestations (cards compactes) ─────────────────────── */
 .misc-grid {
   display: grid;
@@ -100,6 +137,7 @@
 }
 @media (max-width: 700px) {
   .abo-grid { grid-template-columns: 1fr; }
+  .pricing-grid-2 { grid-template-columns: 1fr; }
 }
 @media (max-width: 560px) {
   .misc-grid { grid-template-columns: 1fr; }

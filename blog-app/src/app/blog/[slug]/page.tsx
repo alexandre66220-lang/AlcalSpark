@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { PortableText } from "@portabletext/react";
 import { getAllSlugs, getArticleBySlug } from "../../../../lib/queries";
+import { readingTime } from "../../../../lib/readingTime";
 import { notFound } from "next/navigation";
 
 const ARTICLE_IMAGES: Record<string, string> = {
@@ -57,6 +58,19 @@ const portableComponents = {
     normal: ({ children }: { children?: React.ReactNode }) => <p>{children}</p>,
     blockquote: ({ children }: { children?: React.ReactNode }) => (
       <blockquote>{children}</blockquote>
+    ),
+  },
+  marks: {
+    link: ({
+      children,
+      value,
+    }: {
+      children?: React.ReactNode;
+      value?: { href?: string };
+    }) => (
+      <a href={value?.href} target={value?.href?.startsWith("http") ? "_blank" : undefined} rel={value?.href?.startsWith("http") ? "noopener" : undefined}>
+        {children}
+      </a>
     ),
   },
 };
@@ -120,6 +134,7 @@ export default async function ArticlePage({
           <div className="article-hero-meta">
             <span className="article-cat">{article.categorie}</span>
             <span className="article-date">{formatDate(article.date)}</span>
+            <span className="article-reading">{readingTime(article.contenu)} min de lecture</span>
           </div>
           <h1 className="article-title">{article.titre}</h1>
           <p className="article-excerpt">{article.extrait}</p>

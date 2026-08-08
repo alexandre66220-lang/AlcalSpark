@@ -77,6 +77,16 @@ export const articleType = defineType({
               { title: "Gras", value: "strong" },
               { title: "Italique", value: "em" },
             ],
+            annotations: [
+              {
+                type: "object",
+                name: "link",
+                title: "Lien",
+                fields: [
+                  defineField({ name: "href", type: "string", title: "URL" }),
+                ],
+              },
+            ],
           },
         },
         {

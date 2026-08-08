@@ -31,7 +31,8 @@ export async function getAllArticles(): Promise<Article[]> {
       date,
       categorie,
       extrait,
-      imageCouverture
+      imageCouverture,
+      contenu
     }`
   );
 }

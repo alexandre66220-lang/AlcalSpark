@@ -309,6 +309,15 @@ body:has(#blog-nav-toggle:checked) .blog-nav-toggle-label span:nth-child(3) {
   color: var(--muted);
 }
 
+.blog-card-reading {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+.blog-card-reading::before {
+  content: '\00b7';
+  margin-right: 0.75rem;
+}
+
 .blog-card-title {
   font-family: var(--font-heading);
   font-size: 1.35rem;
@@ -367,6 +376,11 @@ body:has(#blog-nav-toggle:checked) .blog-nav-toggle-label span:nth-child(3) {
 }
 
 .article-date {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.article-reading {
   font-size: 0.85rem;
   color: var(--muted);
 }
@@ -434,6 +448,15 @@ body:has(#blog-nav-toggle:checked) .blog-nav-toggle-label span:nth-child(3) {
 
 .article-body em {
   font-style: italic;
+}
+
+.article-body a {
+  color: var(--gold);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.article-body a:hover {
+  color: var(--text);
 }
 
 .article-body blockquote {

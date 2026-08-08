@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import type { Article } from "../../../../lib/queries";
+import { readingTime } from "../../../../lib/readingTime";
 
 const ARTICLE_IMAGES: Record<string, string> = {
   "pourquoi-entreprise-castres-site-web-2026":
@@ -77,6 +78,7 @@ export function ArticleGrid({ articles }: { articles: Article[] }) {
               <div className="blog-card-meta">
                 <span className="blog-card-cat">{article.categorie}</span>
                 <span className="blog-card-date">{formatDate(article.date)}</span>
+                <span className="blog-card-reading">{readingTime(article.contenu)} min</span>
               </div>
               <h2 className="blog-card-title">{article.titre}</h2>
               <p className="blog-card-excerpt">{article.extrait}</p>

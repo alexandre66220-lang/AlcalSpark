@@ -824,6 +824,8 @@ p { max-width: 62ch; text-wrap: pretty; }
   font-size: clamp(.9rem, 1.2vw, 1.05rem);
   color: var(--c70);
   max-width: 54ch;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* Mention "projets de démonstration" (accueil + portfolio) */

@@ -634,18 +634,6 @@
   }
   .services-two-col .service-small-card:nth-child(2) { margin-top: 3rem; }
 
-  /* Tarifs — le plan featured domine la composition */
-  .pricing-grid {
-    grid-template-columns: 1fr 1.16fr 1fr !important;
-    align-items: start !important;
-  }
-  .pricing-grid .pricing-card:nth-child(1) { margin-top: 2rem; }
-  .pricing-grid .pricing-card:nth-child(3) { margin-top: 2rem; }
-
-  /* Tarifs — prestations complémentaires : rythme alterné */
-  .misc-grid { align-items: start !important; }
-  .misc-grid .misc-card:nth-child(even) { margin-top: 2rem; }
-
   /* À propos — cartes pourquoi : rythme alterné */
   .pourquoi-grid { align-items: start !important; }
   .pourquoi-grid .pourquoi-card:nth-child(even) { margin-top: 2.5rem; }

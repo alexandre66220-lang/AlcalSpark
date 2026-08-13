@@ -3,16 +3,16 @@ import { getAllArticles } from "../../../lib/queries";
 import { ArticleGrid } from "./components/ArticleGrid";
 
 export const metadata: Metadata = {
-  title: "Blog - Conseils creation web et SEO",
+  title: "Blog - Conseils création web et SEO",
   description:
-    "Articles et conseils sur la creation de sites web, le SEO local et la strategie digitale pour les entreprises du Tarn et d'Occitanie, par AlcalSpark.",
+    "Articles et conseils sur la création de sites web, le SEO local et la stratégie digitale pour les entreprises du Tarn et d'Occitanie, par AlcalSpark.",
   alternates: {
     canonical: "/blog/",
   },
   openGraph: {
-    title: "Blog AlcalSpark - Creation web et SEO en Occitanie",
+    title: "Blog AlcalSpark - Création web et SEO en Occitanie",
     description:
-      "Conseils en creation web, referencement local et strategie digitale par AlcalSpark, studio strategique base a Mazamet.",
+      "Conseils en création web, référencement local et stratégie digitale par AlcalSpark, studio stratégique basé à Mazamet.",
     type: "website",
   },
 };
@@ -27,7 +27,7 @@ export default async function BlogListPage() {
           Le <span>Blog</span> AlcalSpark
         </h1>
         <p>
-          Strategies digitales, creation web et SEO local pour les entreprises
+          Stratégies digitales, création web et SEO local pour les entreprises
           du Tarn et d&apos;Occitanie.
         </p>
       </section>

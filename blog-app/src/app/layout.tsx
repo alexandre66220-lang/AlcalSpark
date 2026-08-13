@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     template: "%s | AlcalSpark Blog",
   },
   description:
-    "Conseils, strategies digitales et expertises web par AlcalSpark, studio stratégique base a Mazamet.",
+    "Conseils, stratégies digitales et expertises web par AlcalSpark, studio stratégique basé à Mazamet.",
   openGraph: {
     siteName: "AlcalSpark Blog",
     locale: "fr_FR",

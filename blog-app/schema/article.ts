@@ -26,13 +26,13 @@ export const articleType = defineType({
     }),
     defineField({
       name: "categorie",
-      title: "Categorie",
+      title: "Catégorie",
       type: "string",
       options: {
         list: [
-          { title: "Strategie digitale", value: "Strategie digitale" },
-          { title: "Creation web", value: "Creation web" },
-          { title: "SEO & Referencement", value: "SEO & Referencement" },
+          { title: "Stratégie digitale", value: "Stratégie digitale" },
+          { title: "Création web", value: "Création web" },
+          { title: "SEO & Référencement", value: "SEO & Référencement" },
           { title: "Design UI/UX", value: "Design UI/UX" },
           { title: "Branding", value: "Branding" },
         ],
@@ -94,7 +94,7 @@ export const articleType = defineType({
           options: { hotspot: true },
           fields: [
             defineField({ name: "alt", type: "string", title: "Texte alternatif" }),
-            defineField({ name: "caption", type: "string", title: "Legende" }),
+            defineField({ name: "caption", type: "string", title: "Légende" }),
           ],
         },
       ],
@@ -102,7 +102,7 @@ export const articleType = defineType({
   ],
   orderings: [
     {
-      title: "Date (recente)",
+      title: "Date (récente)",
       name: "dateDesc",
       by: [{ field: "date", direction: "desc" }],
     },

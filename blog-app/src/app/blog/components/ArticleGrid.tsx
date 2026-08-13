@@ -42,7 +42,7 @@ export function ArticleGrid({ articles }: { articles: Article[] }) {
     return (
       <section className="blog-grid">
         <p style={{ color: "var(--muted)", gridColumn: "1/-1" }}>
-          Aucun article pour le moment. Revenez bientot.
+          Aucun article pour le moment. Revenez bientôt.
         </p>
       </section>
     );

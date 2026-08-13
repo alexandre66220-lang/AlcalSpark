@@ -48,7 +48,7 @@ const localBusinessJsonLd = {
   "@id": "https://alcalspark.com/#business",
   name: "AlcalSpark",
   description:
-    "Studio de croissance digitale à Mazamet (Tarn) : analyse stratégique, identification des leviers de croissance, puis conception et réalisation de systèmes digitaux (sites de conversion, SaaS, automatisation) pour PME et artisans d'Occitanie",
+    "Studio stratégique à Mazamet (Tarn) : analyse stratégique, identification des leviers de croissance, puis conception et réalisation de systèmes digitaux (sites de conversion, SaaS, automatisation) pour PME et artisans d'Occitanie",
   url: "https://alcalspark.com",
   telephone: "+33663054481",
   email: "contact@alcalspark.com",

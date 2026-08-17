@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { getAllBlogItems } from "../../../lib/queries";
+import { getAllArticles } from "../../../lib/queries";
 import { ArticleGrid } from "./components/ArticleGrid";
 
 export const metadata: Metadata = {
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 };
 
 export default async function BlogListPage() {
-  const articles = await getAllBlogItems();
+  const articles = await getAllArticles();
 
   return (
     <>

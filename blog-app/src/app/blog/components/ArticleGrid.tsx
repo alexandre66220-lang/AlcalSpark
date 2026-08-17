@@ -1,8 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import type { BlogListItem } from "../../../../lib/queries";
-import { urlFor } from "../../../../lib/queries";
+import type { Article } from "../../../../lib/queries";
 import { readingTime } from "../../../../lib/readingTime";
 
 const ARTICLE_IMAGES: Record<string, string> = {
@@ -38,7 +37,7 @@ const cardVariants = {
   }),
 };
 
-export function ArticleGrid({ articles }: { articles: BlogListItem[] }) {
+export function ArticleGrid({ articles }: { articles: Article[] }) {
   if (articles.length === 0) {
     return (
       <section className="blog-grid">
@@ -51,51 +50,12 @@ export function ArticleGrid({ articles }: { articles: BlogListItem[] }) {
 
   return (
     <section className="blog-grid">
-      {articles.map((item, i) => {
-        if (item._type === "guideVisuel") {
-          const imgSrc = item.imageCouverture
-            ? urlFor(item.imageCouverture).width(800).height(450).fit("crop").url()
-            : undefined;
-          return (
-            <motion.a
-              key={item._id}
-              href={`/blog/guide/${item.slug.current}/`}
-              className="blog-card"
-              custom={i}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-60px" }}
-              variants={cardVariants}
-            >
-              {imgSrc ? (
-                <img src={imgSrc} alt={item.titre} className="blog-card-img" />
-              ) : (
-                <div className="blog-card-img-placeholder">
-                  {item.titre.charAt(0)}
-                </div>
-              )}
-              <div className="blog-card-body">
-                <div className="blog-card-meta">
-                  <span className="blog-card-cat blog-card-cat--guide">
-                    Guide visuel
-                  </span>
-                  <span className="blog-card-date">{formatDate(item.date)}</span>
-                </div>
-                <h2 className="blog-card-title">{item.titre}</h2>
-                <p className="blog-card-excerpt">{item.description}</p>
-                <span className="blog-card-link">
-                  Voir le guide <span aria-hidden="true">&#8594;</span>
-                </span>
-              </div>
-            </motion.a>
-          );
-        }
-
-        const imgSrc = ARTICLE_IMAGES[item.slug.current];
+      {articles.map((article, i) => {
+        const imgSrc = ARTICLE_IMAGES[article.slug.current];
         return (
           <motion.a
-            key={item._id}
-            href={`/blog/${item.slug.current}/`}
+            key={article._id}
+            href={`/blog/${article.slug.current}/`}
             className="blog-card"
             custom={i}
             initial="hidden"
@@ -104,20 +64,24 @@ export function ArticleGrid({ articles }: { articles: BlogListItem[] }) {
             variants={cardVariants}
           >
             {imgSrc ? (
-              <img src={imgSrc} alt={item.titre} className="blog-card-img" />
+              <img
+                src={imgSrc}
+                alt={article.titre}
+                className="blog-card-img"
+              />
             ) : (
               <div className="blog-card-img-placeholder">
-                {item.titre.charAt(0)}
+                {article.titre.charAt(0)}
               </div>
             )}
             <div className="blog-card-body">
               <div className="blog-card-meta">
-                <span className="blog-card-cat">{item.categorie}</span>
-                <span className="blog-card-date">{formatDate(item.date)}</span>
-                <span className="blog-card-reading">{readingTime(item.contenu)} min</span>
+                <span className="blog-card-cat">{article.categorie}</span>
+                <span className="blog-card-date">{formatDate(article.date)}</span>
+                <span className="blog-card-reading">{readingTime(article.contenu)} min</span>
               </div>
-              <h2 className="blog-card-title">{item.titre}</h2>
-              <p className="blog-card-excerpt">{item.extrait}</p>
+              <h2 className="blog-card-title">{article.titre}</h2>
+              <p className="blog-card-excerpt">{article.extrait}</p>
               <span className="blog-card-link">
                 Lire l&apos;article <span aria-hidden="true">&#8594;</span>
               </span>

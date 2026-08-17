@@ -29,7 +29,7 @@
   <link rel="stylesheet" href="../css/as-tokens.css" />
   <link rel="stylesheet" href="../css/style.css?v=2" />
   <link rel="stylesheet" href="../css/services.css" />
-  <link rel="stylesheet" href="../css/ressources.css" />
+  <link rel="stylesheet" href="../css/ressources.css?v=2" />
   <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
@@ -65,19 +65,35 @@
 
   <script type="application/ld+json">
   {
-    "@context": "https://schema.org",
-    "@type": "CreativeWork",
-    "name": "Sécuriser un site ou un SaaS",
-    "description": "Les bonnes pratiques essentielles pour sécuriser un site web ou une application SaaS.",
-    "url": "https://alcalspark.com/ressources/securiser-site-saas",
-    "inLanguage": "fr-FR",
-    "creator": { "@id": "https://alcalspark.com/#business" },
-    "isPartOf": {
-      "@type": "CollectionPage",
-      "name": "Ressources : guides visuels AlcalSpark",
-      "url": "https://alcalspark.com/ressources"
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Sécuriser un site ou un SaaS",
+  "description": "Un site ou une application SaaS mal sécurisés exposent l'entreprise à des risques concrets : perte de données, indisponibilité, atteinte à la réputation. Ce guide présente les bonnes pratiques essentielles de sécurisation, accessibles même sans équipe technique dédiée : mises à jour régulières, gestion des accès, sauvegardes, protection contre les attaques courantes. Il s'adresse aux dirigeants qui veulent comprendre les risques réels sans se noyer dans le jargon technique.",
+  "image": "https://alcalspark.com/assets/og-cover.jpg",
+  "datePublished": "2026-07-19",
+  "dateModified": "2026-07-19",
+  "inLanguage": "fr-FR",
+  "url": "https://alcalspark.com/ressources/securiser-site-saas",
+  "author": {
+    "@type": "Person",
+    "name": "Alexandre Lenique",
+    "url": "https://alcalspark.com/about.html"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "AlcalSpark",
+    "url": "https://alcalspark.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://alcalspark.com/assets/logo.png"
     }
+  },
+  "isPartOf": {
+    "@type": "CollectionPage",
+    "name": "Ressources : guides visuels AlcalSpark",
+    "url": "https://alcalspark.com/ressources"
   }
+}
   </script>
 
   <!-- Google tag (gtag.js) -->
@@ -158,6 +174,13 @@
       </div>
     </section>
 
+    <!-- ── RÉSUMÉ (contenu texte réel, visible et indexable) ──── -->
+    <section class="guide-resume-section">
+      <div class="container guide-resume-inner">
+        <p class="guide-resume-text reveal">Un site ou une application SaaS mal sécurisés exposent l'entreprise à des risques concrets : perte de données, indisponibilité, atteinte à la réputation. Ce guide présente les bonnes pratiques essentielles de sécurisation, accessibles même sans équipe technique dédiée : mises à jour régulières, gestion des accès, sauvegardes, protection contre les attaques courantes. Il s'adresse aux dirigeants qui veulent comprendre les risques réels sans se noyer dans le jargon technique.</p>
+      </div>
+    </section>
+
     <!-- ── CARROUSEL ─────────────────────────────────────────── -->
     <section class="guide-embed-section">
       <div class="guide-embed-wrap">
@@ -171,6 +194,7 @@
             sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
           ></iframe>
         </div>
+        <p class="guide-embed-caption reveal">Ce carrousel présente les bonnes pratiques essentielles pour sécuriser un site web ou une application SaaS, sans expertise technique préalable.</p>
         <a href="../ressources.html" class="guide-other-link reveal">
           <span aria-hidden="true">←</span> Voir tous les guides visuels
         </a>

@@ -134,6 +134,7 @@ export default function RootLayout({
               <a href="/blog/" aria-current="page">
                 Blog
               </a>
+              <a href="/ressources.html">Ressources</a>
               <a href="/produits.html">Produits</a>
               <a href="/contact.html" className="blog-nav-cta">
                 Démarrer un projet
@@ -150,6 +151,7 @@ export default function RootLayout({
           <a href="/blog/" aria-current="page">
             Blog
           </a>
+          <a href="/ressources.html">Ressources</a>
           <a href="/produits.html">Produits</a>
           <a href="/contact.html" className="blog-nav-cta">
             Démarrer un projet

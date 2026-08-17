@@ -33,6 +33,11 @@ export default async function BlogListPage() {
       </section>
 
       <ArticleGrid articles={articles} />
+
+      <p className="blog-resources-banner">
+        Vous préférez les formats visuels ?{" "}
+        <a href="/ressources.html">Découvrez nos guides en carrousel →</a>
+      </p>
     </>
   );
 }

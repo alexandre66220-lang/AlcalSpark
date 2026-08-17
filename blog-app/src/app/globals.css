@@ -350,6 +350,25 @@ body:has(#blog-nav-toggle:checked) .blog-nav-toggle-label span:nth-child(3) {
   gap: 0.7rem;
 }
 
+.blog-resources-banner {
+  max-width: 1200px;
+  margin: -2rem auto 4rem;
+  padding: 0 1.5rem 2rem;
+  text-align: center;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.blog-resources-banner a {
+  color: var(--gold);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.blog-resources-banner a:hover {
+  color: var(--text);
+}
+
 /* ---- Article page ---- */
 .article-hero {
   padding: 5rem 1.5rem 3rem;

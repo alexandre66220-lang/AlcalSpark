@@ -1,0 +1,152 @@
+/* ============================================================
+   AlcalSpark — Page Ressources (guides visuels)
+   ============================================================ */
+
+/* ── Hero ─────────────────────────────────────────────────── */
+.ressources-hero { background: transparent; }
+.ressources-hero .ph-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 55% at 20% 80%, rgba(56,81,68,0.10) 0%, transparent 60%),
+    radial-gradient(ellipse 80% 60% at 80% 20%, rgba(56,81,68,0.07) 0%, transparent 65%);
+}
+
+/* ── Grille des guides ────────────────────────────────────── */
+.resources-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+@media (max-width: 1024px) {
+  .resources-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .resources-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Carte guide ──────────────────────────────────────────── */
+.resource-card {
+  display: flex;
+  flex-direction: column;
+  background: rgba(248,245,242,0.03);
+  border: 1px solid rgba(248,245,242,0.07);
+  border-radius: 4px;
+  overflow: hidden;
+  transition: border-color 0.3s, transform 0.35s cubic-bezier(0.22,1,0.36,1),
+              box-shadow 0.35s cubic-bezier(0.22,1,0.36,1);
+}
+.resource-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(248,245,242,0.16);
+  box-shadow: 0 24px 64px rgba(10,13,11,0.6), 0 0 48px rgba(56,81,68,0.14);
+}
+
+.resource-card-thumb {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: linear-gradient(135deg, #385144 0%, #1a2a1f 100%);
+}
+.resource-card-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.22,1,0.36,1);
+}
+.resource-card:hover .resource-card-thumb img {
+  transform: scale(1.05);
+}
+
+.resource-card-format {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  font-family: var(--font-ui);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #0A0D0B;
+  background: #F8F5F2;
+  padding: 5px 10px;
+  border-radius: 3px;
+}
+
+.resource-card-body {
+  padding: 24px 24px 26px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.resource-card-title {
+  font-family: var(--font-ui);
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--gold, #F8F5F2);
+  margin-bottom: 14px;
+}
+
+.resource-card-link {
+  margin-top: auto;
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: #5a8a6e;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: gap 0.2s;
+}
+.resource-card:hover .resource-card-link { gap: 10px; }
+
+/* ── Page guide individuel ───────────────────────────────── */
+.guide-page-hero { background: transparent; padding-bottom: 0; }
+.guide-page-hero .ph-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 55% at 20% 80%, rgba(56,81,68,0.10) 0%, transparent 60%),
+    radial-gradient(ellipse 80% 60% at 80% 20%, rgba(56,81,68,0.07) 0%, transparent 65%);
+}
+
+.guide-embed-section {
+  padding: 0 0 var(--section-py, 96px);
+}
+
+.guide-embed-wrap {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 var(--pad-x, 24px);
+}
+
+.guide-embed-frame {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(248,245,242,0.08);
+  box-shadow: 0 24px 64px rgba(10,13,11,0.6);
+  background: linear-gradient(135deg, #385144 0%, #1a2a1f 100%);
+}
+.guide-embed-frame iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+.guide-other-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  color: rgba(248,245,242,0.55);
+  margin-top: 24px;
+}
+.guide-other-link:hover { color: #F8F5F2; }

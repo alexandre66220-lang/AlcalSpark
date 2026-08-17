@@ -29,7 +29,7 @@
   <link rel="stylesheet" href="../css/as-tokens.css" />
   <link rel="stylesheet" href="../css/style.css?v=2" />
   <link rel="stylesheet" href="../css/services.css" />
-  <link rel="stylesheet" href="../css/ressources.css" />
+  <link rel="stylesheet" href="../css/ressources.css?v=2" />
   <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
@@ -65,19 +65,35 @@
 
   <script type="application/ld+json">
   {
-    "@context": "https://schema.org",
-    "@type": "CreativeWork",
-    "name": "L'IA comme levier chez AlcalSpark",
-    "description": "Comment l'IA s'intègre à la manière de travailler d'AlcalSpark, sans remplacer l'expertise humaine.",
-    "url": "https://alcalspark.com/ressources/ia-comme-levier",
-    "inLanguage": "fr-FR",
-    "creator": { "@id": "https://alcalspark.com/#business" },
-    "isPartOf": {
-      "@type": "CollectionPage",
-      "name": "Ressources : guides visuels AlcalSpark",
-      "url": "https://alcalspark.com/ressources"
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "L'IA comme levier chez AlcalSpark",
+  "description": "Chez AlcalSpark, l'intelligence artificielle est un outil de production, pas un argument marketing. Ce guide explique comment l'IA s'intègre concrètement dans le travail quotidien : développement assisté, automatisation de tâches répétitives, génération de contenus et de visuels. L'expertise humaine reste au centre des décisions stratégiques et de la relation client, l'IA sert uniquement à accélérer l'exécution. Vous découvrirez pourquoi cette approche permet à un studio d'un seul expert de livrer au niveau d'une équipe complète, sans sacrifier la qualité ni la personnalisation.",
+  "image": "https://alcalspark.com/assets/og-cover.jpg",
+  "datePublished": "2026-08-17",
+  "dateModified": "2026-08-17",
+  "inLanguage": "fr-FR",
+  "url": "https://alcalspark.com/ressources/ia-comme-levier",
+  "author": {
+    "@type": "Person",
+    "name": "Alexandre Lenique",
+    "url": "https://alcalspark.com/about.html"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "AlcalSpark",
+    "url": "https://alcalspark.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://alcalspark.com/assets/logo.png"
     }
+  },
+  "isPartOf": {
+    "@type": "CollectionPage",
+    "name": "Ressources : guides visuels AlcalSpark",
+    "url": "https://alcalspark.com/ressources"
   }
+}
   </script>
 
   <!-- Google tag (gtag.js) -->
@@ -158,6 +174,13 @@
       </div>
     </section>
 
+    <!-- ── RÉSUMÉ (contenu texte réel, visible et indexable) ──── -->
+    <section class="guide-resume-section">
+      <div class="container guide-resume-inner">
+        <p class="guide-resume-text reveal">Chez AlcalSpark, l'intelligence artificielle est un outil de production, pas un argument marketing. Ce guide explique comment l'IA s'intègre concrètement dans le travail quotidien : développement assisté, automatisation de tâches répétitives, génération de contenus et de visuels. L'expertise humaine reste au centre des décisions stratégiques et de la relation client, l'IA sert uniquement à accélérer l'exécution. Vous découvrirez pourquoi cette approche permet à un studio d'un seul expert de livrer au niveau d'une équipe complète, sans sacrifier la qualité ni la personnalisation.</p>
+      </div>
+    </section>
+
     <!-- ── CARROUSEL ─────────────────────────────────────────── -->
     <section class="guide-embed-section">
       <div class="guide-embed-wrap">
@@ -171,6 +194,7 @@
             sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
           ></iframe>
         </div>
+        <p class="guide-embed-caption reveal">Ce carrousel détaille la place de l'IA dans le processus de travail d'AlcalSpark, des outils utilisés aux bénéfices concrets pour les clients.</p>
         <a href="../ressources.html" class="guide-other-link reveal">
           <span aria-hidden="true">←</span> Voir tous les guides visuels
         </a>

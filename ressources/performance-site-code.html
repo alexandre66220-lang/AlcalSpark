@@ -29,7 +29,7 @@
   <link rel="stylesheet" href="../css/as-tokens.css" />
   <link rel="stylesheet" href="../css/style.css?v=2" />
   <link rel="stylesheet" href="../css/services.css" />
-  <link rel="stylesheet" href="../css/ressources.css" />
+  <link rel="stylesheet" href="../css/ressources.css?v=2" />
   <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
@@ -65,19 +65,35 @@
 
   <script type="application/ld+json">
   {
-    "@context": "https://schema.org",
-    "@type": "CreativeWork",
-    "name": "La performance d'un site se joue dans le code",
-    "description": "Pourquoi la performance d'un site web se joue avant tout dans la qualité du code.",
-    "url": "https://alcalspark.com/ressources/performance-site-code",
-    "inLanguage": "fr-FR",
-    "creator": { "@id": "https://alcalspark.com/#business" },
-    "isPartOf": {
-      "@type": "CollectionPage",
-      "name": "Ressources : guides visuels AlcalSpark",
-      "url": "https://alcalspark.com/ressources"
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "La performance d'un site se joue dans le code",
+  "description": "Un site lent perd des visiteurs avant même qu'ils aient vu son contenu. Ce guide explique pourquoi la performance d'un site web dépend avant tout de la qualité du code plutôt que du design ou du contenu visuel : poids des scripts, structure du rendu, gestion des images et choix technologiques. Il détaille les leviers techniques concrets qui font la différence entre un site qui charge en une seconde et un site qui en met cinq, avec un impact direct sur le référencement et le taux de conversion.",
+  "image": "https://alcalspark.com/assets/og-cover.jpg",
+  "datePublished": "2026-07-20",
+  "dateModified": "2026-07-20",
+  "inLanguage": "fr-FR",
+  "url": "https://alcalspark.com/ressources/performance-site-code",
+  "author": {
+    "@type": "Person",
+    "name": "Alexandre Lenique",
+    "url": "https://alcalspark.com/about.html"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "AlcalSpark",
+    "url": "https://alcalspark.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://alcalspark.com/assets/logo.png"
     }
+  },
+  "isPartOf": {
+    "@type": "CollectionPage",
+    "name": "Ressources : guides visuels AlcalSpark",
+    "url": "https://alcalspark.com/ressources"
   }
+}
   </script>
 
   <!-- Google tag (gtag.js) -->
@@ -158,6 +174,13 @@
       </div>
     </section>
 
+    <!-- ── RÉSUMÉ (contenu texte réel, visible et indexable) ──── -->
+    <section class="guide-resume-section">
+      <div class="container guide-resume-inner">
+        <p class="guide-resume-text reveal">Un site lent perd des visiteurs avant même qu'ils aient vu son contenu. Ce guide explique pourquoi la performance d'un site web dépend avant tout de la qualité du code plutôt que du design ou du contenu visuel : poids des scripts, structure du rendu, gestion des images et choix technologiques. Il détaille les leviers techniques concrets qui font la différence entre un site qui charge en une seconde et un site qui en met cinq, avec un impact direct sur le référencement et le taux de conversion.</p>
+      </div>
+    </section>
+
     <!-- ── CARROUSEL ─────────────────────────────────────────── -->
     <section class="guide-embed-section">
       <div class="guide-embed-wrap">
@@ -171,6 +194,7 @@
             sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
           ></iframe>
         </div>
+        <p class="guide-embed-caption reveal">Ce carrousel détaille les leviers techniques qui déterminent la vitesse de chargement d'un site, et leur impact sur le référencement et la conversion.</p>
         <a href="../ressources.html" class="guide-other-link reveal">
           <span aria-hidden="true">←</span> Voir tous les guides visuels
         </a>

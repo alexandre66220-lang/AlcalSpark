@@ -114,6 +114,22 @@
     radial-gradient(ellipse 80% 60% at 80% 20%, rgba(56,81,68,0.07) 0%, transparent 65%);
 }
 
+.guide-resume-section {
+  padding: 0 0 48px;
+}
+
+.guide-resume-inner {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.guide-resume-text {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: rgba(248,245,242,0.78);
+  max-width: none;
+}
+
 .guide-embed-section {
   padding: 0 0 var(--section-py, 96px);
 }
@@ -138,6 +154,15 @@
   height: 100%;
   border: none;
   display: block;
+}
+
+.guide-embed-caption {
+  max-width: none;
+  margin-top: 16px;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: rgba(248,245,242,0.5);
+  text-align: center;
 }
 
 .guide-other-link {

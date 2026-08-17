@@ -29,7 +29,7 @@
   <link rel="stylesheet" href="../css/as-tokens.css" />
   <link rel="stylesheet" href="../css/style.css?v=2" />
   <link rel="stylesheet" href="../css/services.css" />
-  <link rel="stylesheet" href="../css/ressources.css" />
+  <link rel="stylesheet" href="../css/ressources.css?v=2" />
   <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
@@ -65,19 +65,35 @@
 
   <script type="application/ld+json">
   {
-    "@context": "https://schema.org",
-    "@type": "CreativeWork",
-    "name": "Les erreurs à ne pas faire avec l'IA",
-    "description": "Les erreurs les plus fréquentes à éviter en utilisant l'IA dans votre activité.",
-    "url": "https://alcalspark.com/ressources/erreurs-a-ne-pas-faire-avec-ia",
-    "inLanguage": "fr-FR",
-    "creator": { "@id": "https://alcalspark.com/#business" },
-    "isPartOf": {
-      "@type": "CollectionPage",
-      "name": "Ressources : guides visuels AlcalSpark",
-      "url": "https://alcalspark.com/ressources"
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Les erreurs à ne pas faire avec l'IA",
+  "description": "L'IA n'est pas une solution magique, et une utilisation mal cadrée peut créer plus de problèmes qu'elle n'en résout. Ce guide liste les erreurs les plus fréquentes observées chez les entreprises qui adoptent l'IA sans méthode : contenu généré sans relecture, données sensibles transmises sans précaution, dépendance excessive à un seul outil, ou attentes irréalistes sur ce que l'IA peut réellement accomplir. Il propose des repères simples pour éviter ces pièges et utiliser l'IA de façon fiable et durable.",
+  "image": "https://alcalspark.com/assets/og-cover.jpg",
+  "datePublished": "2026-08-17",
+  "dateModified": "2026-08-17",
+  "inLanguage": "fr-FR",
+  "url": "https://alcalspark.com/ressources/erreurs-a-ne-pas-faire-avec-ia",
+  "author": {
+    "@type": "Person",
+    "name": "Alexandre Lenique",
+    "url": "https://alcalspark.com/about.html"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "AlcalSpark",
+    "url": "https://alcalspark.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://alcalspark.com/assets/logo.png"
     }
+  },
+  "isPartOf": {
+    "@type": "CollectionPage",
+    "name": "Ressources : guides visuels AlcalSpark",
+    "url": "https://alcalspark.com/ressources"
   }
+}
   </script>
 
   <!-- Google tag (gtag.js) -->
@@ -158,6 +174,13 @@
       </div>
     </section>
 
+    <!-- ── RÉSUMÉ (contenu texte réel, visible et indexable) ──── -->
+    <section class="guide-resume-section">
+      <div class="container guide-resume-inner">
+        <p class="guide-resume-text reveal">L'IA n'est pas une solution magique, et une utilisation mal cadrée peut créer plus de problèmes qu'elle n'en résout. Ce guide liste les erreurs les plus fréquentes observées chez les entreprises qui adoptent l'IA sans méthode : contenu généré sans relecture, données sensibles transmises sans précaution, dépendance excessive à un seul outil, ou attentes irréalistes sur ce que l'IA peut réellement accomplir. Il propose des repères simples pour éviter ces pièges et utiliser l'IA de façon fiable et durable.</p>
+      </div>
+    </section>
+
     <!-- ── CARROUSEL ─────────────────────────────────────────── -->
     <section class="guide-embed-section">
       <div class="guide-embed-wrap">
@@ -171,6 +194,7 @@
             sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
           ></iframe>
         </div>
+        <p class="guide-embed-caption reveal">Ce carrousel liste les erreurs les plus courantes à éviter lorsqu'on intègre l'IA dans son activité, avec des repères pour les contourner.</p>
         <a href="../ressources.html" class="guide-other-link reveal">
           <span aria-hidden="true">←</span> Voir tous les guides visuels
         </a>

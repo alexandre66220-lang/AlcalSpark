@@ -97,6 +97,29 @@ export const articleType = defineType({
             defineField({ name: "caption", type: "string", title: "Légende" }),
           ],
         },
+        {
+          type: "object",
+          name: "codeBlock",
+          title: "Bloc de code",
+          fields: [
+            defineField({ name: "code", type: "text", title: "Code" }),
+            defineField({
+              name: "language",
+              type: "string",
+              title: "Langage",
+              initialValue: "json",
+            }),
+          ],
+          preview: {
+            select: { code: "code", language: "language" },
+            prepare({ code, language }) {
+              return {
+                title: `Code (${language || "texte"})`,
+                subtitle: code?.slice(0, 60),
+              };
+            },
+          },
+        },
       ],
     }),
   ],

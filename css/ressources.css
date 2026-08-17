@@ -141,8 +141,13 @@
 }
 
 .guide-embed-frame {
+  /* Carrousels Gamma en format portrait 4:5. Sur mobile, min-height
+     prime sur aspect-ratio pour occuper une vraie part de l'écran :
+     à largeur pleine, 4:5 seul ne dépasserait pas ~450px. */
   width: 100%;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 4 / 5;
+  min-height: 72vh;
+  max-height: 88vh;
   border-radius: 12px;
   overflow: hidden;
   border: 1px solid rgba(248,245,242,0.08);
@@ -154,6 +159,18 @@
   height: 100%;
   border: none;
   display: block;
+}
+
+@media (min-width: 640px) {
+  .guide-embed-frame {
+    /* Largeur plafonnée pour que le ratio 4:5 donne une hauteur
+       ~25% plus généreuse que l'ancien 16:9 (592px -> ~750px sur
+       un wrap de 1100px), sans devenir disproportionné. */
+    min-height: 0;
+    max-height: none;
+    max-width: 600px;
+    margin: 0 auto;
+  }
 }
 
 .guide-embed-caption {

@@ -73,6 +73,17 @@ const portableComponents = {
       </a>
     ),
   },
+  types: {
+    codeBlock: ({
+      value,
+    }: {
+      value?: { code?: string; language?: string };
+    }) => (
+      <pre className="article-code">
+        <code>{value?.code}</code>
+      </pre>
+    ),
+  },
 };
 
 export default async function ArticlePage({

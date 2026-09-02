@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Verifie que sitemap.xml (racine) reflete bien les pages .html reelles du
- * site statique (racine, services/, portfolio/). N'ajoute jamais une page
+ * site statique (racine, services/, portfolio/, en/). N'ajoute jamais une page
  * marquee noindex, et conserve le lastmod/priority/changefreq existant pour
  * les URLs deja presentes plutot que de les ecraser a chaque execution.
  *
@@ -25,6 +25,7 @@ const SCAN_DIRS = [
   { dir: ROOT, prefix: "", defaultPriority: "0.7" },
   { dir: join(ROOT, "services"), prefix: "services/", defaultPriority: "0.7" },
   { dir: join(ROOT, "portfolio"), prefix: "portfolio/", defaultPriority: "0.6" },
+  { dir: join(ROOT, "en"), prefix: "en/", defaultPriority: "0.7" },
 ];
 
 const EXCLUDE_FILES = new Set(["index.html"]); // traite a part -> "/"
@@ -37,9 +38,19 @@ function isNoindex(filePath) {
 function collectRealUrls() {
   const urls = new Map(); // loc -> { priority }
 
-  // Page d'accueil
+  // Page d'accueil (FR)
   if (!isNoindex(join(ROOT, "index.html"))) {
     urls.set(`${BASE_URL}/`, { priority: "1.0" });
+  }
+
+  // Page d'accueil (EN)
+  const enIndexPath = join(ROOT, "en", "index.html");
+  try {
+    if (!isNoindex(enIndexPath)) {
+      urls.set(`${BASE_URL}/en/`, { priority: "0.9" });
+    }
+  } catch {
+    // pas encore de version EN
   }
 
   for (const { dir, prefix, defaultPriority } of SCAN_DIRS) {
@@ -51,7 +62,7 @@ function collectRealUrls() {
     }
     for (const entry of entries) {
       if (!entry.endsWith(".html")) continue;
-      if (prefix === "" && EXCLUDE_FILES.has(entry)) continue;
+      if ((prefix === "" || prefix === "en/") && EXCLUDE_FILES.has(entry)) continue;
       const filePath = join(dir, entry);
       if (isNoindex(filePath)) continue;
       const slug = entry.replace(/\.html$/, "");

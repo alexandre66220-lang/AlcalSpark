@@ -572,6 +572,24 @@
 (function () {
   if (localStorage.getItem('alcalspark-cookies')) return;
 
+  const isEN = document.documentElement.lang === 'en';
+  const legalHref = isEN ? '../mentions-legales.html' : 'mentions-legales.html';
+  const strings = isEN
+    ? {
+        title: 'Cookies & Privacy',
+        text: 'This site uses cookies strictly necessary for it to function. With your consent, we may analyze your visit to improve our services. ',
+        more: 'Learn more',
+        refuse: 'Decline',
+        accept: 'Accept all',
+      }
+    : {
+        title: 'Cookies & Confidentialité',
+        text: 'Ce site utilise des cookies strictement nécessaires à son fonctionnement. Avec votre accord, nous pouvons analyser votre visite pour améliorer nos services. ',
+        more: 'En savoir plus',
+        refuse: 'Refuser',
+        accept: 'Tout accepter',
+      };
+
   const banner = document.createElement('div');
   banner.id = 'cookie-banner';
   banner.setAttribute('role', 'dialog');
@@ -579,13 +597,13 @@
   banner.innerHTML =
     '<div class="cookie-inner">' +
       '<div class="cookie-text">' +
-        '<strong id="cookie-title">Cookies & Confidentialité</strong>' +
-        '<p>Ce site utilise des cookies strictement nécessaires à son fonctionnement. Avec votre accord, nous pouvons analyser votre visite pour améliorer nos services. ' +
-        '<a href="mentions-legales.html">En savoir plus</a></p>' +
+        '<strong id="cookie-title">' + strings.title + '</strong>' +
+        '<p>' + strings.text +
+        '<a href="' + legalHref + '">' + strings.more + '</a></p>' +
       '</div>' +
       '<div class="cookie-actions">' +
-        '<button class="cookie-btn cookie-refuse" id="cookie-refuse">Refuser</button>' +
-        '<button class="cookie-btn cookie-accept" id="cookie-accept">Tout accepter</button>' +
+        '<button class="cookie-btn cookie-refuse" id="cookie-refuse">' + strings.refuse + '</button>' +
+        '<button class="cookie-btn cookie-accept" id="cookie-accept">' + strings.accept + '</button>' +
       '</div>' +
     '</div>';
 

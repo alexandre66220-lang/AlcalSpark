@@ -395,6 +395,27 @@ p { max-width: 62ch; text-wrap: pretty; }
   border-color: var(--cream);
 }
 
+/* ── Language switcher (FR/EN) ───────────────────────────────── */
+.nav-lang {
+  font-size: .62rem;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  opacity: .5;
+  padding: .3em .55em;
+  border: 1px solid currentColor;
+  border-radius: 3px;
+  transition: opacity .3s, background .3s, color .3s;
+}
+.nav-lang:hover {
+  opacity: 1;
+}
+.nav-mobile .nav-lang {
+  display: inline-block;
+  align-self: flex-start;
+  margin-top: .5em;
+}
+
 /* Burger */
 .nav-burger {
   display: none;

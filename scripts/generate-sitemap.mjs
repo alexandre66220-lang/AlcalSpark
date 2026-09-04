@@ -26,6 +26,8 @@ const SCAN_DIRS = [
   { dir: join(ROOT, "services"), prefix: "services/", defaultPriority: "0.7" },
   { dir: join(ROOT, "portfolio"), prefix: "portfolio/", defaultPriority: "0.6" },
   { dir: join(ROOT, "en"), prefix: "en/", defaultPriority: "0.7" },
+  { dir: join(ROOT, "en", "services"), prefix: "en/services/", defaultPriority: "0.7" },
+  { dir: join(ROOT, "en", "portfolio"), prefix: "en/portfolio/", defaultPriority: "0.6" },
 ];
 
 const EXCLUDE_FILES = new Set(["index.html"]); // traite a part -> "/"

@@ -5,6 +5,38 @@ const LIMIT = 15;
 const STORE_NAME = 'chat-rate-limit';
 
 /**
+ * Netlify's automatic Blobs context injection (siteID/token derived from
+ * the Lambda environment) has proven unreliable in production for this
+ * function -- see MissingBlobsEnvironmentError in the Netlify forums, a
+ * known issue with no clear user-side cause. Configuring the store
+ * manually sidesteps it entirely: siteID/token are passed explicitly
+ * instead of relying on that detection.
+ *
+ * Requires NETLIFY_SITE_ID and NETLIFY_API_TOKEN as function environment
+ * variables (Site configuration > Environment variables):
+ *   - NETLIFY_SITE_ID: Site configuration > General > Site details
+ *   - NETLIFY_API_TOKEN: User settings > Applications > Personal access tokens
+ */
+function getRateLimitStore() {
+  const siteID = process.env.NETLIFY_SITE_ID;
+  const token = process.env.NETLIFY_API_TOKEN;
+
+  if (!siteID || !token) {
+    const missing = [!siteID && 'NETLIFY_SITE_ID', !token && 'NETLIFY_API_TOKEN'].filter(Boolean).join(', ');
+    throw new Error(
+      '[chat] RATE-LIMIT MISCONFIGURED: missing env var(s) ' + missing + '. ' +
+      'Netlify Blobs needs siteID/token passed explicitly in this function -- automatic ' +
+      'context injection is not being relied on (see MissingBlobsEnvironmentError). ' +
+      'Set NETLIFY_SITE_ID (Site configuration > General > Site details) and ' +
+      'NETLIFY_API_TOKEN (a Personal access token from User settings > Applications) ' +
+      'in Site configuration > Environment variables, then redeploy.'
+    );
+  }
+
+  return getStore({ name: STORE_NAME, siteID: siteID, token: token });
+}
+
+/**
  * Per-IP request counter with a 1h sliding-reset window, stored in
  * Netlify Blobs. Uses etag-based conditional writes (onlyIfMatch /
  * onlyIfNew) to avoid two concurrent requests from the same IP both
@@ -12,13 +44,22 @@ const STORE_NAME = 'chat-rate-limit';
  * native TTL, so expiry is handled here: a record past its `resetAt`
  * is treated as absent and the window restarts.
  *
- * Fails open on any Blobs error (read or write) -- a rate limiter
- * outage should never take the whole chat feature down with it.
+ * Fails open on any Blobs error (read, write, or misconfiguration) -- a
+ * rate limiter outage should never take the whole chat feature down
+ * with it. A misconfiguration is logged distinctly from a transient
+ * read/write failure so it's obvious from the logs which one it is.
  */
 async function checkAndIncrement(ip) {
   const key = ip || 'unknown';
   const now = Date.now();
-  const store = getStore(STORE_NAME);
+
+  let store;
+  try {
+    store = getRateLimitStore();
+  } catch (err) {
+    console.error(err.message);
+    return { allowed: true, remaining: LIMIT, resetAt: now + WINDOW_MS, limit: LIMIT };
+  }
 
   for (let attempt = 0; attempt < 2; attempt++) {
     let existing = null;

@@ -1,0 +1,80 @@
+/* ─────────────────────────────────────────────────────────────
+   Hero "robotic eye" — 3D scene + HUD overlay.
+
+   Only ever linked on desktop, by js/hero-eye-loader.js, after the
+   scene has decided to boot. Everything here is scoped to
+   .hero-blobs (position:relative already, via css/home.css) — the
+   scene never claims the full viewport.
+───────────────────────────────────────────────────────────── */
+
+.hero-eye-root {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+  --eye-accent: #39ffc4;
+  --eye-accent-dim: rgba(57, 255, 196, 0.35);
+}
+
+.hero-eye-root[data-palette="forest"] {
+  --eye-accent: #6fae8c;
+  --eye-accent-dim: rgba(111, 174, 140, 0.32);
+}
+
+.hero-eye-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* ── HUD ─────────────────────────────────────────────────────── */
+
+.hero-eye-hud {
+  position: absolute;
+  inset: 0;
+  font-family: var(--font-ui, monospace);
+  color: var(--eye-accent);
+}
+
+.hero-eye-corner {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border: 1px solid var(--eye-accent-dim);
+  opacity: 0.7;
+}
+.hero-eye-corner--tl { top: 16px; left: 16px; border-right: none; border-bottom: none; }
+.hero-eye-corner--tr { top: 16px; right: 16px; border-left: none; border-bottom: none; }
+.hero-eye-corner--bl { bottom: 16px; left: 16px; border-right: none; border-top: none; }
+.hero-eye-corner--br { bottom: 16px; right: 16px; border-left: none; border-top: none; }
+
+.hero-eye-readout {
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  color: var(--eye-accent);
+  opacity: 0.55;
+  white-space: nowrap;
+}
+
+.hero-eye-eq {
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 16px;
+  height: 18px;
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  opacity: 0.5;
+}
+.hero-eye-eq .bar {
+  flex: 1 1 auto;
+  min-width: 1px;
+  height: 15%;
+  background: var(--eye-accent);
+}

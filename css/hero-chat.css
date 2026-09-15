@@ -1,0 +1,109 @@
+/* ─────────────────────────────────────────────────────────────
+   Hero chat ("Jarvis") -- minimal terminal-style widget in the
+   hero-content panel. Loads on every device (this is functional,
+   not decorative like the 3D eye), dark/cyan to match the hero,
+   monospace for the technical bits (prompt caret, hints, errors).
+───────────────────────────────────────────────────────────── */
+
+.hero-chat {
+  --chat-accent: #39ffc4;
+  width: 100%;
+  max-width: 46ch;
+  margin-top: 0.75rem;
+  border: 1px solid rgba(57, 255, 196, 0.22);
+  background: rgba(248, 245, 242, 0.03);
+  border-radius: 4px;
+}
+
+.hero-chat-log {
+  max-height: 0;
+  overflow-y: auto;
+  transition: max-height 0.3s ease;
+  padding: 0 1rem;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: rgba(248, 245, 242, 0.85);
+}
+.hero-chat.has-log .hero-chat-log {
+  max-height: 220px;
+  padding: 1rem;
+  border-bottom: 1px solid rgba(57, 255, 196, 0.15);
+}
+
+.hero-chat-msg { margin-bottom: 0.9rem; }
+.hero-chat-msg:last-child { margin-bottom: 0; }
+.hero-chat-msg-role {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 0.2rem;
+}
+.hero-chat-msg--user .hero-chat-msg-role { color: rgba(248, 245, 242, 0.4); }
+.hero-chat-msg--assistant .hero-chat-msg-role { color: var(--chat-accent); }
+.hero-chat-msg--error .hero-chat-msg-role { color: #ff6a6a; }
+
+.hero-chat-form {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 0.9rem;
+}
+
+.hero-chat-prompt {
+  font-family: var(--font-mono);
+  color: var(--chat-accent);
+  opacity: 0.7;
+  font-size: 0.85rem;
+}
+
+.hero-chat-input {
+  flex: 1 1 auto;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--cream);
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  min-width: 0;
+}
+.hero-chat-input::placeholder { color: rgba(248, 245, 242, 0.35); }
+
+.hero-chat-send {
+  background: transparent;
+  border: none;
+  color: var(--chat-accent);
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0.2rem 0.3rem;
+  opacity: 0.75;
+  transition: opacity 0.2s;
+}
+.hero-chat-send:hover { opacity: 1; }
+.hero-chat-send:disabled { opacity: 0.25; cursor: default; }
+
+.hero-chat-hint {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.02em;
+  color: rgba(248, 245, 242, 0.32);
+  padding: 0 0.9rem 0.7rem;
+  margin: 0;
+}
+
+.hero-chat-cursor {
+  display: inline-block;
+  width: 0.5em;
+  height: 1em;
+  background: var(--chat-accent);
+  vertical-align: text-bottom;
+  margin-left: 2px;
+  animation: hero-chat-blink 1s steps(1) infinite;
+}
+@keyframes hero-chat-blink { 50% { opacity: 0; } }
+
+@media (max-width: 767px) {
+  .hero-chat { max-width: none; }
+}

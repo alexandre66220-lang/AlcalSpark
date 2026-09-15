@@ -9,6 +9,15 @@
   directory = "netlify/functions"
   node_bundler = "esbuild"
 
+[functions."chat"]
+  included_files = ["netlify/system-prompt.md"]
+
+# URL propre pour le frontend, transparent (pas de redirection visible)
+[[redirects]]
+  from = "/api/chat"
+  to = "/.netlify/functions/chat"
+  status = 200
+
 [build.processing]
   skip_processing = false
 

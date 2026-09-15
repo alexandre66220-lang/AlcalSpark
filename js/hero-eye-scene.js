@@ -46,11 +46,10 @@
   };
 
   /* ── State ─────────────────────────────────────────────────
-     `mode` is the hook future AI-chat wiring will drive
-     (idle | listening | thinking | speaking). Nothing reacts to
-     it yet -- update functions only read state.time/pointer/glitch
-     today -- it's stored so update functions can branch on it
-     later without restructuring anything. */
+     `mode` is driven by js/hero-chat.js via window.AlcalEye.setState()
+     (idle | listening | thinking | speaking). The update* functions
+     below branch on it directly -- no separate animation path per
+     mode, just small modifiers layered onto the existing motion. */
   var state = {
     mode: 'idle',
     running: false,
@@ -60,6 +59,7 @@
     pointer: { x: 0, y: 0, tx: 0, ty: 0 },
     soft: { phase: 0, env: 0, next: 3 },
     hard: { phase: 0, env: 0, next: 8 },
+    speak: { energy: 0 }, // bumped by AlcalEye.pulse() on each streamed token, decays each frame
     bolts: []
   };
 
@@ -465,7 +465,12 @@
   }
 
   function updateGlitchEnvelopes(dt) {
-    state.soft.phase += dt;
+    // "thinking" reuses the exact same soft/hard glitch cycle, just fed
+    // a faster clock -- a nervous, accelerated version of the idle tic
+    // rather than a separate effect.
+    var glitchDt = state.mode === 'thinking' ? dt * 5 : dt;
+
+    state.soft.phase += glitchDt;
     if (state.soft.phase > state.soft.next) {
       state.soft.phase = 0;
       state.soft.next = randRange(CONFIG.softGlitchEvery[0], CONFIG.softGlitchEvery[1]);
@@ -473,7 +478,7 @@
     }
     state.soft.env *= Math.pow(0.001, dt); // fast decay
 
-    state.hard.phase += dt;
+    state.hard.phase += glitchDt;
     if (state.hard.phase > state.hard.next) {
       state.hard.phase = 0;
       state.hard.next = randRange(CONFIG.hardGlitchEvery[0], CONFIG.hardGlitchEvery[1]);
@@ -481,21 +486,35 @@
       spawnBolt();
     }
     state.hard.env *= Math.pow(0.0005, dt);
+
+    state.speak.energy *= Math.pow(0.02, dt); // per-token kick, decays fast between tokens
   }
 
   function updateCore() {
-    core.rotation.y += 0.15 * (1 / 60);
+    var spinBoost = state.mode === 'listening' ? 1.8 : state.mode === 'thinking' ? 1.4 : 1;
+    core.rotation.y += 0.15 * (1 / 60) * spinBoost;
     core.rotation.x = Math.sin(state.time * 0.2) * 0.15;
+
+    // Each streamed token kicks the core outward briefly -- a pulse
+    // synced to token arrival instead of a plain idle loop.
+    var kick = state.mode === 'speaking' ? state.speak.energy * 0.12 : 0;
+    core.scale.setScalar(1 + kick);
   }
 
   function updateEye() {
+    // Listening: the pupil tracks the cursor/typing focus more sharply,
+    // as if paying closer attention.
+    var trackLerp = state.mode === 'listening' ? 0.22 : 0.1;
     var maxOffset = 0.22;
     var targetX = state.pointer.x * maxOffset;
     var targetY = state.pointer.y * maxOffset;
-    pupil.position.x += (targetX - pupil.position.x) * 0.1;
-    pupil.position.y += (targetY - pupil.position.y) * 0.1;
+    pupil.position.x += (targetX - pupil.position.x) * trackLerp;
+    pupil.position.y += (targetY - pupil.position.y) * trackLerp;
     pupilRing.position.x = pupil.position.x;
     pupilRing.position.y = pupil.position.y;
+
+    var speakScale = state.mode === 'speaking' ? 1 + state.speak.energy * 0.25 : 1;
+    pupilRing.scale.setScalar(speakScale);
 
     eyeGroup.rotation.y = state.pointer.x * 0.12;
     eyeGroup.rotation.x = -state.pointer.y * 0.1;
@@ -634,17 +653,18 @@
     zone.addEventListener('touchmove', onTouchMove, { passive: true });
   }
 
-  /* ── Public hook for future AI-chat wiring ────────────────
-     Reserved states: idle | listening | thinking | speaking.
-     No visual behaviour is tied to this yet -- update* functions
-     above will read state.mode once that work starts. */
+  /* ── Public hook for js/hero-chat.js ──────────────────────
+     States: idle | listening | thinking | speaking -- read by
+     updateCore/updateEye/updateGlitchEnvelopes above. pulse() is
+     called once per streamed token to drive the "speaking" core kick. */
   window.AlcalEye = {
     setState: function (mode) {
       if (['idle', 'listening', 'thinking', 'speaking'].indexOf(mode) !== -1) {
         state.mode = mode;
       }
     },
-    getState: function () { return state.mode; }
+    getState: function () { return state.mode; },
+    pulse: function () { state.speak.energy = 1; }
   };
 
   /* ── Init ──────────────────────────────────────────────────

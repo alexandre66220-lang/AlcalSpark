@@ -9,6 +9,9 @@
   "dependencies": {
     "stripe": "^17.4.0",
     "@supabase/supabase-js": "^2.47.10",
-    "resend": "^4.0.1"
+    "resend": "^4.0.1",
+    "@anthropic-ai/sdk": "^0.125.0",
+    "@netlify/blobs": "^11.1.0",
+    "@netlify/functions": "^6.0.0"
   }
 }

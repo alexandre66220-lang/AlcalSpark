@@ -51,10 +51,17 @@
     document.head.appendChild(l);
   }
 
+  // Bump when hero-eye-scene.js/hero-eye.css change in a way that isn't
+  // safe to leave to the 7-day cache on /js/* and /css/* (netlify.toml)
+  // -- e.g. the scene's public AlcalEye API changing shape. Loader
+  // itself must also be re-referenced with a fresh ?v= from the HTML
+  // for this to take effect for a returning visitor.
+  var ASSET_VERSION = '2';
+
   function boot() {
-    loadStyle(base + '../css/hero-eye.css');
+    loadStyle(base + '../css/hero-eye.css?v=' + ASSET_VERSION);
     loadScript('https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js')
-      .then(function () { return loadScript(base + 'hero-eye-scene.js'); })
+      .then(function () { return loadScript(base + 'hero-eye-scene.js?v=' + ASSET_VERSION); })
       .catch(function (err) {
         // Silent fallback in production: the blob canvas is still
         // there and untouched, nothing further to do.

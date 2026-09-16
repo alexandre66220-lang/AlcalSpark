@@ -587,6 +587,19 @@
     lids.top.position.y += (lidY - lids.top.position.y) * 0.4;
     lids.bottom.position.y += (-lidY - lids.bottom.position.y) * 0.4;
 
+    // The lids are only meant to be seen while closing/closed -- moving
+    // them aside isn't enough on its own, since their resting position
+    // (y = +-1.9) still falls inside the camera frustum and they'd sit
+    // there permanently as two flat dark rectangles above and below the
+    // eye (this was the actual cause of the reported letterboxing-like
+    // bands: the reference demo's `topLid.visible = hardEnv > 0.02`
+    // toggle never made it into this port). Stay visible while actively
+    // blinking or still easing back to the open position; hide once
+    // fully settled there.
+    var lidsSettled = !blink && Math.abs(lids.top.position.y - 1.9) < 0.02;
+    lids.top.visible = !lidsSettled;
+    lids.bottom.visible = !lidsSettled;
+
     ringA.rotation.z += 0.003;
     ringB.rotation.z -= 0.0022;
     var glitchScale = 1 + state.hard.env * 0.08;

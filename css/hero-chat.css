@@ -68,8 +68,116 @@
 }
 @keyframes hero-chat-blink { 50% { opacity: 0; } }
 
+/* CTA button -- only ever shown after the full reply text is in place
+   (see js/hero-chat.js), so it never appears mid-stream. */
+.hero-eye-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: 0.55rem;
+  padding: 0.45rem 0.85rem;
+  border: 1px solid var(--speech-accent);
+  border-radius: 3px;
+  background: rgba(57, 255, 196, 0.08);
+  color: var(--speech-accent);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  pointer-events: auto; /* .hero-eye-speech itself is pointer-events:none */
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+.hero-eye-cta::after { content: '\2192'; }
+.hero-eye-cta:hover { background: rgba(57, 255, 196, 0.18); transform: translateX(2px); }
+.hero-eye-cta[hidden] { display: none; }
+
 @media (max-width: 767px) {
   .hero-eye-speech { bottom: 12px; } /* no HUD eq bar on mobile (3D scene never loads there) */
+}
+
+/* ── Mobile lite eye (js/hero-eye-lite.js) ────────────────────
+   CSS/SVG only, no WebGL -- state changes just toggle classes on
+   #hero-eye-lite and let these keyframes do the work, so it stays
+   cheap on low/mid-range phones. Hidden at the desktop breakpoint
+   (the Three.js scene takes over there); js/hero-eye-lite.js also
+   no-ops past that breakpoint, so this is belt-and-suspenders. */
+.hero-eye-lite {
+  display: none;
+  position: absolute;
+  top: 14%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20vw;
+  max-width: 88px;
+  min-width: 56px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+@media (max-width: 767px) {
+  .hero-eye-lite { display: block; }
+}
+
+.hero-eye-lite-svg { display: block; width: 100%; height: auto; overflow: visible; }
+
+.hel-ring { fill: none; stroke: #1a8f6e; stroke-width: 1.5; opacity: 0.55; }
+.hel-ring--mid { stroke: #39ffc4; opacity: 0.4; }
+.hel-pupil { fill: #f8f5f2; opacity: 0.9; transform-origin: 50% 50%; }
+.hel-lid { fill: #05070a; }
+.hel-lid--top { transform: scaleY(0); transform-origin: 50% 0%; }
+.hel-lid--bottom { transform: scaleY(0); transform-origin: 50% 100%; }
+
+/* idle -- slow ambient breathing */
+.hero-eye-lite.is-idle .hel-pupil { animation: hel-breathe 3.6s ease-in-out infinite; }
+.hero-eye-lite.is-idle .hel-ring--mid { animation: hel-glow 3.6s ease-in-out infinite; }
+
+/* listening -- tighter/quicker breathing, brighter rings */
+.hero-eye-lite.is-listening .hel-pupil { animation: hel-breathe 1.5s ease-in-out infinite; }
+.hero-eye-lite.is-listening .hel-ring--mid { animation: hel-glow 1.5s ease-in-out infinite; opacity: 0.65; }
+
+/* thinking -- nervous flicker */
+.hero-eye-lite.is-thinking .hel-pupil { animation: hel-jitter 0.6s steps(4) infinite; }
+.hero-eye-lite.is-thinking .hel-ring--outer,
+.hero-eye-lite.is-thinking .hel-ring--mid { animation: hel-glow 0.6s ease-in-out infinite; }
+
+/* speaking -- brighter, rotating mid ring; per-token kicks via .is-kicked */
+.hero-eye-lite.is-speaking .hel-ring--mid {
+  animation: hel-rotate 5s linear infinite, hel-glow 1.8s ease-in-out infinite;
+  opacity: 0.7;
+}
+.hel-pupil.is-kicked { animation: hel-kick 0.3s ease-out; }
+
+/* deliberate end-of-reply blink -- independent of mode, layers on top */
+.hero-eye-lite.is-blinking .hel-lid { animation: hel-blink 0.36s ease; }
+
+@keyframes hel-breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.12); }
+}
+@keyframes hel-glow {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 0.75; }
+}
+@keyframes hel-jitter {
+  0%, 100% { transform: scale(1) translate(0, 0); }
+  25% { transform: scale(0.94) translate(0.6px, -0.4px); }
+  50% { transform: scale(1.05) translate(-0.5px, 0.5px); }
+  75% { transform: scale(0.97) translate(0.4px, 0.3px); }
+}
+@keyframes hel-kick {
+  0% { transform: scale(1); }
+  35% { transform: scale(1.35); }
+  100% { transform: scale(1); }
+}
+@keyframes hel-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes hel-blink {
+  0%, 100% { transform: scaleY(0); }
+  50% { transform: scaleY(1); }
 }
 
 /* ── Input row (hero-content, right panel) ───────────────────── */
@@ -135,4 +243,18 @@
 
 @media (max-width: 767px) {
   .hero-chat { max-width: none; }
+
+  /* >=16px stops iOS Safari auto-zooming the page when the input gets
+     focus; the send button grows to a real touch target (~44px, the
+     usual minimum) instead of a small hit area needing a precise tap. */
+  .hero-chat-input { font-size: 16px; }
+  .hero-chat-form { padding: 0.4rem 0.5rem 0.4rem 0.9rem; }
+  .hero-chat-send {
+    font-size: 1.2rem;
+    min-width: 44px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
 }

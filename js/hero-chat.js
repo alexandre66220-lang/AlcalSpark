@@ -1,5 +1,5 @@
 /* ─────────────────────────────────────────────────────────────
-   Hero chat ("Jarvis") -- talks to netlify/functions/chat.js via
+   Hero chat (SPARK) -- talks to netlify/functions/chat.js via
    POST /api/chat, streamed as a small custom SSE format
    ({type:'text'|'done'|'error'}).
 

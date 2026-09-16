@@ -257,8 +257,18 @@
 <section class="hero" id="hero" aria-labelledby="hero-title">
 
   <!-- Organic blob animation -->
-  <div class="hero-blobs" aria-hidden="true">
-    <canvas id="blobs-canvas"></canvas>
+  <div class="hero-blobs">
+    <canvas id="blobs-canvas" aria-hidden="true"></canvas>
+
+    <!-- The eye "speaks" here -- same visual container as the 3D scene,
+         not a chat bubble off to the side. Also works without the 3D
+         scene (mobile): text just renders over the CSS blobs. Text/JS
+         stay French, matching the rest of js/hero-chat.js on this page
+         (not yet localized -- pre-existing). -->
+    <div class="hero-eye-speech" id="hero-eye-speech" aria-live="polite">
+      <p class="hero-eye-speech-query" id="hero-eye-speech-query"></p>
+      <p class="hero-eye-speech-reply" id="hero-eye-speech-reply"></p>
+    </div>
   </div>
 
   <!-- Centered content -->
@@ -267,9 +277,9 @@
     <p class="hero-desc">A single point of contact who understands your business before building anything.</p>
     <a href="contact.html" class="btn hero-btn" onclick="gtag('event', 'cta_demarrer_projet', {'event_category': 'CTA', 'event_label': 'Hero - Start a project'})">Start a project</a>
 
-    <!-- "Jarvis" chat -- ALCALSPARK-related questions only -->
+    <!-- "Jarvis" chat -- ALCALSPARK-related questions only. Reply
+         renders in #hero-eye-speech above, not here. -->
     <div class="hero-chat" id="hero-chat">
-      <div class="hero-chat-log" id="hero-chat-log" aria-live="polite"></div>
       <form class="hero-chat-form" id="hero-chat-form">
         <span class="hero-chat-prompt" aria-hidden="true">&gt;</span>
         <input type="text" id="hero-chat-input" class="hero-chat-input" placeholder="Ask about ALCALSPARK" maxlength="500" autocomplete="off" />

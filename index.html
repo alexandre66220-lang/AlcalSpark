@@ -257,8 +257,16 @@
 <section class="hero" id="hero" aria-labelledby="hero-title">
 
   <!-- Animation blobs organique -->
-  <div class="hero-blobs" aria-hidden="true">
-    <canvas id="blobs-canvas"></canvas>
+  <div class="hero-blobs">
+    <canvas id="blobs-canvas" aria-hidden="true"></canvas>
+
+    <!-- L'œil "parle" ici -- même conteneur visuel que la scène 3D,
+         pas une bulle de chat à côté. Fonctionne aussi sans la scène
+         3D (mobile) : le texte s'affiche simplement sur les blobs CSS. -->
+    <div class="hero-eye-speech" id="hero-eye-speech" aria-live="polite">
+      <p class="hero-eye-speech-query" id="hero-eye-speech-query"></p>
+      <p class="hero-eye-speech-reply" id="hero-eye-speech-reply"></p>
+    </div>
   </div>
 
   <!-- Contenu centré -->
@@ -267,9 +275,9 @@
     <p class="hero-desc">Un seul interlocuteur qui comprend votre entreprise avant de construire quoi que ce soit.</p>
     <a href="contact.html" class="btn hero-btn" onclick="gtag('event', 'cta_demarrer_projet', {'event_category': 'CTA', 'event_label': 'Hero - Démarrer un projet'})">Démarrer un projet</a>
 
-    <!-- Chat "Jarvis" -- questions sur ALCALSPARK uniquement -->
+    <!-- Chat "Jarvis" -- questions sur ALCALSPARK uniquement. La réponse
+         s'affiche dans #hero-eye-speech ci-dessus, pas ici. -->
     <div class="hero-chat" id="hero-chat">
-      <div class="hero-chat-log" id="hero-chat-log" aria-live="polite"></div>
       <form class="hero-chat-form" id="hero-chat-form">
         <span class="hero-chat-prompt" aria-hidden="true">&gt;</span>
         <input type="text" id="hero-chat-input" class="hero-chat-input" placeholder="Une question sur ALCALSPARK ?" maxlength="500" autocomplete="off" />

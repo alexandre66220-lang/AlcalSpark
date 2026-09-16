@@ -1,9 +1,78 @@
 /* ─────────────────────────────────────────────────────────────
-   Hero chat ("Jarvis") -- minimal terminal-style widget in the
-   hero-content panel. Loads on every device (this is functional,
-   not decorative like the 3D eye), dark/cyan to match the hero,
-   monospace for the technical bits (prompt caret, hints, errors).
+   Hero chat ("Jarvis").
+
+   Two parts:
+   - #hero-eye-speech (.hero-eye-speech*): the reply overlay, living
+     inside .hero-blobs -- the same visual container as the 3D eye
+     (js/hero-eye-scene.js) -- so the reply reads as the eye speaking,
+     not a chat bubble off to the side. Loads on every device: on
+     mobile it just overlays the CSS blob canvas instead of the 3D
+     scene, same markup/JS either way.
+   - .hero-chat (the input row): stays in the hero's right panel,
+     just the typing box.
+
+   Dark/cyan to match the hero HUD, monospace for the technical bits.
 ───────────────────────────────────────────────────────────── */
+
+.hero-eye-speech {
+  --speech-accent: #39ffc4;
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 44px; /* clears the HUD equalizer bar (bottom:16px, ~18px tall) when the 3D scene is loaded */
+  z-index: 2;
+  pointer-events: none;
+  font-family: var(--font-mono);
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.hero-eye-speech.is-active { opacity: 1; transform: translateY(0); }
+
+.hero-eye-speech-query {
+  font-size: 0.62rem;
+  letter-spacing: 0.05em;
+  color: rgba(57, 255, 196, 0.55);
+  margin: 0 0 0.35rem;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hero-eye-speech-reply {
+  font-size: 0.78rem;
+  line-height: 1.55;
+  color: var(--speech-accent);
+  margin: 0;
+  text-shadow: 0 0 12px rgba(57, 255, 196, 0.22);
+  background: linear-gradient(to top, rgba(5, 7, 10, 0.88) 65%, transparent);
+  padding: 0.5rem 0.6rem;
+  border-radius: 3px;
+  max-height: 200px; /* safeguard against an unusually long reply pushing past the container */
+  overflow-y: auto;
+  pointer-events: auto; /* the rest of .hero-eye-speech is pointer-events:none; allow scrolling a long reply */
+}
+.hero-eye-speech-reply:empty { padding: 0; background: none; }
+.hero-eye-speech-reply--error { color: #ff6a6a; text-shadow: none; }
+
+.hero-eye-speech-reply.is-typing::after {
+  content: '';
+  display: inline-block;
+  width: 0.5em;
+  height: 1em;
+  background: currentColor;
+  vertical-align: text-bottom;
+  margin-left: 2px;
+  animation: hero-chat-blink 1s steps(1) infinite;
+}
+@keyframes hero-chat-blink { 50% { opacity: 0; } }
+
+@media (max-width: 767px) {
+  .hero-eye-speech { bottom: 12px; } /* no HUD eq bar on mobile (3D scene never loads there) */
+}
+
+/* ── Input row (hero-content, right panel) ───────────────────── */
 
 .hero-chat {
   --chat-accent: #39ffc4;
@@ -14,35 +83,6 @@
   background: rgba(248, 245, 242, 0.03);
   border-radius: 4px;
 }
-
-.hero-chat-log {
-  max-height: 0;
-  overflow-y: auto;
-  transition: max-height 0.3s ease;
-  padding: 0 1rem;
-  font-size: 0.85rem;
-  line-height: 1.6;
-  color: rgba(248, 245, 242, 0.85);
-}
-.hero-chat.has-log .hero-chat-log {
-  max-height: 220px;
-  padding: 1rem;
-  border-bottom: 1px solid rgba(57, 255, 196, 0.15);
-}
-
-.hero-chat-msg { margin-bottom: 0.9rem; }
-.hero-chat-msg:last-child { margin-bottom: 0; }
-.hero-chat-msg-role {
-  display: block;
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  margin-bottom: 0.2rem;
-}
-.hero-chat-msg--user .hero-chat-msg-role { color: rgba(248, 245, 242, 0.4); }
-.hero-chat-msg--assistant .hero-chat-msg-role { color: var(--chat-accent); }
-.hero-chat-msg--error .hero-chat-msg-role { color: #ff6a6a; }
 
 .hero-chat-form {
   display: flex;
@@ -92,17 +132,6 @@
   padding: 0 0.9rem 0.7rem;
   margin: 0;
 }
-
-.hero-chat-cursor {
-  display: inline-block;
-  width: 0.5em;
-  height: 1em;
-  background: var(--chat-accent);
-  vertical-align: text-bottom;
-  margin-left: 2px;
-  animation: hero-chat-blink 1s steps(1) infinite;
-}
-@keyframes hero-chat-blink { 50% { opacity: 0; } }
 
 @media (max-width: 767px) {
   .hero-chat { max-width: none; }

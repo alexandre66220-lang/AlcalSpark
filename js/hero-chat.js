@@ -1,10 +1,20 @@
 /* ─────────────────────────────────────────────────────────────
    Hero chat ("Jarvis") -- talks to netlify/functions/chat.js via
    POST /api/chat, streamed as a small custom SSE format
-   ({type:'text'|'done'|'error'}). Loads on every device (unlike
-   the 3D eye, this is real functionality, not decorative), and
-   drives window.AlcalEye when it exists (desktop only) -- every
-   call is guarded so this file works standalone on mobile.
+   ({type:'text'|'done'|'error'}).
+
+   The reply renders in #hero-eye-speech, inside .hero-blobs -- the
+   same visual container as the 3D eye (js/hero-eye-scene.js) -- so it
+   reads as the eye speaking, not a chat widget next to it. That
+   overlay and its char-by-char reveal work standalone on mobile too
+   (no 3D scene there); every window.AlcalEye call is guarded so this
+   file never depends on the scene existing.
+
+   Reply lifecycle mirrors AlcalEye's: eyeStartReply() on submit,
+   eyePulse(charDelta) per SSE text chunk (drives the core kick and
+   the streaming-rate signal the scene uses for glitch/radar speed),
+   eyeEndReply() on the stream's last token (short-reply ring burst /
+   long-reply wind-down + the deliberate end-of-turn blink).
 ───────────────────────────────────────────────────────────── */
 (function () {
   'use strict';
@@ -15,12 +25,15 @@
   var form = document.getElementById('hero-chat-form');
   var input = document.getElementById('hero-chat-input');
   var sendBtn = document.getElementById('hero-chat-send');
-  var log = document.getElementById('hero-chat-log');
-  if (!form || !input || !log) return;
+  var speechRoot = document.getElementById('hero-eye-speech');
+  var speechQueryEl = document.getElementById('hero-eye-speech-query');
+  var speechReplyEl = document.getElementById('hero-eye-speech-reply');
+  if (!form || !input || !speechRoot || !speechQueryEl || !speechReplyEl) return;
 
   var MAX_LEN = 500;
   var MAX_TURNS = 10;
-  var history = []; // [{role, content}, ...] mirrors what the server accepts
+  var TYPE_INTERVAL_MS = 18; // base pace of the char-by-char reveal
+  var history = []; // [{role, content}, ...] sent to the API for context, not rendered
   var busy = false;
 
   function setEyeState(mode) {
@@ -28,28 +41,20 @@
       window.AlcalEye.setState(mode);
     }
   }
-  function eyePulse() {
-    if (window.AlcalEye && typeof window.AlcalEye.pulse === 'function') {
-      window.AlcalEye.pulse();
+  function eyeStartReply() {
+    if (window.AlcalEye && typeof window.AlcalEye.startReply === 'function') {
+      window.AlcalEye.startReply();
     }
   }
-
-  function addMessage(role, text) {
-    var msg = document.createElement('div');
-    msg.className = 'hero-chat-msg hero-chat-msg--' + role;
-    var roleLabel = document.createElement('span');
-    roleLabel.className = 'hero-chat-msg-role';
-    roleLabel.textContent = role === 'user' ? 'vous' : role === 'error' ? 'erreur' : 'système';
-    var body = document.createElement('span');
-    body.className = 'hero-chat-msg-body';
-    body.textContent = text;
-    msg.appendChild(roleLabel);
-    msg.appendChild(document.createElement('br'));
-    msg.appendChild(body);
-    log.appendChild(msg);
-    root.classList.add('has-log');
-    log.scrollTop = log.scrollHeight;
-    return body;
+  function eyePulse(charDelta) {
+    if (window.AlcalEye && typeof window.AlcalEye.pulse === 'function') {
+      window.AlcalEye.pulse(charDelta);
+    }
+  }
+  function eyeEndReply() {
+    if (window.AlcalEye && typeof window.AlcalEye.endReply === 'function') {
+      window.AlcalEye.endReply();
+    }
   }
 
   function pushHistory(role, content) {
@@ -65,6 +70,73 @@
     sendBtn.disabled = state;
   }
 
+  function showQuery(text) {
+    speechQueryEl.textContent = 'REQUÊTE REÇUE > ' + text;
+    speechRoot.classList.add('is-active');
+  }
+
+  /* ── Char-by-char reveal ───────────────────────────────────
+     SSE chunks land in `pending`; a ticker drains a few characters
+     at a time into `shown`, so the text reads as typed rather than
+     jumping in whatever burst sizes the network happened to deliver.
+     Speeds up automatically if the backlog grows (fast bursts) so a
+     long reply never visibly lags behind what has actually arrived. */
+  var pending = '';
+  var shown = '';
+  var typerHandle = null;
+  var isError = false;
+
+  function renderReply(stillTyping) {
+    speechReplyEl.textContent = shown;
+    speechReplyEl.classList.toggle('is-typing', !!stillTyping);
+    speechReplyEl.classList.toggle('hero-eye-speech-reply--error', isError);
+    speechReplyEl.scrollTop = speechReplyEl.scrollHeight; // keep the latest text in view if it grows past max-height
+  }
+
+  function stopTyper() {
+    if (typerHandle) { clearInterval(typerHandle); typerHandle = null; }
+  }
+
+  function startTyper() {
+    if (typerHandle) return;
+    typerHandle = setInterval(function () {
+      if (!pending.length) { stopTyper(); return; }
+      var take = pending.length > 40 ? 4 : pending.length > 12 ? 2 : 1;
+      shown += pending.slice(0, take);
+      pending = pending.slice(take);
+      renderReply(true);
+    }, TYPE_INTERVAL_MS);
+  }
+
+  function resetSpeech() {
+    stopTyper();
+    pending = '';
+    shown = '';
+    isError = false;
+    speechReplyEl.textContent = '';
+    speechReplyEl.classList.remove('is-typing', 'hero-eye-speech-reply--error');
+  }
+
+  function queueReplyChunk(text) {
+    pending += text;
+    startTyper();
+  }
+
+  function flushReply() {
+    shown += pending;
+    pending = '';
+    stopTyper();
+    renderReply(false);
+  }
+
+  function showError(text) {
+    stopTyper();
+    pending = '';
+    shown = text;
+    isError = true;
+    renderReply(false);
+  }
+
   async function streamReply(message) {
     var res;
     try {
@@ -74,7 +146,8 @@
         body: JSON.stringify({ message: message, history: history })
       });
     } catch (err) {
-      addMessage('error', "Impossible de contacter le système -- vérifie ta connexion.");
+      showError("Impossible de contacter le système -- vérifie ta connexion.");
+      eyeEndReply();
       return;
     }
 
@@ -84,16 +157,17 @@
         var errJson = await res.json();
         if (errJson && errJson.error) errText = errJson.error;
       } catch (e) { /* non-JSON error body, keep default message */ }
-      addMessage('error', errText);
+      showError(errText);
+      eyeEndReply();
       return;
     }
 
     var reader = res.body.getReader();
     var decoder = new TextDecoder();
     var buffer = '';
-    var replyEl = null;
     var replyText = '';
     var gotFirstToken = false;
+    var sawDone = false;
 
     while (true) {
       var chunk;
@@ -122,20 +196,21 @@
           if (!gotFirstToken) {
             gotFirstToken = true;
             setEyeState('speaking');
-            replyEl = addMessage('assistant', '');
           }
           replyText += evt.text;
-          replyEl.textContent = replyText;
-          log.scrollTop = log.scrollHeight;
-          eyePulse();
+          queueReplyChunk(evt.text);
+          eyePulse(evt.text.length); // received-at-network-time, independent of the typewriter's own pace
         } else if (evt.type === 'error') {
-          addMessage('error', evt.message || 'Une erreur est survenue.');
+          showError(evt.message || 'Une erreur est survenue.');
         } else if (evt.type === 'done') {
-          // handled after the loop
+          sawDone = true;
+          flushReply(); // show the full text immediately -- the blink is the "end of reply" cue, not a lagging typewriter
+          eyeEndReply();
         }
       }
     }
 
+    if (!sawDone) eyeEndReply(); // stream cut short (network error mid-flight) -- still close out the turn visually
     if (replyText) pushHistory('assistant', replyText);
   }
 
@@ -146,14 +221,17 @@
     var message = input.value.trim();
     if (!message) return;
     if (message.length > MAX_LEN) {
-      addMessage('error', 'Message trop long (500 caractères max).');
+      showQuery(message);
+      showError('Message trop long (500 caractères max).');
       return;
     }
 
-    addMessage('user', message);
+    showQuery(message);
+    resetSpeech();
     pushHistory('user', message);
     input.value = '';
     setBusy(true);
+    eyeStartReply();
     setEyeState('thinking');
 
     try {

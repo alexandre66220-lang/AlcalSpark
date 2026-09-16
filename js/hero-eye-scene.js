@@ -42,14 +42,29 @@
     ringRadius: 2.6,
     eqBars: 32,
     softGlitchEvery: [3, 6],   // seconds, randomized range
-    hardGlitchEvery: [7, 14]
+    hardGlitchEvery: [7, 14],
+    shortReplyChars: 150,      // below this, endReply() fires a single crisp ring pulse
+    sustainRampChars: 300,     // totalChars needed for the "long reply" sustained pulse to reach full strength
+    fastStreamCharsPerSec: 60  // chars/sec treated as "fast burst" when normalizing speak.rate
   };
 
   /* ── State ─────────────────────────────────────────────────
      `mode` is driven by js/hero-chat.js via window.AlcalEye.setState()
      (idle | listening | thinking | speaking). The update* functions
      below branch on it directly -- no separate animation path per
-     mode, just small modifiers layered onto the existing motion. */
+     mode, just small modifiers layered onto the existing motion.
+
+     `speak` carries the streaming-intensity signals AlcalEye.pulse()
+     computes from real token arrival, not a plain speaking:true/false:
+       - energy: per-token kick (decays fast, drives the core scale bump)
+       - rate: smoothed chars/sec, derived from time between pulse() calls
+               (drives glitch speed / radar sweep speed -- bursts vs pauses)
+       - totalChars: cumulative reply length this turn (reset by startReply())
+       - sustained: eases toward a totalChars-based target while streaming,
+               and toward 0 once streaming stops -- gives long replies a
+               continuous ring pulse that ramps up then winds down, with
+               no need to predict when the stream will end
+       - ringBurst: one-shot kick fired by endReply() for short replies */
   var state = {
     mode: 'idle',
     running: false,
@@ -59,7 +74,16 @@
     pointer: { x: 0, y: 0, tx: 0, ty: 0 },
     soft: { phase: 0, env: 0, next: 3 },
     hard: { phase: 0, env: 0, next: 8 },
-    speak: { energy: 0 }, // bumped by AlcalEye.pulse() on each streamed token, decays each frame
+    speak: {
+      energy: 0,
+      rate: 0,
+      lastPulseAt: 0,
+      totalChars: 0,
+      sustained: 0,
+      ringBurst: 0,
+      streaming: false
+    },
+    blink: { active: false, t: 0, duration: 0.22 }, // deliberate end-of-reply blink, independent of mode
     bolts: []
   };
 
@@ -75,6 +99,7 @@
   function buildDom() {
     root = document.createElement('div');
     root.className = 'hero-eye-root';
+    root.setAttribute('aria-hidden', 'true'); // decorative -- the real reply text lives in the static #hero-eye-speech overlay
     if (PALETTE.css) root.setAttribute('data-palette', PALETTE.css);
 
     canvasEl = document.createElement('canvas');
@@ -467,8 +492,13 @@
   function updateGlitchEnvelopes(dt) {
     // "thinking" reuses the exact same soft/hard glitch cycle, just fed
     // a faster clock -- a nervous, accelerated version of the idle tic
-    // rather than a separate effect.
-    var glitchDt = state.mode === 'thinking' ? dt * 5 : dt;
+    // rather than a separate effect. "speaking" does the same but scaled
+    // by how fast tokens are actually arriving (bursts -> more nervous,
+    // pauses -> settles back toward the normal cycle).
+    var rateFactor = Math.min(1, state.speak.rate / CONFIG.fastStreamCharsPerSec);
+    var glitchDt = dt;
+    if (state.mode === 'thinking') glitchDt = dt * 5;
+    else if (state.mode === 'speaking') glitchDt = dt * (1 + rateFactor * 1.5);
 
     state.soft.phase += glitchDt;
     if (state.soft.phase > state.soft.next) {
@@ -486,12 +516,39 @@
       spawnBolt();
     }
     state.hard.env *= Math.pow(0.0005, dt);
+  }
 
-    state.speak.energy *= Math.pow(0.02, dt); // per-token kick, decays fast between tokens
+  /* Per-frame upkeep for the speak-intensity signals set by
+     AlcalEye.pulse()/startReply()/endReply(). Kept separate from
+     updateGlitchEnvelopes now that speak state carries more than one
+     value -- still just decay/lerp math, no new animation path. */
+  function updateSpeakEnvelope(dt) {
+    state.speak.energy *= Math.pow(0.02, dt);   // per-token kick, decays fast between tokens
+    state.speak.ringBurst *= Math.pow(0.002, dt); // short-reply one-shot kick, decays over ~1s
+    state.speak.rate *= Math.pow(0.01, dt);     // falls back toward 0 during silent gaps
+
+    // Long-reply sustained pulse: ramps toward a totalChars-based target
+    // while streaming, and toward 0 the instant streaming stops (set by
+    // endReply()) -- so it winds down gracefully without needing to
+    // predict when the stream will end.
+    var sustainTarget = state.speak.streaming
+      ? Math.min(1, state.speak.totalChars / CONFIG.sustainRampChars)
+      : 0;
+    var sustainLerp = 1 - Math.pow(0.001, dt);
+    state.speak.sustained += (sustainTarget - state.speak.sustained) * sustainLerp;
+
+    if (state.blink.active) {
+      state.blink.t += dt;
+      if (state.blink.t >= state.blink.duration) state.blink.active = false;
+    }
   }
 
   function updateCore() {
-    var spinBoost = state.mode === 'listening' ? 1.8 : state.mode === 'thinking' ? 1.4 : 1;
+    var rateFactor = Math.min(1, state.speak.rate / CONFIG.fastStreamCharsPerSec);
+    var spinBoost = state.mode === 'listening' ? 1.8
+      : state.mode === 'thinking' ? 1.4
+      : state.mode === 'speaking' ? 1 + rateFactor * 0.6
+      : 1;
     core.rotation.y += 0.15 * (1 / 60) * spinBoost;
     core.rotation.x = Math.sin(state.time * 0.2) * 0.15;
 
@@ -519,7 +576,13 @@
     eyeGroup.rotation.y = state.pointer.x * 0.12;
     eyeGroup.rotation.x = -state.pointer.y * 0.1;
 
-    var blink = state.hard.env > 0.6 ? 1 : 0;
+    // Involuntary glitch blink (existing) OR a deliberate end-of-reply
+    // blink (state.blink, fired once by AlcalEye.endReply()) -- whichever
+    // wants the eyelids more closed wins; both reopen through the same
+    // lerp below, so neither ever cuts sharply back to idle.
+    var hardBlink = state.hard.env > 0.6 ? 1 : 0;
+    var deliberateBlink = state.blink.active ? 1 : 0;
+    var blink = Math.max(hardBlink, deliberateBlink);
     var lidY = blink ? 0 : 1.9;
     lids.top.position.y += (lidY - lids.top.position.y) * 0.4;
     lids.bottom.position.y += (-lidY - lids.bottom.position.y) * 0.4;
@@ -532,7 +595,9 @@
   }
 
   function updateRadar(dt) {
-    sweepMat.uniforms.uAngle.value += dt * 0.8;
+    var rateFactor = Math.min(1, state.speak.rate / CONFIG.fastStreamCharsPerSec);
+    var sweepSpeed = state.mode === 'speaking' ? 0.8 * (1 + rateFactor * 0.6) : 0.8;
+    sweepMat.uniforms.uAngle.value += dt * sweepSpeed;
     gridMat.uniforms.uTime.value = state.time;
 
     ticks.forEach(function (tick) {
@@ -545,11 +610,17 @@
   }
 
   function updatePulses(dt) {
+    // Ambient cycle speeds up and brightens with `sustained` (a long
+    // reply still streaming in), and gets one extra outward kick from
+    // `ringBurst` (a short reply's single crisp pulse, or the burst
+    // fired by endReply()) -- both layered on the same base loop rather
+    // than swapping in a separate animation.
+    var cycle = 2.4 - state.speak.sustained * 1.2;
     pulses.forEach(function (ring, i) {
-      var cycle = 2.4;
       var local = ((state.time / cycle) + ring.userData.offset) % 1;
-      ring.scale.setScalar(0.4 + local * 1.6);
-      ring.material.opacity = (1 - local) * 0.35;
+      var burstBoost = state.speak.ringBurst * (1 - local);
+      ring.scale.setScalar(0.4 + local * 1.6 + burstBoost * 0.8);
+      ring.material.opacity = Math.min(1, (1 - local) * 0.35 + state.speak.sustained * 0.25 + state.speak.ringBurst * 0.4);
       ring.lookAt(camera.position);
     });
   }
@@ -604,6 +675,7 @@
 
     updatePointer(dt);
     updateGlitchEnvelopes(dt);
+    updateSpeakEnvelope(dt);
     updateCore(dt);
     updateEye(dt);
     updateRadar(dt);
@@ -655,8 +727,17 @@
 
   /* ── Public hook for js/hero-chat.js ──────────────────────
      States: idle | listening | thinking | speaking -- read by
-     updateCore/updateEye/updateGlitchEnvelopes above. pulse() is
-     called once per streamed token to drive the "speaking" core kick. */
+     updateCore/updateEye/updateGlitchEnvelopes/updateRadar/updatePulses
+     above. The reply lifecycle is three calls:
+       startReply() -- once, right when a new turn begins (resets the
+                        per-turn accumulators below)
+       pulse(charDelta) -- once per SSE text chunk received, feeding
+                        both the per-token core kick and the smoothed
+                        chars/sec rate used to modulate glitch/radar speed
+       endReply() -- once, on the stream's last token: fires the
+                        short-reply ring burst (long replies just ease
+                        their already-running sustained pulse back to 0
+                        via updateSpeakEnvelope) and the deliberate blink */
   window.AlcalEye = {
     setState: function (mode) {
       if (['idle', 'listening', 'thinking', 'speaking'].indexOf(mode) !== -1) {
@@ -664,7 +745,66 @@
       }
     },
     getState: function () { return state.mode; },
-    pulse: function () { state.speak.energy = 1; }
+
+    pulse: function (charDelta) {
+      var delta = typeof charDelta === 'number' && charDelta > 0 ? charDelta : 1;
+      var now = performance.now();
+      if (state.speak.lastPulseAt) {
+        var intervalMs = now - state.speak.lastPulseAt;
+        if (intervalMs > 0) {
+          // Clamp before blending: two chunks landing a couple of ms apart
+          // (bursty network delivery) would otherwise spike this to an
+          // absurd instantaneous value even though every consumer already
+          // clamps rateFactor to [0,1] -- keeps the raw number itself
+          // sane for debugging too.
+          var instantRate = Math.min((delta / intervalMs) * 1000, CONFIG.fastStreamCharsPerSec * 4);
+          state.speak.rate += (instantRate - state.speak.rate) * 0.35;
+        }
+      }
+      state.speak.lastPulseAt = now;
+      state.speak.totalChars += delta;
+      // Additive-with-cap rather than a flat reset: consecutive fast
+      // tokens visibly stack into a stronger kick instead of each pulse
+      // just re-flattening to the same value.
+      state.speak.energy = Math.min(1.6, state.speak.energy + 0.35 + Math.min(0.5, delta * 0.03));
+    },
+
+    startReply: function () {
+      state.speak.totalChars = 0;
+      state.speak.rate = 0;
+      state.speak.lastPulseAt = 0;
+      state.speak.sustained = 0;
+      state.speak.energy = 0;
+      state.speak.ringBurst = 0;
+      state.speak.streaming = true;
+    },
+
+    endReply: function () {
+      state.speak.streaming = false; // sustained's target drops to 0 -> eases down naturally
+      if (state.speak.totalChars > 0 && state.speak.totalChars < CONFIG.shortReplyChars) {
+        state.speak.ringBurst = 1;
+        state.speak.energy = Math.max(state.speak.energy, 1.2);
+      }
+      state.blink.active = true;
+      state.blink.t = 0;
+    },
+
+    // Read-only snapshot for debugging/QA (devtools console, automated
+    // tests) -- not used by any animation path itself.
+    getDebugState: function () {
+      return {
+        mode: state.mode,
+        speak: {
+          energy: state.speak.energy,
+          rate: state.speak.rate,
+          totalChars: state.speak.totalChars,
+          sustained: state.speak.sustained,
+          ringBurst: state.speak.ringBurst,
+          streaming: state.speak.streaming
+        },
+        blink: { active: state.blink.active, t: state.blink.t }
+      };
+    }
   };
 
   /* ── Init ──────────────────────────────────────────────────

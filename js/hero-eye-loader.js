@@ -56,7 +56,7 @@
   // -- e.g. the scene's public AlcalEye API changing shape. Loader
   // itself must also be re-referenced with a fresh ?v= from the HTML
   // for this to take effect for a returning visitor.
-  var ASSET_VERSION = '3';
+  var ASSET_VERSION = '4';
 
   function boot() {
     loadStyle(base + '../css/hero-eye.css?v=' + ASSET_VERSION);

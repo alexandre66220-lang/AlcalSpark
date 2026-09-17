@@ -48,6 +48,32 @@
     fastStreamCharsPerSec: 60  // chars/sec treated as "fast burst" when normalizing speak.rate
   };
 
+  /* ── Boot sequence timing ──────────────────────────────────
+     Plays once, ever, on first load (state.boot.done gates a
+     replay). [start, end] in seconds since the scene started
+     rendering -- each stage fades in with ease-out via bootFade().
+     Iris rings are staggered largest -> smallest radius for an
+     "opening" feel. Total run ~2.3s, within the requested 1.5-2.5s. */
+  var BOOT = {
+    particles: [0.0, 0.7],
+    core: [0.25, 1.05],
+    // Indexed to match the r=[0.5, 0.72, 0.95] build order below (index 0
+    // = smallest ring); windows are assigned so the largest ring (index 2)
+    // fades in first and the smallest last, per stage 3's "largest to
+    // smallest" opening order.
+    irisRings: [[1.1, 1.6], [0.9, 1.3], [0.7, 1.1]],
+    spokes: [1.0, 1.5],
+    pupil: [1.4, 1.8],
+    radar: [1.5, 2.3]
+  };
+  var BOOT_END = 2.3;
+
+  // Below this fraction of the container visible, scroll-driven activity
+  // starts ramping down (see bindLifecycle()'s IntersectionObserver).
+  var ACTIVITY_VISIBLE_THRESHOLD = 0.1;
+
+  function easeOutCubic(x) { return 1 - Math.pow(1 - x, 3); }
+
   /* ── State ─────────────────────────────────────────────────
      `mode` is driven by js/hero-chat.js via window.AlcalEye.setState()
      (idle | listening | thinking | speaking). The update* functions
@@ -84,8 +110,20 @@
       streaming: false
     },
     blink: { active: false, t: 0, duration: 0.22 }, // deliberate end-of-reply blink, independent of mode
+    boot: { t: 0, done: false }, // one-shot opening sequence, see BOOT above -- never replays once done
+    activity: { current: 1, target: 1 }, // scroll-driven intensity, see updateActivity()
     bolts: []
   };
+
+  // 0..1 ease-out progress through a [start, end] boot stage; 1 once the
+  // whole boot sequence is done (short-circuits the common case cheaply).
+  function bootFade(stage) {
+    if (state.boot.done) return 1;
+    var x = (state.boot.t - stage[0]) / (stage[1] - stage[0]);
+    if (x <= 0) return 0;
+    if (x >= 1) return 1;
+    return easeOutCubic(x);
+  }
 
   var rand = Math.random;
   function randRange(a, b) { return a + rand() * (b - a); }
@@ -139,6 +177,8 @@
   var sceneTarget, postScene, postCamera, postMaterial;
   var core, eyeGroup, pupil, pupilRing, lids = {}, ringA, ringB;
   var ticks = [], pulses = [];
+  var irisRings = []; // [{ mesh, baseOpacity, boot: [start,end] }], largest radius first -- see buildEye()
+  var spokes; // LineSegments, base opacity 0.4
   var particles, particleMat;
   var gridMesh, gridMat, sweepMesh, sweepMat;
   var width = 0, height = 0;
@@ -164,7 +204,8 @@
       depthWrite: false,
       uniforms: {
         uTime: { value: 0 },
-        uColor: { value: new THREE.Color(PALETTE.dim) }
+        uColor: { value: new THREE.Color(PALETTE.dim) },
+        uBootFade: { value: 0 }
       },
       vertexShader: [
         'varying vec2 vUv;',
@@ -176,6 +217,7 @@
       fragmentShader: [
         'uniform float uTime;',
         'uniform vec3 uColor;',
+        'uniform float uBootFade;',
         'varying vec2 vUv;',
         'float gridLine(vec2 p, float n) {',
         '  vec2 g = abs(fract(p * n - 0.5) - 0.5) / fwidth(p * n);',
@@ -187,7 +229,7 @@
         '  float line = gridLine(vUv, 22.0);',
         '  float pulse = 0.5 + 0.5 * sin(uTime * 0.6 - d * 6.0);',
         '  float fade = smoothstep(0.75, 0.05, d);',
-        '  gl_FragColor = vec4(uColor, line * fade * (0.25 + 0.5 * pulse));',
+        '  gl_FragColor = vec4(uColor, line * fade * (0.25 + 0.5 * pulse) * uBootFade);',
         '}'
       ].join('\n')
     });
@@ -202,12 +244,14 @@
       blending: THREE.AdditiveBlending,
       uniforms: {
         uAngle: { value: 0 },
-        uColor: { value: new THREE.Color(PALETTE.neon) }
+        uColor: { value: new THREE.Color(PALETTE.neon) },
+        uBootFade: { value: 0 }
       },
       vertexShader: gridMat.vertexShader,
       fragmentShader: [
         'uniform float uAngle;',
         'uniform vec3 uColor;',
+        'uniform float uBootFade;',
         'varying vec2 vUv;',
         'void main() {',
         '  vec2 c = vUv - 0.5;',
@@ -215,7 +259,7 @@
         '  float ang = atan(c.y, c.x);',
         '  float diff = mod(ang - uAngle + 3.14159265, 6.2831853) - 3.14159265;',
         '  float sweep = smoothstep(0.9, 0.0, abs(diff)) * smoothstep(0.7, 0.0, d);',
-        '  gl_FragColor = vec4(uColor, sweep * 0.5);',
+        '  gl_FragColor = vec4(uColor, sweep * 0.5 * uBootFade);',
         '}'
       ].join('\n')
     });
@@ -241,7 +285,7 @@
 
   function buildCore() {
     var icoGeo = new THREE.EdgesGeometry(new THREE.IcosahedronGeometry(1.15, 1));
-    core = new THREE.LineSegments(icoGeo, new THREE.LineBasicMaterial({ color: PALETTE.neon, transparent: true, opacity: 0.35 }));
+    core = new THREE.LineSegments(icoGeo, new THREE.LineBasicMaterial({ color: PALETTE.neon, transparent: true, opacity: 0 }));
     scene.add(core);
   }
 
@@ -260,7 +304,10 @@
     eyeGroup = new THREE.Group();
 
     [0.5, 0.72, 0.95].forEach(function (r, i) {
-      eyeGroup.add(makeRingLoop(r, 64, PALETTE.neon, 0.55 - i * 0.1));
+      var baseOpacity = 0.55 - i * 0.1;
+      var ring = makeRingLoop(r, 64, PALETTE.neon, 0);
+      eyeGroup.add(ring);
+      irisRings.push({ mesh: ring, baseOpacity: baseOpacity, boot: BOOT.irisRings[i] });
     });
 
     var spokePts = [];
@@ -271,16 +318,17 @@
       spokePts.push(new THREE.Vector3(Math.cos(a) * 0.95, Math.sin(a) * 0.95, 0));
     }
     var spokeGeo = new THREE.BufferGeometry().setFromPoints(spokePts);
-    eyeGroup.add(new THREE.LineSegments(spokeGeo, new THREE.LineBasicMaterial({ color: PALETTE.dim, transparent: true, opacity: 0.4 })));
+    spokes = new THREE.LineSegments(spokeGeo, new THREE.LineBasicMaterial({ color: PALETTE.dim, transparent: true, opacity: 0 }));
+    eyeGroup.add(spokes);
 
     pupil = new THREE.Mesh(
       new THREE.CircleGeometry(0.12, 24),
-      new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.85 })
+      new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0 })
     );
     pupil.position.z = 0.02;
     eyeGroup.add(pupil);
 
-    pupilRing = makeRingLoop(0.16, 32, PALETTE.neon, 0.8);
+    pupilRing = makeRingLoop(0.16, 32, PALETTE.neon, 0);
     pupilRing.position.z = 0.02;
     eyeGroup.add(pupilRing);
 
@@ -329,6 +377,7 @@
       uniforms: {
         uTime: { value: 0 },
         uBurst: { value: 0 },
+        uBootFade: { value: 0 },
         uColor: { value: new THREE.Color(PALETTE.neon) }
       },
       vertexShader: [
@@ -348,11 +397,12 @@
       ].join('\n'),
       fragmentShader: [
         'uniform vec3 uColor;',
+        'uniform float uBootFade;',
         'void main() {',
         '  vec2 c = gl_PointCoord - 0.5;',
         '  float d = length(c);',
         '  float a = smoothstep(0.5, 0.0, d);',
-        '  gl_FragColor = vec4(uColor, a * 0.5);',
+        '  gl_FragColor = vec4(uColor, a * 0.5 * uBootFade);',
         '}'
       ].join('\n')
     });
@@ -375,7 +425,8 @@
         uTime: { value: 0 },
         uSoft: { value: 0 },
         uHard: { value: 0 },
-        uGlitchColor: { value: new THREE.Color(PALETTE.glitch) }
+        uGlitchColor: { value: new THREE.Color(PALETTE.glitch) },
+        uActivity: { value: 1 }
       },
       vertexShader: [
         'varying vec2 vUv;',
@@ -388,6 +439,7 @@
         'uniform float uSoft;',
         'uniform float uHard;',
         'uniform vec3 uGlitchColor;',
+        'uniform float uActivity;',
         'varying vec2 vUv;',
         'float noise(vec2 p) { return fract(sin(dot(p, vec2(12.9898,78.233))) * 43758.5453); }',
         'void main() {',
@@ -421,6 +473,11 @@
         '  col.rgb += (noise(uv * uResolution + uTime) - 0.5) * 0.03;',
         // simple tonemap
         '  col.rgb = col.rgb / (col.rgb + vec3(1.0));',
+        // scroll-away dimming -- fades the whole frame toward black
+        // (near enough to the hero's #0A0D0B background at these low
+        // values) rather than stopping outright; the rAF loop itself is
+        // what actually stops once fully out of view.
+        '  col.rgb *= uActivity;',
         '  gl_FragColor = col;',
         '}'
       ].join('\n')
@@ -499,6 +556,10 @@
     var glitchDt = dt;
     if (state.mode === 'thinking') glitchDt = dt * 5;
     else if (state.mode === 'speaking') glitchDt = dt * (1 + rateFactor * 1.5);
+    // Glitches fire less often as the hero scrolls out of view -- the
+    // trigger clock slows, decay (below) stays real-time so an
+    // already-firing glitch still finishes its own arc normally.
+    glitchDt *= state.activity.current;
 
     state.soft.phase += glitchDt;
     if (state.soft.phase > state.soft.next) {
@@ -549,8 +610,12 @@
       : state.mode === 'thinking' ? 1.4
       : state.mode === 'speaking' ? 1 + rateFactor * 0.6
       : 1;
-    core.rotation.y += 0.15 * (1 / 60) * spinBoost;
+    // Scroll-away scenes rotate slower rather than stopping outright --
+    // the rAF loop itself is what fully stops once the hero is entirely
+    // out of view (see playIfAllowed/pauseRender).
+    core.rotation.y += 0.15 * (1 / 60) * spinBoost * state.activity.current;
     core.rotation.x = Math.sin(state.time * 0.2) * 0.15;
+    core.material.opacity = 0.35 * bootFade(BOOT.core);
 
     // Each streamed token kicks the core outward briefly -- a pulse
     // synced to token arrival instead of a plain idle loop.
@@ -572,6 +637,17 @@
 
     var speakScale = state.mode === 'speaking' ? 1 + state.speak.energy * 0.25 : 1;
     pupilRing.scale.setScalar(speakScale);
+
+    // Iris opens last, largest ring first -- see BOOT.irisRings. Plain
+    // multiply against each ring's normal opacity; bootFade() is already
+    // 1 once the sequence is done, so this is a no-op past boot.
+    var pupilBoot = bootFade(BOOT.pupil);
+    pupil.material.opacity = 0.85 * pupilBoot;
+    pupilRing.material.opacity = 0.8 * pupilBoot;
+    spokes.material.opacity = 0.4 * bootFade(BOOT.spokes);
+    irisRings.forEach(function (r) {
+      r.mesh.material.opacity = r.baseOpacity * bootFade(r.boot);
+    });
 
     eyeGroup.rotation.y = state.pointer.x * 0.12;
     eyeGroup.rotation.x = -state.pointer.y * 0.1;
@@ -610,14 +686,20 @@
   function updateRadar(dt) {
     var rateFactor = Math.min(1, state.speak.rate / CONFIG.fastStreamCharsPerSec);
     var sweepSpeed = state.mode === 'speaking' ? 0.8 * (1 + rateFactor * 0.6) : 0.8;
-    sweepMat.uniforms.uAngle.value += dt * sweepSpeed;
+    // Scrolled-away scenes sweep slower rather than stopping outright,
+    // same rationale as the core's rotation above.
+    sweepMat.uniforms.uAngle.value += dt * sweepSpeed * state.activity.current;
     gridMat.uniforms.uTime.value = state.time;
+
+    var radarBoot = bootFade(BOOT.radar);
+    gridMat.uniforms.uBootFade.value = radarBoot;
+    sweepMat.uniforms.uBootFade.value = radarBoot;
 
     ticks.forEach(function (tick) {
       var diff = Math.atan2(Math.sin(tick.userData.angle - sweepMat.uniforms.uAngle.value), Math.cos(tick.userData.angle - sweepMat.uniforms.uAngle.value));
       var hit = Math.max(0, 1 - Math.abs(diff) / 0.5);
       var base = 0.5 + hit * 0.5 + state.hard.env * 0.3;
-      tick.material.opacity = Math.min(1, base);
+      tick.material.opacity = Math.min(1, base) * radarBoot;
       tick.material.color.set(state.hard.env > 0.5 ? PALETTE.glitch : PALETTE.neon);
     });
   }
@@ -641,6 +723,7 @@
   function updateParticles() {
     particleMat.uniforms.uTime.value = state.time;
     particleMat.uniforms.uBurst.value += ((state.hard.env > 0.4 ? 1 : 0) - particleMat.uniforms.uBurst.value) * 0.1;
+    particleMat.uniforms.uBootFade.value = bootFade(BOOT.particles);
   }
 
   function updateHud() {
@@ -657,6 +740,22 @@
     postMaterial.uniforms.uTime.value = state.time;
     postMaterial.uniforms.uSoft.value = state.soft.env;
     postMaterial.uniforms.uHard.value = state.hard.env;
+    postMaterial.uniforms.uActivity.value = state.activity.current;
+  }
+
+  /* Advances the one-shot boot timer (never past BOOT_END once done,
+     and never replayed -- state.boot.done just latches true) and eases
+     state.activity.current toward whatever bindLifecycle()'s
+     IntersectionObserver last set as the target, so both a scroll-away
+     dim and a scroll-back recovery read as a smooth transition instead
+     of a snap in either direction. */
+  function updateLifecycle(dt) {
+    if (!state.boot.done) {
+      state.boot.t += dt;
+      if (state.boot.t >= BOOT_END) state.boot.done = true;
+    }
+    var activityLerp = 1 - Math.pow(0.0005, dt);
+    state.activity.current += (state.activity.target - state.activity.current) * activityLerp;
   }
 
   function renderFrame() {
@@ -686,6 +785,7 @@
     state.lastTs = ts;
     state.time += dt;
 
+    updateLifecycle(dt);
     updatePointer(dt);
     updateGlitchEnvelopes(dt);
     updateSpeakEnvelope(dt);
@@ -717,12 +817,22 @@
     });
 
     if ('IntersectionObserver' in window) {
+      // Below ACTIVITY_VISIBLE_THRESHOLD visible, activity.target ramps
+      // down proportionally (updateLifecycle() eases state.activity.current
+      // toward it every frame, so neither direction snaps) instead of
+      // just toggling on/off. The render loop itself only fully stops
+      // once truly out of view (ratio 0, with the existing 80px
+      // pre-buffer) -- that's the actual GPU/CPU saving; the graduated
+      // activity level is a visual smoothing on top of it.
       var io = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
           state.visible = entry.isIntersecting;
+          state.activity.target = entry.intersectionRatio >= ACTIVITY_VISIBLE_THRESHOLD
+            ? 1
+            : entry.intersectionRatio / ACTIVITY_VISIBLE_THRESHOLD;
           if (state.visible) playIfAllowed(); else pauseRender();
         });
-      }, { rootMargin: '80px' });
+      }, { rootMargin: '80px', threshold: [0, 0.02, 0.04, 0.06, 0.08, 0.1, 0.25, 0.5, 0.75, 1] });
       io.observe(zone);
     }
 
@@ -815,7 +925,20 @@
           ringBurst: state.speak.ringBurst,
           streaming: state.speak.streaming
         },
-        blink: { active: state.blink.active, t: state.blink.t }
+        blink: { active: state.blink.active, t: state.blink.t },
+        boot: {
+          t: state.boot.t,
+          done: state.boot.done,
+          particlesOpacity: particleMat.uniforms.uBootFade.value,
+          coreOpacity: core.material.opacity,
+          irisOuterOpacity: irisRings[2].mesh.material.opacity, // r=0.95, fades in first
+          irisInnerOpacity: irisRings[0].mesh.material.opacity, // r=0.5, fades in last
+          pupilOpacity: pupil.material.opacity,
+          radarOpacity: gridMat.uniforms.uBootFade.value
+        },
+        activity: { current: state.activity.current, target: state.activity.target },
+        visible: state.visible,
+        running: rafId !== null
       };
     }
   };

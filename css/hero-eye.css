@@ -61,20 +61,3 @@
   white-space: nowrap;
 }
 
-.hero-eye-eq {
-  position: absolute;
-  left: 16px;
-  right: 16px;
-  bottom: 16px;
-  height: 18px;
-  display: flex;
-  align-items: flex-end;
-  gap: 2px;
-  opacity: 0.5;
-}
-.hero-eye-eq .bar {
-  flex: 1 1 auto;
-  min-width: 1px;
-  height: 15%;
-  background: var(--eye-accent);
-}

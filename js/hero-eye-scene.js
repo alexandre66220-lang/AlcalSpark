@@ -39,10 +39,9 @@
   var PALETTE = PALETTES.forest;
 
   var CONFIG = {
-    particleCount: 1200,
+    particleCount: 600, // ~50% of the previous 1200, for a more épuré scene
     tickCount: 28,
     ringRadius: 2.6,
-    eqBars: 32,
     shortReplyChars: 150,      // below this, endReply() fires a single crisp ring pulse
     sustainRampChars: 300,     // totalChars needed for the "long reply" sustained pulse to reach full strength
     fastStreamCharsPerSec: 60, // chars/sec treated as "fast burst" when normalizing speak.rate
@@ -141,7 +140,7 @@
      Everything the scene needs is created here and scoped inside
      .hero-blobs -- nothing is hardcoded into the page markup, so
      mobile ships zero extra DOM/CSS for this feature. */
-  var root, canvasEl, eqBarEls = [], readoutEl;
+  var root, canvasEl, readoutEl;
 
   function buildDom() {
     root = document.createElement('div');
@@ -166,16 +165,6 @@
     readoutEl.className = 'hero-eye-readout';
     readoutEl.textContent = '0x0000';
     hud.appendChild(readoutEl);
-
-    var eq = document.createElement('div');
-    eq.className = 'hero-eye-eq';
-    for (var i = 0; i < CONFIG.eqBars; i++) {
-      var bar = document.createElement('div');
-      bar.className = 'bar';
-      eq.appendChild(bar);
-      eqBarEls.push({ el: bar, seed: rand() * 100, speed: randRange(0.6, 1.6) });
-    }
-    hud.appendChild(eq);
 
     root.appendChild(hud);
     zone.appendChild(root);
@@ -681,11 +670,6 @@
   function updateHud() {
     var t = Math.floor(state.time * 1000) % 65536;
     readoutEl.textContent = '0x' + t.toString(16).toUpperCase().padStart(4, '0');
-
-    eqBarEls.forEach(function (bar) {
-      var v = 0.15 + Math.abs(Math.sin(state.time * bar.speed + bar.seed)) * 0.85;
-      bar.el.style.height = Math.round(v * 100) + '%';
-    });
   }
 
   function updatePost() {

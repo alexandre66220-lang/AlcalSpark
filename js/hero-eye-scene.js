@@ -173,7 +173,7 @@
   /* ── Three.js core objects ────────────────────────────────── */
   var renderer, scene, camera, clock;
   var sceneTarget, postScene, postCamera, postMaterial;
-  var core, eyeGroup, pupil, pupilRing, lids = {}, ringA, ringB;
+  var core, eyeGroup, pupil, pupilRing, pupilGlow, lids = {}, ringA, ringB;
   var ticks = [], pulses = [];
   var irisRings = []; // [{ mesh, baseOpacity, boot: [start,end] }], largest radius first -- see buildEye()
   var spokes; // LineSegments, base opacity 0.4
@@ -321,14 +321,59 @@
     spokes = new THREE.LineSegments(spokeGeo, new THREE.LineBasicMaterial({ color: PALETTE.dim, transparent: true, opacity: 0 }));
     eyeGroup.add(spokes);
 
+    // Soft additive halo behind the pupil -- the one thing in the scene
+    // meant to read as "lit from within" rather than wireframe/line art,
+    // since the pupil is the assistant's actual focal point. A radial
+    // falloff sprite rather than relying on the scene-wide bloom pass,
+    // so the glow stays localized to the pupil instead of blooming
+    // everything else too.
+    var glowColor = new THREE.Color(0xffffff).lerp(new THREE.Color(PALETTE.neon), 0.35);
+    pupilGlow = new THREE.Mesh(
+      new THREE.CircleGeometry(0.55, 32),
+      new THREE.ShaderMaterial({
+        transparent: true,
+        depthWrite: false,
+        depthTest: false,
+        blending: THREE.AdditiveBlending,
+        uniforms: {
+          uColor: { value: glowColor },
+          uIntensity: { value: 0 }
+        },
+        vertexShader: [
+          'varying vec2 vUv;',
+          'void main() {',
+          '  vUv = uv;',
+          '  gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);',
+          '}'
+        ].join('\n'),
+        fragmentShader: [
+          'uniform vec3 uColor;',
+          'uniform float uIntensity;',
+          'varying vec2 vUv;',
+          'void main() {',
+          '  float d = length(vUv - 0.5) * 2.0;',
+          '  float a = smoothstep(1.0, 0.0, d);',
+          '  gl_FragColor = vec4(uColor, a * a * uIntensity);',
+          '}'
+        ].join('\n')
+      })
+    );
+    pupilGlow.position.z = 0.015;
+    pupilGlow.renderOrder = 1; // draw after the pupil/ring so the additive glow doesn't get quietly sorted behind them
+    eyeGroup.add(pupilGlow);
+
+    // Pupil itself: slightly larger and pushed toward full opacity (was
+    // 0.12/0.85) so it reads as a brighter, more contrasted focal point
+    // against the now-dimmer core/particles around it. Ring grown to
+    // match, keeping the same ~0.04 gap framing the disc.
     pupil = new THREE.Mesh(
-      new THREE.CircleGeometry(0.12, 24),
+      new THREE.CircleGeometry(0.15, 24),
       new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0 })
     );
     pupil.position.z = 0.02;
     eyeGroup.add(pupil);
 
-    pupilRing = makeRingLoop(0.16, 32, PALETTE.neon, 0);
+    pupilRing = makeRingLoop(0.19, 32, PALETTE.neon, 0);
     pupilRing.position.z = 0.02;
     eyeGroup.add(pupilRing);
 
@@ -385,6 +430,7 @@
         'attribute float aSpeed;',
         'uniform float uTime;',
         'uniform float uBurst;',
+        'varying float vFade;',
         'void main() {',
         '  float radius = aSeed.x + uBurst * 1.2;',
         '  float angle = aSeed.y + uTime * aSpeed;',
@@ -393,16 +439,21 @@
         '  vec4 mv = modelViewMatrix * vec4(p, 1.0);',
         '  gl_Position = projectionMatrix * mv;',
         '  gl_PointSize = 22.0 / -mv.z;',
+        // Particles nearest the inner edge of their orbit shell (closest
+        // to the pupil) are dimmed, not hidden -- opens up visual room
+        // around the sphere without the field thinning out further out.
+        '  vFade = mix(0.45, 1.0, smoothstep(1.6, 2.4, radius));',
         '}'
       ].join('\n'),
       fragmentShader: [
         'uniform vec3 uColor;',
         'uniform float uBootFade;',
+        'varying float vFade;',
         'void main() {',
         '  vec2 c = gl_PointCoord - 0.5;',
         '  float d = length(c);',
         '  float a = smoothstep(0.5, 0.0, d);',
-        '  gl_FragColor = vec4(uColor, a * 0.5 * uBootFade);',
+        '  gl_FragColor = vec4(uColor, a * 0.5 * uBootFade * vFade);',
         '}'
       ].join('\n')
     });
@@ -449,11 +500,14 @@
         '  bloom += texture2D(tScene, uv + texel * vec2(0.0, 1.5)).rgb;',
         '  bloom += texture2D(tScene, uv - texel * vec2(0.0, 1.5)).rgb;',
         '  col.rgb += bloom * 0.06;',
-        // faint fixed scanlines (display-glass texture, not noise) + vignette
+        // faint fixed scanlines (display-glass texture, not noise) + a
+        // stronger, tighter vignette than before -- darkens sooner and
+        // deeper toward the edges so the pupil at screen center reads as
+        // the clear focal point, without the corners going fully black.
         '  float scan = 0.96 + 0.04 * sin(uv.y * uResolution.y * 1.5);',
         '  col.rgb *= scan;',
-        '  float vig = smoothstep(0.9, 0.25, length(uv - 0.5));',
-        '  col.rgb *= mix(0.55, 1.0, vig);',
+        '  float vig = smoothstep(0.75, 0.12, length(uv - 0.5));',
+        '  col.rgb *= mix(0.38, 1.0, vig);',
         // simple tonemap
         '  col.rgb = col.rgb / (col.rgb + vec3(1.0));',
         // scroll-away dimming -- fades the whole frame toward black
@@ -537,7 +591,9 @@
     // out of view (see playIfAllowed/pauseRender).
     core.rotation.y += 0.15 * (1 / 60) * spinBoost * state.activity.current;
     core.rotation.x = Math.sin(state.time * 0.2) * 0.15;
-    core.material.opacity = 0.35 * bootFade(BOOT.core);
+    // Dimmed from 0.35 -- gives the pupil more visual room without the
+    // wireframe disappearing.
+    core.material.opacity = 0.24 * bootFade(BOOT.core);
 
     // Each streamed token kicks the core outward briefly -- a pulse
     // synced to token arrival instead of a plain idle loop -- layered on
@@ -560,6 +616,10 @@
     pupil.position.y += (targetY - pupil.position.y) * trackLerp;
     pupilRing.position.x = pupil.position.x;
     pupilRing.position.y = pupil.position.y;
+    // Glow just mirrors the already-computed pupil position -- it doesn't
+    // participate in the cursor-tracking math above at all.
+    pupilGlow.position.x = pupil.position.x;
+    pupilGlow.position.y = pupil.position.y;
 
     var speakScale = state.mode === 'speaking' ? 1 + state.speak.energy * 0.25 : 1;
     pupilRing.scale.setScalar(speakScale);
@@ -568,8 +628,18 @@
     // multiply against each ring's normal opacity; bootFade() is already
     // 1 once the sequence is done, so this is a no-op past boot.
     var pupilBoot = bootFade(BOOT.pupil);
-    pupil.material.opacity = 0.85 * pupilBoot;
-    pupilRing.material.opacity = 0.8 * pupilBoot;
+    pupil.material.opacity = 0.95 * pupilBoot;
+    pupilRing.material.opacity = 0.85 * pupilBoot;
+
+    // Halo intensity/scale ride the same breathing envelope and
+    // speak-energy signal already driving the rest of the scene (see
+    // updateBreath()/AlcalEye.pulse()) -- no new state of its own, just
+    // read and applied here for a soft, regular glow that's still
+    // clearly alive without becoming a second glitch-like trigger.
+    var glowBreathe = state.breath.value * 0.12;
+    pupilGlow.scale.setScalar((1 + glowBreathe) * speakScale);
+    pupilGlow.material.uniforms.uIntensity.value = (0.55 + glowBreathe * 0.5 + state.speak.energy * 0.35) * pupilBoot;
+
     spokes.material.opacity = 0.4 * bootFade(BOOT.spokes);
     irisRings.forEach(function (r) {
       r.mesh.material.opacity = r.baseOpacity * bootFade(r.boot);

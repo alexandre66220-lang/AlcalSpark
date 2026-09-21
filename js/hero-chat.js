@@ -1,28 +1,19 @@
 /* ─────────────────────────────────────────────────────────────
-   Hero chat (SPARK) -- talks to netlify/functions/chat.js via
-   POST /api/chat, streamed as a small custom SSE format
-   ({type:'text'|'done'|'error'}).
+   Hero chat (SPARK) -- renders the hero's own reply overlay and
+   input row, driven by js/spark-chat-core.js (the shared session:
+   network call to /api/chat, conversation history, busy-guard,
+   [[CTA:Label]] parsing). This file owns only hero-specific
+   presentation: the char-by-char reveal into #hero-eye-speech, the
+   window.AlcalEye hooks (Three.js scene on desktop, js/hero-eye-lite.js's
+   CSS/SVG eye on mobile -- same window.AlcalEye API either way, no
+   branching needed here), and the two mobile-specific UX details
+   noted inline (auto-refocus, keyboard scroll-into-view).
 
-   The reply renders in #hero-eye-speech, inside .hero-blobs -- the
-   same visual container as the eye, whichever render layer is active
-   (js/hero-eye-scene.js's Three.js scene on desktop, js/hero-eye-lite.js's
-   CSS/SVG eye on mobile) -- so it reads as the eye speaking, not a
-   chat widget next to it. This file IS the shared chat logic between
-   desktop and mobile: it only ever talks to window.AlcalEye through
-   the guarded eyeXxx() wrappers below, never assumes which
-   implementation (or none) is behind them, and never branches on
-   device except for the two mobile-specific UX details noted inline
-   (auto-refocus, keyboard scroll-into-view).
-
-   Reply lifecycle mirrors AlcalEye's: eyeStartReply() on submit,
-   eyePulse(charDelta) per SSE text chunk (drives the core kick and
-   the streaming-rate signal used for radar sweep speed on desktop),
-   eyeEndReply() on the stream's last token (short-reply ring burst /
-   long-reply wind-down + the deliberate end-of-turn blink).
-
-   CTA: SPARK can end a reply with a [[CTA:Label]] marker (see
-   netlify/system-prompt.md). It's stripped from the displayed text
-   and rendered as a button instead -- see the "CTA" block below.
+   js/spark-widget.js (the persistent mini-widget, present on every
+   page) drives the exact same shared session -- so a conversation
+   started here is still there if the visitor later opens the
+   widget, and the session's own busy-guard means only one of the two
+   can have a request in flight at a time.
 ───────────────────────────────────────────────────────────── */
 (function () {
   'use strict';
@@ -38,22 +29,13 @@
   var speechReplyEl = document.getElementById('hero-eye-speech-reply');
   var ctaEl = document.getElementById('hero-eye-cta');
   if (!form || !input || !speechRoot || !speechQueryEl || !speechReplyEl) return;
+  if (!window.SparkChat) return; // core module missing/failed to load -- no chat without it
 
   var IS_DESKTOP = window.matchMedia('(min-width: 768px)').matches; // same breakpoint as hero-eye-loader.js/hero-eye-lite.js
 
-  var MAX_LEN = 500;
-  var MAX_TURNS = 10;
   var TYPE_INTERVAL_MS = 18; // base pace of the char-by-char reveal
-  // Longer than any realistic [[CTA:Label]] marker (label is meant to
-  // stay to 2-6 words). Text within this many characters of the raw
-  // stream's current end is held back from the typewriter queue, so a
-  // trailing marker can never partially flash on screen before being
-  // detected and stripped at 'done'.
-  var CTA_HOLD_BACK = 70;
-  var CTA_RE = /\[\[CTA:([^\]]{1,60})\]\]\s*$/;
 
-  var history = []; // [{role, content}, ...] sent to the API for context, not rendered
-  var busy = false;
+  var session = window.SparkChat.getSession();
 
   function setEyeState(mode) {
     if (window.AlcalEye && typeof window.AlcalEye.setState === 'function') {
@@ -76,19 +58,6 @@
     }
   }
 
-  function pushHistory(role, content) {
-    history.push({ role: role, content: content });
-    if (history.length > MAX_TURNS * 2) {
-      history = history.slice(-MAX_TURNS * 2);
-    }
-  }
-
-  function setBusy(state) {
-    busy = state;
-    input.disabled = state;
-    sendBtn.disabled = state;
-  }
-
   function showQuery(text) {
     speechQueryEl.textContent = 'REQUÊTE REÇUE > ' + text;
     speechRoot.classList.add('is-active');
@@ -96,11 +65,10 @@
 
   /* ── CTA ───────────────────────────────────────────────────
      Rendered only once the full reply text is showing (never mid-
-     stream), as a real button rather than plain text -- see
-     CTA_RE/CTA_HOLD_BACK above for how it's kept out of the typed
-     text. The link target is fixed to the site's existing contact
-     page (the only CTA destination anywhere on the site); SPARK only
-     supplies the label. */
+     stream), as a real button rather than plain text. The link
+     target is fixed to the site's existing contact page (the only
+     CTA destination anywhere on the site); SPARK only supplies the
+     label. */
   function showCTA(label) {
     if (!ctaEl) return;
     ctaEl.textContent = label;
@@ -110,192 +78,103 @@
     if (ctaEl) ctaEl.hidden = true;
   }
 
-  /* ── Char-by-char reveal ───────────────────────────────────
-     SSE chunks land in `pending`; a ticker drains a few characters
-     at a time into `shown`, so the text reads as typed rather than
-     jumping in whatever burst sizes the network happened to deliver.
-     Speeds up automatically if the backlog grows (fast bursts) so a
-     long reply never visibly lags behind what has actually arrived. */
-  var pending = '';
-  var shown = '';
-  var typerHandle = null;
-  var isError = false;
-
-  function renderReply(stillTyping) {
+  var typer = window.SparkChat.createTypewriter(TYPE_INTERVAL_MS, function (shown, stillTyping, isError) {
     speechReplyEl.textContent = shown;
     speechReplyEl.classList.toggle('is-typing', !!stillTyping);
-    speechReplyEl.classList.toggle('hero-eye-speech-reply--error', isError);
+    speechReplyEl.classList.toggle('hero-eye-speech-reply--error', !!isError);
     speechReplyEl.scrollTop = speechReplyEl.scrollHeight; // keep the latest text in view if it grows past max-height
-  }
+  });
 
-  function stopTyper() {
-    if (typerHandle) { clearInterval(typerHandle); typerHandle = null; }
-  }
+  // js/spark-widget.js (the persistent mini-widget, present alongside
+  // this on the homepage once scrolled past the hero) drives the exact
+  // same shared session, so 'query'/'chunk'/'done'/etc. fire for turns
+  // that started in the widget too -- not just this form. The hero's
+  // reply bubble should only react to a turn it actually started; the
+  // widget's own scrollback is the one place a turn started elsewhere
+  // is meant to show up. Without this guard, a widget-initiated reply
+  // would silently re-render into the (possibly off-screen) hero
+  // bubble too, and its desktop auto-refocus below would drag the
+  // page back up to the hero out from under a visitor scrolled well
+  // past it. `busy` is deliberately NOT gated by this -- disabling
+  // this form's input/send button while *any* turn is in flight,
+  // hero- or widget-started, is exactly the single-flow guarantee
+  // both renderers rely on.
+  var heroOwnsCurrentTurn = false;
 
-  function startTyper() {
-    if (typerHandle) return;
-    typerHandle = setInterval(function () {
-      if (!pending.length) { stopTyper(); return; }
-      var take = pending.length > 40 ? 4 : pending.length > 12 ? 2 : 1;
-      shown += pending.slice(0, take);
-      pending = pending.slice(take);
-      renderReply(true);
-    }, TYPE_INTERVAL_MS);
-  }
+  session.on('query', function (text) {
+    if (!heroOwnsCurrentTurn) return;
+    showQuery(text);
+  });
 
-  function resetSpeech() {
-    stopTyper();
-    pending = '';
-    shown = '';
-    isError = false;
+  session.on('reset', function () {
+    if (!heroOwnsCurrentTurn) return;
+    typer.reset();
     speechReplyEl.textContent = '';
     speechReplyEl.classList.remove('is-typing', 'hero-eye-speech-reply--error');
     hideCTA();
-  }
+  });
 
-  function queueReplyChunk(text) {
-    if (!text) return;
-    pending += text;
-    startTyper();
-  }
+  session.on('busy', function (isBusy) {
+    input.disabled = isBusy;
+    sendBtn.disabled = isBusy;
+  });
 
-  function showError(text) {
-    stopTyper();
-    pending = '';
-    shown = text;
-    isError = true;
-    renderReply(false);
-  }
-
-  async function streamReply(message) {
-    var res;
-    try {
-      res = await fetch('/api/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: message, history: history })
-      });
-    } catch (err) {
-      showError("Impossible de contacter le système -- vérifie ta connexion.");
-      eyeEndReply();
-      return;
-    }
-
-    if (!res.ok || !res.body) {
-      var errText = "Une erreur est survenue.";
-      try {
-        var errJson = await res.json();
-        if (errJson && errJson.error) errText = errJson.error;
-      } catch (e) { /* non-JSON error body, keep default message */ }
-      showError(errText);
-      eyeEndReply();
-      return;
-    }
-
-    var reader = res.body.getReader();
-    var decoder = new TextDecoder();
-    var buffer = '';
-    var replyText = '';   // full raw text, marker included, for the API history
-    var queuedLen = 0;    // how much of replyText has been pushed into the typewriter so far
-    var gotFirstToken = false;
-    var sawDone = false;
-
-    while (true) {
-      var chunk;
-      try {
-        chunk = await reader.read();
-      } catch (err) {
-        break;
-      }
-      if (chunk.done) break;
-      buffer += decoder.decode(chunk.value, { stream: true });
-
-      var parts = buffer.split('\n\n');
-      buffer = parts.pop(); // last part may be incomplete, keep for next read
-
-      for (var i = 0; i < parts.length; i++) {
-        var line = parts[i];
-        if (!line.startsWith('data: ')) continue;
-        var evt;
-        try {
-          evt = JSON.parse(line.slice(6));
-        } catch (e) {
-          continue;
-        }
-
-        if (evt.type === 'text') {
-          if (!gotFirstToken) {
-            gotFirstToken = true;
-            setEyeState('speaking');
-          }
-          replyText += evt.text;
-          // Hold back the tail: only queue text that's far enough
-          // behind the live edge to be certain it isn't the start of
-          // a still-forming [[CTA:...]] marker.
-          var safeLen = Math.max(0, replyText.length - CTA_HOLD_BACK);
-          if (safeLen > queuedLen) {
-            queueReplyChunk(replyText.slice(queuedLen, safeLen));
-            queuedLen = safeLen;
-          }
-          eyePulse(evt.text.length); // received-at-network-time, independent of the typewriter's own pace
-        } else if (evt.type === 'error') {
-          showError(evt.message || 'Une erreur est survenue.');
-        } else if (evt.type === 'done') {
-          sawDone = true;
-          var ctaMatch = replyText.match(CTA_RE);
-          var cleanText = ctaMatch ? replyText.slice(0, ctaMatch.index).replace(/\s+$/, '') : replyText;
-          var remainder = cleanText.slice(queuedLen);
-          if (remainder) { pending += remainder; queuedLen = cleanText.length; }
-          stopTyper();
-          shown += pending;
-          pending = '';
-          renderReply(false); // show the full (marker-stripped) text immediately -- the blink is the "end of reply" cue, not a lagging typewriter
-          if (ctaMatch) showCTA(ctaMatch[1].trim());
-          eyeEndReply();
-        }
-      }
-    }
-
-    if (!sawDone) eyeEndReply(); // stream cut short (network error mid-flight) -- still close out the turn visually
-    if (replyText) pushHistory('assistant', replyText);
-  }
-
-  form.addEventListener('submit', async function (e) {
-    e.preventDefault();
-    if (busy) return;
-
-    var message = input.value.trim();
-    if (!message) return;
-    if (message.length > MAX_LEN) {
-      showQuery(message);
-      resetSpeech();
-      showError('Message trop long (500 caractères max).');
-      return;
-    }
-
-    showQuery(message);
-    resetSpeech();
-    pushHistory('user', message);
-    input.value = '';
-    setBusy(true);
+  session.on('start', function () {
+    if (!heroOwnsCurrentTurn) return;
     eyeStartReply();
     setEyeState('thinking');
+  });
 
-    try {
-      await streamReply(message);
-    } finally {
-      setBusy(false);
-      setEyeState(document.activeElement === input ? 'listening' : 'idle');
-      // Auto-refocus is a desktop nicety (keyboard-driven follow-ups).
-      // On mobile it would reopen the virtual keyboard right after the
-      // reply lands -- the exact "parasitic" jump this widget needs to
-      // avoid -- so the visitor decides when to tap back in instead.
-      if (IS_DESKTOP) input.focus();
-    }
+  session.on('firstToken', function () {
+    if (!heroOwnsCurrentTurn) return;
+    setEyeState('speaking');
+  });
+
+  session.on('chunk', function (payload) {
+    if (!heroOwnsCurrentTurn) return;
+    typer.push(payload.safeText);
+    eyePulse(payload.rawLen); // received-at-network-time, independent of the typewriter's own pace
+  });
+
+  session.on('cta', function (label) {
+    if (!heroOwnsCurrentTurn) return;
+    showCTA(label);
+  });
+
+  session.on('done', function (payload) {
+    if (!heroOwnsCurrentTurn) return;
+    typer.finish(payload.remainder); // show the full (marker-stripped) text immediately -- the blink is the "end of reply" cue, not a lagging typewriter
+  });
+
+  session.on('error', function (text) {
+    if (!heroOwnsCurrentTurn) return;
+    typer.setError(text);
+  });
+
+  session.on('end', function () {
+    if (!heroOwnsCurrentTurn) return;
+    heroOwnsCurrentTurn = false;
+    eyeEndReply();
+    setEyeState(document.activeElement === input ? 'listening' : 'idle');
+    // Auto-refocus is a desktop nicety (keyboard-driven follow-ups).
+    // On mobile it would reopen the virtual keyboard right after the
+    // reply lands -- the exact "parasitic" jump this widget needs to
+    // avoid -- so the visitor decides when to tap back in instead.
+    if (IS_DESKTOP) input.focus();
+  });
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var message = input.value;
+    heroOwnsCurrentTurn = true;
+    session.send(message).then(function (status) {
+      if (status === 'sent') input.value = '';
+      else if (status !== 'sent') heroOwnsCurrentTurn = false; // 'busy'/'empty'/'too_long' never emit 'end' to clear the flag themselves
+    });
   });
 
   input.addEventListener('focus', function () {
-    if (!busy) setEyeState('listening');
+    if (!session.isBusy()) setEyeState('listening');
     if (!IS_DESKTOP) {
       // Some mobile browsers don't reliably scroll a focused input
       // clear of the virtual keyboard on their own inside a flex
@@ -306,5 +185,5 @@
       }, 300);
     }
   });
-  input.addEventListener('blur', function () { if (!busy) setEyeState('idle'); });
+  input.addEventListener('blur', function () { if (!session.isBusy()) setEyeState('idle'); });
 })();

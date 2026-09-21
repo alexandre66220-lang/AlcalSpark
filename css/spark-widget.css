@@ -1,0 +1,316 @@
+/* ─────────────────────────────────────────────────────────────
+   SPARK persistent mini-widget (js/spark-widget.js).
+
+   Self-contained: doesn't rely on css/hero-eye.css or css/hero-chat.css
+   being loaded (most pages carrying this widget have neither), so the
+   forest-green accent is redefined locally here rather than shared via
+   custom properties from those files.
+
+   Stacked directly above the existing WhatsApp FAB (.whatsapp-btn,
+   css/style.css: bottom 2rem/right 2rem, 3.25rem/52px across) with a
+   deliberate gap so the two never touch, let alone overlap.
+───────────────────────────────────────────────────────────── */
+
+.spark-widget {
+  --sw-accent: #6fae8c;
+  --sw-accent-dim: rgba(111, 174, 140, 0.35);
+  --sw-dark: #0a0d0b;
+  --sw-panel-w: 340px;
+  --sw-panel-h: 460px;
+  position: fixed;
+  z-index: 600; /* above .whatsapp-btn (500), below #cookie-banner (8000) and the nav/loader chrome */
+  bottom: 6.1rem;
+  right: 2rem;
+  /* Deliberately no transform/opacity/transition on this element itself:
+     position:fixed combined with a transform on the SAME node makes
+     Chromium mishandle scroll/focus geometry for its descendants (an
+     unrelated .focus() call, or even Playwright's own scroll-into-view
+     actionability check, would drag the whole page to an arbitrary
+     scroll position). The show/hide animation lives on
+     .spark-widget-btn below instead, which has no position of its own. */
+}
+.spark-widget.is-hidden { pointer-events: none; }
+
+/* ── Button ────────────────────────────────────────────────── */
+.spark-widget-btn {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--sw-dark);
+  border: 1px solid var(--sw-accent-dim);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(111, 174, 140, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 10px;
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, opacity 0.35s ease;
+}
+.spark-widget-btn:hover { transform: scale(1.08); border-color: var(--sw-accent); }
+.spark-widget-btn:focus-visible {
+  outline: 2px solid var(--sw-accent);
+  outline-offset: 3px;
+}
+.spark-widget.is-hidden .spark-widget-btn {
+  opacity: 0;
+  transform: translateY(10px) scale(0.85);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.spark-widget.is-busy .spark-widget-btn {
+  border-color: var(--sw-accent);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.45), 0 0 14px rgba(111, 174, 140, 0.35);
+}
+
+.spark-widget-eye { display: block; width: 100%; height: 100%; overflow: visible; }
+.sw-ring { fill: none; stroke: #385144; stroke-width: 3; opacity: 0.6; }
+.sw-ring--mid { stroke: var(--sw-accent); opacity: 0.45; }
+.sw-pupil { fill: #f8f5f2; opacity: 0.92; transform-origin: 50% 50%; }
+
+/* idle -- slow ambient breathing, same visual language as js/hero-eye-lite.js's lite eye */
+.sw-pupil { animation: sw-breathe 3.4s ease-in-out infinite; }
+.sw-ring--mid { animation: sw-glow 3.4s ease-in-out infinite; }
+
+/* busy -- faster, brighter; still a smooth regular pulse, never erratic */
+.spark-widget.is-busy .sw-pupil { animation: sw-breathe 1.1s ease-in-out infinite; }
+.spark-widget.is-busy .sw-ring--mid { animation: sw-glow 1.1s ease-in-out infinite, sw-rotate 4s linear infinite; opacity: 0.7; }
+
+/* per-token kick, retriggered on every chunk (see js/spark-widget.js) */
+.sw-pupil.is-kicked { animation: sw-kick 0.3s ease-out; }
+
+/* end-of-reply flash -- brief, deliberate, mirrors the hero eye's end-of-reply blink at a scale that reads at 60px */
+.spark-widget.is-flash .spark-widget-btn { animation: sw-flash 0.4s ease; }
+
+@keyframes sw-breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.14); }
+}
+@keyframes sw-glow {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 0.75; }
+}
+@keyframes sw-kick {
+  0% { transform: scale(1); }
+  35% { transform: scale(1.4); }
+  100% { transform: scale(1); }
+}
+@keyframes sw-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes sw-flash {
+  0%, 100% { box-shadow: 0 4px 24px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(111, 174, 140, 0.08); }
+  40% { box-shadow: 0 4px 24px rgba(0, 0, 0, 0.45), 0 0 22px rgba(111, 174, 140, 0.6); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sw-pupil, .sw-ring--mid, .sw-pupil.is-kicked, .spark-widget.is-flash .spark-widget-btn {
+    animation: none !important;
+  }
+}
+
+/* ── Floating panel ────────────────────────────────────────── */
+.spark-widget-panel {
+  position: absolute;
+  bottom: 72px; /* clears the 60px button plus a gap */
+  right: 0;
+  width: var(--sw-panel-w);
+  height: var(--sw-panel-h);
+  max-height: 70vh;
+  background: rgba(10, 13, 11, 0.96);
+  border: 1px solid var(--sw-accent-dim);
+  border-radius: 10px;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transform-origin: bottom right;
+  opacity: 0;
+  transform: translateY(12px) scale(0.94);
+  pointer-events: none;
+  transition: opacity 0.22s ease, transform 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.spark-widget.is-open .spark-widget-panel {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+.spark-widget-panel[hidden] { display: none; }
+
+.spark-widget-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.7rem 0.9rem;
+  border-bottom: 1px solid rgba(111, 174, 140, 0.15);
+  flex: 0 0 auto;
+}
+.spark-widget-panel-title {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  color: var(--sw-accent);
+  text-transform: uppercase;
+}
+.spark-widget-close {
+  background: transparent;
+  border: none;
+  color: rgba(248, 245, 242, 0.6);
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0.2rem 0.4rem;
+  transition: color 0.2s ease;
+}
+.spark-widget-close:hover { color: var(--sw-accent); }
+.spark-widget-close:focus-visible { outline: 2px solid var(--sw-accent); outline-offset: 2px; }
+
+.spark-widget-transcript {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  padding: 0.8rem 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  font-family: var(--font-ui, sans-serif);
+}
+.spark-widget-transcript:empty::before {
+  content: '';
+}
+
+.spark-widget-msg {
+  font-size: 0.82rem;
+  line-height: 1.5;
+  max-width: 92%;
+}
+.spark-widget-msg--user {
+  align-self: flex-end;
+  color: rgba(248, 245, 242, 0.7);
+  background: rgba(248, 245, 242, 0.06);
+  border-radius: 8px 8px 2px 8px;
+  padding: 0.45rem 0.65rem;
+}
+.spark-widget-msg--assistant {
+  align-self: flex-start;
+  color: var(--sw-accent);
+  background: rgba(111, 174, 140, 0.07);
+  border-radius: 8px 8px 8px 2px;
+  padding: 0.5rem 0.65rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.spark-widget-msg-text { white-space: pre-wrap; }
+.spark-widget-msg-text--error { color: #ff6a6a; }
+.spark-widget-msg-text.is-typing::after {
+  content: '';
+  display: inline-block;
+  width: 0.5em;
+  height: 1em;
+  background: currentColor;
+  vertical-align: text-bottom;
+  margin-left: 2px;
+  animation: spark-widget-blink 1s steps(1) infinite;
+}
+@keyframes spark-widget-blink { 50% { opacity: 0; } }
+
+.spark-widget-msg-cta {
+  display: inline-flex;
+  align-self: flex-start;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.75rem;
+  border: 1px solid var(--sw-accent);
+  border-radius: 3px;
+  background: rgba(111, 174, 140, 0.1);
+  color: var(--sw-accent);
+  font-family: var(--font-mono, monospace);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+.spark-widget-msg-cta::after { content: '\2192'; }
+.spark-widget-msg-cta:hover { background: rgba(111, 174, 140, 0.2); transform: translateX(2px); }
+.spark-widget-msg-cta[hidden] { display: none; }
+
+.spark-widget-form {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 0.75rem;
+  border-top: 1px solid rgba(111, 174, 140, 0.15);
+  flex: 0 0 auto;
+}
+.spark-widget-prompt {
+  font-family: var(--font-mono, monospace);
+  color: var(--sw-accent);
+  opacity: 0.7;
+  font-size: 0.8rem;
+}
+.spark-widget-input {
+  flex: 1 1 auto;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #f8f5f2;
+  font-family: var(--font-ui, sans-serif);
+  font-size: 0.82rem;
+  min-width: 0;
+}
+.spark-widget-input::placeholder { color: rgba(248, 245, 242, 0.35); }
+.spark-widget-send {
+  background: transparent;
+  border: none;
+  color: var(--sw-accent);
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0.2rem 0.3rem;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+.spark-widget-send:hover { opacity: 1; }
+.spark-widget-send:disabled { opacity: 0.25; cursor: default; }
+
+.spark-widget-hint {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.58rem;
+  letter-spacing: 0.02em;
+  color: rgba(248, 245, 242, 0.32);
+  padding: 0 0.9rem 0.6rem;
+  margin: 0;
+  flex: 0 0 auto;
+}
+
+/* ── Responsive ────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .spark-widget { bottom: 5.4rem; right: 1.1rem; }
+  .spark-widget-btn { width: 52px; height: 52px; padding: 9px; }
+}
+
+@media (max-width: 600px) {
+  /* Bottom sheet instead of a small floating card -- more usable on a
+     phone-width viewport, and clears the keyboard better than a fixed
+     340px card would. */
+  .spark-widget-panel {
+    position: fixed;
+    left: 0.75rem;
+    right: 0.75rem;
+    bottom: 0.75rem;
+    width: auto;
+    height: min(72vh, 520px);
+    max-height: 72vh;
+  }
+}
+
+/* Input font-size >=16px stops iOS Safari auto-zooming on focus, same
+   reasoning as css/hero-chat.css's .hero-chat-input rule. */
+@media (max-width: 767px) {
+  .spark-widget-input { font-size: 16px; }
+  .spark-widget-send { min-width: 40px; min-height: 40px; display: inline-flex; align-items: center; justify-content: center; }
+}

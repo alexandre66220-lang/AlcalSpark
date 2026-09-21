@@ -622,3 +622,75 @@
   document.getElementById('cookie-accept').addEventListener('click', function () { dismiss('accepted'); });
   document.getElementById('cookie-refuse').addEventListener('click', function () { dismiss('refused'); });
 })();
+
+/* ── SPARK persistent mini-widget (site-wide) ─────────────────
+   The only per-page footprint this feature needs: every page loads
+   js/main.js already, so wiring the widget in here -- instead of
+   adding script tags to all ~60 HTML files -- is what makes "on every
+   page" actually maintainable. Resolves sibling asset paths relative
+   to *this script's own* location (js/hero-eye-loader.js does the
+   same), so it works unmodified from any directory depth (/, /en/,
+   /services/, /en/portfolio/, ...).
+
+   The homepage (index.html, en/index.html) already loads
+   js/spark-chat-core.js as a plain <script defer> ahead of
+   js/hero-chat.js, so window.SparkChat exists there before this runs
+   -- loadCore() below is a no-op in that case and only actually fetches
+   the core module on the ~58 other pages that don't have hero-chat.js. */
+(function () {
+  'use strict';
+
+  var thisScript = document.currentScript;
+  var base = thisScript ? thisScript.src.replace(/[^/]*$/, '') : '';
+
+  // Bump when spark-chat-core.js/spark-widget.js/spark-widget.css change
+  // in a way that isn't safe to leave to the 7-day cache on /js/* and
+  // /css/* (netlify.toml).
+  var ASSET_VERSION = '1';
+
+  function loadScript(src) {
+    return new Promise(function (resolve, reject) {
+      var s = document.createElement('script');
+      s.src = src;
+      s.async = true;
+      s.onload = function () { resolve(); };
+      s.onerror = function () { reject(new Error('failed to load ' + src)); };
+      document.body.appendChild(s);
+    });
+  }
+
+  function loadStyle(href) {
+    var l = document.createElement('link');
+    l.rel = 'stylesheet';
+    l.href = href;
+    document.head.appendChild(l);
+  }
+
+  function loadCore() {
+    if (window.SparkChat) return Promise.resolve();
+    return loadScript(base + 'spark-chat-core.js?v=' + ASSET_VERSION);
+  }
+
+  function boot() {
+    loadStyle(base + '../css/spark-widget.css?v=' + ASSET_VERSION);
+    loadCore()
+      .then(function () { return loadScript(base + 'spark-widget.js?v=' + ASSET_VERSION); })
+      .catch(function (err) {
+        console.error('[spark-widget] failed to load:', err);
+      });
+  }
+
+  function whenIdle(cb) {
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(cb, { timeout: 2000 });
+    } else {
+      setTimeout(cb, 200);
+    }
+  }
+
+  if (document.readyState === 'complete') {
+    whenIdle(boot);
+  } else {
+    window.addEventListener('load', function () { whenIdle(boot); });
+  }
+})();

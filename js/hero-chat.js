@@ -16,7 +16,7 @@
 
    Reply lifecycle mirrors AlcalEye's: eyeStartReply() on submit,
    eyePulse(charDelta) per SSE text chunk (drives the core kick and
-   the streaming-rate signal used for glitch/radar speed on desktop),
+   the streaming-rate signal used for radar sweep speed on desktop),
    eyeEndReply() on the stream's last token (short-reply ring burst /
    long-reply wind-down + the deliberate end-of-turn blink).
 

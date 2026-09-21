@@ -12,7 +12,7 @@
 
    Structure:
      - CONFIG / palette constants
-     - state object (time, pointer, glitch envelopes, public mode)
+     - state object (time, pointer, breathing/blink envelopes, public mode)
      - buildXxx()  — one-time scene-graph construction functions
      - updateXxx(dt) — per-frame update functions, called from animate()
      - lifecycle: init(), animate(), resize(), teardown-on-error
@@ -27,25 +27,31 @@
   if (!zone) return;
 
   /* ── Palette ───────────────────────────────────────────────
-     Two options to compare: current neon cyan, and a variant
-     pulled toward the brand's forest green. Flip PALETTE below
-     (or set data-palette="forest" on .hero-blobs) to switch. */
+     Brand-aligned default: the muted forest-green variant (matches
+     the site's #385144 / #0A0D0B chart), kept alongside the original
+     brighter cyan in case that's ever wanted again. Flip PALETTE
+     below (or set data-palette="cyan" on .hero-blobs) to switch --
+     css/hero-eye.css already themes the DOM HUD to match either. */
   var PALETTES = {
-    cyan:   { neon: 0x39ffc4, dim: 0x1a8f6e, glitch: 0xff2ec4, css: '' },
-    forest: { neon: 0x6fae8c, dim: 0x385144, glitch: 0xc9a227, css: 'forest' }
+    cyan:   { neon: 0x39ffc4, dim: 0x1a8f6e, css: '' },
+    forest: { neon: 0x6fae8c, dim: 0x385144, css: 'forest' }
   };
-  var PALETTE = PALETTES.cyan;
+  var PALETTE = PALETTES.forest;
 
   var CONFIG = {
     particleCount: 1200,
     tickCount: 28,
     ringRadius: 2.6,
     eqBars: 32,
-    softGlitchEvery: [3, 6],   // seconds, randomized range
-    hardGlitchEvery: [7, 14],
     shortReplyChars: 150,      // below this, endReply() fires a single crisp ring pulse
     sustainRampChars: 300,     // totalChars needed for the "long reply" sustained pulse to reach full strength
-    fastStreamCharsPerSec: 60  // chars/sec treated as "fast burst" when normalizing speak.rate
+    fastStreamCharsPerSec: 60, // chars/sec treated as "fast burst" when normalizing speak.rate
+    // Regular, non-random "breathing" tempo per mode -- replaces the old
+    // glitch-frequency differential as the readable signal that the
+    // state changed (see updateBreath()). Frequency in Hz, amplitude as
+    // a fraction of scale/opacity.
+    breathFreq: { idle: 0.35, listening: 0.55, thinking: 0.85, speaking: 0.6 },
+    breathAmp:  { idle: 0.035, listening: 0.05, thinking: 0.07, speaking: 0.045 }
   };
 
   /* ── Boot sequence timing ──────────────────────────────────
@@ -84,13 +90,18 @@
      computes from real token arrival, not a plain speaking:true/false:
        - energy: per-token kick (decays fast, drives the core scale bump)
        - rate: smoothed chars/sec, derived from time between pulse() calls
-               (drives glitch speed / radar sweep speed -- bursts vs pauses)
+               (drives radar sweep speed / particle field swell -- bursts vs pauses)
        - totalChars: cumulative reply length this turn (reset by startReply())
        - sustained: eases toward a totalChars-based target while streaming,
                and toward 0 once streaming stops -- gives long replies a
                continuous ring pulse that ramps up then winds down, with
                no need to predict when the stream will end
-       - ringBurst: one-shot kick fired by endReply() for short replies */
+       - ringBurst: one-shot kick fired by endReply() for short replies
+
+     `breath` is a smooth, regular (never random) sine envelope whose
+     tempo/amplitude depend on `mode` -- the readable "state changed"
+     signal now that the old glitch-frequency differential is gone. See
+     updateBreath() and CONFIG.breathFreq/breathAmp. */
   var state = {
     mode: 'idle',
     running: false,
@@ -98,8 +109,7 @@
     time: 0,
     lastTs: 0,
     pointer: { x: 0, y: 0, tx: 0, ty: 0 },
-    soft: { phase: 0, env: 0, next: 3 },
-    hard: { phase: 0, env: 0, next: 8 },
+    breath: { phase: 0, value: 0 },
     speak: {
       energy: 0,
       rate: 0,
@@ -111,8 +121,7 @@
     },
     blink: { active: false, t: 0, duration: 0.22 }, // deliberate end-of-reply blink, independent of mode
     boot: { t: 0, done: false }, // one-shot opening sequence, see BOOT above -- never replays once done
-    activity: { current: 1, target: 1 }, // scroll-driven intensity, see updateActivity()
-    bolts: []
+    activity: { current: 1, target: 1 } // scroll-driven intensity, see updateActivity()
   };
 
   // 0..1 ease-out progress through a [start, end] boot stage; 1 once the
@@ -273,7 +282,9 @@
     var geo = new THREE.BoxGeometry(0.04, 0.12, 0.04);
     for (var i = 0; i < CONFIG.tickCount; i++) {
       var angle = (i / CONFIG.tickCount) * Math.PI * 2;
-      var mat = new THREE.MeshBasicMaterial({ color: PALETTE.dim, transparent: true, opacity: 0.5 });
+      // Always neon -- previously overwritten every frame anyway (the old
+      // color swap only ever fired on a hard glitch), now just set once.
+      var mat = new THREE.MeshBasicMaterial({ color: PALETTE.neon, transparent: true, opacity: 0.5 });
       var m = new THREE.Mesh(geo, mat);
       m.position.set(Math.cos(angle) * CONFIG.ringRadius, -1.1, Math.sin(angle) * CONFIG.ringRadius);
       m.lookAt(0, -1.1, 0);
@@ -410,9 +421,12 @@
     scene.add(particles);
   }
 
-  /* ── Post-processing (bloom-ish / glitch / vignette) ─────────
-     Render the scene to a target, then run one fullscreen pass
-     that adds the stylised look on top. */
+  /* ── Post-processing (bloom-ish / scanline / vignette) ────────
+     Render the scene to a target, then run one fullscreen pass that
+     adds a clean, static "precision optics" treatment on top -- no
+     jitter, chromatic split or grain: those read as an unstable/hacked
+     signal rather than a maîtrisée high-tech instrument, so this pass
+     is now just bloom + a faint fixed scanline + vignette + tonemap. */
   function buildPost() {
     sceneTarget = new THREE.WebGLRenderTarget(1, 1, { minFilter: THREE.LinearFilter, magFilter: THREE.LinearFilter });
     postScene = new THREE.Scene();
@@ -423,9 +437,6 @@
         tScene: { value: sceneTarget.texture },
         uResolution: { value: new THREE.Vector2(1, 1) },
         uTime: { value: 0 },
-        uSoft: { value: 0 },
-        uHard: { value: 0 },
-        uGlitchColor: { value: new THREE.Color(PALETTE.glitch) },
         uActivity: { value: 1 }
       },
       vertexShader: [
@@ -436,27 +447,11 @@
         'uniform sampler2D tScene;',
         'uniform vec2 uResolution;',
         'uniform float uTime;',
-        'uniform float uSoft;',
-        'uniform float uHard;',
-        'uniform vec3 uGlitchColor;',
         'uniform float uActivity;',
         'varying vec2 vUv;',
-        'float noise(vec2 p) { return fract(sin(dot(p, vec2(12.9898,78.233))) * 43758.5453); }',
         'void main() {',
         '  vec2 uv = vUv;',
-        // soft glitch: banded horizontal jitter
-        '  float band = floor(uv.y * 40.0);',
-        '  float jitter = (noise(vec2(band, floor(uTime * 12.0))) - 0.5) * 0.02 * uSoft;',
-        '  uv.x += jitter;',
-        // hard glitch: chromatic split + block noise
-        '  float split = 0.01 * uHard;',
-        '  vec4 col;',
-        '  col.r = texture2D(tScene, uv + vec2(split, 0.0)).r;',
-        '  col.g = texture2D(tScene, uv).g;',
-        '  col.b = texture2D(tScene, uv - vec2(split, 0.0)).b;',
-        '  col.a = 1.0;',
-        '  float blockN = step(0.985, noise(floor(uv * vec2(24.0, 14.0)) + floor(uTime * 20.0)));',
-        '  col.rgb = mix(col.rgb, uGlitchColor, blockN * uHard * 0.6);',
+        '  vec4 col = texture2D(tScene, uv);',
         // crude bloom: a few offset taps added back additively
         '  vec2 texel = 1.0 / uResolution;',
         '  vec3 bloom = vec3(0.0);',
@@ -465,12 +460,11 @@
         '  bloom += texture2D(tScene, uv + texel * vec2(0.0, 1.5)).rgb;',
         '  bloom += texture2D(tScene, uv - texel * vec2(0.0, 1.5)).rgb;',
         '  col.rgb += bloom * 0.06;',
-        // scanlines + vignette + grain
-        '  float scan = 0.94 + 0.06 * sin(uv.y * uResolution.y * 1.5);',
+        // faint fixed scanlines (display-glass texture, not noise) + vignette
+        '  float scan = 0.96 + 0.04 * sin(uv.y * uResolution.y * 1.5);',
         '  col.rgb *= scan;',
         '  float vig = smoothstep(0.9, 0.25, length(uv - 0.5));',
         '  col.rgb *= mix(0.55, 1.0, vig);',
-        '  col.rgb += (noise(uv * uResolution + uTime) - 0.5) * 0.03;',
         // simple tonemap
         '  col.rgb = col.rgb / (col.rgb + vec3(1.0));',
         // scroll-away dimming -- fades the whole frame toward black
@@ -485,45 +479,6 @@
 
     var quad = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), postMaterial);
     postScene.add(quad);
-  }
-
-  /* ── Lightning bolts ───────────────────────────────────────── */
-  function spawnBolt() {
-    if (!ticks.length) return;
-    var target = ticks[Math.floor(rand() * ticks.length)].position;
-    var start = new THREE.Vector3(0, 0, 0);
-    var segments = 6;
-    var pts = [];
-    for (var i = 0; i <= segments; i++) {
-      var t = i / segments;
-      var p = start.clone().lerp(target, t);
-      if (i > 0 && i < segments) {
-        p.x += randRange(-0.15, 0.15);
-        p.y += randRange(-0.15, 0.15);
-        p.z += randRange(-0.15, 0.15);
-      }
-      pts.push(p);
-    }
-    var geo = new THREE.BufferGeometry().setFromPoints(pts);
-    var mat = new THREE.LineBasicMaterial({ color: PALETTE.glitch, transparent: true, opacity: 0.9 });
-    var line = new THREE.Line(geo, mat);
-    scene.add(line);
-    state.bolts.push({ line: line, born: state.time, duration: 0.22 });
-  }
-
-  function updateBolts() {
-    for (var i = state.bolts.length - 1; i >= 0; i--) {
-      var b = state.bolts[i];
-      var age = state.time - b.born;
-      if (age >= b.duration) {
-        scene.remove(b.line);
-        b.line.geometry.dispose();
-        b.line.material.dispose();
-        state.bolts.splice(i, 1);
-        continue;
-      }
-      b.line.material.opacity = 0.9 * (1 - age / b.duration);
-    }
   }
 
   /* ── Pointer tracking (container-relative, not window) ───────── */
@@ -546,43 +501,21 @@
     state.pointer.y += (state.pointer.ty - state.pointer.y) * lerp;
   }
 
-  function updateGlitchEnvelopes(dt) {
-    // "thinking" reuses the exact same soft/hard glitch cycle, just fed
-    // a faster clock -- a nervous, accelerated version of the idle tic
-    // rather than a separate effect. "speaking" does the same but scaled
-    // by how fast tokens are actually arriving (bursts -> more nervous,
-    // pauses -> settles back toward the normal cycle).
-    var rateFactor = Math.min(1, state.speak.rate / CONFIG.fastStreamCharsPerSec);
-    var glitchDt = dt;
-    if (state.mode === 'thinking') glitchDt = dt * 5;
-    else if (state.mode === 'speaking') glitchDt = dt * (1 + rateFactor * 1.5);
-    // Glitches fire less often as the hero scrolls out of view -- the
-    // trigger clock slows, decay (below) stays real-time so an
-    // already-firing glitch still finishes its own arc normally.
-    glitchDt *= state.activity.current;
-
-    state.soft.phase += glitchDt;
-    if (state.soft.phase > state.soft.next) {
-      state.soft.phase = 0;
-      state.soft.next = randRange(CONFIG.softGlitchEvery[0], CONFIG.softGlitchEvery[1]);
-      state.soft.env = 1;
-    }
-    state.soft.env *= Math.pow(0.001, dt); // fast decay
-
-    state.hard.phase += glitchDt;
-    if (state.hard.phase > state.hard.next) {
-      state.hard.phase = 0;
-      state.hard.next = randRange(CONFIG.hardGlitchEvery[0], CONFIG.hardGlitchEvery[1]);
-      state.hard.env = 1;
-      spawnBolt();
-    }
-    state.hard.env *= Math.pow(0.0005, dt);
+  /* Regular sine "breathing" envelope -- the readable, non-random signal
+     that the mode changed (replaces the old glitch-frequency trick).
+     Tempo/amplitude step per mode via CONFIG.breathFreq/breathAmp, and
+     ease off with scroll-away activity same as everything else, but the
+     motion itself is always a smooth continuous wave, never a random
+     trigger. Consumed by updateCore()/updateEye()/updateRadar(). */
+  function updateBreath(dt) {
+    var freq = CONFIG.breathFreq[state.mode] || CONFIG.breathFreq.idle;
+    state.breath.phase += dt * freq * state.activity.current;
+    state.breath.value = Math.sin(state.breath.phase * Math.PI * 2);
   }
 
   /* Per-frame upkeep for the speak-intensity signals set by
-     AlcalEye.pulse()/startReply()/endReply(). Kept separate from
-     updateGlitchEnvelopes now that speak state carries more than one
-     value -- still just decay/lerp math, no new animation path. */
+     AlcalEye.pulse()/startReply()/endReply() -- still just decay/lerp
+     math, no new animation path. */
   function updateSpeakEnvelope(dt) {
     state.speak.energy *= Math.pow(0.02, dt);   // per-token kick, decays fast between tokens
     state.speak.ringBurst *= Math.pow(0.002, dt); // short-reply one-shot kick, decays over ~1s
@@ -618,12 +551,16 @@
     core.material.opacity = 0.35 * bootFade(BOOT.core);
 
     // Each streamed token kicks the core outward briefly -- a pulse
-    // synced to token arrival instead of a plain idle loop.
+    // synced to token arrival instead of a plain idle loop -- layered on
+    // top of the regular per-mode breathing envelope (see updateBreath),
+    // which is what now reads as "the state changed" instead of glitch.
     var kick = state.mode === 'speaking' ? state.speak.energy * 0.12 : 0;
-    core.scale.setScalar(1 + kick);
+    var breathAmp = CONFIG.breathAmp[state.mode] || CONFIG.breathAmp.idle;
+    var breathe = state.breath.value * breathAmp * bootFade(BOOT.core);
+    core.scale.setScalar(1 + kick + breathe);
   }
 
-  function updateEye() {
+  function updateEye(dt) {
     // Listening: the pupil tracks the cursor/typing focus more sharply,
     // as if paying closer attention.
     var trackLerp = state.mode === 'listening' ? 0.22 : 0.1;
@@ -652,16 +589,16 @@
     eyeGroup.rotation.y = state.pointer.x * 0.12;
     eyeGroup.rotation.x = -state.pointer.y * 0.1;
 
-    // Involuntary glitch blink (existing) OR a deliberate end-of-reply
-    // blink (state.blink, fired once by AlcalEye.endReply()) -- whichever
-    // wants the eyelids more closed wins; both reopen through the same
-    // lerp below, so neither ever cuts sharply back to idle.
-    var hardBlink = state.hard.env > 0.6 ? 1 : 0;
-    var deliberateBlink = state.blink.active ? 1 : 0;
-    var blink = Math.max(hardBlink, deliberateBlink);
+    // Deliberate end-of-reply blink only (state.blink, fired once by
+    // AlcalEye.endReply()) -- no more involuntary glitch-triggered blink.
+    // A dt-based (frame-rate independent) lerp keeps the close/open
+    // motion crisp and fast rather than the old fixed-per-frame ease,
+    // per the "net et volontaire" brief.
+    var blink = state.blink.active ? 1 : 0;
     var lidY = blink ? 0 : 1.9;
-    lids.top.position.y += (lidY - lids.top.position.y) * 0.4;
-    lids.bottom.position.y += (-lidY - lids.bottom.position.y) * 0.4;
+    var lidLerp = 1 - Math.pow(0.00003, dt);
+    lids.top.position.y += (lidY - lids.top.position.y) * lidLerp;
+    lids.bottom.position.y += (-lidY - lids.bottom.position.y) * lidLerp;
 
     // The lids are only meant to be seen while closing/closed -- moving
     // them aside isn't enough on its own, since their resting position
@@ -678,14 +615,23 @@
 
     ringA.rotation.z += 0.003;
     ringB.rotation.z -= 0.0022;
-    var glitchScale = 1 + state.hard.env * 0.08;
-    ringA.scale.setScalar(glitchScale);
-    ringB.scale.setScalar(glitchScale);
+    // Same regular breathing envelope as the core, at a much smaller
+    // amplitude -- a steady, precise shimmer instead of the old random
+    // glitch-triggered scale kick.
+    var ringBreathe = 1 + state.breath.value * 0.015;
+    ringA.scale.setScalar(ringBreathe);
+    ringB.scale.setScalar(ringBreathe);
   }
 
   function updateRadar(dt) {
     var rateFactor = Math.min(1, state.speak.rate / CONFIG.fastStreamCharsPerSec);
-    var sweepSpeed = state.mode === 'speaking' ? 0.8 * (1 + rateFactor * 0.6) : 0.8;
+    // Sweep tempo is a legible, steady per-mode step (not a random
+    // trigger) -- "thinking" scans visibly faster, same signal role the
+    // old glitch-frequency differential used to carry.
+    var sweepSpeed = state.mode === 'speaking' ? 0.8 * (1 + rateFactor * 0.6)
+      : state.mode === 'thinking' ? 1.3
+      : state.mode === 'listening' ? 0.95
+      : 0.8;
     // Scrolled-away scenes sweep slower rather than stopping outright,
     // same rationale as the core's rotation above.
     sweepMat.uniforms.uAngle.value += dt * sweepSpeed * state.activity.current;
@@ -698,19 +644,20 @@
     ticks.forEach(function (tick) {
       var diff = Math.atan2(Math.sin(tick.userData.angle - sweepMat.uniforms.uAngle.value), Math.cos(tick.userData.angle - sweepMat.uniforms.uAngle.value));
       var hit = Math.max(0, 1 - Math.abs(diff) / 0.5);
-      var base = 0.5 + hit * 0.5 + state.hard.env * 0.3;
-      tick.material.opacity = Math.min(1, base) * radarBoot;
-      tick.material.color.set(state.hard.env > 0.5 ? PALETTE.glitch : PALETTE.neon);
+      tick.material.opacity = Math.min(1, 0.5 + hit * 0.5) * radarBoot;
     });
   }
 
   function updatePulses(dt) {
     // Ambient cycle speeds up and brightens with `sustained` (a long
-    // reply still streaming in), and gets one extra outward kick from
+    // reply still streaming in), gets one extra outward kick from
     // `ringBurst` (a short reply's single crisp pulse, or the burst
-    // fired by endReply()) -- both layered on the same base loop rather
-    // than swapping in a separate animation.
-    var cycle = 2.4 - state.speak.sustained * 1.2;
+    // fired by endReply()), and steps a bit faster in `thinking` -- all
+    // layered on the same base loop rather than swapping in a separate
+    // animation. Clamped so the cycle never gets fast enough to feel
+    // frantic.
+    var modeBoost = state.mode === 'thinking' ? 0.6 : state.mode === 'listening' ? 0.2 : 0;
+    var cycle = Math.max(0.9, 2.4 - state.speak.sustained * 1.2 - modeBoost);
     pulses.forEach(function (ring, i) {
       var local = ((state.time / cycle) + ring.userData.offset) % 1;
       var burstBoost = state.speak.ringBurst * (1 - local);
@@ -722,7 +669,12 @@
 
   function updateParticles() {
     particleMat.uniforms.uTime.value = state.time;
-    particleMat.uniforms.uBurst.value += ((state.hard.env > 0.4 ? 1 : 0) - particleMat.uniforms.uBurst.value) * 0.1;
+    // The particle field now swells gently with real reply activity
+    // (per-token energy + the long-reply sustained pulse) instead of a
+    // random glitch burst -- a meaningful cue tied to the AI actually
+    // responding, eased continuously rather than triggered.
+    var burstTarget = Math.min(1, state.speak.energy * 0.5 + state.speak.sustained * 0.4);
+    particleMat.uniforms.uBurst.value += (burstTarget - particleMat.uniforms.uBurst.value) * 0.1;
     particleMat.uniforms.uBootFade.value = bootFade(BOOT.particles);
   }
 
@@ -738,8 +690,6 @@
 
   function updatePost() {
     postMaterial.uniforms.uTime.value = state.time;
-    postMaterial.uniforms.uSoft.value = state.soft.env;
-    postMaterial.uniforms.uHard.value = state.hard.env;
     postMaterial.uniforms.uActivity.value = state.activity.current;
   }
 
@@ -787,13 +737,12 @@
 
     updateLifecycle(dt);
     updatePointer(dt);
-    updateGlitchEnvelopes(dt);
+    updateBreath(dt);
     updateSpeakEnvelope(dt);
     updateCore(dt);
     updateEye(dt);
     updateRadar(dt);
     updatePulses(dt);
-    updateBolts();
     updateParticles();
     updateHud();
     updatePost();
@@ -850,13 +799,13 @@
 
   /* ── Public hook for js/hero-chat.js ──────────────────────
      States: idle | listening | thinking | speaking -- read by
-     updateCore/updateEye/updateGlitchEnvelopes/updateRadar/updatePulses
-     above. The reply lifecycle is three calls:
+     updateCore/updateEye/updateBreath/updateRadar/updatePulses above.
+     The reply lifecycle is three calls:
        startReply() -- once, right when a new turn begins (resets the
                         per-turn accumulators below)
        pulse(charDelta) -- once per SSE text chunk received, feeding
                         both the per-token core kick and the smoothed
-                        chars/sec rate used to modulate glitch/radar speed
+                        chars/sec rate used to modulate radar sweep speed
        endReply() -- once, on the stream's last token: fires the
                         short-reply ring burst (long replies just ease
                         their already-running sustained pulse back to 0
@@ -926,6 +875,7 @@
           streaming: state.speak.streaming
         },
         blink: { active: state.blink.active, t: state.blink.t },
+        breath: { value: state.breath.value },
         boot: {
           t: state.boot.t,
           done: state.boot.done,

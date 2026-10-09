@@ -1,6 +1,10 @@
 {
   "PRIX_FIXE": 900,
   "PRIX_MAINTENANCE": 49,
+  "ACOMPTE_POURCENT": 30,
+  "ACOMPTE_MONTANT": 270,
+  "SOLDE_POURCENT": 70,
+  "SOLDE_MONTANT": 630,
   "PRIX_MENTION": "TVA non applicable, art. 293 B du CGI",
   "PRIX_MENTION_EN": "VAT not applicable, art. 293 B of the French Tax Code (CGI)",
   "HORAIRES_RAPPEL": "chaque jour entre 18h30 et 21h",

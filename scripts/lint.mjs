@@ -52,6 +52,16 @@ if (truthy(config.LIEN_PAIEMENT_ACOMPTE) && !/^https:\/\/\S+$/.test(String(confi
 if (!(Number(config.PRIX_FIXE) > 0)) fail("config", "PRIX_FIXE doit etre un nombre positif.");
 if (!(Number(config.PRIX_MAINTENANCE) > 0)) fail("config", "PRIX_MAINTENANCE doit etre un nombre positif.");
 
+// Acompte / solde : montants derives du prix fixe (CGV, article 4).
+{
+  const prix = Number(config.PRIX_FIXE);
+  const pa = Number(config.ACOMPTE_POURCENT), ps = Number(config.SOLDE_POURCENT);
+  if (pa + ps !== 100) fail("config", `ACOMPTE_POURCENT (${pa}) + SOLDE_POURCENT (${ps}) doit valoir 100.`);
+  if (Number(config.ACOMPTE_MONTANT) !== (prix * pa) / 100) fail("config", `ACOMPTE_MONTANT (${config.ACOMPTE_MONTANT}) ne correspond pas a ${pa} % de PRIX_FIXE (${prix}).`);
+  if (Number(config.SOLDE_MONTANT) !== (prix * ps) / 100) fail("config", `SOLDE_MONTANT (${config.SOLDE_MONTANT}) ne correspond pas a ${ps} % de PRIX_FIXE (${prix}).`);
+  if (Number(config.ACOMPTE_MONTANT) + Number(config.SOLDE_MONTANT) !== prix) fail("config", "ACOMPTE_MONTANT + SOLDE_MONTANT doit valoir PRIX_FIXE.");
+}
+
 const usedKeys = new Set();
 for (const f of htmlFiles) {
   const html = readFileSync(f, "utf-8");
@@ -163,14 +173,46 @@ if (!existsSync(cgvFile)) {
   fail("cgv", "cgv.html est absent");
 } else {
   const cgv = readFileSync(cgvFile, "utf-8");
-  if (/A COMPLETER|À COMPLÉTER/.test(cgv) && !/<meta name="robots" content="noindex/.test(cgv)) {
-    fail("cgv", "cgv.html contient encore le marqueur 'À COMPLÉTER' : elle doit rester en noindex tant qu'elle n'est pas validee");
+  const visible = cgv.replace(/<script\b[\s\S]*?<\/script>/g, "").replace(/<!--[\s\S]*?-->/g, "");
+  // Champs a completer : <span class="cgv-field">[...]</span> ou tout crochet dans le texte des articles.
+  const article = (visible.match(/<main>[\s\S]*<\/main>/) || [""])[0];
+  const fields = [...article.matchAll(/\[[^\]<>]{1,120}\]/g)].map((m) => m[0]);
+  const draft = /À COMPLÉTER|A COMPLETER/.test(visible) || fields.length > 0;
+  if (draft && !/<meta name="robots" content="noindex/.test(cgv)) {
+    fail("cgv", `cgv.html contient encore des champs a completer (${fields.length}) ou le bandeau 'À COMPLÉTER' : elle doit rester en noindex`);
+  }
+  if (fields.length > 0 && !/À COMPLÉTER ET FAIRE VALIDER/.test(visible)) {
+    fail("cgv", "cgv.html contient des champs entre crochets mais plus le bandeau 'À COMPLÉTER ET FAIRE VALIDER'");
+  }
+  if (fields.length === 0 && /À COMPLÉTER ET FAIRE VALIDER/.test(visible)) {
+    console.warn("[cgv] avertissement : plus aucun champ entre crochets, retirer le bandeau et le noindex, puis lancer npm run fix-sitemap.");
+  }
+  // Valeurs chiffrees : jamais en dur, toujours via les jetons de site.config.json.
+  const hard = [
+    [config.PRIX_FIXE, "{{PRIX_FIXE}}"],
+    [config.PRIX_MAINTENANCE, "{{PRIX_MAINTENANCE}}"],
+    [config.ACOMPTE_MONTANT, "{{ACOMPTE_MONTANT}}"],
+    [config.SOLDE_MONTANT, "{{SOLDE_MONTANT}}"],
+  ];
+  for (const [n, token] of hard) {
+    if (new RegExp(`(?<![0-9{])${n}\\s*€`).test(article)) fail("cgv", `montant ${n} € ecrit en dur dans cgv.html, utiliser ${token}`);
+  }
+  if (article.includes(String(config.HORAIRES_RAPPEL))) fail("cgv", "creneau de rappel ecrit en dur dans cgv.html, utiliser {{HORAIRES_RAPPEL}}");
+  for (const t of ["PRIX_FIXE", "PRIX_MAINTENANCE", "ACOMPTE_MONTANT", "ACOMPTE_POURCENT", "SOLDE_MONTANT", "SOLDE_POURCENT", "HORAIRES_RAPPEL", "PRIX_MENTION"]) {
+    if (!cgv.includes(`{{${t}}}`)) fail("cgv", `cgv.html n'utilise pas le jeton {{${t}}}`);
   }
 }
 for (const p of ["brief-site-artisan-btp.html", "en/brief-site-artisan-btp.html"]) {
   const html = readFileSync(join(ROOT, p), "utf-8");
   if (!/<input[^>]*name="cgv_acceptees"[^>]*\brequired\b/.test(html)) fail("cgv", `${p}: case CGV obligatoire absente`);
-  if (!/href="(\.\.\/)?cgv\.html"/.test(html)) fail("cgv", `${p}: lien vers cgv.html absent`);
+  const link = html.match(/<a [^>]*href="(?:\.\.\/)?cgv\.html"[^>]*>/);
+  if (!link) fail("cgv", `${p}: lien vers cgv.html absent`);
+  else if (!/target="_blank"/.test(link[0]) || !/rel="[^"]*noopener/.test(link[0])) fail("cgv", `${p}: le lien CGV doit s'ouvrir dans un nouvel onglet (target="_blank" rel="noopener")`);
+}
+// Lien CGV dans le pied de page de chaque page.
+for (const f of htmlFiles) {
+  const html = readFileSync(f, "utf-8");
+  if (!/<li><a href="(?:\.\.\/)*cgv\.html">/.test(html)) fail("cgv", `${rel(f)}: lien CGV absent du pied de page`);
 }
 
 /* Bilan -------------------------------------------------------------- */

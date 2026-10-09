@@ -6,13 +6,45 @@
    ============================================================ */
 
 :root {
+  /* ── 0. RÉGLAGES D'INTENSITÉ : tout le verre se règle ici ──────
+     blur / saturation / opacités / élévations / profondeur.
+     Valeurs sobres : monter --glass-alpha-* ou --glass-glow
+     renforce le verre, descendre --glass-blur-amount l'allège. */
+  --glass-blur-amount: 14px;     /* flou du verre (cards .glass) */
+  --glass-saturate:    150%;     /* saturation des couleurs floutées */
+  --glass-alpha:        0.05;    /* opacité de la teinte : .glass */
+  --glass-alpha-subtle: 0.03;    /*                        .glass-subtle */
+  --glass-alpha-strong: 0.085;   /*                        .glass-strong */
+  --glass-glow:         0.10;    /* lueur d'accent (vert de la charte) */
+  --glass-rim:          0.30;    /* intensité du reflet de bordure (haut gauche) */
+  --glass-highlight:    0.10;    /* highlight interne en haut de la card */
+  --glass-sheen:        0.05;    /* éclat qui traverse la card */
+  --g-base:             0;       /* fond sombre sous la teinte (0 = verre pur, 1 = opaque) */
+  --sheen-rest:         115%;    /* position de l'éclat au repos (hors cadre) */
+  --sheen-hover:        -15%;    /* position au survol : l'éclat traverse la card */
+
+  /* Profondeur de champ */
+  --depth-dim:           0.74;   /* opacité des cards voisines quand une card est survolée */
+  --depth-field-opacity: 1;      /* intensité des blobs ambiants (0 = aucun) */
+  --depth-field-dim:     0.55;   /* le fond s'atténue à cette valeur pendant un survol */
+  --depth-lift:          -4px;   /* élévation d'une card au survol */
+
+  /* Élévations (ombres multicouches) */
+  --elev-1: 0 1px 2px rgb(0 0 0 / .30), 0 6px 14px -6px rgb(0 0 0 / .40);
+  --elev-1-hover: 0 2px 4px rgb(0 0 0 / .30), 0 12px 24px -8px rgb(0 0 0 / .50);
+  --elev-2: 0 1px 2px rgb(0 0 0 / .30), 0 8px 18px -6px rgb(0 0 0 / .40), 0 24px 48px -18px rgb(0 0 0 / .50);
+  --elev-2-hover: 0 2px 4px rgb(0 0 0 / .30), 0 16px 32px -8px rgb(0 0 0 / .50), 0 40px 80px -20px rgb(0 0 0 / .60);
+  --elev-3: 0 2px 4px rgb(0 0 0 / .30), 0 14px 30px -8px rgb(0 0 0 / .50), 0 36px 72px -18px rgb(0 0 0 / .60), 0 0 56px -10px color-mix(in srgb, var(--green-bright) 35%, transparent);
+  --elev-3-hover: 0 3px 6px rgb(0 0 0 / .30), 0 22px 44px -10px rgb(0 0 0 / .55), 0 52px 100px -24px rgb(0 0 0 / .65), 0 0 72px -8px color-mix(in srgb, var(--green-bright) 45%, transparent);
+
+  /* Alias historiques (utilisés par style.css : bandeau cookie, etc.) */
   --glass-bg:        rgba(255, 255, 255, 0.04);
   --glass-bg-hover:  rgba(255, 255, 255, 0.07);
   --glass-border:    rgba(255, 255, 255, 0.10);
-  --glass-border-hi: rgba(255, 255, 255, 0.18);
+  --glass-border-hi: rgba(255, 255, 255, 0.20);
   --glass-radius:    14px;
-  --glass-blur:       blur(20px) saturate(180%);
-  --glass-blur-hover: blur(24px) saturate(200%);
+  --glass-blur:       blur(var(--glass-blur-amount)) saturate(var(--glass-saturate));
+  --glass-blur-hover: blur(calc(var(--glass-blur-amount) * 1.2)) saturate(var(--glass-saturate));
   --glow-green:      rgba(56, 81, 68, 0.35);
   --glow-green-soft: rgba(56, 81, 68, 0.18);
 }
@@ -114,188 +146,216 @@
 }
 
 /* ============================================================
-   2. CARTES GLASSMORPHISM — recette commune
+   2. SYSTÈME GLASS — recette unique, 3 niveaux
+   ------------------------------------------------------------
+   Réglage : tout se pilote depuis les variables de :root
+   (section 0) et les 3 niveaux ci-dessous. Pour verrer un
+   nouveau composant : lui ajouter la classe .glass,
+   .glass-subtle ou .glass-strong (ou l'ajouter aux listes
+   ci-dessous, les composants historiques y sont déjà).
+
+     .glass         carte standard (flou léger, élévation 2)
+     .glass-subtle  surface discrète : listes, FAQ, mockups
+                    (teinte + reflet, SANS flou : peu coûteux)
+     .glass-strong  carte mise en avant (offre, tarif phare)
+
+   Aucune couleur en dur : teintes dérivées des tokens
+   (--cream, --green-bright, --bg) via color-mix().
    ============================================================ */
 
-.card,
-.pricing-card,
-.abo-card,
-.misc-card,
-.pourquoi-card,
-.value-card,
-.product-card,
-.estime-card,
-.contact-card,
-.contact-form-wrap,
-.faq-item,
-.skill-item,
-.saas-mockup,
-.seo-mockup,
-.brand-mockup,
-.seo-service-card,
-.advantage-card {
-  background: var(--glass-bg) !important;
-  -webkit-backdrop-filter: var(--glass-blur);
-  backdrop-filter: var(--glass-blur);
-  border: 1px solid var(--glass-border) !important;
-  border-radius: var(--glass-radius) !important;
-  box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+/* — Niveaux : valeurs par défaut (= .glass) — */
+.glass, .card, .pricing-card, .abo-card, .misc-card, .pourquoi-card, .value-card,
+.product-card, .estime-card, .contact-form-wrap, .contact-offer-card,
+.offre-block, .offre-maint, .seo-service-card, .advantage-card,
+.portfolio-item, .pf-item,
+.glass-subtle, .contact-card, .faq-item, .skill-item, .saas-mockup, .seo-mockup, .brand-mockup,
+.glass-strong, .pricing-card-featured, .pricing-card.featured, .offre-price-card {
+  --g-a:      var(--glass-alpha);
+  --g-blur:   var(--glass-blur-amount);
+  --g-glow:   var(--glass-glow);
+  --g-rim:    var(--glass-rim);
+  --g-hi:     var(--glass-highlight);
+  --g-sheen:  var(--glass-sheen);
+  --g-elev:   var(--elev-2);
+  --g-elev-hover: var(--elev-2-hover);
+}
+
+.glass-subtle, .contact-card, .faq-item, .skill-item, .saas-mockup, .seo-mockup, .brand-mockup {
+  --g-a:      var(--glass-alpha-subtle);
+  --g-blur:   0px;
+  --g-glow:   calc(var(--glass-glow) * 0.45);
+  --g-rim:    calc(var(--glass-rim) * 0.6);
+  --g-hi:     calc(var(--glass-highlight) * 0.6);
+  --g-sheen:  calc(var(--glass-sheen) * 0.6);
+  --g-elev:   var(--elev-1);
+  --g-elev-hover: var(--elev-1-hover);
+}
+
+.glass-strong, .pricing-card-featured, .pricing-card.featured, .offre-price-card, .contact-offer-card {
+  --g-a:      var(--glass-alpha-strong);
+  --g-blur:   calc(var(--glass-blur-amount) * 1.5);
+  --g-glow:   calc(var(--glass-glow) * 2.4);
+  --g-rim:    calc(var(--glass-rim) * 1.5);
+  --g-hi:     calc(var(--glass-highlight) * 1.6);
+  --g-sheen:  calc(var(--glass-sheen) * 1.6);
+  --g-elev:   var(--elev-3);
+  --g-elev-hover: var(--elev-3-hover);
+}
+
+/* Cartes dont le contenu est une image pleine : le flou serait invisible,
+   on ne le paie pas. Elles gardent bordure, reflet et élévation. */
+.portfolio-item, .pf-item { --g-blur: 0px; }
+
+/* — Surface — */
+.glass, .card, .pricing-card, .abo-card, .misc-card, .pourquoi-card, .value-card,
+.product-card, .estime-card, .contact-form-wrap, .contact-offer-card,
+.offre-block, .offre-maint, .seo-service-card, .advantage-card,
+.portfolio-item, .pf-item,
+.glass-subtle, .contact-card, .faq-item, .skill-item, .saas-mockup, .seo-mockup, .brand-mockup,
+.glass-strong, .pricing-card-featured, .pricing-card.featured, .offre-price-card {
   position: relative;
   overflow: hidden;
-  transition: border-color 0.3s ease,
-              background 0.3s ease,
-              backdrop-filter 0.3s ease,
-              -webkit-backdrop-filter 0.3s ease,
-              box-shadow 0.3s ease,
-              transform 0.45s var(--ease-out, ease);
-}
-
-/* Liseré lumineux en haut de chaque carte (reflet verre) */
-.card::after,
-.pricing-card::after,
-.abo-card::after,
-.pourquoi-card::after,
-.value-card::after,
-.product-card::after,
-.estime-card::after,
-.contact-card::after {
-  content: '';
-  position: absolute;
-  top: 0; left: 8%; right: 8%;
-  height: 1px;
-  background: linear-gradient(to right, transparent, rgba(248, 245, 242, 0.18), transparent);
-  pointer-events: none;
-}
-
-.card:hover,
-.pricing-card:hover,
-.abo-card:hover,
-.misc-card:hover,
-.pourquoi-card:hover,
-.value-card:hover,
-.product-card:hover,
-.estime-card:hover,
-.contact-card:hover,
-.contact-form-wrap:hover,
-.faq-item:hover,
-.skill-item:hover,
-.saas-mockup:hover,
-.seo-mockup:hover,
-.brand-mockup:hover,
-.seo-service-card:hover,
-.advantage-card:hover {
-  background: var(--glass-bg-hover) !important;
-  -webkit-backdrop-filter: var(--glass-blur-hover);
-  backdrop-filter: var(--glass-blur-hover);
-  border-color: var(--glass-border-hi) !important;
-  transform: translateY(-4px);
+  isolation: isolate;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: var(--glass-radius) !important;
+  /* repli sans color-mix() */
+  background: var(--glass-bg) !important;
+  background:
+    linear-gradient(150deg,
+      color-mix(in srgb, var(--green-bright) calc(var(--g-glow) * 55%), transparent) 0%,
+      transparent 58%),
+    linear-gradient(color-mix(in srgb, var(--cream) calc(var(--g-a) * 100%), transparent),
+                    color-mix(in srgb, var(--cream) calc(var(--g-a) * 100%), transparent)),
+    color-mix(in srgb, var(--bg2) calc(var(--g-base) * 100%), transparent) !important;
   box-shadow:
-    0 12px 40px rgba(0, 0, 0, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+    var(--g-elev),
+    inset 0 1px 0 color-mix(in srgb, var(--cream) calc(var(--g-hi) * 100%), transparent),
+    inset 0 -1px 0 color-mix(in srgb, var(--bg) 55%, transparent) !important;
+  transition: border-color .3s ease, background-color .3s ease, box-shadow .45s var(--ease-out, ease),
+              transform .45s var(--ease-out, ease), opacity .35s ease, filter .35s ease;
 }
 
-/* Reflet lumineux (dégradé haut → bas) + spotlight suiveur de curseur
-   (main.js pilote --mx/--my/--sg) superposés sur le même pseudo-élément */
-.card::before,
-.pricing-card::before,
-.abo-card::before,
-.misc-card::before,
-.pourquoi-card::before,
-.value-card::before,
-.product-card::before,
-.estime-card::before,
-.contact-card::before,
-.contact-form-wrap::before,
-.faq-item::before,
-.skill-item::before,
-.saas-mockup::before,
-.seo-mockup::before,
-.brand-mockup::before,
-.seo-service-card::before,
-.advantage-card::before {
+/* Verre réel (flou + saturation) : uniquement là où il est lisible */
+@media (min-width: 768px) {
+  .glass, .card, .pricing-card, .abo-card, .misc-card, .pourquoi-card, .value-card,
+  .product-card, .estime-card, .contact-form-wrap, .contact-offer-card,
+  .offre-block, .offre-maint, .seo-service-card, .advantage-card,
+  .glass-strong, .pricing-card-featured, .pricing-card.featured, .offre-price-card {
+    -webkit-backdrop-filter: blur(var(--g-blur)) saturate(var(--glass-saturate));
+    backdrop-filter: blur(var(--g-blur)) saturate(var(--glass-saturate));
+  }
+  .portfolio-item, .pf-item, .glass-subtle, .contact-card, .faq-item, .skill-item,
+  .saas-mockup, .seo-mockup, .brand-mockup {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
+/* — Reflet de lumière (suit le curseur sur desktop) + sheen — */
+.glass::before, .card::before, .pricing-card::before, .abo-card::before, .misc-card::before,
+.pourquoi-card::before, .value-card::before, .product-card::before, .estime-card::before,
+.contact-form-wrap::before, .contact-offer-card::before, .offre-block::before, .offre-maint::before,
+.seo-service-card::before, .advantage-card::before, .portfolio-item::before, .pf-item::before,
+.glass-subtle::before, .contact-card::before, .faq-item::before, .skill-item::before,
+.saas-mockup::before, .seo-mockup::before, .brand-mockup::before,
+.glass-strong::before, .pricing-card-featured::before, .pricing-card.featured::before, .offre-price-card::before {
   content: '';
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(220px circle at var(--mx, 50%) var(--my, 50%),
-      rgba(90, 138, 110, calc(0.10 * var(--sg, 0))), transparent 70%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0) 55%);
-  transition: opacity 0.3s;
+  border-radius: inherit;
   pointer-events: none;
   z-index: 0;
+  background:
+    radial-gradient(260px circle at var(--mx, 50%) var(--my, 50%),
+      color-mix(in srgb, var(--green-bright) calc(var(--g-glow) * 100% * var(--sg, 0)), transparent), transparent 70%),
+    linear-gradient(135deg, color-mix(in srgb, var(--cream) 7%, transparent) 0%, transparent 42%),
+    linear-gradient(115deg, transparent 36%, color-mix(in srgb, var(--cream) calc(var(--g-sheen) * 100%), transparent) 50%, transparent 64%);
+  background-size: auto, auto, 280% 100%;
+  background-position: 0 0, 0 0, var(--sheen-rest) 0;
+  background-repeat: no-repeat;
+  transition: background-position 1s var(--ease-out, ease), opacity .3s ease;
 }
 
-.card > *,
-.pricing-card > *,
-.abo-card > *,
-.misc-card > *,
-.pourquoi-card > *,
-.value-card > *,
-.product-card > *,
-.estime-card > *,
-.contact-card > *,
-.contact-form-wrap > *,
-.faq-item > *,
-.skill-item > *,
-.saas-mockup > *,
-.seo-mockup > *,
-.brand-mockup > *,
-.seo-service-card > *,
-.advantage-card > * {
+/* — Bordure à reflet : plus claire en haut à gauche, point lumineux au curseur — */
+.glass::after, .card::after, .pricing-card::after, .abo-card::after, .misc-card::after,
+.pourquoi-card::after, .value-card::after, .product-card::after, .estime-card::after,
+.contact-form-wrap::after, .contact-offer-card::after, .offre-block::after, .offre-maint::after,
+.seo-service-card::after, .advantage-card::after, .portfolio-item::after, .pf-item::after,
+.glass-subtle::after, .contact-card::after, .faq-item::after, .skill-item::after,
+.saas-mockup::after, .seo-mockup::after, .brand-mockup::after,
+.glass-strong::after, .pricing-card-featured::after, .pricing-card.featured::after, .offre-price-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  top: 0; left: 0; right: 0; bottom: 0;
+  height: auto;
+  padding: 1px;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 2;
+  background:
+    radial-gradient(180px circle at var(--mx, 50%) var(--my, 50%),
+      color-mix(in srgb, var(--cream) calc(60% * var(--sg, 0)), transparent), transparent 70%),
+    linear-gradient(135deg,
+      color-mix(in srgb, var(--cream) calc(var(--g-rim) * 100%), transparent) 0%,
+      color-mix(in srgb, var(--cream) 5%, transparent) 36%,
+      color-mix(in srgb, var(--cream) 2%, transparent) 64%,
+      color-mix(in srgb, var(--green-bright) calc(var(--g-rim) * 60%), transparent) 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+}
+
+/* Contenu toujours au-dessus des reflets */
+.glass > *, .card > *, .pricing-card > *, .abo-card > *, .misc-card > *, .pourquoi-card > *,
+.value-card > *, .product-card > *, .estime-card > *, .contact-form-wrap > *, .contact-offer-card > *,
+.offre-block > *, .offre-maint > *, .seo-service-card > *, .advantage-card > *,
+.portfolio-item > *, .pf-item > *,
+.glass-subtle > *, .contact-card > *, .faq-item > *, .skill-item > *,
+.saas-mockup > *, .seo-mockup > *, .brand-mockup > *,
+.glass-strong > *, .pricing-card-featured > *, .pricing-card.featured > *, .offre-price-card > * {
   position: relative;
   z-index: 1;
 }
 
-/* Fallback navigateurs sans support backdrop-filter */
+/* — Élévation au survol / focus : la card monte, l'ombre s'élargit — */
+.glass:hover, .card:hover, .pricing-card:hover, .abo-card:hover, .misc-card:hover, .pourquoi-card:hover,
+.value-card:hover, .product-card:hover, .estime-card:hover, .contact-form-wrap:hover, .contact-offer-card:hover,
+.offre-block:hover, .offre-maint:hover, .seo-service-card:hover, .advantage-card:hover,
+.portfolio-item:hover, .pf-item:hover,
+.glass-subtle:hover, .contact-card:hover, .faq-item:hover, .skill-item:hover,
+.saas-mockup:hover, .seo-mockup:hover, .brand-mockup:hover,
+.glass-strong:hover, .pricing-card-featured:hover, .pricing-card.featured:hover, .offre-price-card:hover,
+.glass:focus-within, .card:focus-within, .pricing-card:focus-within, .abo-card:focus-within,
+.pricing-card-featured:focus-within, .glass-strong:focus-within, .offre-price-card:focus-within,
+.portfolio-item:focus-within, .pf-item:focus-within, .faq-item:focus-within {
+  transform: translateY(var(--depth-lift));
+  border-color: var(--glass-border-hi) !important;
+  box-shadow:
+    var(--g-elev-hover),
+    inset 0 1px 0 color-mix(in srgb, var(--cream) calc(var(--g-hi) * 100% * 1.5), transparent),
+    inset 0 -1px 0 color-mix(in srgb, var(--bg) 55%, transparent) !important;
+}
+/* Sheen qui traverse la surface au survol */
+.glass:hover::before, .card:hover::before, .pricing-card:hover::before, .abo-card:hover::before,
+.misc-card:hover::before, .pourquoi-card:hover::before, .value-card:hover::before, .product-card:hover::before,
+.estime-card:hover::before, .contact-form-wrap:hover::before, .contact-offer-card:hover::before,
+.offre-block:hover::before, .offre-maint:hover::before, .seo-service-card:hover::before, .advantage-card:hover::before,
+.portfolio-item:hover::before, .pf-item:hover::before,
+.glass-subtle:hover::before, .contact-card:hover::before, .faq-item:hover::before, .skill-item:hover::before,
+.saas-mockup:hover::before, .seo-mockup:hover::before, .brand-mockup:hover::before,
+.glass-strong:hover::before, .pricing-card-featured:hover::before, .pricing-card.featured:hover::before, .offre-price-card:hover::before {
+  background-position: 0 0, 0 0, var(--sheen-hover) 0;
+}
+
+/* Repli : pas de backdrop-filter → plus de fond opaque sous la teinte, sans flou */
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-  .card,
-  .pricing-card,
-  .abo-card,
-  .misc-card,
-  .pourquoi-card,
-  .value-card,
-  .product-card,
-  .estime-card,
-  .contact-card,
-  .contact-form-wrap,
-  .faq-item,
-  .skill-item,
-  .saas-mockup,
-  .seo-mockup,
-  .brand-mockup,
-  .seo-service-card,
-  .advantage-card,
-  .portfolio-item,
-  .pf-item {
-    background: rgba(15, 20, 30, 0.85) !important;
-  }
+  :root { --g-base: 0.85; }
 }
-
 /* ============================================================
-   3. PRICING — plan mis en avant
+   3. PRICING — plan mis en avant (niveau .glass-strong)
    ============================================================ */
-
-.pricing-card.featured {
-  border-color: rgba(90, 138, 110, 0.38) !important;
-  background: rgba(30, 43, 36, 0.55) !important;
-  box-shadow:
-    0 0 0 1px rgba(90, 138, 110, 0.18),
-    0 24px 70px rgba(0, 0, 0, 0.5),
-    0 0 70px rgba(56, 81, 68, 0.32);
-}
-
-.pricing-card.featured:hover {
-  box-shadow:
-    0 0 0 1px rgba(90, 138, 110, 0.3),
-    0 30px 80px rgba(0, 0, 0, 0.55),
-    0 0 90px rgba(56, 81, 68, 0.42);
-}
-
-.pricing-card.featured::after {
-  background: linear-gradient(to right, transparent, rgba(90, 138, 110, 0.55), transparent);
-}
 
 /* Pill réservé au label "Populaire" — repositionné À L'INTÉRIEUR de la
    carte (les cartes verre ont overflow:hidden, un pill à cheval sur le
@@ -668,8 +728,16 @@
    ============================================================ */
 
 @media (max-width: 767px) {
+  /* Mobile : pas de flou (coûteux sur GPU mobile). Le verre est rendu par
+     la teinte + un fond sombre partiel : même lecture, aucun backdrop-filter. */
   :root {
-    --glass-blur: blur(10px);
+    --g-base:             0.50;
+    --glass-alpha:        0.07;
+    --glass-alpha-subtle: 0.05;
+    --glass-alpha-strong: 0.11;
+    --depth-lift:         0px;
+    --sheen-rest:         42%;     /* sheen statique : pas de suivi curseur ni de balayage */
+    --sheen-hover:        42%;
   }
 
   /* Glows plus légers sur mobile */
@@ -684,43 +752,16 @@
     opacity: 0.6;
   }
 
-  /* backdrop-filter très coûteux sur GPU mobile : fond quasi opaque
-     à la place, rendu visuel équivalent sur fond sombre */
-  .card,
-  .pricing-card,
-  .abo-card,
-  .misc-card,
-  .pourquoi-card,
-  .value-card,
-  .product-card,
-  .estime-card,
-  .contact-card,
-  .contact-form-wrap,
-  .faq-item,
-  .skill-item,
-  .saas-mockup,
-  .seo-mockup,
-  .brand-mockup {
-    -webkit-backdrop-filter: none;
-    backdrop-filter: none;
-    background: rgba(17, 23, 20, 0.92) !important;
-  }
   .pi-meta,
   .filter-btn {
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
   }
+}
 
-  /* Pas de lift au hover (tactile) */
-  .card:hover,
-  .pricing-card:hover,
-  .abo-card:hover,
-  .pourquoi-card:hover,
-  .value-card:hover,
-  .product-card:hover,
-  .contact-card:hover {
-    transform: none;
-  }
+/* Appareils tactiles : pas de lift au survol (il resterait "collé" après un tap) */
+@media (hover: none) {
+  :root { --depth-lift: 0px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -729,11 +770,26 @@
     transform: none !important;
     transition: none !important;
   }
-  .card, .pricing-card, .abo-card, .pourquoi-card,
-  .value-card, .product-card, .contact-card,
-  .portfolio-item, .pf-item {
+  .glass, .card, .pricing-card, .abo-card, .pourquoi-card,
+  .value-card, .product-card, .contact-card, .misc-card, .faq-item,
+  .portfolio-item, .pf-item, .glass-subtle, .glass-strong,
+  .pricing-card-featured, .offre-price-card, .offre-block, .offre-maint {
     transition: none !important;
   }
+  :root { --depth-lift: 0px; }
+  /* Pas de sheen animé : reflet fixe */
+  :root { --sheen-rest: 42%; --sheen-hover: 42%; }
+}
+
+/* Transparence réduite : fond opaque, aucun flou, aucun blob */
+@media (prefers-reduced-transparency: reduce) {
+  :root { --g-base: 0.96; }
+  * {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+  .depth-field { display: none !important; }
+  #navbar, #navbar.scrolled, #navbar.nav-dark { background: var(--bg) !important; }
 }
 
 /* ============================================================
@@ -820,4 +876,94 @@ main {
 #footer {
   position: relative;
   z-index: 1;
+}
+
+
+/* ============================================================
+   15. PROFONDEUR DE CHAMP
+   Plan 0 : fond (blobs ambiants flous + vague, atténués)
+   Plan 1 : contenu des sections
+   Plan 2 : cards verre, nettes, ombres multicouches
+   Les blobs sont injectés par js/main.js (.depth-field) : des
+   dégradés radiaux très doux (donc pas de filter: blur coûteux)
+   qui donnent au verre quelque chose à flouter.
+   ============================================================ */
+
+.depth-field {
+  position: fixed;
+  inset: 0;
+  /* z-index 0 (et non négatif) : un z-index négatif passerait SOUS le fond de <body>,
+     qui est opaque ; main/#footer (z-index 1) restent au-dessus. */
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  opacity: var(--depth-field-opacity);
+  transition: opacity .6s ease;
+  contain: strict;
+}
+.depth-layer {
+  position: absolute;
+  inset: -12%;
+  will-change: transform;
+}
+.depth-blob {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: var(--s);
+  height: var(--s);
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 50%,
+    color-mix(in srgb, var(--c) var(--o), transparent) 0%,
+    transparent 68%);
+  animation: depth-drift var(--t) ease-in-out infinite alternate;
+}
+.depth-blob--a { --c: var(--green);        --o: 60%; --s: 72vmax; --x: -18%; --y: -6%;  --t: 80s; }
+.depth-blob--b { --c: var(--green-bright); --o: 20%; --s: 46vmax; --x: 58%;  --y: 24%;  --t: 100s; animation-delay: -30s; }
+.depth-blob--c { --c: var(--gold-500);     --o: 8%;  --s: 40vmax; --x: 22%;  --y: 62%;  --t: 120s; animation-delay: -60s; }
+
+@keyframes depth-drift {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to   { transform: translate3d(5vmax, -4vmax, 0) scale(1.08); }
+}
+
+/* Une card est survolée / focalisée : le fond recule, les voisines s'atténuent.
+   Aucun décalage de layout (opacité et filtre seulement). */
+html.depth-focus .depth-field { opacity: var(--depth-field-dim); }
+.is-dimmed {
+  opacity: var(--depth-dim) !important;
+  filter: saturate(0.85);
+}
+.is-lifted { z-index: 3; }
+
+@media (max-width: 767px) {
+  .depth-blob { animation: none; }
+  .depth-blob--c { display: none; }
+  .depth-layer { will-change: auto; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .depth-blob { animation: none; }
+  .depth-layer { will-change: auto; }
+  .is-dimmed { filter: none; }
+}
+
+/* ============================================================
+   16. HEADER — verre au scroll
+   ============================================================ */
+
+#navbar.scrolled {
+  background: color-mix(in srgb, var(--bg) 74%, transparent);
+  -webkit-backdrop-filter: blur(calc(var(--glass-blur-amount) * 1.3)) saturate(var(--glass-saturate));
+  backdrop-filter: blur(calc(var(--glass-blur-amount) * 1.3)) saturate(var(--glass-saturate));
+  box-shadow:
+    0 1px 0 color-mix(in srgb, var(--cream) 8%, transparent),
+    0 14px 32px -16px rgb(0 0 0 / .65);
+}
+
+/* Sections à fond plein posé par page : on les laisse semi-transparentes
+   pour que le plan 0 (blobs ambiants) reste lisible derrière le verre. */
+.seo-cta-section,
+.seo-internal-links,
+section[style*="0D1210"] {
+  background: color-mix(in srgb, var(--bg2) 58%, transparent) !important;
 }

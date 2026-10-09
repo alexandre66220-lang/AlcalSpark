@@ -241,6 +241,16 @@
     }
   }
 
+  /* Une fois la révélation terminée, les cards perdent leurs classes
+     reveal/delay : leurs transitions de survol (élévation, ombre) ne
+     sont plus ralenties par la transition de révélation (0,9 s + délai). */
+  function settleReveal(el) {
+    if (!el.matches || !el.matches(GLASS_SEL)) return;
+    setTimeout(function () {
+      el.classList.remove('reveal', 'reveal-left', 'reveal-right', 'reveal-scale', 'delay-1', 'delay-2', 'delay-3', 'delay-4', 'delay-5');
+    }, 1500);
+  }
+
   /* ── Scroll Reveal ───────────────────────────────────────── */
   function initScrollReveal() {
     const els = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
@@ -251,6 +261,7 @@
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
           observer.unobserve(entry.target);
+          settleReveal(entry.target);
         }
       });
     }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
@@ -536,28 +547,97 @@
     initGlobalParticles();
     initHeroReveal();
     initStaggeredReveal();
-    initCardSpotlight();
+    initGlassDepth();
     initButtonRipple();
   }
 
-  /* ── Card spotlight border (cursor-tracked glow on edges) ─── */
-  function initCardSpotlight() {
-    if (window.matchMedia('(pointer: coarse)').matches) return;
+  /* ── Glass depth : reflet curseur, élévation, fond qui recule ──
+     Un seul écouteur délégué (pointermove) au lieu d'un par card ;
+     la mise à jour de --mx/--my est groupée par requestAnimationFrame.
+     Les sélecteurs ci-dessous doivent rester alignés sur css/glass.css
+     (liste des composants verre). Rien de tout cela sur écran tactile. */
+  var GLASS_SEL = '.glass, .glass-strong, .glass-subtle, .card, .pricing-card, .abo-card, .misc-card, .pourquoi-card, .value-card, .product-card, .estime-card, .contact-form-wrap, .contact-offer-card, .offre-block, .offre-maint, .offre-price-card, .seo-service-card, .advantage-card, .portfolio-item, .pf-item, .contact-card, .faq-item, .skill-item, .saas-mockup, .seo-mockup, .brand-mockup';
+  var GLASS_SUBTLE_SEL = '.glass-subtle, .contact-card, .faq-item, .skill-item, .saas-mockup, .seo-mockup, .brand-mockup';
 
-    var cards = document.querySelectorAll('.card, .phil-card, .si-card, .testi-card, .pricing-card, .abo-card, .pourquoi-card, .value-card, .product-card, .estime-card, .contact-card, .faq-item, .service-row');
-    cards.forEach(function (card) {
-      card.addEventListener('mousemove', function (e) {
-        var rect = card.getBoundingClientRect();
-        var x = ((e.clientX - rect.left) / rect.width  * 100).toFixed(1);
-        var y = ((e.clientY - rect.top)  / rect.height * 100).toFixed(1);
-        card.style.setProperty('--mx', x + '%');
-        card.style.setProperty('--my', y + '%');
-        card.style.setProperty('--sg', '1');
+  function initGlassDepth() {
+    var root = document.documentElement;
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+    /* Plan 0 : blobs ambiants (donnent quelque chose à flouter au verre) */
+    var field = document.createElement('div');
+    field.className = 'depth-field';
+    field.setAttribute('aria-hidden', 'true');
+    field.innerHTML =
+      '<div class="depth-layer" data-depth="0.03"><span class="depth-blob depth-blob--a"></span></div>' +
+      '<div class="depth-layer" data-depth="0.09"><span class="depth-blob depth-blob--b"></span><span class="depth-blob depth-blob--c"></span></div>';
+    document.body.insertBefore(field, document.body.firstChild);
+
+    /* Parallaxe très subtile entre les plans (desktop, hors reduced-motion) */
+    if (finePointer && !reduceMotion) {
+      var layers = Array.prototype.slice.call(field.querySelectorAll('.depth-layer'));
+      var scrollRaf = 0;
+      var applyParallax = function () {
+        scrollRaf = 0;
+        var y = window.pageYOffset;
+        layers.forEach(function (l) {
+          l.style.transform = 'translate3d(0,' + (-y * parseFloat(l.getAttribute('data-depth'))).toFixed(1) + 'px,0)';
+        });
+      };
+      window.addEventListener('scroll', function () {
+        if (!scrollRaf) scrollRaf = requestAnimationFrame(applyParallax);
+      }, { passive: true });
+    }
+
+    /* Élévation + atténuation des voisines : desktop et clavier */
+    var current = null, px = 0, py = 0, raf = 0;
+
+    function lift(card) {
+      card.classList.add('is-lifted');
+      root.classList.add('depth-focus');
+      var parent = card.parentElement;
+      if (!parent || card.matches(GLASS_SUBTLE_SEL)) return;
+      Array.prototype.forEach.call(parent.children, function (sib) {
+        if (sib !== card && sib.matches(GLASS_SEL) && !sib.matches(GLASS_SUBTLE_SEL)) sib.classList.add('is-dimmed');
       });
-      card.addEventListener('mouseleave', function () {
-        card.style.setProperty('--sg', '0');
-      });
+    }
+    function drop(card) {
+      card.classList.remove('is-lifted');
+      card.style.setProperty('--sg', '0');
+      root.classList.remove('depth-focus');
+      var parent = card.parentElement;
+      if (!parent) return;
+      Array.prototype.forEach.call(parent.children, function (sib) { sib.classList.remove('is-dimmed'); });
+    }
+    function setCurrent(card) {
+      if (card === current) return;
+      if (current) drop(current);
+      current = card;
+      if (current) lift(current);
+    }
+    function paint() {
+      raf = 0;
+      if (!current) return;
+      var r = current.getBoundingClientRect();
+      current.style.setProperty('--mx', ((px - r.left) / r.width * 100).toFixed(1) + '%');
+      current.style.setProperty('--my', ((py - r.top) / r.height * 100).toFixed(1) + '%');
+      current.style.setProperty('--sg', '1');
+    }
+
+    if (finePointer) {
+      document.addEventListener('pointermove', function (e) {
+        if (e.pointerType === 'touch') return;
+        px = e.clientX; py = e.clientY;
+        setCurrent(e.target.closest ? e.target.closest(GLASS_SEL) : null);
+        if (current && !raf) raf = requestAnimationFrame(paint);
+      }, { passive: true });
+      document.documentElement.addEventListener('mouseleave', function () { setCurrent(null); });
+    }
+    document.addEventListener('focusin', function (e) {
+      var c = e.target.closest ? e.target.closest(GLASS_SEL) : null;
+      if (c && e.target.matches(':focus-visible')) setCurrent(c);
     });
+    document.addEventListener('focusout', function () { if (!finePointer || !current || !current.matches(':hover')) setCurrent(null); });
   }
 
   /* ── Bootstrap ───────────────────────────────────────────── */

@@ -32,7 +32,7 @@
   <link rel="stylesheet" href="css/as-tokens.css" />
 <link rel="stylesheet" href="css/style.css?v=2" />
   <link rel="stylesheet" href="css/services.css" />
-  <link rel="stylesheet" href="css/tarifs.css?v=3" />
+  <link rel="stylesheet" href="css/tarifs.css?v=4" />
   <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
@@ -258,13 +258,16 @@
               <span class="pc-num">{{PRIX_FIXE}}<span class="pc-currency">€</span></span>
             </div>
             <p class="pc-price-note">prix fixe, livré en 2 à 3 semaines</p>
+            <!--IF:PRIX_MENTION-->
+            <p class="pc-mention">{{PRIX_MENTION}}</p>
+            <!--ENDIF:PRIX_MENTION-->
             <ul class="pc-features">
               <li>Site vitrine adapté à votre métier</li>
               <li>Fiche Google Business Profile optimisée</li>
               <li>SEO local de base</li>
               <li>Commande 100% en ligne, sans appel</li>
               <li>Code source livré, aucun engagement pluriannuel</li>
-              <li>Option maintenance à {{PRIX_MAINTENANCE}}€ par mois</li>
+              <li>Option maintenance à {{PRIX_MAINTENANCE}}€ par mois<!--IF:PRIX_MENTION--> ({{PRIX_MENTION}})<!--ENDIF:PRIX_MENTION--></li>
             </ul>
             <a href="offre-site-artisan-btp.html" class="btn btn-card-cta" style="width:100%; justify-content:center;" onclick="gtag('event', 'cta_commander_site_artisan', {'event_category': 'CTA', 'event_label': 'Tarifs - Offre artisan BTP'})">Commander mon site</a>
             <a href="offre-site-artisan-btp.html#inclus" class="tarifs-featured-link">Voir le détail de l'offre</a>
@@ -293,6 +296,9 @@
             <div class="pc-price">
               <span class="pc-num">90<span class="pc-currency">€</span></span><span class="abo-per">/heure</span>
             </div>
+            <!--IF:PRIX_MENTION-->
+            <p class="pc-mention">{{PRIX_MENTION}}</p>
+            <!--ENDIF:PRIX_MENTION-->
             <ul class="pc-features">
               <li>Session de 1h en visio ou téléphone</li>
               <li>Diagnostic de votre situation actuelle</li>
@@ -310,6 +316,9 @@
               <span class="pc-from">à partir de</span>
               <span class="pc-num">350<span class="pc-currency">€</span></span><span class="abo-per">/mois</span>
             </div>
+            <!--IF:PRIX_MENTION-->
+            <p class="pc-mention">{{PRIX_MENTION}}</p>
+            <!--ENDIF:PRIX_MENTION-->
             <ul class="pc-features">
               <li>2 points stratégiques par mois (visio ou téléphone)</li>
               <li>Disponibilité par message entre les sessions</li>
@@ -344,6 +353,9 @@
               <span class="pc-num">700<span class="pc-currency">€</span></span>
             </div>
             <p class="pc-price-note">selon la nature et la portée du projet identifié lors de l'analyse</p>
+            <!--IF:PRIX_MENTION-->
+            <p class="pc-mention">{{PRIX_MENTION}}</p>
+            <!--ENDIF:PRIX_MENTION-->
             <ul class="pc-features">
               <li>Conception et développement complets</li>
               <li>Design UI/UX sur mesure</li>
@@ -374,6 +386,9 @@
             <div class="pc-price">
               <span class="pc-num">49<span class="pc-currency">€</span></span><span class="abo-per">/mois</span>
             </div>
+            <!--IF:PRIX_MENTION-->
+            <p class="pc-mention">{{PRIX_MENTION}}</p>
+            <!--ENDIF:PRIX_MENTION-->
             <ul class="pc-features">
               <li>Mises à jour et corrections</li>
               <li>Petites modifications de contenu</li>
@@ -402,6 +417,9 @@
             <div class="pc-price">
               <span class="pc-num">150<span class="pc-currency">€</span></span>
             </div>
+            <!--IF:PRIX_MENTION-->
+            <p class="pc-mention">{{PRIX_MENTION}}</p>
+            <!--ENDIF:PRIX_MENTION-->
             <ul class="pc-features">
               <li>Google Business Profile optimisé</li>
               <li>Inscription dans les annuaires professionnels pertinents</li>

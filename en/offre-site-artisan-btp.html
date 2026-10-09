@@ -33,7 +33,7 @@
   <link rel="stylesheet" href="../css/style.css?v=2" />
   <link rel="stylesheet" href="../css/seo-local.css" />
   <link rel="stylesheet" href="../css/contact.css" />
-  <link rel="stylesheet" href="../css/offre.css" />
+  <link rel="stylesheet" href="../css/offre.css?v=2" />
   <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
@@ -273,9 +273,9 @@
             <div class="opc-label">Fixed price</div>
             <div class="opc-price"><small>€</small>{{PRIX_FIXE}}</div>
             <div class="opc-fixed">Delivered in 2 to 3 weeks</div>
-            <!--IF:PRIX_MENTION-->
-            <div class="opc-mention">{{PRIX_MENTION}}</div>
-            <!--ENDIF:PRIX_MENTION-->
+            <!--IF:PRIX_MENTION_EN-->
+            <div class="opc-mention">{{PRIX_MENTION_EN}}</div>
+            <!--ENDIF:PRIX_MENTION_EN-->
             <ul>
               <li>Showcase website</li>
               <li>Optimised Google Business Profile listing</li>
@@ -401,7 +401,7 @@
             </ul>
             <p class="offre-note" style="margin-top:1rem;">Billed monthly, with no multi-year commitment. It is an option: the website is yours with or without it.</p>
           </div>
-          <div class="om-price">€{{PRIX_MAINTENANCE}}<small>per month</small></div>
+          <div class="om-price">€{{PRIX_MAINTENANCE}}<small>per month</small><!--IF:PRIX_MENTION_EN--><small class="om-mention">{{PRIX_MENTION_EN}}</small><!--ENDIF:PRIX_MENTION_EN--></div>
         </div>
       </div>
     </section>
@@ -430,7 +430,7 @@
             <span class="faq-icon" aria-hidden="true">+</span>
           </button>
           <div class="faq-answer" hidden>
-            <p>No. You pay for your website once, at the fixed price of €{{PRIX_FIXE}}. There is no multi-year commitment and no hidden renewal. Maintenance at €{{PRIX_MAINTENANCE}} per month is an option, not an obligation.</p>
+            <p>No. You pay for your website once, at the fixed price of €{{PRIX_FIXE}}<!--IF:PRIX_MENTION_EN--> ({{PRIX_MENTION_EN}})<!--ENDIF:PRIX_MENTION_EN-->. There is no multi-year commitment and no hidden renewal. Maintenance at €{{PRIX_MAINTENANCE}} per month is an option, not an obligation.</p>
           </div>
         </div>
         <div class="faq-item reveal delay-1">

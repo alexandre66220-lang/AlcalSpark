@@ -34,6 +34,14 @@
   margin: -14px 0 24px;
 }
 
+/* Mention fiscale sous chaque prix (config PRIX_MENTION) */
+.pc-mention {
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin: -14px 0 24px;
+}
+.pc-price-note + .pc-mention { margin-top: -18px; }
+
 /* ── Grille à deux cartes (analyse stratégique) ─────────────────── */
 .pricing-grid-2 { grid-template-columns: repeat(2, 1fr); }
 

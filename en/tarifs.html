@@ -32,7 +32,7 @@
   <link rel="stylesheet" href="../css/as-tokens.css" />
 <link rel="stylesheet" href="../css/style.css?v=2" />
   <link rel="stylesheet" href="../css/services.css" />
-  <link rel="stylesheet" href="../css/tarifs.css?v=3" />
+  <link rel="stylesheet" href="../css/tarifs.css?v=4" />
   <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
@@ -258,13 +258,16 @@
               <span class="pc-num"><span class="pc-currency">€</span>{{PRIX_FIXE}}</span>
             </div>
             <p class="pc-price-note">fixed price, delivered in 2 to 3 weeks</p>
+            <!--IF:PRIX_MENTION_EN-->
+            <p class="pc-mention">{{PRIX_MENTION_EN}}</p>
+            <!--ENDIF:PRIX_MENTION_EN-->
             <ul class="pc-features">
               <li>Showcase website built around your trade</li>
               <li>Optimised Google Business Profile listing</li>
               <li>Local SEO basics</li>
               <li>100% online order, no call</li>
               <li>Source code delivered, no multi-year commitment</li>
-              <li>Maintenance option at €{{PRIX_MAINTENANCE}} per month</li>
+              <li>Maintenance option at €{{PRIX_MAINTENANCE}} per month<!--IF:PRIX_MENTION_EN--> ({{PRIX_MENTION_EN}})<!--ENDIF:PRIX_MENTION_EN--></li>
             </ul>
             <a href="offre-site-artisan-btp.html" class="btn btn-card-cta" style="width:100%; justify-content:center;" onclick="gtag('event', 'cta_commander_site_artisan', {'event_category': 'CTA', 'event_label': 'Pricing - Construction trades offer'})">Order my website</a>
             <a href="offre-site-artisan-btp.html#inclus" class="tarifs-featured-link">See the offer details</a>
@@ -293,6 +296,9 @@
             <div class="pc-price">
               <span class="pc-num">90<span class="pc-currency">€</span></span><span class="abo-per">/hour</span>
             </div>
+            <!--IF:PRIX_MENTION_EN-->
+            <p class="pc-mention">{{PRIX_MENTION_EN}}</p>
+            <!--ENDIF:PRIX_MENTION_EN-->
             <ul class="pc-features">
               <li>1-hour session by video call or phone</li>
               <li>Diagnostic of your current situation</li>
@@ -310,6 +316,9 @@
               <span class="pc-from">from</span>
               <span class="pc-num">350<span class="pc-currency">€</span></span><span class="abo-per">/month</span>
             </div>
+            <!--IF:PRIX_MENTION_EN-->
+            <p class="pc-mention">{{PRIX_MENTION_EN}}</p>
+            <!--ENDIF:PRIX_MENTION_EN-->
             <ul class="pc-features">
               <li>2 strategic check-ins per month (video call or phone)</li>
               <li>Availability by message between sessions</li>
@@ -344,6 +353,9 @@
               <span class="pc-num">700<span class="pc-currency">€</span></span>
             </div>
             <p class="pc-price-note">depending on the nature and scope of the project identified during the analysis</p>
+            <!--IF:PRIX_MENTION_EN-->
+            <p class="pc-mention">{{PRIX_MENTION_EN}}</p>
+            <!--ENDIF:PRIX_MENTION_EN-->
             <ul class="pc-features">
               <li>Full design and development</li>
               <li>Custom UI/UX design</li>
@@ -374,6 +386,9 @@
             <div class="pc-price">
               <span class="pc-num">49<span class="pc-currency">€</span></span><span class="abo-per">/month</span>
             </div>
+            <!--IF:PRIX_MENTION_EN-->
+            <p class="pc-mention">{{PRIX_MENTION_EN}}</p>
+            <!--ENDIF:PRIX_MENTION_EN-->
             <ul class="pc-features">
               <li>Updates and fixes</li>
               <li>Small content changes</li>
@@ -402,6 +417,9 @@
             <div class="pc-price">
               <span class="pc-num">150<span class="pc-currency">€</span></span>
             </div>
+            <!--IF:PRIX_MENTION_EN-->
+            <p class="pc-mention">{{PRIX_MENTION_EN}}</p>
+            <!--ENDIF:PRIX_MENTION_EN-->
             <ul class="pc-features">
               <li>Optimized Google Business Profile</li>
               <li>Listing in relevant professional directories</li>

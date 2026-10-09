@@ -410,11 +410,6 @@ p { max-width: 62ch; text-wrap: pretty; }
 .nav-lang:hover {
   opacity: 1;
 }
-.nav-mobile .nav-lang {
-  display: inline-block;
-  align-self: flex-start;
-  margin-top: .5em;
-}
 
 /* Burger */
 .nav-burger {
@@ -480,7 +475,7 @@ p { max-width: 62ch; text-wrap: pretty; }
   opacity: .85;
   transition: opacity .3s;
 }
-.nav-mobile a::before {
+.nav-mobile a.nav-link::before {
   counter-increment: navnum;
   content: counter(navnum, decimal-leading-zero);
   flex-shrink: 0;
@@ -491,6 +486,62 @@ p { max-width: 62ch; text-wrap: pretty; }
   color: var(--c30);
 }
 .nav-mobile a:hover { opacity: 1; }
+
+/* CTA principal du menu mobile : sous la liste, au-dessus du sélecteur de langue.
+   Pas de .nav-link, donc hors de la numérotation 01-09. */
+.nav-mobile a.nav-mobile-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
+  max-width: 24rem;
+  min-height: 52px;
+  margin-top: 1.1rem;
+  padding: .9rem 1.5rem;
+  font-family: var(--font-ui, var(--font-sans));
+  font-size: .85rem;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  text-align: center;
+  background: #F8F5F2;
+  color: #0A0D0B;
+  border: 1px solid #F8F5F2;
+  border-radius: 2px;
+  opacity: 1;
+}
+.nav-mobile a.nav-mobile-cta:hover,
+.nav-mobile a.nav-mobile-cta:focus-visible { background: rgba(248, 245, 242, .88); }
+
+/* Sélecteur de langue du menu mobile : petit bouton compact, en bas, aligné à gauche.
+   Le lien (zone tactile) fait au moins 44x44 px grâce au padding ; le cadre visible
+   est le span intérieur, plus petit. */
+.nav-mobile a.nav-lang {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  min-width: 44px;
+  min-height: 44px;
+  margin-top: .6rem;
+  padding: 0 14px 0 0;
+  border: 0;
+  border-radius: 0;
+  font-family: var(--font-ui, var(--font-sans));
+  font-size: .85rem;
+  font-weight: 600;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  line-height: 1;
+  opacity: .8;
+}
+.nav-mobile a.nav-lang:hover,
+.nav-mobile a.nav-lang:focus-visible { opacity: 1; }
+.nav-mobile a.nav-lang span {
+  display: inline-block;
+  padding: 8px calc(12px - .18em) 8px 12px;
+  border: 1px solid rgba(248, 245, 242, .4);
+  border-radius: 3px;
+}
 
 /* ── Boutons ─────────────────────────────────────────────────── */
 .btn {

@@ -1,0 +1,406 @@
+/* ============================================================
+   AlcalSpark, offre "Site artisan BTP" (prix fixe)
+   Pages : offre-site-artisan-btp, brief-site-artisan-btp,
+   brief-site-artisan-btp-merci (FR + EN).
+   S'appuie sur seo-local.css (hero, sections, etapes, FAQ, CTA)
+   et contact.css (champs de formulaire).
+   ============================================================ */
+
+/* ── Bandeau offre de lancement (desactive par defaut, voir site.config.json) ── */
+.launch-banner {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid rgba(90, 138, 110, 0.6);
+  border-radius: 999px;
+  background: rgba(56, 81, 68, 0.35);
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  color: var(--cream);
+}
+
+/* ── Hero : texte + carte de prix ─────────────────────────────── */
+.offre-hero-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 0.8fr;
+  gap: 3rem 4rem;
+  align-items: center;
+}
+.offre-hero-grid .hero-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+.offre-hero-reassure {
+  margin-top: 1.25rem;
+  font-family: var(--font-ui);
+  font-size: 0.74rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--c50);
+}
+.offre-price-card {
+  padding: 2.25rem 2rem;
+  border: 1px solid rgba(56, 81, 68, 0.55);
+  border-radius: 4px;
+  background: rgba(56, 81, 68, 0.07);
+  text-align: center;
+}
+.offre-price-card .opc-label {
+  font-family: var(--font-ui);
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--c50);
+}
+.offre-price-card .opc-price {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 6vw, 4.2rem);
+  line-height: 1.05;
+  color: var(--off-white);
+  margin: 0.6rem 0 0.2rem;
+}
+.offre-price-card .opc-price small {
+  font-size: 0.5em;
+  margin-left: 0.1em;
+}
+.offre-price-card .opc-fixed {
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  color: var(--c72);
+}
+.offre-price-card .opc-mention {
+  margin-top: 0.6rem;
+  font-size: 0.75rem;
+  color: var(--c50);
+}
+.offre-price-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0 1.75rem;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.offre-price-card li {
+  font-size: 0.88rem;
+  color: var(--c72);
+  line-height: 1.5;
+}
+.offre-price-card li::before {
+  content: '\2713';
+  color: var(--green-bright);
+  margin-right: 0.6rem;
+}
+.offre-price-card .btn { width: 100%; justify-content: center; }
+
+/* ── Listes inclus / non inclus ───────────────────────────────── */
+.offre-cols {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+.offre-block {
+  padding: 2rem;
+  border: 1px solid var(--c15);
+  border-radius: 4px;
+  background: rgba(56, 81, 68, 0.015);
+}
+.offre-block h3 {
+  font-family: var(--font-ui);
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: var(--off-white);
+  margin-bottom: 1rem;
+}
+.offre-block ul,
+.offre-notincl ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+.offre-block li,
+.offre-notincl li {
+  position: relative;
+  padding-left: 1.5rem;
+  font-size: 0.88rem;
+  line-height: 1.65;
+  color: var(--c72);
+}
+.offre-block li::before {
+  content: '\2713';
+  position: absolute;
+  left: 0;
+  color: var(--green-bright);
+}
+.offre-notincl {
+  max-width: 760px;
+  margin-top: 2rem;
+}
+.offre-notincl li::before {
+  content: '\00D7';
+  position: absolute;
+  left: 0.15rem;
+  color: var(--c50);
+  font-size: 1.1rem;
+  line-height: 1.4;
+}
+.offre-note {
+  margin-top: 1.5rem;
+  font-size: 0.85rem;
+  color: var(--c50);
+  max-width: 640px;
+  line-height: 1.7;
+}
+
+/* ── Option maintenance ───────────────────────────────────────── */
+.offre-maint {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2rem;
+  align-items: center;
+  margin-top: 2rem;
+  padding: 2rem 2.25rem;
+  border: 1px solid var(--c15);
+  border-radius: 4px;
+  max-width: 820px;
+}
+.offre-maint h3 {
+  font-family: var(--font-ui);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--off-white);
+  margin-bottom: 0.6rem;
+}
+.offre-maint ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.offre-maint li { font-size: 0.88rem; color: var(--c72); }
+.offre-maint li::before { content: '\2713'; color: var(--green-bright); margin-right: 0.6rem; }
+.offre-maint .om-price {
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  color: var(--off-white);
+  white-space: nowrap;
+  text-align: center;
+}
+.offre-maint .om-price small {
+  display: block;
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--c50);
+}
+
+/* ── Temoignages (rendu par js/testimonials.js, masque tant que vide) ── */
+.testimonials-section[hidden] { display: none; }
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+.testimonial-card {
+  margin: 0;
+  padding: 1.75rem;
+  border: 1px solid var(--c15);
+  border-radius: 4px;
+  background: rgba(56, 81, 68, 0.02);
+}
+.testimonial-card blockquote {
+  margin: 0 0 1rem;
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: var(--c72);
+}
+.testimonial-card figcaption {
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  color: var(--c50);
+}
+.testimonial-card figcaption strong { color: var(--off-white); font-weight: 600; }
+
+/* ── Brief : formulaire ───────────────────────────────────────── */
+.brief-wrap { max-width: 820px; margin: 0 auto; }
+.brief-wrap .contact-form-wrap { padding: 44px 40px 40px; }
+.brief-fieldset {
+  border: 0;
+  margin: 0 0 2.25rem;
+  padding: 0;
+  min-width: 0;
+}
+.brief-fieldset legend {
+  padding: 0;
+  margin-bottom: 1.4rem;
+  font-family: var(--font-ui);
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--green-bright);
+}
+.brief-hint {
+  margin: -10px 0 22px;
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: var(--c50);
+}
+.brief-radio {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1.25rem;
+  margin-bottom: 1.1rem;
+}
+.brief-radio-label {
+  display: block;
+  margin-bottom: 0.7rem;
+  font-family: var(--font-ui);
+  font-size: 0.64rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(248, 245, 242, 0.72);
+}
+.brief-radio label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.92rem;
+  color: var(--c72);
+  cursor: pointer;
+}
+.brief-radio input[type="radio"] {
+  accent-color: var(--green-bright);
+  width: 1.05rem;
+  height: 1.05rem;
+}
+.brief-radio input[type="radio"]:focus-visible {
+  outline: 2px solid var(--green-bright);
+  outline-offset: 2px;
+}
+.brief-conditional[hidden] { display: none; }
+.brief-sent-note {
+  margin-top: 1rem;
+  font-size: 0.82rem;
+  line-height: 1.7;
+  color: var(--c50);
+  text-align: center;
+}
+
+/* ── Merci ─────────────────────────────────────────────────────── */
+.merci-section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--bg, #0A0D0B);
+  padding: calc(var(--nav-h, 5rem) + 2rem) var(--gutter) 80px;
+}
+.merci-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(56, 81, 68, 0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.merci-inner { position: relative; z-index: 1; text-align: center; max-width: 560px; }
+.merci-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 32px;
+  border: 1px solid rgba(90, 138, 110, 0.5);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(56, 81, 68, 0.12);
+  font-size: 2rem;
+  color: var(--green-bright);
+}
+.merci-label {
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--green-bright);
+  margin-bottom: 20px;
+}
+.merci-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 7vw, 4.6rem);
+  font-weight: 400;
+  line-height: 1.1;
+  color: var(--off-white);
+  margin-bottom: 24px;
+}
+.merci-rule {
+  width: 60px;
+  height: 1px;
+  margin: 0 auto 28px;
+  background: linear-gradient(90deg, transparent, var(--green-bright), transparent);
+}
+.merci-text {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: rgba(250, 248, 245, 0.62);
+  margin: 0;
+}
+.merci-text strong { color: var(--off-white); }
+.merci-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+
+/* ── Merci : etape acompte ────────────────────────────────────── */
+.merci-pay {
+  margin: 2.25rem auto 0;
+  padding: 1.75rem;
+  max-width: 480px;
+  border: 1px solid rgba(56, 81, 68, 0.55);
+  border-radius: 4px;
+  background: rgba(56, 81, 68, 0.07);
+}
+.merci-pay h2 {
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--green-bright);
+  margin-bottom: 0.75rem;
+}
+.merci-pay p {
+  font-size: 0.92rem;
+  line-height: 1.7;
+  color: var(--c72);
+  margin: 0 0 1.25rem;
+}
+.merci-pay p:last-child { margin-bottom: 0; }
+
+@media (max-width: 960px) {
+  .offre-hero-grid { grid-template-columns: 1fr; }
+  .offre-cols { grid-template-columns: 1fr; }
+}
+@media (max-width: 680px) {
+  .offre-hero-grid .hero-ctas .btn { width: 100%; justify-content: center; }
+  .offre-maint { grid-template-columns: 1fr; text-align: left; }
+  .offre-maint .om-price { text-align: left; }
+  .brief-wrap .contact-form-wrap { padding: 32px 20px 28px; }
+  .brief-wrap .form-row { grid-template-columns: 1fr; }
+}

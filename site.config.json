@@ -1,0 +1,11 @@
+{
+  "PRIX_FIXE": 900,
+  "PRIX_MAINTENANCE": 49,
+  "PRIX_MENTION": "",
+  "HORAIRES_RAPPEL": "chaque jour entre 18h30 et 21h",
+  "HORAIRES_RAPPEL_EN": "every day between 6:30 pm and 9 pm",
+  "LIEN_PAIEMENT_ACOMPTE": "",
+  "OFFRE_LANCEMENT_ACTIVE": false,
+  "OFFRE_LANCEMENT_TEXTE": "",
+  "OFFRE_LANCEMENT_TEXTE_EN": ""
+}

@@ -18,8 +18,12 @@ rsync -a \
   --exclude=netlify \
   --exclude=package.json \
   --exclude=package-lock.json \
+  --exclude=site.config.json \
   --exclude=node_modules \
   . out/
+
+echo "[build] Application de site.config.json (prix, horaires, liens)..."
+node scripts/apply-config.mjs out
 
 # Build Next.js blog uniquement si les variables Sanity sont disponibles
 if [ -n "${NEXT_PUBLIC_SANITY_PROJECT_ID:-}" ]; then

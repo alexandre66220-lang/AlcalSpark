@@ -4,14 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#0A0D0B" />
-  <meta name="description" content="Tarifs clairs et transparents, création de site dès 700€. AlcalSpark, studio stratégique à Mazamet (Tarn) : analyse d'abord, exécution ensuite." />
+  <meta name="description" content="Site artisan BTP à {{PRIX_FIXE}}€ prix fixe, ou prestations sur mesure dès 700€. AlcalSpark, studio stratégique à Mazamet (Tarn) : analyse d'abord, exécution ensuite." />
   <!-- Open Graph / Twitter Card -->
   <meta property="og:site_name" content="AlcalSpark" />
   <meta property="og:locale" content="fr_FR" />
 <meta property="og:type" content="website" />
   <meta property="og:url" content="https://alcalspark.com/tarifs" />
   <meta property="og:title" content="Tarifs, Stratégie, sites & SaaS, Castres | AlcalSpark" />
-  <meta property="og:description" content="Tarifs clairs et transparents, création de site dès 700€. AlcalSpark, studio stratégique à Mazamet (Tarn) : analyse d'abord, exécution ensuite." />
+  <meta property="og:description" content="Site artisan BTP à {{PRIX_FIXE}}€ prix fixe, ou prestations sur mesure dès 700€. AlcalSpark, studio stratégique à Mazamet (Tarn) : analyse d'abord, exécution ensuite." />
   <meta property="og:image" content="https://alcalspark.com/assets/og-cover.jpg" />
 <meta property="og:image:alt" content="AlcalSpark, studio stratégique à Mazamet dans le Tarn" />
   <meta property="og:image:width" content="1200" />
@@ -32,7 +32,7 @@
   <link rel="stylesheet" href="css/as-tokens.css" />
 <link rel="stylesheet" href="css/style.css?v=2" />
   <link rel="stylesheet" href="css/services.css" />
-  <link rel="stylesheet" href="css/tarifs.css?v=2" />
+  <link rel="stylesheet" href="css/tarifs.css?v=3" />
   <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
@@ -225,12 +225,50 @@
         <div class="eyebrow reveal">Nos tarifs</div>
         <h1 id="ph-title" class="reveal delay-1">Des tarifs<br /><em class="text-gradient">cohérents avec notre méthode</em></h1>
         <p class="ph-desc reveal delay-2">
-          L'analyse passe avant la réalisation. Les tarifs ci-dessous reflètent cet ordre, pas un catalogue de prestations.
+          Une offre à prix fixe pour les artisans du BTP. Pour tout le reste, l'analyse passe avant la réalisation, et les tarifs ci-dessous reflètent cet ordre.
         </p>
         <div class="ph-breadcrumb reveal delay-3">
           <a href="index.html">Accueil</a>
           <span aria-hidden="true">→</span>
           <span>Tarifs</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 0. OFFRE À PRIX FIXE ───────────────────────────────── -->
+    <section class="section tarifs-featured-section" style="background:#0D1210;" aria-labelledby="tarifs-fixe-title">
+      <div class="container">
+        <div class="section-header text-center">
+          <div class="eyebrow reveal">Offre à prix fixe</div>
+          <h2 id="tarifs-fixe-title" class="reveal delay-1">Artisan du BTP :<br /><em class="text-gradient">un site à prix fixe</em></h2>
+          <div class="tarifs-section-intro reveal delay-2">
+            <p>Pas de devis, pas d'appel. Vous commandez en ligne et vous savez ce que vous payez avant de commencer.</p>
+          </div>
+          <div class="gold-line-center reveal delay-2"></div>
+        </div>
+
+        <div class="pricing-single pricing-featured mt-lg">
+          <div class="pricing-card card pricing-card-featured reveal delay-1" id="offre-artisan-btp">
+            <div class="pc-badge">Offre artisan BTP</div>
+            <!--IF:OFFRE_LANCEMENT_ACTIVE-->
+            <div class="pc-launch">{{OFFRE_LANCEMENT_TEXTE}}</div>
+            <!--ENDIF:OFFRE_LANCEMENT_ACTIVE-->
+            <div class="gold-line"></div>
+            <div class="pc-price">
+              <span class="pc-num">{{PRIX_FIXE}}<span class="pc-currency">€</span></span>
+            </div>
+            <p class="pc-price-note">prix fixe, livré en 2 à 3 semaines</p>
+            <ul class="pc-features">
+              <li>Site vitrine adapté à votre métier</li>
+              <li>Fiche Google Business Profile optimisée</li>
+              <li>SEO local de base</li>
+              <li>Commande 100% en ligne, sans appel</li>
+              <li>Code source livré, aucun engagement pluriannuel</li>
+              <li>Option maintenance à {{PRIX_MAINTENANCE}}€ par mois</li>
+            </ul>
+            <a href="offre-site-artisan-btp.html" class="btn btn-card-cta" style="width:100%; justify-content:center;" onclick="gtag('event', 'cta_commander_site_artisan', {'event_category': 'CTA', 'event_label': 'Tarifs - Offre artisan BTP'})">Commander mon site</a>
+            <a href="offre-site-artisan-btp.html#inclus" class="tarifs-featured-link">Voir le détail de l'offre</a>
+          </div>
         </div>
       </div>
     </section>
@@ -380,7 +418,7 @@
     <section class="section tarifs-transparency-section" aria-label="Note de transparence">
       <div class="container">
         <div class="tarifs-transparency-inner reveal">
-          <p>Ces tarifs sont des repères, pas des prix fixes. Chaque projet est différent parce que chaque entreprise est différente. Le point de départ est toujours une conversation, pas un devis envoyé sans réfléchir.</p>
+          <p>L'offre site artisan BTP est à prix fixe : pas de devis, pas d'appel obligatoire. Les autres tarifs sont des repères, pas des prix fixes. Chaque projet est différent parce que chaque entreprise est différente, et pour ces projets le point de départ reste une conversation.</p>
           <a href="contact.html" class="btn btn-outline">Prendre 30 minutes pour en parler</a>
         </div>
       </div>
@@ -443,6 +481,7 @@
         <ul role="list">
           <li><a href="mailto:contact@alcalspark.com">contact@alcalspark.com</a></li>
           <li><a href="tel:0663054481">06 63 05 44 81</a></li>
+          <li class="footer-callback" style="color:rgba(250,248,245,0.4);font-size:.85rem;">Je rappelle {{HORAIRES_RAPPEL}}. WhatsApp ou formulaire de préférence.</li>
         </ul>
       </div>
     </div>

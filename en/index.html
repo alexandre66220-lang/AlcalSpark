@@ -368,8 +368,11 @@
     <div class="segment-grid">
       <article class="segment-card card reveal delay-1">
         <h3>Independent trade or local business</h3>
-        <p>You want a site that brings you customers, with no jargon and no contractual surprises.</p>
-        <a href="#diagnostic" class="btn btn-outline-inv segment-btn" data-segment="artisan" onclick="gtag('event', 'cta_diagnostic_artisan', {'event_category': 'CTA', 'event_label': 'Segmentation - Independent diagnostic'})">Get my free diagnostic</a>
+        <p>You want a site that brings you customers, with no jargon and no contractual surprises. Construction trades: showcase website, Google listing and local SEO at a fixed €{{PRIX_FIXE}}, ordered online, no call.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:0.75rem;">
+          <a href="offre-site-artisan-btp.html" class="btn btn-primary segment-btn" data-segment="artisan-offre" onclick="gtag('event', 'cta_commander_site_artisan', {'event_category': 'CTA', 'event_label': 'Segmentation - Order construction trades website'})">Order my website</a>
+          <a href="#diagnostic" class="btn btn-outline-inv segment-btn" data-segment="artisan" onclick="gtag('event', 'cta_diagnostic_artisan', {'event_category': 'CTA', 'event_label': 'Segmentation - Independent diagnostic'})">Get my free diagnostic</a>
+        </div>
       </article>
       <article class="segment-card card reveal delay-2">
         <h3>Growing business</h3>
@@ -572,6 +575,7 @@
           WhatsApp direct
         </a>
       </div>
+      <p class="contact-callback" style="margin-top:1.25rem;font-size:0.85rem;color:rgba(248,245,242,0.5);">I call back {{HORAIRES_RAPPEL_EN}}. WhatsApp or the contact form is best.</p>
     </div>
   </div>
 </section>
@@ -854,10 +858,10 @@
 ══════════════════════════════════════ -->
 <section class="cta-section section" aria-labelledby="cta-title">
   <div class="container">
-    <h2 id="cta-title" class="reveal">Got a project in mind? Let's talk.</h2>
-    <p class="reveal delay-1">30 minutes, no strings attached. A frank answer: whether we can help, and how. If not, you'll still walk away with a lead.</p>
+    <h2 id="cta-title" class="reveal">Got a project in mind? Write to us.</h2>
+    <p class="reveal delay-1">Describe your project in writing and get a frank answer within 24h: whether we can help, and how. If not, you'll still walk away with a lead. A call, only if you want one.</p>
     <div class="cta-actions reveal delay-2">
-      <a href="contact.html" class="btn btn-outline" onclick="gtag('event', 'cta_final_contact', {'event_category': 'CTA', 'event_label': 'Final CTA - Book a call'})">Book a call</a>
+      <a href="contact.html" class="btn btn-outline" onclick="gtag('event', 'cta_final_contact', {'event_category': 'CTA', 'event_label': 'Final CTA - Reply within 24h'})">Get a reply within 24h</a>
       <a href="portfolio.html" class="btn btn-outline">See our projects</a>
     </div>
     <p class="cta-trust reveal delay-3">Reply within 24h · One project at a time · 2 to 3 week delivery</p>
@@ -929,6 +933,7 @@
           <ul role="list">
             <li><a href="mailto:contact@alcalspark.com">contact@alcalspark.com</a></li>
             <li><a href="tel:0663054481">+33 6 63 05 44 81</a></li>
+            <li class="footer-callback" style="color:rgba(250,248,245,0.4);font-size:.85rem;">I call back {{HORAIRES_RAPPEL_EN}}. WhatsApp or the contact form is best.</li>
             <li class="footer-address">90 av. Georges Guynemer,<br>81200 Mazamet, France</li>
           </ul>
         </div>

@@ -120,8 +120,8 @@ le besoin.
 - Option maintenance & support après livraison : {{PRIX_MAINTENANCE}}€/mois -- mises à
   jour, corrections, petites modifs de contenu (2 par mois, au-delà sur
   devis), support prioritaire, surveillance de la disponibilité du site.
-  Facturée au mois, résiliable par écrit à tout moment, avec effet à la
-  fin du mois en cours.
+  Facturée au mois, sans engagement de durée : renouvelée mois par mois,
+  résiliable par écrit à tout moment, avec effet à la fin du mois en cours.
 
 **Options secondaires** (à mentionner UNIQUEMENT si le visiteur les
 demande, jamais en premier, jamais pour détourner de l'offre principale) :

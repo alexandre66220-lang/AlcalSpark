@@ -454,3 +454,28 @@ a.cc-value:hover { color: var(--gold); }
   .faq-question { padding: 24px; }
   .faq-answer { padding: 0 24px 24px; }
 }
+
+/* ── Offre artisan BTP en tête de page contact ─────────────── */
+.contact-offer { padding: 0 0 8px; }
+.contact-offer-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  padding: 34px 40px;
+  background: rgba(56, 81, 68, 0.10);
+  border: 1px solid rgba(56, 81, 68, 0.35);
+  border-radius: 3px;
+}
+.contact-offer-card h2 { font-size: clamp(1.5rem, 3vw, 2.1rem); margin: 6px 0 10px; }
+.contact-offer-card p { font-size: 0.92rem; color: rgba(248, 245, 242, 0.75); max-width: 56ch; }
+.contact-offer-card .co-mention { color: rgba(248, 245, 242, 0.55); font-size: 0.82rem; }
+.contact-offer-card .co-actions { display: flex; flex-direction: column; align-items: center; gap: 12px; flex-shrink: 0; }
+.contact-offer-card .co-link { font-size: 0.85rem; color: rgba(248, 245, 242, 0.7); border-bottom: 1px solid rgba(248, 245, 242, 0.3); }
+.contact-offer-card .co-link:hover { color: var(--gold); border-color: var(--gold); }
+.form-intro { font-size: 0.88rem; color: rgba(248, 245, 242, 0.7); margin: 0 0 28px; }
+.form-intro a { color: var(--off-white); border-bottom: 1px solid rgba(248, 245, 242, 0.4); }
+@media (max-width: 760px) {
+  .contact-offer-card { flex-direction: column; align-items: stretch; padding: 26px 22px; }
+  .contact-offer-card .co-actions .btn { width: 100%; justify-content: center; }
+}

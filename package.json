@@ -4,7 +4,8 @@
   "description": "Dependances des Netlify Functions du site AlcalSpark (le site principal est statique HTML/CSS/JS).",
   "scripts": {
     "build": "bash build.sh",
-    "lint": "node scripts/lint.mjs",
+    "lint": "node scripts/lint.mjs && node scripts/check-prompt.mjs",
+    "check-prompt": "node scripts/check-prompt.mjs",
     "check-sitemap": "node scripts/generate-sitemap.mjs",
     "fix-sitemap": "node scripts/generate-sitemap.mjs --write"
   },

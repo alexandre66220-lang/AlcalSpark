@@ -22,6 +22,9 @@ rsync -a \
   --exclude=node_modules \
   . out/
 
+echo "[build] Verification du prompt SPARK (coherence avec site.config.json)..."
+node scripts/check-prompt.mjs
+
 echo "[build] Application de site.config.json (prix, horaires, liens)..."
 node scripts/apply-config.mjs out
 

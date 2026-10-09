@@ -73,7 +73,7 @@ for (const k of Object.keys(config)) {
 for (const f of htmlFiles) {
   const html = readFileSync(f, "utf-8");
   for (const m of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
-    const body = m[1].replace(/\{\{[A-Z0-9_]+\}\}/g, "0");
+    const body = m[1].replace(/<!--(?:IF|ELSE|ENDIF):[A-Z0-9_]+-->/g, "").replace(/\{\{[A-Z0-9_]+\}\}/g, "0");
     try {
       JSON.parse(body);
     } catch (e) {

@@ -31,7 +31,7 @@
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="css/as-tokens.css" />
 <link rel="stylesheet" href="css/style.css?v=2" />
-  <link rel="stylesheet" href="css/contact.css" />
+  <link rel="stylesheet" href="css/contact.css?v=2" />
   <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
@@ -197,7 +197,7 @@
         "name": "Quels modes de paiement acceptez-vous ?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "J'accepte les virements bancaires. Le paiement est généralement structuré en 3 versements : 30% à la signature du devis, 40% au lancement du développement, 30% à la livraison finale."
+          "text": "Pour l'offre artisan BTP à prix fixe, un acompte est réglé avec un lien de paiement en ligne après l'envoi du brief, et lance la réalisation. Pour un projet sur mesure, j'accepte les virements bancaires et le paiement est généralement structuré en 3 versements : 30% à la signature du devis, 40% au lancement du développement, 30% à la livraison finale."
         }
       }
     ]
@@ -273,12 +273,29 @@
         <div class="eyebrow reveal">Démarrons ensemble</div>
         <h1 id="ph-title" class="reveal delay-1">Contact</h1>
         <p class="ph-desc reveal delay-2">
-          Parlez-moi de votre projet. Je vous réponds sous 24h avec une première vision et un devis transparent.
+          Artisan du BTP : commandez votre site en ligne, sans appel. Pour toute autre demande, écrivez-moi : je réponds sous 24h par écrit.
         </p>
         <div class="ph-breadcrumb reveal delay-3">
           <a href="index.html">Accueil</a>
           <span aria-hidden="true">→</span>
           <span>Contact</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── OFFRE ARTISAN BTP (en premier) ───────────────────── -->
+    <section class="contact-offer" aria-labelledby="co-title">
+      <div class="container">
+        <div class="contact-offer-card reveal">
+          <div class="co-text">
+            <div class="eyebrow">Artisan du BTP</div>
+            <h2 id="co-title">Votre site à {{PRIX_FIXE}}&nbsp;€, <em class="text-gradient">sans aucun appel</em></h2>
+            <p>Site vitrine, fiche Google Business Profile et SEO local de base, à prix fixe, livré en 2 à 3 semaines. Vous remplissez le questionnaire de brief quand vous voulez, je réponds sous 24h par écrit.<!--IF:PRIX_MENTION--> <span class="co-mention">{{PRIX_MENTION}}.</span><!--ENDIF:PRIX_MENTION--></p>
+          </div>
+          <div class="co-actions">
+            <a href="brief-site-artisan-btp.html" class="btn btn-primary" onclick="gtag('event', 'cta_commander_site_artisan', {'event_category': 'CTA', 'event_label': 'Contact - Brief artisan BTP'})">Commander mon site</a>
+            <a href="offre-site-artisan-btp.html" class="co-link">Voir le détail de l'offre</a>
+          </div>
         </div>
       </div>
     </section>
@@ -290,10 +307,10 @@
 
           <!-- LEFT: Info -->
           <div class="contact-info reveal">
-            <div class="eyebrow">Mes coordonnées</div>
-            <h2>Travaillons<br /><em class="text-gradient">ensemble</em></h2>
+            <div class="eyebrow">Autre demande</div>
+            <h2>Un projet hors<br /><em class="text-gradient">offre artisan</em></h2>
             <div class="gold-line"></div>
-            <p>Que vous ayez un projet défini ou une simple idée, je suis là pour vous accompagner à chaque étape.</p>
+            <p>Site sur mesure, application, automatisation, consultation ou formation : décrivez votre besoin avec le formulaire, je vous réponds par écrit sous 24h.</p>
 
             <div class="contact-cards">
               <div class="contact-card">
@@ -355,17 +372,18 @@
               </div>
               <div class="cp-item">
                 <span class="cp-icon">✦</span>
-                <span>Consultation gratuite 30 min</span>
+                <span>Offre artisan BTP : commande 100% en ligne, sans appel</span>
               </div>
               <div class="cp-item">
                 <span class="cp-icon">✦</span>
-                <span>Devis transparent & personnalisé</span>
+                <span>Prix fixe pour l'offre artisan, devis écrit pour le reste</span>
               </div>
             </div>
           </div>
 
           <!-- RIGHT: Form -->
           <div class="contact-form-wrap reveal delay-2">
+            <p class="form-intro">Demande hors offre artisan BTP ? Ce formulaire est pour vous. Pour l'offre à prix fixe, passez plutôt par le <a href="brief-site-artisan-btp.html">questionnaire de brief</a>.</p>
             <form id="contact-form" class="contact-form" name="contact" method="POST" action="https://api.web3forms.com/submit" aria-label="Formulaire de contact">
               <!-- Web3Forms config -->
               <input type="hidden" name="access_key" value="fdb9cf8f-13eb-4676-94ff-ac3f07efaa50" />
@@ -503,7 +521,7 @@
               <span class="faq-icon" aria-hidden="true">+</span>
             </button>
             <div class="faq-answer" hidden>
-              <p>J'accepte les virements bancaires. Le paiement est généralement structuré en 3 versements : 30% à la signature du devis, 40% au lancement du développement, 30% à la livraison finale.</p>
+              <p>Pour l'offre artisan BTP à prix fixe, un acompte est réglé avec un lien de paiement en ligne après l'envoi du brief, et lance la réalisation. Pour un projet sur mesure, j'accepte les virements bancaires et le paiement est généralement structuré en 3 versements : 30% à la signature du devis, 40% au lancement du développement, 30% à la livraison finale.</p>
             </div>
           </div>
         </div>

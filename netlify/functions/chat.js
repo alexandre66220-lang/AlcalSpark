@@ -3,6 +3,9 @@ const path = require('path');
 const { stream } = require('@netlify/functions');
 const Anthropic = require('@anthropic-ai/sdk');
 const { checkAndIncrement } = require('./utils/rate-limit');
+const { buildSystemPrompt } = require('./utils/build-prompt');
+// JSON is inlined by esbuild at bundle time, so no extra included_files entry is needed.
+const SITE_CONFIG = require('../../site.config.json');
 
 const MAX_MESSAGE_LEN = 500;
 const MAX_HISTORY_TURNS = 10; // 10 exchanges = up to 20 messages
@@ -11,7 +14,10 @@ const MAX_TOKENS = 500;
 // vars to move to a newer Haiku snapshot without a code change.
 const MODEL = process.env.ANTHROPIC_MODEL || 'claude-haiku-4-5-20251001';
 
-const SYSTEM_PROMPT = fs.readFileSync(path.join(__dirname, '../system-prompt.md'), 'utf-8');
+const SYSTEM_PROMPT = buildSystemPrompt(
+  fs.readFileSync(path.join(__dirname, '../system-prompt.md'), 'utf-8'),
+  SITE_CONFIG
+);
 
 function jsonResponse(statusCode, data) {
   return {

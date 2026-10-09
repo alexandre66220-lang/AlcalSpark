@@ -65,13 +65,14 @@
 
   /* ── CTA ───────────────────────────────────────────────────
      Rendered only once the full reply text is showing (never mid-
-     stream), as a real button rather than plain text. The link
-     target is fixed to the site's existing contact page (the only
-     CTA destination anywhere on the site); SPARK only supplies the
-     label. */
-  function showCTA(label) {
+     stream), as a real button rather than plain text. SPARK only
+     supplies the label and a destination keyword; the URL comes from
+     the shared core (artisan offer brief, or the contact page for
+     everything else). */
+  function showCTA(cta) {
     if (!ctaEl) return;
-    ctaEl.textContent = label;
+    ctaEl.textContent = cta.label;
+    ctaEl.href = cta.href;
     ctaEl.hidden = false;
   }
   function hideCTA() {
@@ -136,9 +137,9 @@
     eyePulse(payload.rawLen); // received-at-network-time, independent of the typewriter's own pace
   });
 
-  session.on('cta', function (label) {
+  session.on('cta', function (cta) {
     if (!heroOwnsCurrentTurn) return;
-    showCTA(label);
+    showCTA(cta);
   });
 
   session.on('done', function (payload) {

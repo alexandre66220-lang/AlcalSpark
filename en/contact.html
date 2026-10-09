@@ -31,7 +31,7 @@
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="../css/as-tokens.css" />
 <link rel="stylesheet" href="../css/style.css?v=2" />
-  <link rel="stylesheet" href="../css/contact.css" />
+  <link rel="stylesheet" href="../css/contact.css?v=2" />
   <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
@@ -197,7 +197,7 @@
         "name": "What payment methods do you accept?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "I accept bank transfers. Payment is generally structured in 3 installments: 30% when the quote is signed, 40% at the start of development, 30% on final delivery."
+          "text": "For the fixed-price construction trades offer, a deposit is paid through an online payment link after you send the brief, and it starts the work. For a custom project, I accept bank transfers and payment is generally structured in 3 installments: 30% when the quote is signed, 40% at the start of development, 30% on final delivery."
         }
       }
     ]
@@ -273,12 +273,29 @@
         <div class="eyebrow reveal">Let's start</div>
         <h1 id="ph-title" class="reveal delay-1">Contact</h1>
         <p class="ph-desc reveal delay-2">
-          Tell me about your project. I'll reply within 24h with an initial take and a transparent quote.
+          Construction trades: order your website online, no call needed. For anything else, write to me: I reply in writing within 24h.
         </p>
         <div class="ph-breadcrumb reveal delay-3">
           <a href="index.html">Home</a>
           <span aria-hidden="true">→</span>
           <span>Contact</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── OFFRE ARTISAN BTP (en premier) ───────────────────── -->
+    <section class="contact-offer" aria-labelledby="co-title">
+      <div class="container">
+        <div class="contact-offer-card reveal">
+          <div class="co-text">
+            <div class="eyebrow">Construction trades</div>
+            <h2 id="co-title">Your website for €{{PRIX_FIXE}}, <em class="text-gradient">no call at all</em></h2>
+            <p>Showcase website, Google Business Profile and local SEO basics, at a fixed price, delivered in 2 to 3 weeks. Fill in the brief questionnaire whenever you like, I reply in writing within 24h.<!--IF:PRIX_MENTION_EN--> <span class="co-mention">{{PRIX_MENTION_EN}}.</span><!--ENDIF:PRIX_MENTION_EN--></p>
+          </div>
+          <div class="co-actions">
+            <a href="brief-site-artisan-btp.html" class="btn btn-primary" onclick="gtag('event', 'cta_commander_site_artisan', {'event_category': 'CTA', 'event_label': 'Contact EN - Brief construction trades'})">Order my website</a>
+            <a href="offre-site-artisan-btp.html" class="co-link">See the offer details</a>
+          </div>
         </div>
       </div>
     </section>
@@ -290,10 +307,10 @@
 
           <!-- LEFT: Info -->
           <div class="contact-info reveal">
-            <div class="eyebrow">My contact details</div>
-            <h2>Let's work<br /><em class="text-gradient">together</em></h2>
+            <div class="eyebrow">Other requests</div>
+            <h2>A project outside<br /><em class="text-gradient">the trades offer</em></h2>
             <div class="gold-line"></div>
-            <p>Whether you have a defined project or just an idea, I'm here to guide you through every step.</p>
+            <p>Custom website, application, automation, consultation or training: describe your need with the form and I will reply in writing within 24h.</p>
 
             <div class="contact-cards">
               <div class="contact-card">
@@ -355,17 +372,18 @@
               </div>
               <div class="cp-item">
                 <span class="cp-icon">✦</span>
-                <span>Free 30-min consultation</span>
+                <span>Construction trades offer: 100% online order, no call</span>
               </div>
               <div class="cp-item">
                 <span class="cp-icon">✦</span>
-                <span>Transparent, tailored quote</span>
+                <span>Fixed price for the trades offer, written quote for the rest</span>
               </div>
             </div>
           </div>
 
           <!-- RIGHT: Form -->
           <div class="contact-form-wrap reveal delay-2">
+            <p class="form-intro">Request outside the construction trades offer? This form is for you. For the fixed-price offer, use the <a href="brief-site-artisan-btp.html">brief questionnaire</a> instead.</p>
             <form id="contact-form" class="contact-form" name="contact" method="POST" action="https://api.web3forms.com/submit" aria-label="Contact form">
               <!-- Web3Forms config -->
               <input type="hidden" name="access_key" value="fdb9cf8f-13eb-4676-94ff-ac3f07efaa50" />
@@ -503,7 +521,7 @@
               <span class="faq-icon" aria-hidden="true">+</span>
             </button>
             <div class="faq-answer" hidden>
-              <p>I accept bank transfers. Payment is generally structured in 3 installments: 30% when the quote is signed, 40% at the start of development, 30% on final delivery.</p>
+              <p>For the fixed-price construction trades offer, a deposit is paid through an online payment link after you send the brief, and it starts the work. For a custom project, I accept bank transfers and payment is generally structured in 3 installments: 30% when the quote is signed, 40% at the start of development, 30% on final delivery.</p>
             </div>
           </div>
         </div>

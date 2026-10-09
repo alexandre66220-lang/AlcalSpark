@@ -174,3 +174,5 @@
   transition: color 0.25s, border-color 0.25s;
 }
 .tarifs-featured-link:hover { color: var(--cream); border-color: rgba(248, 245, 242, 0.3); }
+
+.pc-num.pc-quote { font-size: 0.55em; letter-spacing: 0.02em; }

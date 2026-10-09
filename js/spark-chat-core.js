@@ -23,7 +23,7 @@
      'start'  ()                             -- network request is starting (post-validation)
      'firstToken' ()                         -- first text chunk of the reply arrived
      'chunk'  ({safeText, rawLen})           -- safeText is ready to reveal (CTA-marker-safe tail already held back); rawLen is the raw arrived-chunk length, for pulse/kick animations
-     'cta'    (label)                        -- reply ended with a [[CTA:Label]] marker
+     'cta'    ({label, target, href})        -- reply ended with a [[CTA:Label]] or [[CTA:brief:Label]] marker; target is 'contact' (default) or 'brief' (artisan offer questionnaire), href is the matching page for the current language
      'done'   ({remainder})                  -- reply finished normally; remainder is the last CTA-safe slice to flush into the typewriter
      'error'  (text)                         -- show this as the reply (network failure, bad response, mid-stream error, or the local "message too long" rejection)
      'end'    ()                             -- the whole turn is over (success or failure) and `busy` is already back to false -- the right moment for an end-of-reply blink/refocus
@@ -38,8 +38,16 @@
   // stream's current end is held back from `chunk`, so a trailing
   // marker can never partially reach a renderer before being detected
   // and stripped at 'done'.
-  var CTA_HOLD_BACK = 70;
-  var CTA_RE = /\[\[CTA:([^\]]{1,60})\]\]\s*$/;
+  var CTA_HOLD_BACK = 80;
+  // Optional "brief:" / "contact:" prefix picks the destination; a marker
+  // without prefix keeps pointing to the contact page.
+  var CTA_RE = /\[\[CTA:(?:(brief|contact):)?([^\]]{1,60})\]\]\s*$/;
+  var CTA_PAGES = { contact: 'contact.html', brief: 'brief-site-artisan-btp.html' };
+
+  function ctaHref(target) {
+    var prefix = document.documentElement.lang === 'en' ? '/en/' : '/';
+    return prefix + (CTA_PAGES[target] || CTA_PAGES.contact);
+  }
 
   var session = null; // singleton, see getSession()
 
@@ -197,7 +205,10 @@
             var remainder = cleanText.slice(queuedLen);
             queuedLen = cleanText.length;
             emit('done', { remainder: remainder });
-            if (ctaMatch) emit('cta', ctaMatch[1].trim());
+            if (ctaMatch) {
+              var ctaTarget = ctaMatch[1] || 'contact';
+              emit('cta', { label: ctaMatch[2].trim(), target: ctaTarget, href: ctaHref(ctaTarget) });
+            }
           }
         }
       }

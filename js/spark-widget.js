@@ -278,9 +278,10 @@
     kickPupil();
   });
 
-  session.on('cta', function (label) {
+  session.on('cta', function (cta) {
     if (!currentTurn) return;
-    currentTurn.ctaEl.textContent = label;
+    currentTurn.ctaEl.textContent = cta.label;
+    currentTurn.ctaEl.href = cta.href;
     currentTurn.ctaEl.hidden = false;
   });
 

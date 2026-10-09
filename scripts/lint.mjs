@@ -215,6 +215,24 @@ for (const f of htmlFiles) {
   if (!/<li><a href="(?:\.\.\/)*cgv\.html">/.test(html)) fail("cgv", `${rel(f)}: lien CGV absent du pied de page`);
 }
 
+/* 8. Numeros decoratifs : toujours via le token --accent-num (contraste >= 3:1),
+      jamais une couleur rgba() ecrite en dur, y compris dans une media query. */
+for (const [file, selectors] of [
+  ["css/services.css", [".sr-num", ".ssc-num", ".si-num"]],
+  ["css/glass.css", [".ssc-num,\n.si-num"]],
+  ["css/seo-local.css", [".seo-process-step .step-num"]],
+]) {
+  const css = readFileSync(join(ROOT, file), "utf-8");
+  for (const sel of selectors) {
+    const re = new RegExp(`${sel.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\s*\\{([^}]*)\\}`, "g");
+    for (const m of css.matchAll(re)) {
+      if (/\bcolor\s*:/.test(m[1]) && !/color\s*:\s*var\(--accent-num\)/.test(m[1])) {
+        fail("numeros", `${file}: ${sel} doit utiliser color: var(--accent-num)`);
+      }
+    }
+  }
+}
+
 /* Bilan -------------------------------------------------------------- */
 if (errors.length) {
   console.error(`\nLint : ${errors.length} probleme(s)\n  - ` + errors.join("\n  - "));

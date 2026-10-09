@@ -2,16 +2,65 @@
    AlcalSpark, Legal Page Styles
    ============================================================ */
 
-.legal-hero { background: transparent; }
+/* ── Hero page légale : compact, sans titre marketing plein écran ─── */
+.legal-hero {
+  background: transparent;
+  min-height: 0;
+  align-items: flex-start;
+  padding-top: calc(var(--nav-h) + 2rem);       /* ~108 px au total sous le haut de page */
+}
+.legal-hero .ph-content {
+  width: 100%;                                   /* le conteneur flex ne doit pas se rétracter */
+  padding-top: 0;
+  padding-bottom: 3rem;                          /* 48 px */
+}
+.legal-hero h1 {
+  font-weight: 600;                              /* un cran sous le hero (700) */
+  font-size: clamp(2rem, 1.4rem + 1.5vw, 3rem);  /* 32 px mobile, ~44 px à 1440, 48 px max */
+  line-height: 1.15;
+  letter-spacing: -.01em;
+  max-width: 24ch;
+  margin: .25rem 0 0;
+  text-wrap: balance;
+}
+.legal-subtitle {
+  margin: .75rem 0 0;
+  font-family: var(--font-ui);
+  font-size: clamp(1rem, .9rem + .4vw, 1.25rem);
+  line-height: 1.4;
+  color: var(--muted);
+  max-width: none;
+}
+.legal-hero .ph-desc {
+  max-width: 60ch;
+  margin: 1rem 0 0;
+  font-size: 1rem;
+  color: var(--c72);
+}
+.legal-hero .ph-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  margin-top: 1.75rem;                           /* >= 24 px sous le titre */
+  font-family: var(--font-ui);
+  font-size: .8125rem;                           /* 13 px */
+  letter-spacing: .06em;
+  color: var(--c72);
+}
+.legal-hero .ph-breadcrumb a { color: var(--c72); text-decoration: underline; text-underline-offset: 3px; transition: color .3s; }
+.legal-hero .ph-breadcrumb a:hover { color: var(--cream); }
 .legal-hero .ph-bg {
   background: radial-gradient(ellipse 50% 60% at 50% 100%, rgba(56, 81, 68, 0.05) 0%, transparent 70%);
 }
 
 /* ── Legal layout ───────────────────────────────────────────── */
-.legal-section { background: transparent; }
+.legal-section {
+  background: transparent;
+  padding-top: 3rem;                             /* le 1er article remonte dans l'écran */
+}
 .legal-layout {
   display: grid;
-  grid-template-columns: 220px 1fr;
+  grid-template-columns: 240px 1fr;
   gap: 60px;
   align-items: start;
 }
@@ -29,9 +78,9 @@
 .legal-nav-link {
   display: block;
   font-family: var(--font-ui);
-  font-size: 0.78rem;
+  font-size: 0.9rem;
   font-weight: 500;
-  color: rgba(248, 245, 242, 0.72);
+  color: var(--c72);
   padding: 8px 12px;
   border-radius: 2px;
   border-left: 2px solid transparent;
@@ -74,9 +123,10 @@
   margin: 24px 0 10px;
 }
 .legal-article p {
-  font-size: 0.92rem;
-  line-height: 1.85;
-  color: rgba(248, 245, 242, 0.88);
+  font-size: clamp(1rem, .95rem + .2vw, 1.0625rem);   /* 16 à 17 px */
+  line-height: 1.65;
+  color: var(--c90);
+  max-width: 62ch;                                    /* 62ch ≈ 70 à 75 caractères réels par ligne */
   margin-bottom: 14px;
 }
 .legal-article p:last-child { margin-bottom: 0; }
@@ -90,9 +140,10 @@
   gap: 8px;
 }
 .legal-article ul li {
-  font-size: 0.92rem;
-  color: rgba(248, 245, 242, 0.88);
-  line-height: 1.7;
+  font-size: clamp(1rem, .95rem + .2vw, 1.0625rem);
+  color: var(--c90);
+  line-height: 1.65;
+  max-width: 62ch;
   position: relative;
   padding-left: 20px;
 }
@@ -202,6 +253,11 @@
 .legal-article ol li {
   display: list-item;
   list-style: decimal;
-  padding-left: 6px; font-size: 0.92rem; color: rgba(248, 245, 242, 0.88); line-height: 1.7; }
+  padding-left: 6px;
+  font-size: clamp(1rem, .95rem + .2vw, 1.0625rem);
+  color: var(--c90);
+  line-height: 1.65;
+  max-width: 62ch;
+}
 .legal-article ol li::marker { color: #C9A84C; }
 .legal-article p.cgv-update { margin-top: 18px; font-style: italic; }

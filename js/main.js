@@ -214,11 +214,14 @@
     applyScrollState();
 
     // Active link
-    const path = window.location.pathname.split('/').pop() || 'index.html';
+    // Compare sans extension : en production Netlify sert /tarifs (pretty URLs) pour tarifs.html
+    const stripExt = p => p.replace(/\.html$/, '');
+    const path = stripExt(window.location.pathname.split('/').pop() || 'index.html');
     document.querySelectorAll('.nav-link').forEach(link => {
-      const linkPath = link.getAttribute('href')?.split('/').pop() || '';
-      if (linkPath === path || (path === '' && linkPath === 'index.html')) {
+      const linkPath = stripExt(link.getAttribute('href')?.split('/').pop() || '');
+      if (linkPath === path || (path === '' && linkPath === 'index')) {
         link.classList.add('active');
+        link.setAttribute('aria-current', 'page');
       }
     });
 

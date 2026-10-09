@@ -448,8 +448,13 @@ p { max-width: 62ch; text-wrap: pretty; }
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: calc(var(--nav-h) + 3rem) var(--pad-x) 3.5rem;
-  gap: 1.15rem;
+  /* Haut : sous la barre fixe ; bas et côtés : safe-area (encoche, barre d'accueil iPhone) */
+  padding:
+    calc(var(--nav-h) + env(safe-area-inset-top, 0px) + 1rem)
+    max(var(--pad-x), env(safe-area-inset-right, 0px))
+    calc(1.5rem + env(safe-area-inset-bottom, 0px))
+    max(var(--pad-x), env(safe-area-inset-left, 0px));
+  gap: 0;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   overscroll-behavior: contain;
@@ -468,24 +473,60 @@ p { max-width: 62ch; text-wrap: pretty; }
 .nav-mobile a {
   display: flex;
   align-items: baseline;
-  gap: 1rem;
+  gap: .75rem;
   font-family: var(--font-serif);
-  font-size: clamp(2rem, 6vw, 3.5rem);
+  font-size: clamp(1.375rem, .5rem + 4vw, 1.75rem);   /* ~22 à 28 px */
   font-weight: 400;
+  letter-spacing: .09em;
+  line-height: 1.15;
   opacity: .85;
   transition: opacity .3s;
+}
+
+/* Liens principaux : lignes resserrées, zone tactile >= 44 px de haut.
+   Le padding vertical s'adapte à la hauteur d'écran (10 à 14 px) pour que
+   la liste + le CTA + la langue tiennent sur un iPhone standard. */
+.nav-mobile a.nav-link {
+  min-height: 44px;
+  padding-block: clamp(10px, 1.7vh, 14px);
+  align-items: baseline;
 }
 .nav-mobile a.nav-link::before {
   counter-increment: navnum;
   content: counter(navnum, decimal-leading-zero);
-  flex-shrink: 0;
+  flex: 0 0 1.75rem;                       /* largeur constante : tous les textes alignés */
   font-family: var(--font-serif);
-  font-size: clamp(.85rem, 2vw, 1.1rem);
-  font-weight: 300;
-  letter-spacing: -.02em;
-  color: var(--c30);
+  font-size: clamp(.75rem, .7rem + .3vw, .875rem);   /* 12 à 14 px */
+  font-weight: 500;
+  letter-spacing: .02em;
+  line-height: 1;
+  font-variant-numeric: lining-nums tabular-nums;
+  color: var(--accent-num);                /* >= 4.5:1 sur le fond du menu */
 }
-.nav-mobile a:hover { opacity: 1; }
+
+/* Indicateur : page active (aria-current) ou appui (:active) ; le survol
+   n'est actif que sur les appareils qui en ont un (pas de hover "collé"). */
+.nav-mobile a.nav-link::after {
+  left: 2.5rem;                            /* 1.75rem (numéro) + .75rem (écart) */
+  bottom: clamp(7px, 1.3vh, 11px);
+  height: 1px;
+  background: var(--green-bright);
+  width: 0;
+}
+.nav-mobile a.nav-link:hover::after,
+.nav-mobile a.nav-link.active::after { width: 0; }
+.nav-mobile a.nav-link[aria-current="page"]::after,
+.nav-mobile a.nav-link:active::after { width: calc(100% - 2.5rem); }
+.nav-mobile a.nav-link[aria-current="page"],
+.nav-mobile a.nav-link:active { opacity: 1; }
+@media (hover: hover) {
+  .nav-mobile a:hover { opacity: 1; }
+  .nav-mobile a.nav-link:hover::after { width: calc(100% - 2.5rem); }
+}
+.nav-mobile a:focus-visible {
+  outline: 2px solid var(--green-bright);
+  outline-offset: 2px;
+}
 
 /* CTA principal du menu mobile : sous la liste, au-dessus du sélecteur de langue.
    Pas de .nav-link, donc hors de la numérotation 01-09. */
@@ -496,7 +537,7 @@ p { max-width: 62ch; text-wrap: pretty; }
   align-self: stretch;
   max-width: 24rem;
   min-height: 52px;
-  margin-top: 1.1rem;
+  margin-top: clamp(.5rem, 1.6vh, 1rem);
   padding: .9rem 1.5rem;
   font-family: var(--font-ui, var(--font-sans));
   font-size: .85rem;
@@ -504,14 +545,17 @@ p { max-width: 62ch; text-wrap: pretty; }
   letter-spacing: .14em;
   text-transform: uppercase;
   text-align: center;
-  background: #F8F5F2;
-  color: #0A0D0B;
-  border: 1px solid #F8F5F2;
+  background: var(--cream);
+  color: var(--bg);
+  border: 1px solid var(--cream);
   border-radius: 2px;
   opacity: 1;
 }
-.nav-mobile a.nav-mobile-cta:hover,
-.nav-mobile a.nav-mobile-cta:focus-visible { background: rgba(248, 245, 242, .88); }
+.nav-mobile a.nav-mobile-cta:active,
+.nav-mobile a.nav-mobile-cta:focus-visible { opacity: .88; }
+@media (hover: hover) {
+  .nav-mobile a.nav-mobile-cta:hover { opacity: .88; }
+}
 
 /* Sélecteur de langue du menu mobile : petit bouton compact, en bas, aligné à gauche.
    Le lien (zone tactile) fait au moins 44x44 px grâce au padding ; le cadre visible
@@ -522,7 +566,7 @@ p { max-width: 62ch; text-wrap: pretty; }
   align-self: flex-start;
   min-width: 44px;
   min-height: 44px;
-  margin-top: .6rem;
+  margin-top: .25rem;
   padding: 0 14px 0 0;
   border: 0;
   border-radius: 0;
@@ -534,13 +578,21 @@ p { max-width: 62ch; text-wrap: pretty; }
   line-height: 1;
   opacity: .8;
 }
-.nav-mobile a.nav-lang:hover,
+.nav-mobile a.nav-lang:active,
 .nav-mobile a.nav-lang:focus-visible { opacity: 1; }
+@media (hover: hover) {
+  .nav-mobile a.nav-lang:hover { opacity: 1; }
+}
 .nav-mobile a.nav-lang span {
   display: inline-block;
   padding: 8px calc(12px - .18em) 8px 12px;
-  border: 1px solid rgba(248, 245, 242, .4);
+  border: 1px solid var(--c30);
   border-radius: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-mobile a,
+  .nav-mobile a.nav-link::after { transition: none; }
 }
 
 /* ── Boutons ─────────────────────────────────────────────────── */

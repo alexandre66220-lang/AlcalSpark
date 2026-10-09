@@ -60,7 +60,8 @@
   font-family: var(--font-display);
   font-size: clamp(3rem, 6vw, 5rem);
   font-weight: 700;
-  color: rgba(56, 81, 68, 0.1);
+  color: var(--accent-num);
+  opacity: .75;            /* discret face au titre, mais >= 3:1 (grand corps) */
   line-height: 1;
   min-width: 80px;
 }
@@ -480,7 +481,8 @@
   font-family: var(--font-display);
   font-size: 3.5rem;
   font-weight: 700;
-  color: rgba(248, 245, 242, 0.14);
+  color: var(--accent-num);
+  opacity: .85;
   line-height: 1;
 }
 .service-small-card h3 { margin-bottom: 14px; }
@@ -563,7 +565,8 @@
   font-family: var(--font-display);
   font-size: 4.5rem;
   font-weight: 700;
-  color: rgba(248, 245, 242, 0.12);
+  color: var(--accent-num);
+  opacity: .85;
   line-height: 1;
   user-select: none;
 }
@@ -755,4 +758,10 @@
   .sr-body { flex-direction: column !important; gap: 40px; }
   .sv-mockup { max-width: 100%; }
   .services-two-col { grid-template-columns: 1fr; }
+}
+
+/* Ancre #conseil : la card (numéro 06 en haut à droite) atterrissait sous la
+   barre de navigation fixe. Les autres ancres ont déjà le décalage du padding de section. */
+.service-small-card[id] {
+  scroll-margin-top: calc(var(--nav-h) + 1.5rem);
 }

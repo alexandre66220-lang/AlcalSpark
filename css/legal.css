@@ -161,3 +161,26 @@
   .lib-row { flex-direction: column; gap: 4px; }
   .lib-label { min-width: auto; }
 }
+
+/* ── Squelette CGV : repères visuels "à compléter" ──────────── */
+.cgv-draft-banner {
+  margin: 0 0 32px;
+  padding: 20px 24px;
+  border: 1px solid #C9A84C;
+  background: rgba(201, 168, 76, 0.08);
+  border-radius: 3px;
+}
+.cgv-draft-banner strong { display: block; letter-spacing: 0.12em; color: #C9A84C; margin-bottom: 8px; }
+.cgv-draft-banner p { margin: 0; font-size: 0.9rem; color: rgba(248, 245, 242, 0.8); }
+.legal-article p.cgv-todo {
+  display: inline-block;
+  margin: 0 0 14px;
+  padding: 3px 10px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: #0A0D0B;
+  background: #C9A84C;
+  border-radius: 2px;
+}
+.legal-article p.cgv-todo-label { margin-bottom: 6px; font-weight: 600; }

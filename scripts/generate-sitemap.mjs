@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Verifie que sitemap.xml (racine) reflete bien les pages .html reelles du
- * site statique (racine, services/, portfolio/, en/). N'ajoute jamais une page
+ * site statique (racine, services/, ressources/, portfolio/, en/). N'ajoute jamais une page
  * marquee noindex, et conserve le lastmod/priority/changefreq existant pour
  * les URLs deja presentes plutot que de les ecraser a chaque execution.
  *
@@ -24,6 +24,7 @@ const BASE_URL = "https://alcalspark.com";
 const SCAN_DIRS = [
   { dir: ROOT, prefix: "", defaultPriority: "0.7" },
   { dir: join(ROOT, "services"), prefix: "services/", defaultPriority: "0.7" },
+  { dir: join(ROOT, "ressources"), prefix: "ressources/", defaultPriority: "0.6" },
   { dir: join(ROOT, "portfolio"), prefix: "portfolio/", defaultPriority: "0.6" },
   { dir: join(ROOT, "en"), prefix: "en/", defaultPriority: "0.7" },
   { dir: join(ROOT, "en", "services"), prefix: "en/services/", defaultPriority: "0.7" },

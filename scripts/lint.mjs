@@ -9,7 +9,10 @@
  *  4. Pages de l'offre artisan : pas de tiret cadratin ni demi-cadratin,
  *     pages de brief en noindex.
  *  5. Syntaxe de tous les fichiers js/*.js (node --check).
- *  6. Sitemap : pages de l'offre presentes.
+ *  6. Sitemap : pages de l'offre presentes, toute page publique (indexable) presente,
+ *     pages noindex absentes.
+ *  7. CGV : page /cgv en noindex tant qu'elle porte le marqueur "A COMPLETER",
+ *     case CGV obligatoire dans les deux questionnaires de brief.
  *
  * Usage : node scripts/lint.mjs   (code de sortie 1 si une verification echoue)
  */
@@ -141,6 +144,33 @@ for (const u of ["https://alcalspark.com/offre-site-artisan-btp", "https://alcal
 }
 for (const u of ["brief-site-artisan-btp", "brief-site-artisan-btp-merci"]) {
   if (sitemap.includes(u)) fail("sitemap", `${u} ne doit pas etre dans le sitemap (noindex)`);
+}
+
+// Toute page indexable (sans noindex) doit etre dans le sitemap ; toute page noindex en est exclue.
+const sitemapLocs = new Set([...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]));
+for (const f of htmlFiles) {
+  const r = rel(f).replace(/\\/g, "/");
+  const slug = r.replace(/\.html$/, "");
+  const loc = slug === "index" ? "https://alcalspark.com/" : slug === "en/index" ? "https://alcalspark.com/en/" : `https://alcalspark.com/${slug}`;
+  const noindex = /<meta\s+name=["']robots["']\s+content=["'][^"']*noindex/i.test(readFileSync(f, "utf-8"));
+  if (!noindex && !sitemapLocs.has(loc)) fail("sitemap", `${r} est indexable mais absent de sitemap.xml (npm run fix-sitemap)`);
+  if (noindex && sitemapLocs.has(loc)) fail("sitemap", `${r} est en noindex mais present dans sitemap.xml`);
+}
+
+/* 7. CGV ------------------------------------------------------------- */
+const cgvFile = join(ROOT, "cgv.html");
+if (!existsSync(cgvFile)) {
+  fail("cgv", "cgv.html est absent");
+} else {
+  const cgv = readFileSync(cgvFile, "utf-8");
+  if (/A COMPLETER|À COMPLÉTER/.test(cgv) && !/<meta name="robots" content="noindex/.test(cgv)) {
+    fail("cgv", "cgv.html contient encore le marqueur 'À COMPLÉTER' : elle doit rester en noindex tant qu'elle n'est pas validee");
+  }
+}
+for (const p of ["brief-site-artisan-btp.html", "en/brief-site-artisan-btp.html"]) {
+  const html = readFileSync(join(ROOT, p), "utf-8");
+  if (!/<input[^>]*name="cgv_acceptees"[^>]*\brequired\b/.test(html)) fail("cgv", `${p}: case CGV obligatoire absente`);
+  if (!/href="(\.\.\/)?cgv\.html"/.test(html)) fail("cgv", `${p}: lien vers cgv.html absent`);
 }
 
 /* Bilan -------------------------------------------------------------- */

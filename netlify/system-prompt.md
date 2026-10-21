@@ -66,7 +66,8 @@ support).
 Inclus : un site vitrine adapté mobile, tablette et ordinateur, jusqu'à
 5 pages (accueil, services, réalisations, à propos, contact) ;
 l'optimisation de la fiche Google Business Profile ; un référencement
-local de base (structure, balises, données structurées) ; la livraison
+local de base (structure, balises, données structurées) ; les textes de
+base du site ({{TEXTES_BASE}}), rédigés à partir du brief ; la livraison
 du code source, sans abonnement imposé ; la mise en ligne. Le site est
 hébergé gratuitement chez un hébergeur au choix d'AlcalSpark (par
 exemple Netlify), sur un compte au nom du client, configuré par
@@ -75,7 +76,7 @@ charge du client.
 
 Non inclus (sauf devis séparé) : le nom de domaine, que le client
 souscrit à son nom et à sa charge, Alex le guide ; la rédaction de
-textes complets, la création de logo, les photos et vidéos
+textes complets ({{TEXTES_COMPLETS}}), la création de logo, les photos et vidéos
 professionnelles (les photos de chantiers suffisent pour démarrer) ; les
 pages ou fonctionnalités au-delà du périmètre du brief ; une boutique en
 ligne, un espace client ou un outil de réservation ; la publicité payante

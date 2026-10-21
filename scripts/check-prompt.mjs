@@ -48,6 +48,8 @@ if (prompt) {
     [String(config.DELAI_AUTOMATISATION_SIMPLE), "DELAI_AUTOMATISATION_SIMPLE"],
     [String(config.DELAI_AUTOMATISATION_COMPLETE), "DELAI_AUTOMATISATION_COMPLETE"],
     [String(config.DELAI_SAAS_MVP), "DELAI_SAAS_MVP"],
+    [String(config.TEXTES_BASE), "TEXTES_BASE"],
+    [String(config.TEXTES_COMPLETS), "TEXTES_COMPLETS"],
     [`${config.PRIX_CONSULTATION}€`, "PRIX_CONSULTATION"],
     [`${config.PRIX_ACCOMPAGNEMENT}€`, "PRIX_ACCOMPAGNEMENT"],
     [`${config.PRIX_FORMATION_SEO}€`, "PRIX_FORMATION_SEO"],
@@ -113,6 +115,19 @@ if (prompt) {
   ];
   for (const [file, value, key] of pageChecks) {
     if (!page(file).includes(String(value))) errors.push(`${file} ne publie plus "${value}" (${key}) : le prompt et la page divergent`);
+  }
+  // Delai SaaS : la page SaaS doit utiliser le meme jeton que le prompt (une seule source).
+  for (const [file, token] of [["services/applications-saas.html", "{{DELAI_SAAS_MVP}}"], ["en/services/applications-saas.html", "{{DELAI_SAAS_MVP_EN}}"]]) {
+    if (!page(file).includes(token)) errors.push(`${file} n'utilise plus le jeton ${token} : le delai SaaS doit venir de site.config.json`);
+  }
+
+  // Textes : offre, CGV et prompt partagent les memes jetons (une seule source).
+  for (const [file, tokens] of [
+    ["offre-site-artisan-btp.html", ["{{TEXTES_BASE}}", "{{TEXTES_COMPLETS}}"]],
+    ["en/offre-site-artisan-btp.html", ["{{TEXTES_BASE_EN}}", "{{TEXTES_COMPLETS_EN}}"]],
+    ["cgv.html", ["{{TEXTES_BASE}}", "{{TEXTES_COMPLETS}}"]],
+  ]) {
+    for (const t of tokens) if (!page(file).includes(t)) errors.push(`${file} n'utilise plus le jeton ${t} : la regle sur les textes doit venir de site.config.json`);
   }
   const tarifs = page("tarifs.html");
   for (const [n, key] of [[config.PRIX_CONSULTATION, "PRIX_CONSULTATION"], [config.PRIX_ACCOMPAGNEMENT, "PRIX_ACCOMPAGNEMENT"], [config.PRIX_FORMATION_SEO, "PRIX_FORMATION_SEO"]]) {

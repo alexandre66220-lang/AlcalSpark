@@ -2,8 +2,8 @@ const fs = require('fs');
 const path = require('path');
 const { stream } = require('@netlify/functions');
 const Anthropic = require('@anthropic-ai/sdk');
-const { checkAndIncrement } = require('./utils/rate-limit');
-const { buildSystemPrompt } = require('./utils/build-prompt');
+const { checkAndIncrement, LIMIT } = require('./utils/rate-limit');
+const { buildSystemPrompt, languageContext } = require('./utils/build-prompt');
 // JSON is inlined by esbuild at bundle time, so no extra included_files entry is needed.
 const SITE_CONFIG = require('../../site.config.json');
 
@@ -18,6 +18,20 @@ const SYSTEM_PROMPT = buildSystemPrompt(
   fs.readFileSync(path.join(__dirname, '../system-prompt.md'), 'utf-8'),
   SITE_CONFIG
 );
+
+/** 'fr' | 'en' : langue de la page du visiteur (envoyée par le frontend). */
+function normalizeLang(raw) {
+  return raw === 'en' ? 'en' : 'fr';
+}
+
+/** Message poli quand la limite horaire est atteinte (vouvoiement, temps d'attente indicatif). */
+function rateLimitMessage(lang, resetAt) {
+  const minutes = Math.max(1, Math.ceil((resetAt - Date.now()) / 60000));
+  if (lang === 'en') {
+    return `You have reached the limit of ${LIMIT} messages per hour. Please try again in about ${minutes} minute${minutes > 1 ? 's' : ''}, or write to Alex directly from the contact page: he replies within 24 hours.`;
+  }
+  return `Vous avez atteint la limite de ${LIMIT} messages par heure. Merci de réessayer dans environ ${minutes} minute${minutes > 1 ? 's' : ''}, ou d'écrire directement à Alex depuis la page contact : il répond sous 24 h.`;
+}
 
 function jsonResponse(statusCode, data) {
   return {
@@ -79,20 +93,21 @@ exports.handler = stream(async (event) => {
     return jsonResponse(400, { error: `Le message dépasse la limite de ${MAX_MESSAGE_LEN} caractères.` });
   }
 
+  const lang = normalizeLang(payload.lang);
   const history = sanitizeHistory(payload.history);
   const ip = getClientIp(event.headers || {});
 
   const rate = await checkAndIncrement(ip);
   if (!rate.allowed) {
     return jsonResponse(429, {
-      error: "Limite de messages atteinte pour cette heure. Réessaie plus tard, ou contacte Alex directement depuis la page contact.",
+      error: rateLimitMessage(lang, rate.resetAt),
       resetAt: rate.resetAt,
     });
   }
 
   if (!process.env.ANTHROPIC_API_KEY) {
     console.error('[chat] ANTHROPIC_API_KEY is not configured');
-    return jsonResponse(500, { error: 'Le service de chat est momentanément indisponible.' });
+    return jsonResponse(500, { error: lang === 'en' ? 'The chat service is temporarily unavailable.' : 'Le service de chat est momentanément indisponible.' });
   }
 
   const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
@@ -113,7 +128,7 @@ exports.handler = stream(async (event) => {
         messageStream = anthropic.messages.stream({
           model: MODEL,
           max_tokens: MAX_TOKENS,
-          system: SYSTEM_PROMPT,
+          system: SYSTEM_PROMPT + languageContext(lang),
           messages: [...history, { role: 'user', content: message }],
         });
 
@@ -123,7 +138,7 @@ exports.handler = stream(async (event) => {
         send({ type: 'done' });
       } catch (err) {
         console.error('[chat] Anthropic API error:', err);
-        send({ type: 'error', message: "Une erreur est survenue, réessaie dans un instant." });
+        send({ type: 'error', message: lang === 'en' ? 'Something went wrong, please try again in a moment.' : "Une erreur est survenue, réessayez dans un instant." });
       } finally {
         controller.close();
       }

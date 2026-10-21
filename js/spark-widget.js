@@ -37,7 +37,7 @@
     closeBtn: 'Close',
     send: 'Send',
     placeholder: 'Ask about ALCALSPARK',
-    hint: 'ALCALSPARK system -- services, pricing, portfolio, contact.',
+    hint: 'ALCALSPARK system: services, pricing, portfolio, contact.',
     contactHref: '/en/contact.html'
   } : {
     openLabel: "Ouvrir l'assistant SPARK",
@@ -45,7 +45,7 @@
     closeBtn: 'Fermer',
     send: 'Envoyer',
     placeholder: 'Une question sur ALCALSPARK ?',
-    hint: 'Système ALCALSPARK -- services, tarifs, portfolio, contact.',
+    hint: 'Système ALCALSPARK : services, tarifs, portfolio, contact.',
     contactHref: '/contact.html'
   };
 

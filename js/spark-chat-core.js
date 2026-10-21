@@ -51,6 +51,19 @@
 
   var session = null; // singleton, see getSession()
 
+  // Langue de la page : envoyée à l'API pour que SPARK réponde dans la bonne langue,
+  // et utilisée pour les messages d'erreur locaux.
+  var PAGE_LANG = document.documentElement.lang === 'en' ? 'en' : 'fr';
+  var MSG = PAGE_LANG === 'en' ? {
+    network: 'Unable to reach the system, please check your connection.',
+    generic: 'Something went wrong.',
+    tooLong: 'Message too long (500 characters max).'
+  } : {
+    network: 'Impossible de contacter le système, vérifiez votre connexion.',
+    generic: 'Une erreur est survenue.',
+    tooLong: 'Message trop long (500 caractères max).'
+  };
+
   /* ── Shared char-by-char reveal helper ────────────────────────
      Small enough that both renderers reusing the exact same drain
      algorithm (rather than each re-implementing it) is worth a tiny
@@ -137,15 +150,15 @@
         res = await fetch('/api/chat', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ message: message, history: history })
+          body: JSON.stringify({ message: message, history: history, lang: PAGE_LANG })
         });
       } catch (err) {
-        emit('error', "Impossible de contacter le système -- vérifie ta connexion.");
+        emit('error', MSG.network);
         return;
       }
 
       if (!res.ok || !res.body) {
-        var errText = "Une erreur est survenue.";
+        var errText = MSG.generic;
         try {
           var errJson = await res.json();
           if (errJson && errJson.error) errText = errJson.error;
@@ -198,7 +211,7 @@
               emit('chunk', { safeText: '', rawLen: evt.text.length });
             }
           } else if (evt.type === 'error') {
-            emit('error', evt.message || 'Une erreur est survenue.');
+            emit('error', evt.message || MSG.generic);
           } else if (evt.type === 'done') {
             var ctaMatch = replyText.match(CTA_RE);
             var cleanText = ctaMatch ? replyText.slice(0, ctaMatch.index).replace(/\s+$/, '') : replyText;
@@ -228,7 +241,7 @@
 
       if (message.length > MAX_LEN) {
         emit('reset');
-        emit('error', 'Message trop long (500 caractères max).');
+        emit('error', MSG.tooLong);
         return 'too_long';
       }
 

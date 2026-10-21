@@ -30,4 +30,11 @@ function buildSystemPrompt(template, config) {
   return prompt;
 }
 
-module.exports = { buildSystemPrompt };
+/** Contexte de langue ajouté au prompt : la langue du message prime, celle de la page départage. */
+function languageContext(lang) {
+  return lang === 'en'
+    ? '\n\nContexte : le visiteur consulte la version anglaise du site. Réponds dans la langue de son dernier message ; en cas de doute, réponds en anglais.'
+    : '\n\nContexte : le visiteur consulte la version française du site. Réponds dans la langue de son dernier message ; en cas de doute, réponds en français, en le vouvoyant.';
+}
+
+module.exports = { buildSystemPrompt, languageContext };

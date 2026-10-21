@@ -76,7 +76,9 @@ for (const f of htmlFiles) {
   const endifs = (html.match(/<!--ENDIF:/g) || []).length;
   if (ifs !== endifs) fail("config", `${rel(f)}: ${ifs} <!--IF:--> pour ${endifs} <!--ENDIF:-->`);
 }
+const promptTemplate = readFileSync(join(ROOT, "netlify/system-prompt.md"), "utf-8");
 for (const k of Object.keys(config)) {
+  if (promptTemplate.includes(`{{${k}}}`)) usedKeys.add(k); // jeton utilise par le prompt de SPARK
   if (!usedKeys.has(k) && !htmlFiles.some((f) => readFileSync(f, "utf-8").includes(`IF:${k}-->`))) {
     console.warn(`[config] avertissement : la cle ${k} n'est utilisee par aucune page.`);
   }

@@ -729,7 +729,7 @@
   // Bump when spark-chat-core.js/spark-widget.js/spark-widget.css change
   // in a way that isn't safe to leave to the 7-day cache on /js/* and
   // /css/* (netlify.toml).
-  var ASSET_VERSION = '1';
+  var ASSET_VERSION = '2';
 
   function loadScript(src) {
     return new Promise(function (resolve, reject) {

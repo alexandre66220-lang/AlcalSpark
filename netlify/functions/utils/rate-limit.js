@@ -1,7 +1,7 @@
 const { getStore } = require('@netlify/blobs');
 
 const WINDOW_MS = 60 * 60 * 1000; // 1h
-const LIMIT = 15;
+const LIMIT = 30; // messages par heure et par IP
 const STORE_NAME = 'chat-rate-limit';
 
 /**

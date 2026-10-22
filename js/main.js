@@ -729,7 +729,7 @@
   // Bump when spark-chat-core.js/spark-widget.js/spark-widget.css change
   // in a way that isn't safe to leave to the 7-day cache on /js/* and
   // /css/* (netlify.toml).
-  var ASSET_VERSION = '3';
+  var ASSET_VERSION = '4';
 
   function loadScript(src) {
     return new Promise(function (resolve, reject) {
@@ -776,4 +776,18 @@
   } else {
     window.addEventListener('load', function () { whenIdle(boot); });
   }
+})();
+
+/* Mobile : les boutons flottants (WhatsApp, SPARK) s'effacent pendant le défilement
+   pour ne jamais masquer un texte ou un bouton, puis reviennent 700 ms après l'arrêt. */
+(function () {
+  var mq = window.matchMedia ? window.matchMedia('(max-width: 768px)') : null;
+  if (!mq) return;
+  var timer = null;
+  window.addEventListener('scroll', function () {
+    if (!mq.matches) return;
+    document.body.classList.add('is-scrolling');
+    clearTimeout(timer);
+    timer = setTimeout(function () { document.body.classList.remove('is-scrolling'); }, 700);
+  }, { passive: true });
 })();

@@ -293,6 +293,15 @@
   .spark-widget-btn { width: 52px; height: 52px; padding: 9px; }
 }
 
+@media (max-width: 768px) {
+  /* Empilé au-dessus du bouton WhatsApp (44px) : marge 16px + zone sûre iOS, 10px d'écart */
+  .spark-widget {
+    bottom: calc(16px + 44px + 10px + env(safe-area-inset-bottom, 0px));
+    right: calc(16px + env(safe-area-inset-right, 0px));
+  }
+  .spark-widget-btn { width: 44px; height: 44px; padding: 8px; }
+}
+
 @media (max-width: 600px) {
   /* Bottom sheet instead of a small floating card -- more usable on a
      phone-width viewport, and clears the keyboard better than a fixed

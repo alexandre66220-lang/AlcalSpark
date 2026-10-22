@@ -30,10 +30,9 @@
   <link rel="icon" type="image/png" sizes="48x48" href="../favicon-48.png" />
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="../css/as-tokens.css?v=2" />
-<link rel="stylesheet" href="../css/style.css?v=5" />
+<link rel="stylesheet" href="../css/style.css?v=6" />
   <link rel="stylesheet" href="../css/services.css?v=4" />
   <link rel="stylesheet" href="../css/tarifs.css?v=5" />
-  <link rel="stylesheet" href="../css/offres.css?v=2" />
   <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
@@ -326,21 +325,20 @@
     <div class="offers-grid">
       <article class="offer-card card reveal delay-1">
         <div class="offer-badge">Essential</div>
-        <div class="offer-price"><span class="offer-currency">€</span><span class="offer-amount">{{PRIX_ESSENTIEL}}</span><span class="offer-currency"></span></div>
+        <div class="offer-price"><span class="offer-amount">€{{PRIX_ESSENTIEL}}</span></div>
         <p class="offer-delay">Delivered in {{DELAI_ESSENTIEL_EN}}</p>
         
         <ul class="offer-features">
           <li>1 responsive page with a contact form</li>
           <li>Basic SEO and go-live</li>
           <li>1 round of revisions, in French</li>
-        
-          <li>Hosting included with maintenance, otherwise the site is delivered on your account</li>
         </ul>
         <a href="contact.html" class="btn btn-primary" onclick="gtag('event', 'cta_offre_essentiel', {'event_category': 'CTA', 'event_label': 'cta_offre_essentiel'})">Choose Essential</a>
       </article>
-      <article class="offer-card glass-strong reveal delay-2">
+      <article class="offer-card offer-card--featured glass-strong reveal delay-2">
+        <span class="offer-flag">Most popular</span>
         <div class="offer-badge">Premium</div>
-        <div class="offer-price"><span class="offer-currency">€</span><span class="offer-amount">{{PRIX_PREMIUM_AFFICHE_EN}}</span><span class="offer-currency"></span></div>
+        <div class="offer-price"><span class="offer-amount">€{{PRIX_PREMIUM_AFFICHE_EN}}</span></div>
         <p class="offer-delay">Delivered in {{DELAI_PREMIUM_EN}}</p>
         
         <ul class="offer-features">
@@ -348,26 +346,23 @@
           <li>Technical SEO: tags, structured data, sitemap</li>
           <li>Analytics and Search Console set up</li>
           <li>FR/EN site, 2 rounds of revisions</li>
-        
-          <li>Hosting included with maintenance, otherwise the site is delivered on your account</li>
         </ul>
         <a href="contact.html" class="btn btn-primary" onclick="gtag('event', 'cta_offre_premium', {'event_category': 'CTA', 'event_label': 'cta_offre_premium'})">Choose Premium</a>
       </article>
       <article class="offer-card card reveal delay-3">
         <div class="offer-badge">Custom</div>
-        <div class="offer-price"><span class="offer-from">from</span><span class="offer-currency">€</span><span class="offer-amount">{{PRIX_SUR_MESURE_DES_AFFICHE_EN}}</span><span class="offer-currency"></span></div>
+        <div class="offer-price"><span class="offer-from">from&nbsp;</span><span class="offer-amount">€{{PRIX_SUR_MESURE_DES_AFFICHE_EN}}</span></div>
         <p class="offer-delay">Timeline given in the quote</p>
         
         <ul class="offer-features">
           <li>Everything in Premium, plus advanced animations (Three.js, GSAP)</li>
           <li>Extra pages and integrations</li>
           <li>Fixed quote after the brief</li>
-        
-          <li>Hosting included with maintenance, otherwise the site is delivered on your account</li>
         </ul>
         <a href="contact.html" class="btn btn-primary" onclick="gtag('event', 'cta_offre_surmesure', {'event_category': 'CTA', 'event_label': 'cta_offre_surmesure'})">Request a quote</a>
       </article>
     </div>
+        <p class="offer-note offer-note--hosting reveal">Hosting included with maintenance; otherwise, the site is delivered on your account.</p>
         <p class="offer-note reveal">Need a different scope? Custom work is priced with a fixed quote, after a brief. Payment: {{PAIEMENT_PACK_ACOMPTE_POURCENT}}% at order and {{PAIEMENT_PACK_SOLDE_POURCENT}}% on delivery for the packs, in 3 instalments ({{PAIEMENT_SURMESURE_1_POURCENT}} / {{PAIEMENT_SURMESURE_2_POURCENT}} / {{PAIEMENT_SURMESURE_3_POURCENT}}%) for Custom work.<!--IF:PRIX_MENTION_EN--> {{PRIX_MENTION_EN}}.<!--ENDIF:PRIX_MENTION_EN--></p>
       </div>
     </section>
@@ -383,7 +378,7 @@
     <div class="offers-grid offers-grid--2">
       <article class="offer-card card reveal delay-1">
         <div class="offer-badge">Lead capture</div>
-        <div class="offer-price"><span class="offer-from">+</span><span class="offer-currency">€</span><span class="offer-amount">{{PRIX_AUTOMATISATION_LEADS}}</span><span class="offer-currency"></span></div>
+        <div class="offer-price"><span class="offer-amount">+€{{PRIX_AUTOMATISATION_LEADS}}</span></div>
         <p class="offer-delay">Delivered in {{DELAI_AUTOMATISATION_EN}}</p>
         
         <ul class="offer-features">
@@ -395,7 +390,7 @@
       </article>
       <article class="offer-card card reveal delay-2">
         <div class="offer-badge">Full workflow</div>
-        <div class="offer-price"><span class="offer-from">+</span><span class="offer-currency">€</span><span class="offer-amount">{{PRIX_AUTOMATISATION_COMPLET}}</span><span class="offer-currency"></span></div>
+        <div class="offer-price"><span class="offer-amount">+€{{PRIX_AUTOMATISATION_COMPLET}}</span></div>
         <p class="offer-delay">Delivered in {{DELAI_AUTOMATISATION_EN}}</p>
         
         <ul class="offer-features">
@@ -419,7 +414,7 @@
         <div class="offers-grid offers-grid--2">
       <article class="offer-card card reveal delay-1">
         <div class="offer-badge">Audit + action plan</div>
-        <div class="offer-price"><span class="offer-currency">€</span><span class="offer-amount">{{PRIX_AUDIT}}</span><span class="offer-currency"></span></div>
+        <div class="offer-price"><span class="offer-amount">€{{PRIX_AUDIT}}</span></div>
         <p class="offer-delay">Delivered in {{DELAI_AUDIT_EN}}</p>
         
         <ul class="offer-features">
@@ -431,7 +426,7 @@
       </article>
       <article class="offer-card card reveal delay-2">
         <div class="offer-badge">Maintenance</div>
-        <div class="offer-price"><span class="offer-currency">€</span><span class="offer-amount">{{PRIX_MAINTENANCE}}</span><span class="offer-currency"></span><span class="offer-from">per month</span></div>
+        <div class="offer-price"><span class="offer-amount">€{{PRIX_MAINTENANCE}}</span><span class="offer-unit">per month</span></div>
         <p class="offer-delay">No minimum commitment</p>
         
         <ul class="offer-features">

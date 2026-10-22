@@ -4,14 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#0A0D0B" />
-  <meta name="description" content="Site vitrine, fiche Google et SEO local pour artisan du BTP : {{PRIX_FIXE}} € net<!--IF:PRIX_MENTION-->, TVA non applicable<!--ENDIF:PRIX_MENTION-->. Livré en 2 à 3 semaines, commande 100 % en ligne." />
+  <meta name="description" content="Site vitrine, fiche Google et SEO local pour artisan du BTP : {{PRIX_FIXE}} € net<!--IF:PRIX_MENTION-->, TVA non applicable<!--ENDIF:PRIX_MENTION-->. Livré en {{DELAI_SITE_ARTISAN}}, commande 100 % en ligne." />
   <!-- Open Graph / Twitter Card -->
   <meta property="og:site_name" content="AlcalSpark" />
   <meta property="og:locale" content="fr_FR" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://alcalspark.com/offre-site-artisan-btp" />
   <meta property="og:title" content="Site artisan BTP à prix fixe {{PRIX_FIXE}}€ | AlcalSpark" />
-  <meta property="og:description" content="Site vitrine, fiche Google et SEO local pour artisan du BTP : {{PRIX_FIXE}} € net<!--IF:PRIX_MENTION-->, TVA non applicable<!--ENDIF:PRIX_MENTION-->. Livré en 2 à 3 semaines, commande 100 % en ligne." />
+  <meta property="og:description" content="Site vitrine, fiche Google et SEO local pour artisan du BTP : {{PRIX_FIXE}} € net<!--IF:PRIX_MENTION-->, TVA non applicable<!--ENDIF:PRIX_MENTION-->. Livré en {{DELAI_SITE_ARTISAN}}, commande 100 % en ligne." />
   <meta property="og:image" content="https://alcalspark.com/assets/og-cover.jpg" />
   <meta property="og:image:alt" content="AlcalSpark, studio stratégique à Mazamet dans le Tarn" />
   <meta property="og:image:width" content="1200" />
@@ -100,7 +100,7 @@
         "@id": "https://alcalspark.com/offre-site-artisan-btp#service",
         "name": "Site internet pour artisan du BTP à prix fixe",
         "serviceType": "Site vitrine, optimisation de fiche Google Business Profile et SEO local",
-        "description": "Site vitrine, fiche Google Business Profile optimisée et SEO local de base pour artisans du BTP, livrés en 2 à 3 semaines à prix fixe. Commande entièrement en ligne.",
+        "description": "Site vitrine, fiche Google Business Profile optimisée et SEO local de base pour artisans du BTP, livrés en {{DELAI_SITE_ARTISAN}} à prix fixe. Commande entièrement en ligne.",
         "url": "https://alcalspark.com/offre-site-artisan-btp",
         "provider": {
           "@id": "https://alcalspark.com/#business"
@@ -265,7 +265,7 @@
           <div>
             <div class="eyebrow reveal">Offre artisan BTP, prix fixe</div>
             <h1 id="seo-title" class="reveal delay-1">Votre site d'artisan,<br /><em class="text-gradient">à prix fixe</em></h1>
-            <p class="lead reveal delay-2">Un site vitrine, votre fiche Google Business Profile optimisée et le SEO local de base, livrés en 2 à 3 semaines. Vous commandez en ligne et tout se passe par écrit. Aucun appel, aucun rendez-vous.</p>
+            <p class="lead reveal delay-2">Un site vitrine, votre fiche Google Business Profile optimisée et le SEO local de base, livrés en {{DELAI_SITE_ARTISAN}}. Vous commandez en ligne et tout se passe par écrit. Aucun appel, aucun rendez-vous.</p>
             <div class="hero-ctas reveal delay-3">
               <a href="brief-site-artisan-btp.html" class="btn btn-primary" onclick="gtag('event', 'cta_commander_site_artisan', {'event_category': 'CTA', 'event_label': 'Offre artisan BTP'})">Commander mon site</a>
               <a href="#inclus" class="btn btn-outline">Voir ce qui est inclus</a>
@@ -275,7 +275,7 @@
           <aside class="offre-price-card reveal delay-2" aria-label="Prix de l'offre">
             <div class="opc-label">Prix fixe</div>
             <div class="opc-price">{{PRIX_FIXE}}<small>€</small></div>
-            <div class="opc-fixed">Livré en 2 à 3 semaines</div>
+            <div class="opc-fixed">Livré en {{DELAI_SITE_ARTISAN}}</div>
             <!--IF:PRIX_MENTION-->
             <div class="opc-mention">{{PRIX_MENTION}}</div>
             <!--ENDIF:PRIX_MENTION-->
@@ -375,7 +375,7 @@
           <span class="step-num">03</span>
           <div>
             <h4>La réalisation</h4>
-            <p>Je construis votre site et votre fiche Google. Je vous envoie un aperçu, vous répondez par message, j'ajuste. Compter 2 à 3 semaines après réception du brief et de l'acompte.</p>
+            <p>Je construis votre site et votre fiche Google. Je vous envoie un aperçu, vous répondez par message, j'ajuste. Compter {{DELAI_SITE_ARTISAN}} après réception du brief et de l'acompte.</p>
           </div>
         </div>
         <div class="seo-process-step reveal delay-3">
@@ -398,6 +398,7 @@
           <div>
             <h3>Maintenance et support</h3>
             <ul>
+              <li>Hébergement inclus</li>
               <li>Mises à jour et corrections</li>
               <li>Petites modifications de contenu (2 par mois, au-delà sur devis)</li>
               <li>Support par message</li>
@@ -479,7 +480,7 @@
             <span class="faq-icon" aria-hidden="true">+</span>
           </button>
           <div class="faq-answer" hidden>
-            <p>Entre 2 et 3 semaines après réception de votre brief complet et de l'acompte. Plus vous répondez vite à mes messages, plus c'est rapide.</p>
+            <p>{{DELAI_SITE_ARTISAN}} après réception de votre brief complet et de l'acompte. Plus vous répondez vite à mes messages, plus c'est rapide.</p>
           </div>
         </div>
         </div>

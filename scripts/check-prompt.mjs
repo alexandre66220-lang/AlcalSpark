@@ -48,7 +48,6 @@ if (prompt) {
     [`+${config.PRIX_AUTOMATISATION_LEADS}€`, "PRIX_AUTOMATISATION_LEADS"],
     [`+${config.PRIX_AUTOMATISATION_COMPLET}€`, "PRIX_AUTOMATISATION_COMPLET"],
     [`${config.PRIX_AUDIT}€`, "PRIX_AUDIT"],
-    [`${config.PRIX_MAINTENANCE_STANDARD}€`, "PRIX_MAINTENANCE_STANDARD"],
     [`${config.PRIX_AGENCE_MIN}`, "PRIX_AGENCE_MIN"],
     [`${config.PRIX_AGENCE_MAX}€`, "PRIX_AGENCE_MAX"],
     [`${config.PRIX_FORMATION_SEO}€`, "PRIX_FORMATION_SEO"],
@@ -60,7 +59,11 @@ if (prompt) {
     [String(config.DELAI_AUDIT), "DELAI_AUDIT"],
     [String(config.DELAI_SITE_ARTISAN), "DELAI_SITE_ARTISAN"],
     [String(config.DELAI_DEBUT), "DELAI_DEBUT"],
-    [String(config.DELAI_SAAS_MVP), "DELAI_SAAS_MVP"],
+    [`${config.PAIEMENT_PACK_ACOMPTE_POURCENT} % à la commande`, "PAIEMENT_PACK_ACOMPTE_POURCENT"],
+    [`${config.PAIEMENT_PACK_SOLDE_POURCENT} % à la livraison`, "PAIEMENT_PACK_SOLDE_POURCENT"],
+    [`${config.PAIEMENT_SURMESURE_1_POURCENT} % à la commande`, "PAIEMENT_SURMESURE_1_POURCENT"],
+    [`${config.PAIEMENT_SURMESURE_2_POURCENT} % au lancement`, "PAIEMENT_SURMESURE_2_POURCENT"],
+    [`${config.PAIEMENT_SURMESURE_3_POURCENT} % à la livraison`, "PAIEMENT_SURMESURE_3_POURCENT"],
     [String(config.TEXTES_BASE), "TEXTES_BASE"],
     [String(config.TEXTES_COMPLETS), "TEXTES_COMPLETS"],
     [`${config.ACOMPTE_POURCENT} %`, "ACOMPTE_POURCENT"],
@@ -98,7 +101,6 @@ if (prompt) {
     [String(config.PRIX_AUTOMATISATION_LEADS), "{{PRIX_AUTOMATISATION_LEADS}}"],
     [String(config.PRIX_AUTOMATISATION_COMPLET), "{{PRIX_AUTOMATISATION_COMPLET}}"],
     [String(config.PRIX_AUDIT), "{{PRIX_AUDIT}}"],
-    [String(config.PRIX_MAINTENANCE_STANDARD), "{{PRIX_MAINTENANCE_STANDARD}}"],
     [String(config.PRIX_AGENCE_MIN), "{{PRIX_AGENCE_MIN}}"],
     [String(config.PRIX_AGENCE_MAX), "{{PRIX_AGENCE_MAX}}"],
     [String(config.PRIX_FORMATION_SEO), "{{PRIX_FORMATION_SEO}}"],
@@ -120,7 +122,7 @@ if (prompt) {
   for (const m of withoutTokens.matchAll(durationRe)) {
     errors.push(`duree ecrite en dur dans le gabarit ("${m[0]}"), utiliser un jeton DELAI_* de site.config.json`);
   }
-  for (const key of ["DELAI_ESSENTIEL", "DELAI_PREMIUM", "DELAI_PLAGE", "DELAI_AUTOMATISATION", "DELAI_AUDIT", "DELAI_SITE_ARTISAN", "DELAI_DEBUT", "DELAI_SAAS_MVP"]) {
+  for (const key of ["DELAI_ESSENTIEL", "DELAI_PREMIUM", "DELAI_PLAGE", "DELAI_AUTOMATISATION", "DELAI_AUDIT", "DELAI_SITE_ARTISAN", "DELAI_DEBUT"]) {
     if (body.includes(String(config[key]))) errors.push(`valeur de ${key} ecrite en dur dans le gabarit, utiliser {{${key}}}`);
   }
   // Capacite mensuelle : jamais un nombre en dur.
@@ -150,19 +152,26 @@ if (prompt) {
   if (String(config.DELAI_PLAGE) !== `${config.DELAI_ESSENTIEL_JOURS} à ${config.DELAI_PREMIUM_JOURS} jours`) errors.push(`DELAI_PLAGE ("${config.DELAI_PLAGE}") ne couvre pas DELAI_ESSENTIEL_JOURS a DELAI_PREMIUM_JOURS`);
   if (String(config.DELAI_PLAGE_EN) !== `${config.DELAI_ESSENTIEL_JOURS} to ${config.DELAI_PREMIUM_JOURS} days`) errors.push("DELAI_PLAGE_EN ne couvre pas DELAI_ESSENTIEL_JOURS a DELAI_PREMIUM_JOURS");
 
+  if (config.PAIEMENT_PACK_ACOMPTE_POURCENT + config.PAIEMENT_PACK_SOLDE_POURCENT !== 100) errors.push("PAIEMENT_PACK_ACOMPTE_POURCENT + PAIEMENT_PACK_SOLDE_POURCENT doit valoir 100");
+  if (config.PAIEMENT_SURMESURE_1_POURCENT + config.PAIEMENT_SURMESURE_2_POURCENT + config.PAIEMENT_SURMESURE_3_POURCENT !== 100) errors.push("les trois versements Sur-mesure doivent totaliser 100 %");
+
   // Coherence avec les pages publiees : chaque page d'offre doit utiliser les jetons de la config.
   const page = (f) => readFileSync(join(ROOT, f), "utf-8");
   const tokenPages = [
-    ["tarifs.html", ["PRIX_ESSENTIEL", "PRIX_PREMIUM_AFFICHE", "PRIX_SUR_MESURE_DES_AFFICHE", "PRIX_AUTOMATISATION_LEADS", "PRIX_AUTOMATISATION_COMPLET", "PRIX_AUDIT", "PRIX_MAINTENANCE_STANDARD", "PRIX_AGENCE_MIN", "PRIX_AGENCE_MAX", "DELAI_ESSENTIEL", "DELAI_PREMIUM", "DELAI_AUTOMATISATION", "DELAI_AUDIT", "CAPACITE_PROJETS_MOIS"]],
-    ["en/tarifs.html", ["PRIX_ESSENTIEL", "PRIX_PREMIUM_AFFICHE_EN", "PRIX_SUR_MESURE_DES_AFFICHE_EN", "PRIX_AUTOMATISATION_LEADS", "PRIX_AUTOMATISATION_COMPLET", "PRIX_AUDIT", "PRIX_MAINTENANCE_STANDARD", "PRIX_AGENCE_MIN", "PRIX_AGENCE_MAX", "DELAI_ESSENTIEL_EN", "DELAI_PREMIUM_EN", "DELAI_AUTOMATISATION_EN", "DELAI_AUDIT_EN", "CAPACITE_PROJETS_MOIS"]],
+    ["tarifs.html", ["PRIX_ESSENTIEL", "PRIX_PREMIUM_AFFICHE", "PRIX_SUR_MESURE_DES_AFFICHE", "PRIX_AUTOMATISATION_LEADS", "PRIX_AUTOMATISATION_COMPLET", "PRIX_AUDIT", "PRIX_AGENCE_MIN", "PRIX_AGENCE_MAX", "DELAI_ESSENTIEL", "DELAI_PREMIUM", "DELAI_AUTOMATISATION", "DELAI_AUDIT", "CAPACITE_PROJETS_MOIS"]],
+    ["en/tarifs.html", ["PRIX_ESSENTIEL", "PRIX_PREMIUM_AFFICHE_EN", "PRIX_SUR_MESURE_DES_AFFICHE_EN", "PRIX_AUTOMATISATION_LEADS", "PRIX_AUTOMATISATION_COMPLET", "PRIX_AUDIT", "PRIX_AGENCE_MIN", "PRIX_AGENCE_MAX", "DELAI_ESSENTIEL_EN", "DELAI_PREMIUM_EN", "DELAI_AUTOMATISATION_EN", "DELAI_AUDIT_EN", "CAPACITE_PROJETS_MOIS"]],
     ["index.html", ["PRIX_ESSENTIEL", "PRIX_PREMIUM_AFFICHE", "PRIX_AUTOMATISATION_LEADS", "DELAI_PREMIUM", "DELAI_PLAGE", "CAPACITE_PROJETS_MOIS"]],
     ["en/index.html", ["PRIX_ESSENTIEL", "PRIX_PREMIUM_AFFICHE_EN", "PRIX_AUTOMATISATION_LEADS", "DELAI_PREMIUM_EN", "DELAI_PLAGE_EN", "CAPACITE_PROJETS_MOIS"]],
     ["services/automatisation-n8n-castres.html", ["PRIX_AUTOMATISATION_LEADS", "PRIX_AUTOMATISATION_COMPLET", "DELAI_AUTOMATISATION"]],
     ["en/services/automatisation-n8n-castres.html", ["PRIX_AUTOMATISATION_LEADS", "PRIX_AUTOMATISATION_COMPLET", "DELAI_AUTOMATISATION_EN"]],
+    ["offre-site-artisan-btp.html", ["DELAI_SITE_ARTISAN"]],
+    ["en/offre-site-artisan-btp.html", ["DELAI_SITE_ARTISAN_EN"]],
+    ["cgv.html", ["PAIEMENT_PACK_ACOMPTE_POURCENT", "PAIEMENT_PACK_SOLDE_POURCENT", "PAIEMENT_SURMESURE_1_POURCENT", "PAIEMENT_SURMESURE_2_POURCENT", "PAIEMENT_SURMESURE_3_POURCENT"]],
+    ["tarifs.html", ["PAIEMENT_PACK_ACOMPTE_POURCENT"]],
     ["agences.html", ["PRIX_AGENCE_MIN", "PRIX_AGENCE_MAX"]],
     ["en/agencies.html", ["PRIX_AGENCE_MIN", "PRIX_AGENCE_MAX"]],
-    ["contact.html", ["PRIX_MAINTENANCE_STANDARD", "DELAI_PLAGE"]],
-    ["en/contact.html", ["PRIX_MAINTENANCE_STANDARD", "DELAI_PLAGE_EN"]],
+    ["contact.html", ["DELAI_PLAGE"]],
+    ["en/contact.html", ["DELAI_PLAGE_EN"]],
   ];
   for (const [file, keys] of tokenPages) {
     const html = page(file);
@@ -170,15 +179,9 @@ if (prompt) {
       if (!html.includes(`{{${key}}}`)) errors.push(`${file} n'utilise plus le jeton {{${key}}} : la valeur doit venir de site.config.json`);
     }
   }
-  for (const file of ["offre-site-artisan-btp.html", "tarifs.html"]) {
-    // Le delai BTP reste publie tel quel sur la page d'offre.
-    if (file === "offre-site-artisan-btp.html" && !page(file).includes(String(config.DELAI_SITE_ARTISAN))) {
-      errors.push(`${file} ne publie plus "${config.DELAI_SITE_ARTISAN}" (DELAI_SITE_ARTISAN) : le prompt et la page divergent`);
-    }
-  }
-  // Delai SaaS : la page SaaS doit utiliser le meme jeton que le prompt (une seule source).
-  for (const [file, token] of [["services/applications-saas.html", "{{DELAI_SAAS_MVP}}"], ["en/services/applications-saas.html", "{{DELAI_SAAS_MVP_EN}}"]]) {
-    if (!page(file).includes(token)) errors.push(`${file} n'utilise plus le jeton ${token} : le delai SaaS doit venir de site.config.json`);
+  // SaaS : sur-mesure, delai defini au devis (plus aucun delai MVP chiffre).
+  for (const file of ["services/applications-saas.html", "en/services/applications-saas.html"]) {
+    if (/MVP en|MVP in|DELAI_SAAS/.test(page(file))) errors.push(`${file} annonce encore un delai MVP : le SaaS est sur-mesure, delai defini au devis`);
   }
 
   // Textes : offre, CGV et prompt partagent les memes jetons (une seule source).

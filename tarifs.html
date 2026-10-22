@@ -204,14 +204,14 @@
           "name": "Maintenance",
           "priceSpecification": {
             "@type": "UnitPriceSpecification",
-            "price": "{{PRIX_MAINTENANCE_STANDARD}}",
+            "price": "{{PRIX_MAINTENANCE}}",
             "priceCurrency": "EUR",
             "unitText": "MONTH"
           },
           "itemOffered": {
             "@type": "Service",
             "name": "Maintenance de site",
-            "description": "Mises à jour, corrections, petites modifications de contenu et surveillance de la disponibilité."
+            "description": "Hébergement inclus, mises à jour, corrections, petites modifications de contenu et surveillance de la disponibilité."
           }
         },
         {
@@ -333,6 +333,8 @@
           <li>1 page responsive, formulaire de contact</li>
           <li>SEO de base et mise en ligne</li>
           <li>1 tour de retouches, en français</li>
+        
+          <li>Hébergement inclus avec la maintenance, sinon site livré sur votre compte</li>
         </ul>
         <a href="contact.html" class="btn btn-primary" onclick="gtag('event', 'cta_offre_essentiel', {'event_category': 'CTA', 'event_label': 'cta_offre_essentiel'})">Choisir Essentiel</a>
       </article>
@@ -346,6 +348,8 @@
           <li>SEO technique : balises, données structurées, sitemap</li>
           <li>Analytics et Search Console configurés</li>
           <li>Site FR/EN, 2 tours de retouches</li>
+        
+          <li>Hébergement inclus avec la maintenance, sinon site livré sur votre compte</li>
         </ul>
         <a href="contact.html" class="btn btn-primary" onclick="gtag('event', 'cta_offre_premium', {'event_category': 'CTA', 'event_label': 'cta_offre_premium'})">Choisir Premium</a>
       </article>
@@ -358,11 +362,13 @@
           <li>Tout Premium, plus animations avancées (Three.js, GSAP)</li>
           <li>Pages et intégrations supplémentaires</li>
           <li>Devis fixe après brief</li>
+        
+          <li>Hébergement inclus avec la maintenance, sinon site livré sur votre compte</li>
         </ul>
         <a href="contact.html" class="btn btn-primary" onclick="gtag('event', 'cta_offre_surmesure', {'event_category': 'CTA', 'event_label': 'cta_offre_surmesure'})">Demander un devis</a>
       </article>
     </div>
-        <p class="offer-note reveal">Besoin d'un périmètre différent ? Le Sur-mesure se chiffre sur devis fixe, après un brief.<!--IF:PRIX_MENTION--> {{PRIX_MENTION}}.<!--ENDIF:PRIX_MENTION--></p>
+        <p class="offer-note reveal">Besoin d'un périmètre différent ? Le Sur-mesure se chiffre sur devis fixe, après un brief. Paiement : {{PAIEMENT_PACK_ACOMPTE_POURCENT}} % à la commande et {{PAIEMENT_PACK_SOLDE_POURCENT}} % à la livraison pour les packs, en 3 fois ({{PAIEMENT_SURMESURE_1_POURCENT}} / {{PAIEMENT_SURMESURE_2_POURCENT}} / {{PAIEMENT_SURMESURE_3_POURCENT}} %) pour le Sur-mesure.<!--IF:PRIX_MENTION--> {{PRIX_MENTION}}.<!--ENDIF:PRIX_MENTION--></p>
       </div>
     </section>
 
@@ -425,7 +431,7 @@
       </article>
       <article class="offer-card card reveal delay-2">
         <div class="offer-badge">Maintenance</div>
-        <div class="offer-price"><span class="offer-currency"></span><span class="offer-amount">{{PRIX_MAINTENANCE_STANDARD}}</span><span class="offer-currency">€</span><span class="offer-from">par mois</span></div>
+        <div class="offer-price"><span class="offer-currency"></span><span class="offer-amount">{{PRIX_MAINTENANCE}}</span><span class="offer-currency">€</span><span class="offer-from">par mois</span></div>
         <p class="offer-delay">Sans engagement de durée</p>
         
         <ul class="offer-features">
@@ -433,6 +439,8 @@
           <li>Petites modifications de contenu (2 par mois, au-delà sur devis)</li>
           <li>Support par message</li>
           <li>Surveillance de la disponibilité du site</li>
+        
+          <li>Hébergement inclus</li>
         </ul>
         <a href="contact.html" class="btn btn-primary" onclick="gtag('event', 'cta_offre_maintenance', {'event_category': 'CTA', 'event_label': 'cta_offre_maintenance'})">Ajouter la maintenance</a>
       </article>

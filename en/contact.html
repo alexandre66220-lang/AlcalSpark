@@ -182,7 +182,7 @@
         "name": "Do you offer maintenance after launch?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes: maintenance is €{{PRIX_MAINTENANCE_STANDARD}} per month (updates and fixes, small content changes, support by message, site uptime monitoring), with no minimum commitment."
+          "text": "Yes: maintenance is €{{PRIX_MAINTENANCE}} per month (hosting included, updates and fixes, small content changes, support by message, site uptime monitoring), with no minimum commitment."
         }
       },
       {
@@ -198,7 +198,7 @@
         "name": "What payment methods do you accept?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "For the fixed-price construction trades offer, a deposit is paid through an online payment link after you send the brief, and it starts the work. For a custom project, I accept bank transfers and payment is generally structured in 3 installments: 30% when the quote is signed, 40% at the start of development, 30% on final delivery. The project starts when the deposit shown on the signed quote is received."
+          "text": "Essential and Premium packs: {{PAIEMENT_PACK_ACOMPTE_POURCENT}}% at order and {{PAIEMENT_PACK_SOLDE_POURCENT}}% on delivery. Custom projects: three instalments, {{PAIEMENT_SURMESURE_1_POURCENT}}% at order, {{PAIEMENT_SURMESURE_2_POURCENT}}% at the start of development and {{PAIEMENT_SURMESURE_3_POURCENT}}% on delivery. Construction trades offer: {{ACOMPTE_POURCENT}}% deposit by secure payment link after the brief is sent, {{SOLDE_POURCENT}}% balance on delivery."
         }
       }
     ]
@@ -294,7 +294,7 @@
           <div class="co-text">
             <div class="eyebrow">Construction trades</div>
             <h2 id="co-title">Your website for €{{PRIX_FIXE}}, <em class="text-gradient">no call at all</em></h2>
-            <p>Showcase website, Google Business Profile and local SEO basics, at a fixed price, delivered in 2 to 3 weeks. Fill in the brief questionnaire whenever you like, I reply in writing within 24h.<!--IF:PRIX_MENTION_EN--> <span class="co-mention">{{PRIX_MENTION_EN}}.</span><!--ENDIF:PRIX_MENTION_EN--></p>
+            <p>Showcase website, Google Business Profile and local SEO basics, at a fixed price, delivered in {{DELAI_SITE_ARTISAN_EN}}. Fill in the brief questionnaire whenever you like, I reply in writing within 24h.<!--IF:PRIX_MENTION_EN--> <span class="co-mention">{{PRIX_MENTION_EN}}.</span><!--ENDIF:PRIX_MENTION_EN--></p>
           </div>
           <div class="co-actions">
             <a href="brief-site-artisan-btp.html" class="btn btn-primary" onclick="gtag('event', 'cta_commander_site_artisan', {'event_category': 'CTA', 'event_label': 'Contact EN - Brief construction trades'})">Order my website</a>
@@ -506,7 +506,7 @@
               <span class="faq-icon" aria-hidden="true">+</span>
             </button>
             <div class="faq-answer" hidden>
-              <p>Yes: maintenance is €{{PRIX_MAINTENANCE_STANDARD}} per month (updates and fixes, small content changes, support by message, site uptime monitoring), with no minimum commitment.</p>
+              <p>Yes: maintenance is €{{PRIX_MAINTENANCE}} per month (hosting included, updates and fixes, small content changes, support by message, site uptime monitoring), with no minimum commitment.</p>
             </div>
           </div>
 
@@ -526,7 +526,7 @@
               <span class="faq-icon" aria-hidden="true">+</span>
             </button>
             <div class="faq-answer" hidden>
-              <p>For the fixed-price construction trades offer, a deposit is paid through an online payment link after you send the brief, and it starts the work. For a custom project, I accept bank transfers and payment is generally structured in 3 installments: 30% when the quote is signed, 40% at the start of development, 30% on final delivery. The project starts when the deposit shown on the signed quote is received.</p>
+              <p>Essential and Premium packs: {{PAIEMENT_PACK_ACOMPTE_POURCENT}}% at order and {{PAIEMENT_PACK_SOLDE_POURCENT}}% on delivery. Custom projects: three instalments, {{PAIEMENT_SURMESURE_1_POURCENT}}% at order, {{PAIEMENT_SURMESURE_2_POURCENT}}% at the start of development and {{PAIEMENT_SURMESURE_3_POURCENT}}% on delivery. Construction trades offer: {{ACOMPTE_POURCENT}}% deposit by secure payment link after the brief is sent, {{SOLDE_POURCENT}}% balance on delivery.</p>
             </div>
           </div>
         </div>
@@ -557,19 +557,11 @@
       <div class="footer-col">
         <h4>Services</h4>
         <ul role="list">
-          <li><a href="../services/creation-web.html">Web Design</a></li>
-          <li><a href="../services/design-ui-ux.html">UI/UX Design</a></li>
-          <li><a href="../services/branding.html">Branding</a></li>
-          <li><a href="../services/seo-marketing.html">SEO &amp; Marketing</a></li>
+          <li><a href="services/creation-web.html">Web Design</a></li>
+          <li><a href="services/design-ui-ux.html">UI/UX Design</a></li>
+          <li><a href="services/branding.html">Branding</a></li>
+          <li><a href="services/seo-marketing.html">SEO &amp; Marketing</a></li>
           <li><a href="services/automatisation-n8n-castres.html">AI Automation</a></li>
-        </ul>
-        <h4 style="margin-top:1.25rem;">Areas</h4>
-        <ul role="list">
-          <li><a href="../services/creation-site-web-castres.html">Castres</a></li>
-          <li><a href="../services/creation-site-web-mazamet.html">Mazamet</a></li>
-          <li><a href="../services/creation-site-web-albi.html">Albi</a></li>
-          <li><a href="../services/creation-site-web-toulouse.html">Toulouse</a></li>
-          <li><a href="../services/creation-site-web-occitanie.html">Occitanie</a></li>
         </ul>
       </div>
       <div class="footer-col">

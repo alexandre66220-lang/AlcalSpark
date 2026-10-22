@@ -204,14 +204,14 @@
           "name": "Maintenance",
           "priceSpecification": {
             "@type": "UnitPriceSpecification",
-            "price": "{{PRIX_MAINTENANCE_STANDARD}}",
+            "price": "{{PRIX_MAINTENANCE}}",
             "priceCurrency": "EUR",
             "unitText": "MONTH"
           },
           "itemOffered": {
             "@type": "Service",
             "name": "Website maintenance",
-            "description": "Updates, fixes, small content changes and uptime monitoring."
+            "description": "Hosting included, updates, fixes, small content changes and uptime monitoring."
           }
         },
         {
@@ -333,6 +333,8 @@
           <li>1 responsive page with a contact form</li>
           <li>Basic SEO and go-live</li>
           <li>1 round of revisions, in French</li>
+        
+          <li>Hosting included with maintenance, otherwise the site is delivered on your account</li>
         </ul>
         <a href="contact.html" class="btn btn-primary" onclick="gtag('event', 'cta_offre_essentiel', {'event_category': 'CTA', 'event_label': 'cta_offre_essentiel'})">Choose Essential</a>
       </article>
@@ -346,6 +348,8 @@
           <li>Technical SEO: tags, structured data, sitemap</li>
           <li>Analytics and Search Console set up</li>
           <li>FR/EN site, 2 rounds of revisions</li>
+        
+          <li>Hosting included with maintenance, otherwise the site is delivered on your account</li>
         </ul>
         <a href="contact.html" class="btn btn-primary" onclick="gtag('event', 'cta_offre_premium', {'event_category': 'CTA', 'event_label': 'cta_offre_premium'})">Choose Premium</a>
       </article>
@@ -358,11 +362,13 @@
           <li>Everything in Premium, plus advanced animations (Three.js, GSAP)</li>
           <li>Extra pages and integrations</li>
           <li>Fixed quote after the brief</li>
+        
+          <li>Hosting included with maintenance, otherwise the site is delivered on your account</li>
         </ul>
         <a href="contact.html" class="btn btn-primary" onclick="gtag('event', 'cta_offre_surmesure', {'event_category': 'CTA', 'event_label': 'cta_offre_surmesure'})">Request a quote</a>
       </article>
     </div>
-        <p class="offer-note reveal">Need a different scope? Custom work is priced with a fixed quote, after a brief.<!--IF:PRIX_MENTION_EN--> {{PRIX_MENTION_EN}}.<!--ENDIF:PRIX_MENTION_EN--></p>
+        <p class="offer-note reveal">Need a different scope? Custom work is priced with a fixed quote, after a brief. Payment: {{PAIEMENT_PACK_ACOMPTE_POURCENT}}% at order and {{PAIEMENT_PACK_SOLDE_POURCENT}}% on delivery for the packs, in 3 instalments ({{PAIEMENT_SURMESURE_1_POURCENT}} / {{PAIEMENT_SURMESURE_2_POURCENT}} / {{PAIEMENT_SURMESURE_3_POURCENT}}%) for Custom work.<!--IF:PRIX_MENTION_EN--> {{PRIX_MENTION_EN}}.<!--ENDIF:PRIX_MENTION_EN--></p>
       </div>
     </section>
 
@@ -425,7 +431,7 @@
       </article>
       <article class="offer-card card reveal delay-2">
         <div class="offer-badge">Maintenance</div>
-        <div class="offer-price"><span class="offer-currency">€</span><span class="offer-amount">{{PRIX_MAINTENANCE_STANDARD}}</span><span class="offer-currency"></span><span class="offer-from">per month</span></div>
+        <div class="offer-price"><span class="offer-currency">€</span><span class="offer-amount">{{PRIX_MAINTENANCE}}</span><span class="offer-currency"></span><span class="offer-from">per month</span></div>
         <p class="offer-delay">No minimum commitment</p>
         
         <ul class="offer-features">
@@ -433,6 +439,8 @@
           <li>Small content changes (2 per month, quoted beyond that)</li>
           <li>Support by message</li>
           <li>Site uptime monitoring</li>
+        
+          <li>Hosting included</li>
         </ul>
         <a href="contact.html" class="btn btn-primary" onclick="gtag('event', 'cta_offre_maintenance', {'event_category': 'CTA', 'event_label': 'cta_offre_maintenance'})">Add maintenance</a>
       </article>
@@ -523,14 +531,6 @@
           <li><a href="services/branding.html">Branding</a></li>
           <li><a href="services/seo-marketing.html">SEO &amp; Marketing</a></li>
           <li><a href="services/automatisation-n8n-castres.html">AI Automation</a></li>
-        </ul>
-        <h4 style="margin-top:1.25rem;">Areas</h4>
-        <ul role="list">
-          <li><a href="../services/creation-site-web-castres.html">Castres</a></li>
-          <li><a href="../services/creation-site-web-mazamet.html">Mazamet</a></li>
-          <li><a href="../services/creation-site-web-albi.html">Albi</a></li>
-          <li><a href="../services/creation-site-web-toulouse.html">Toulouse</a></li>
-          <li><a href="../services/creation-site-web-occitanie.html">Occitanie</a></li>
         </ul>
       </div>
       <div class="footer-col">

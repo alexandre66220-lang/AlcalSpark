@@ -4,14 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#0A0D0B" />
-  <meta name="description" content="Showcase website, Google Business Profile and local SEO for construction trades: €{{PRIX_FIXE}} net<!--IF:PRIX_MENTION_EN-->, VAT not applicable<!--ENDIF:PRIX_MENTION_EN-->. Delivered in 2 to 3 weeks, ordered online." />
+  <meta name="description" content="Showcase website, Google Business Profile and local SEO for construction trades: €{{PRIX_FIXE}} net<!--IF:PRIX_MENTION_EN-->, VAT not applicable<!--ENDIF:PRIX_MENTION_EN-->. Delivered in {{DELAI_SITE_ARTISAN_EN}}, ordered online." />
   <!-- Open Graph / Twitter Card -->
   <meta property="og:site_name" content="AlcalSpark" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://alcalspark.com/en/offre-site-artisan-btp" />
   <meta property="og:title" content="Fixed-price website for construction trades, €{{PRIX_FIXE}} | AlcalSpark" />
-  <meta property="og:description" content="Showcase website, Google Business Profile and local SEO for construction trades: €{{PRIX_FIXE}} net<!--IF:PRIX_MENTION_EN-->, VAT not applicable<!--ENDIF:PRIX_MENTION_EN-->. Delivered in 2 to 3 weeks, ordered online." />
+  <meta property="og:description" content="Showcase website, Google Business Profile and local SEO for construction trades: €{{PRIX_FIXE}} net<!--IF:PRIX_MENTION_EN-->, VAT not applicable<!--ENDIF:PRIX_MENTION_EN-->. Delivered in {{DELAI_SITE_ARTISAN_EN}}, ordered online." />
   <meta property="og:image" content="https://alcalspark.com/assets/og-cover.jpg" />
   <meta property="og:image:alt" content="AlcalSpark, strategic studio based in Mazamet, France" />
   <meta property="og:image:width" content="1200" />
@@ -100,7 +100,7 @@
         "@id": "https://alcalspark.com/en/offre-site-artisan-btp#service",
         "name": "Fixed-price website for construction tradespeople",
         "serviceType": "Showcase website, Google Business Profile optimisation and local SEO",
-        "description": "Showcase website, optimised Google Business Profile listing and local SEO basics for construction tradespeople, delivered in 2 to 3 weeks at a fixed price. Ordered entirely online.",
+        "description": "Showcase website, optimised Google Business Profile listing and local SEO basics for construction tradespeople, delivered in {{DELAI_SITE_ARTISAN_EN}} at a fixed price. Ordered entirely online.",
         "url": "https://alcalspark.com/en/offre-site-artisan-btp",
         "provider": {
           "@id": "https://alcalspark.com/#business"
@@ -265,7 +265,7 @@
           <div>
             <div class="eyebrow reveal">Construction trades offer, fixed price</div>
             <h1 id="seo-title" class="reveal delay-1">Your trade website,<br /><em class="text-gradient">at a fixed price</em></h1>
-            <p class="lead reveal delay-2">A showcase website, your optimised Google Business Profile listing and the local SEO basics, delivered in 2 to 3 weeks. You order online and everything happens in writing. No calls, no meetings.</p>
+            <p class="lead reveal delay-2">A showcase website, your optimised Google Business Profile listing and the local SEO basics, delivered in {{DELAI_SITE_ARTISAN_EN}}. You order online and everything happens in writing. No calls, no meetings.</p>
             <div class="hero-ctas reveal delay-3">
               <a href="brief-site-artisan-btp.html" class="btn btn-primary" onclick="gtag('event', 'cta_commander_site_artisan', {'event_category': 'CTA', 'event_label': 'Construction trades offer'})">Order my website</a>
               <a href="#inclus" class="btn btn-outline">See what is included</a>
@@ -275,7 +275,7 @@
           <aside class="offre-price-card reveal delay-2" aria-label="Offer price">
             <div class="opc-label">Fixed price</div>
             <div class="opc-price"><small>€</small>{{PRIX_FIXE}}</div>
-            <div class="opc-fixed">Delivered in 2 to 3 weeks</div>
+            <div class="opc-fixed">Delivered in {{DELAI_SITE_ARTISAN_EN}}</div>
             <!--IF:PRIX_MENTION_EN-->
             <div class="opc-mention">{{PRIX_MENTION_EN}}</div>
             <!--ENDIF:PRIX_MENTION_EN-->
@@ -375,7 +375,7 @@
           <span class="step-num">03</span>
           <div>
             <h4>The build</h4>
-            <p>I build your website and your Google listing. I send you a preview, you reply by message, I adjust. Allow 2 to 3 weeks after I receive your brief and the deposit.</p>
+            <p>I build your website and your Google listing. I send you a preview, you reply by message, I adjust. Allow {{DELAI_SITE_ARTISAN_EN}} after I receive your brief and the deposit.</p>
           </div>
         </div>
         <div class="seo-process-step reveal delay-3">
@@ -398,6 +398,7 @@
           <div>
             <h3>Maintenance and support</h3>
             <ul>
+              <li>Hosting included</li>
               <li>Updates and fixes</li>
               <li>Small content changes (2 per month, quote beyond that)</li>
               <li>Support by message</li>
@@ -479,7 +480,7 @@
             <span class="faq-icon" aria-hidden="true">+</span>
           </button>
           <div class="faq-answer" hidden>
-            <p>Between 2 and 3 weeks after I receive your complete brief and the deposit. The faster you answer my messages, the faster it goes.</p>
+            <p>{{DELAI_SITE_ARTISAN_EN}} after I receive your complete brief and the deposit. The faster you answer my messages, the faster it goes.</p>
           </div>
         </div>
         </div>
@@ -541,14 +542,6 @@
           <li><a href="services/branding.html">Branding</a></li>
           <li><a href="services/seo-marketing.html">SEO &amp; Marketing</a></li>
           <li><a href="services/automatisation-n8n-castres.html">AI Automation</a></li>
-        </ul>
-        <h4 style="margin-top:1.25rem;">Areas</h4>
-        <ul role="list">
-          <li><a href="../services/creation-site-web-castres.html">Castres</a></li>
-          <li><a href="../services/creation-site-web-mazamet.html">Mazamet</a></li>
-          <li><a href="../services/creation-site-web-albi.html">Albi</a></li>
-          <li><a href="../services/creation-site-web-toulouse.html">Toulouse</a></li>
-          <li><a href="../services/creation-site-web-occitanie.html">Occitanie</a></li>
         </ul>
       </div>
       <div class="footer-col">

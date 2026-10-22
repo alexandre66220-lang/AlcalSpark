@@ -182,7 +182,7 @@
         "name": "Proposez-vous de la maintenance après la livraison ?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Oui : la maintenance est à {{PRIX_MAINTENANCE_STANDARD}} € par mois (mises à jour et corrections, petites modifications de contenu, support par message, surveillance de la disponibilité du site), sans engagement de durée."
+          "text": "Oui : la maintenance est à {{PRIX_MAINTENANCE}} € par mois (hébergement inclus, mises à jour et corrections, petites modifications de contenu, support par message, surveillance de la disponibilité du site), sans engagement de durée."
         }
       },
       {
@@ -198,7 +198,7 @@
         "name": "Quels modes de paiement acceptez-vous ?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Pour l'offre artisan BTP à prix fixe, un acompte est réglé avec un lien de paiement en ligne après l'envoi du brief, et lance la réalisation. Pour un projet sur mesure, j'accepte les virements bancaires et le paiement est généralement structuré en 3 versements : 30% à la signature du devis, 40% au lancement du développement, 30% à la livraison finale. Le projet démarre à réception de l'acompte indiqué sur le devis signé."
+          "text": "Packs Essentiel et Premium : {{PAIEMENT_PACK_ACOMPTE_POURCENT}} % à la commande et {{PAIEMENT_PACK_SOLDE_POURCENT}} % à la livraison. Projet Sur-mesure : trois versements, {{PAIEMENT_SURMESURE_1_POURCENT}} % à la commande, {{PAIEMENT_SURMESURE_2_POURCENT}} % au lancement du développement et {{PAIEMENT_SURMESURE_3_POURCENT}} % à la livraison. Offre artisan BTP : acompte de {{ACOMPTE_POURCENT}} % par lien de paiement sécurisé après l'envoi du brief, solde de {{SOLDE_POURCENT}} % à la livraison."
         }
       }
     ]
@@ -294,7 +294,7 @@
           <div class="co-text">
             <div class="eyebrow">Artisan du BTP</div>
             <h2 id="co-title">Votre site à {{PRIX_FIXE}}&nbsp;€, <em class="text-gradient">sans aucun appel</em></h2>
-            <p>Site vitrine, fiche Google Business Profile et SEO local de base, à prix fixe, livré en 2 à 3 semaines. Vous remplissez le questionnaire de brief quand vous voulez, je réponds sous 24h par écrit.<!--IF:PRIX_MENTION--> <span class="co-mention">{{PRIX_MENTION}}.</span><!--ENDIF:PRIX_MENTION--></p>
+            <p>Site vitrine, fiche Google Business Profile et SEO local de base, à prix fixe, livré en {{DELAI_SITE_ARTISAN}}. Vous remplissez le questionnaire de brief quand vous voulez, je réponds sous 24h par écrit.<!--IF:PRIX_MENTION--> <span class="co-mention">{{PRIX_MENTION}}.</span><!--ENDIF:PRIX_MENTION--></p>
           </div>
           <div class="co-actions">
             <a href="brief-site-artisan-btp.html" class="btn btn-primary" onclick="gtag('event', 'cta_commander_site_artisan', {'event_category': 'CTA', 'event_label': 'Contact - Brief artisan BTP'})">Commander mon site</a>
@@ -506,7 +506,7 @@
               <span class="faq-icon" aria-hidden="true">+</span>
             </button>
             <div class="faq-answer" hidden>
-              <p>Oui : la maintenance est à {{PRIX_MAINTENANCE_STANDARD}} € par mois (mises à jour et corrections, petites modifications de contenu, support par message, surveillance de la disponibilité du site), sans engagement de durée.</p>
+              <p>Oui : la maintenance est à {{PRIX_MAINTENANCE}} € par mois (hébergement inclus, mises à jour et corrections, petites modifications de contenu, support par message, surveillance de la disponibilité du site), sans engagement de durée.</p>
             </div>
           </div>
 
@@ -526,7 +526,7 @@
               <span class="faq-icon" aria-hidden="true">+</span>
             </button>
             <div class="faq-answer" hidden>
-              <p>Pour l'offre artisan BTP à prix fixe, un acompte est réglé avec un lien de paiement en ligne après l'envoi du brief, et lance la réalisation. Pour un projet sur mesure, j'accepte les virements bancaires et le paiement est généralement structuré en 3 versements : 30% à la signature du devis, 40% au lancement du développement, 30% à la livraison finale. Le projet démarre à réception de l'acompte indiqué sur le devis signé.</p>
+              <p>Packs Essentiel et Premium : {{PAIEMENT_PACK_ACOMPTE_POURCENT}} % à la commande et {{PAIEMENT_PACK_SOLDE_POURCENT}} % à la livraison. Projet Sur-mesure : trois versements, {{PAIEMENT_SURMESURE_1_POURCENT}} % à la commande, {{PAIEMENT_SURMESURE_2_POURCENT}} % au lancement du développement et {{PAIEMENT_SURMESURE_3_POURCENT}} % à la livraison. Offre artisan BTP : acompte de {{ACOMPTE_POURCENT}} % par lien de paiement sécurisé après l'envoi du brief, solde de {{SOLDE_POURCENT}} % à la livraison.</p>
             </div>
           </div>
         </div>

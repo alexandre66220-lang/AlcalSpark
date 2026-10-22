@@ -223,14 +223,14 @@
           "name": "Maintenance",
           "priceSpecification": {
             "@type": "UnitPriceSpecification",
-            "price": "{{PRIX_MAINTENANCE_STANDARD}}",
+            "price": "{{PRIX_MAINTENANCE}}",
             "priceCurrency": "EUR",
             "unitText": "MONTH"
           },
           "itemOffered": {
             "@type": "Service",
             "name": "Website maintenance",
-            "description": "Updates, fixes, small content changes and uptime monitoring."
+            "description": "Hosting included, updates, fixes, small content changes and uptime monitoring."
           }
         },
         {
@@ -404,6 +404,8 @@
           <li>1 responsive page with a contact form</li>
           <li>Basic SEO and go-live</li>
           <li>1 round of revisions, in French</li>
+        
+          <li>Hosting included with maintenance, otherwise the site is delivered on your account</li>
         </ul>
         <a href="contact.html" class="btn btn-primary" onclick="gtag('event', 'cta_offre_essentiel', {'event_category': 'CTA', 'event_label': 'cta_offre_essentiel'})">Choose Essential</a>
       </article>
@@ -417,6 +419,8 @@
           <li>Technical SEO: tags, structured data, sitemap</li>
           <li>Analytics and Search Console set up</li>
           <li>FR/EN site, 2 rounds of revisions</li>
+        
+          <li>Hosting included with maintenance, otherwise the site is delivered on your account</li>
         </ul>
         <a href="contact.html" class="btn btn-primary" onclick="gtag('event', 'cta_offre_premium', {'event_category': 'CTA', 'event_label': 'cta_offre_premium'})">Choose Premium</a>
       </article>
@@ -429,6 +433,8 @@
           <li>Everything in Premium, plus advanced animations (Three.js, GSAP)</li>
           <li>Extra pages and integrations</li>
           <li>Fixed quote after the brief</li>
+        
+          <li>Hosting included with maintenance, otherwise the site is delivered on your account</li>
         </ul>
         <a href="contact.html" class="btn btn-primary" onclick="gtag('event', 'cta_offre_surmesure', {'event_category': 'CTA', 'event_label': 'cta_offre_surmesure'})">Request a quote</a>
       </article>
@@ -519,19 +525,18 @@
 
     <div class="segment-grid">
       <article class="segment-card card reveal delay-1">
-        <h3>Business, startup or agency</h3>
-        <p>You want a fast, high-performing website at a fixed price, or extra development capacity for your clients. Showcase packs from €{{PRIX_ESSENTIEL}}, AI automation, white-label integration.</p>
+        <h3>Business or startup</h3>
+        <p>You want a fast, high-performing website at a fixed price. Showcase packs from €{{PRIX_ESSENTIEL}}, AI automation, hosting with maintenance.</p>
         <div style="display:flex;flex-wrap:wrap;gap:0.75rem;">
           <a href="tarifs.html" class="btn btn-primary segment-btn" data-segment="entreprise" onclick="gtag('event', 'cta_voir_tarifs', {'event_category': 'CTA', 'event_label': 'Segmentation - See pricing'})">See pricing</a>
-          <a href="agencies.html" class="btn btn-outline-inv segment-btn" data-segment="agence" onclick="gtag('event', 'cta_agences', {'event_category': 'CTA', 'event_label': 'Segmentation - Agencies'})">Agencies: white-label</a>
+          <a href="#diagnostic" class="btn btn-outline-inv segment-btn" data-segment="diagnostic" onclick="gtag('event', 'cta_diagnostic', {'event_category': 'CTA', 'event_label': 'Segmentation - Diagnostic'})">Get my free diagnostic</a>
         </div>
       </article>
       <article class="segment-card card reveal delay-2">
-        <h3>Construction trades</h3>
-        <p>You want a site that brings you customers, with no jargon and no contractual surprises. Showcase website, Google listing and local SEO at a fixed €{{PRIX_FIXE}}<!--IF:PRIX_MENTION_EN--> ({{PRIX_MENTION_EN}})<!--ENDIF:PRIX_MENTION_EN-->, ordered online, no call.</p>
+        <h3>Agency</h3>
+        <p>You have the mockups, you need clean, responsive, fast code under your brand. From €{{PRIX_AGENCE_MIN}} to €{{PRIX_AGENCE_MAX}} per integration, 100% remote.</p>
         <div style="display:flex;flex-wrap:wrap;gap:0.75rem;">
-          <a href="offre-site-artisan-btp.html" class="btn btn-primary segment-btn" data-segment="artisan-offre" onclick="gtag('event', 'cta_commander_site_artisan', {'event_category': 'CTA', 'event_label': 'Segmentation - Order construction trades website'})">Order my website</a>
-          <a href="#diagnostic" class="btn btn-outline-inv segment-btn" data-segment="artisan" onclick="gtag('event', 'cta_diagnostic_artisan', {'event_category': 'CTA', 'event_label': 'Segmentation - Independent diagnostic'})">Get my free diagnostic</a>
+          <a href="agencies.html" class="btn btn-primary segment-btn" data-segment="agence" onclick="gtag('event', 'cta_agences', {'event_category': 'CTA', 'event_label': 'Segmentation - Agencies'})">Agencies: white-label</a>
         </div>
       </article>
     </div>
@@ -968,7 +973,7 @@
             <span class="faq-icon" aria-hidden="true">+</span>
           </button>
           <div class="faq-answer" hidden>
-            <p>You describe your need with the contact form and get a reply within 24h, then a fixed-price quote before anything starts.</p>
+            <p>You describe your need with the contact form and get a reply within 24h, then a fixed-price quote before anything starts. Payment: {{PAIEMENT_PACK_ACOMPTE_POURCENT}}% at order and {{PAIEMENT_PACK_SOLDE_POURCENT}}% on delivery for the packs, in 3 instalments ({{PAIEMENT_SURMESURE_1_POURCENT}} / {{PAIEMENT_SURMESURE_2_POURCENT}} / {{PAIEMENT_SURMESURE_3_POURCENT}}%) for Custom work.</p>
           </div>
         </div>
         <div class="faq-item reveal delay-4">
@@ -1080,19 +1085,11 @@
         <div class="footer-col">
           <h4>Services</h4>
           <ul role="list">
-            <li><a href="../services/creation-web.html">Web Design</a></li>
-            <li><a href="../services/design-ui-ux.html">UI/UX Design</a></li>
-            <li><a href="../services/branding.html">Branding</a></li>
-            <li><a href="../services/seo-marketing.html">SEO &amp; Marketing</a></li>
+            <li><a href="services/creation-web.html">Web Design</a></li>
+            <li><a href="services/design-ui-ux.html">UI/UX Design</a></li>
+            <li><a href="services/branding.html">Branding</a></li>
+            <li><a href="services/seo-marketing.html">SEO &amp; Marketing</a></li>
             <li><a href="services/automatisation-n8n-castres.html">AI Automation</a></li>
-          </ul>
-          <h4>Areas</h4>
-          <ul role="list">
-            <li><a href="../services/creation-site-web-castres.html">Castres</a></li>
-            <li><a href="../services/creation-site-web-mazamet.html">Mazamet</a></li>
-            <li><a href="../services/creation-site-web-albi.html">Albi</a></li>
-            <li><a href="../services/creation-site-web-toulouse.html">Toulouse</a></li>
-            <li><a href="../services/creation-site-web-occitanie.html">Occitanie</a></li>
           </ul>
         </div>
 

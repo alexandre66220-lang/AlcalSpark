@@ -54,7 +54,7 @@ if (truthy(config.LIEN_PAIEMENT_ACOMPTE) && !/^https:\/\/\S+$/.test(String(confi
 }
 if (!(Number(config.PRIX_FIXE) > 0)) fail("config", "PRIX_FIXE doit etre un nombre positif.");
 if (!(Number(config.PRIX_MAINTENANCE) > 0)) fail("config", "PRIX_MAINTENANCE doit etre un nombre positif.");
-for (const k of ["PRIX_ESSENTIEL", "PRIX_PREMIUM", "PRIX_SUR_MESURE_DES", "PRIX_AUTOMATISATION_LEADS", "PRIX_AUTOMATISATION_COMPLET", "PRIX_AUDIT", "PRIX_MAINTENANCE_STANDARD", "PRIX_AGENCE_MIN", "PRIX_AGENCE_MAX", "CAPACITE_PROJETS_MOIS", "DELAI_ESSENTIEL_JOURS", "DELAI_PREMIUM_JOURS", "DELAI_AUTOMATISATION_JOURS", "DELAI_AUDIT_HEURES"]) {
+for (const k of ["PRIX_ESSENTIEL", "PRIX_PREMIUM", "PRIX_SUR_MESURE_DES", "PRIX_AUTOMATISATION_LEADS", "PRIX_AUTOMATISATION_COMPLET", "PRIX_AUDIT", "PRIX_AGENCE_MIN", "PRIX_AGENCE_MAX", "CAPACITE_PROJETS_MOIS", "PAIEMENT_PACK_ACOMPTE_POURCENT", "PAIEMENT_PACK_SOLDE_POURCENT", "PAIEMENT_SURMESURE_1_POURCENT", "PAIEMENT_SURMESURE_2_POURCENT", "PAIEMENT_SURMESURE_3_POURCENT", "DELAI_ESSENTIEL_JOURS", "DELAI_PREMIUM_JOURS", "DELAI_AUTOMATISATION_JOURS", "DELAI_AUDIT_HEURES"]) {
   if (!(Number(config[k]) > 0)) fail("config", `${k} doit etre un nombre positif.`);
 }
 if (Number(config.PRIX_AGENCE_MIN) > Number(config.PRIX_AGENCE_MAX)) fail("config", "PRIX_AGENCE_MIN doit etre inferieur ou egal a PRIX_AGENCE_MAX.");
@@ -211,7 +211,7 @@ if (!existsSync(cgvFile)) {
   for (const [n, token] of hard) {
     if (new RegExp(`(?<![0-9{])${n}\\s*€`).test(article)) fail("cgv", `montant ${n} € ecrit en dur dans cgv.html, utiliser ${token}`);
   }
-  for (const t of ["PRIX_FIXE", "PRIX_MAINTENANCE", "ACOMPTE_MONTANT", "ACOMPTE_POURCENT", "SOLDE_MONTANT", "SOLDE_POURCENT", "PRIX_MENTION"]) {
+  for (const t of ["PRIX_FIXE", "PRIX_MAINTENANCE", "ACOMPTE_MONTANT", "ACOMPTE_POURCENT", "SOLDE_MONTANT", "SOLDE_POURCENT", "PRIX_MENTION", "PAIEMENT_PACK_ACOMPTE_POURCENT", "PAIEMENT_SURMESURE_3_POURCENT"]) {
     if (!cgv.includes(`{{${t}}}`)) fail("cgv", `cgv.html n'utilise pas le jeton {{${t}}}`);
   }
 }
@@ -256,7 +256,7 @@ const BANNED = [
   [/18\s*h\s*30|21\s*h\b/, "creneau de rappel 18h30-21h"],
   [/tarifs? adaptés? (?:au marché|aux)|agences? parisiennes?|adapté à tous les budgets|tarifs accessibles/i, "wording de prix retire"],
   [/un (?:seul )?projet à la fois|one project at a time|one at a time/i, "'un projet a la fois' (remplace par la capacite mensuelle)"],
-  [/rencontre possible|le samedi|Saturday|en venant directement à notre studio|come to our studio/i, "rencontre physique"],
+  [/rencontre possible|le samedi|Saturday|soir ou le week-end|evening or at the weekend|en venant directement à notre studio|come to our studio/i, "rencontre physique"],
   [/ces tarifs sont des repères/i, "'repères, pas des prix fixes'"],
   [/90\s?€\s?\/\s?h|350\s?€\s?\/\s?mois/, "consultation ou accompagnement retire de la grille"],
 ];
@@ -271,10 +271,10 @@ for (const f of publicHtml) {
     const ctx = txt.slice(Math.max(0, m.index - 12), m.index + 12);
     if (!/(sans|without|no) WordPress/i.test(ctx)) fail("refonte", `${rel(f)}: mention ${m[0]} a retirer (code sur mesure, sans WordPress)`);
   }
-  // Delai ancien : 2 a 3 semaines uniquement sur l'offre BTP, les CGV et la carte BTP du contact.
-  if (/2 à 3 semaines|2 to 3 weeks/.test(txt) && !/offre-site-artisan-btp|cgv\.html|contact\.html|brief-site/.test(rel(f).replace(/\\/g, "/") + " ")) {
-    fail("refonte", `${rel(f)}: delai '2 a 3 semaines' reserve a l'offre BTP (utiliser DELAI_PLAGE)`);
-  }
+  if (/2 à 3 semaines|2 to 3 weeks|2 et 3 semaines|between 2 and 3 weeks/i.test(txt)) fail("refonte", `${rel(f)}: ancien delai '2 a 3 semaines' (utiliser DELAI_PLAGE ou DELAI_SITE_ARTISAN)`);
+  if (/MVP en \d|MVP in \d|premier MVP|first MVP/i.test(txt)) fail("refonte", `${rel(f)}: delai MVP chiffre (SaaS : delai defini au devis)`);
+  // Pages EN : pas de page de zone ni de lien vers elles.
+  if (rel(f).replace(/\\/g, "/").startsWith("en/") && /creation-site-web-/.test(readFileSync(f, "utf-8"))) fail("refonte", `${rel(f)}: lien vers une page de zone (pas de zones en anglais)`);
 }
 
 // Navigation : lien Automatisation IA (menu desktop, mobile, pied de page) et lien Agences (pied de page).
@@ -282,6 +282,8 @@ for (const f of publicHtml) {
   const html = readFileSync(f, "utf-8");
   const r = rel(f).replace(/\\/g, "/");
   if (!/automatisation-n8n-castres\.html"[^>]*class="nav-link[^"]*">(?:Automatisation IA|AI Automation|AI automation)</.test(html)) fail("refonte", `${r}: lien 'Automatisation IA' absent du menu`);
+  const navHtml = (html.match(/<nav id="navbar"[\s\S]*?<\/nav>/) || [""])[0] + (html.match(/<div class="nav-mobile"[\s\S]*?<\/div>/) || [""])[0];
+  if (!/offre-site-artisan-btp/.test(r) && /offre-site-artisan-btp/.test(navHtml)) fail("refonte", `${r}: l'offre BTP ne doit pas figurer dans le menu`);
   if (!/(?:agences|agencies)\.html">(?:Agences|Agencies)</.test(html)) fail("refonte", `${r}: lien Agences absent du pied de page`);
   if (/class="nav-mobile-cta"[^>]*>[^<]*<\/a>/.test(html)) {
     const cta = html.match(/<a href="([^"]*)" class="nav-mobile-cta"/);
@@ -320,7 +322,6 @@ for (const f of htmlFiles.filter((x) => rel(x).replace(/\\/g, "/").startsWith("e
     const target = resolve(dir, m[1]);
     const r = relative(ROOT, target).replace(/\\/g, "/");
     if (r.startsWith("en/") || r.startsWith("..")) continue;
-    if (!/automatisation-n8n-castres|agences/.test(r)) continue; // autres liens de services : voir le rapport de refonte
     const enTwin = join(ROOT, "en", r === "index.html" ? "index.html" : r);
     if (existsSync(enTwin)) fail("refonte", `${rel(f)}: lien vers la version francaise "${m[1]}" alors que ${relative(ROOT, enTwin)} existe`);
   }
@@ -336,11 +337,12 @@ for (const [file, needle] of [
 
 // Accueil et tarifs : sections et textes cles.
 for (const [file, needles] of [
-  ["index.html", ['id="offres"', 'id="automatisation-ia"', 'href="tarifs.html"', "Entreprise, startup ou agence", "offre-site-artisan-btp.html"]],
-  ["en/index.html", ['id="offres"', 'id="automatisation-ia"', 'href="tarifs.html"', "Business, startup or agency", "offre-site-artisan-btp.html"]],
+  ["index.html", ['id="offres"', 'id="automatisation-ia"', 'href="tarifs.html"', "Entreprise ou startup", "agences.html"]],
+  ["en/index.html", ['id="offres"', 'id="automatisation-ia"', 'href="tarifs.html"', "Business or startup", "agencies.html"]],
 ]) {
   const html = readFileSync(join(ROOT, file), "utf-8");
   for (const n of needles) if (!html.includes(n)) fail("refonte", `${file}: element attendu absent (${n})`);
+  if (/offre-site-artisan-btp|Artisan du BTP|Construction trades/.test(html.replace(/<!--[\s\S]*?-->/g, ""))) fail("refonte", `${file}: l'offre BTP ne doit plus apparaitre sur l'accueil`);
   const hero = (html.match(/<h1 class="hero-title"[\s\S]*?<\/h1>/) || [""])[0];
   if (!hero.includes("{{DELAI_PREMIUM") || /2 à 3|2 to 3/.test(hero)) fail("refonte", `${file}: le H1 doit annoncer le delai Premium via {{DELAI_PREMIUM}}`);
   if (/<h2[^>]*>[^<]*(?:Pourquoi AlcalSpark existe|Why AlcalSpark exists)/i.test(html)) fail("refonte", `${file}: bloc 'Pourquoi AlcalSpark existe' a retirer`);

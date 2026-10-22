@@ -23,7 +23,7 @@
      'start'  ()                             -- network request is starting (post-validation)
      'firstToken' ()                         -- first text chunk of the reply arrived
      'chunk'  ({safeText, rawLen})           -- safeText is ready to reveal (CTA-marker-safe tail already held back); rawLen is the raw arrived-chunk length, for pulse/kick animations
-     'cta'    ({label, target, href})        -- reply ended with a [[CTA:Label]] or [[CTA:brief:Label]] marker; target is 'contact' (default) or 'brief' (artisan offer questionnaire), href is the matching page for the current language
+     'cta'    ({label, target, href})        -- reply ended with a [[CTA:Label]] or [[CTA:brief:Label]] marker; target is 'contact' (default), 'brief' (artisan offer questionnaire) or 'tarifs' (pricing page), href is the matching page for the current language
      'done'   ({remainder})                  -- reply finished normally; remainder is the last CTA-safe slice to flush into the typewriter
      'error'  (text)                         -- show this as the reply (network failure, bad response, mid-stream error, or the local "message too long" rejection)
      'end'    ()                             -- the whole turn is over (success or failure) and `busy` is already back to false -- the right moment for an end-of-reply blink/refocus
@@ -39,10 +39,10 @@
   // marker can never partially reach a renderer before being detected
   // and stripped at 'done'.
   var CTA_HOLD_BACK = 80;
-  // Optional "brief:" / "contact:" prefix picks the destination; a marker
+  // Optional "brief:" / "contact:" / "tarifs:" prefix picks the destination; a marker
   // without prefix keeps pointing to the contact page.
-  var CTA_RE = /\[\[CTA:(?:(brief|contact):)?([^\]]{1,60})\]\]\s*$/;
-  var CTA_PAGES = { contact: 'contact.html', brief: 'brief-site-artisan-btp.html' };
+  var CTA_RE = /\[\[CTA:(?:(brief|contact|tarifs):)?([^\]]{1,60})\]\]\s*$/;
+  var CTA_PAGES = { contact: 'contact.html', brief: 'brief-site-artisan-btp.html', tarifs: 'tarifs.html' };
 
   function ctaHref(target) {
     var prefix = document.documentElement.lang === 'en' ? '/en/' : '/';

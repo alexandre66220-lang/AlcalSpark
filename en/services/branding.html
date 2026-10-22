@@ -31,7 +31,7 @@
   <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml" />
 
   <link rel="stylesheet" href="../../css/as-tokens.css?v=2" />
-  <link rel="stylesheet" href="../../css/style.css?v=4" />
+  <link rel="stylesheet" href="../../css/style.css?v=5" />
   <link rel="stylesheet" href="../../css/seo-local.css?v=2" />
 
   <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
@@ -97,7 +97,7 @@
         "latitude": 43.4914,
         "longitude": 2.3769
       },
-        "priceRange": "€€€",
+        "priceRange": "{{PRIX_ESSENTIEL}} - {{PRIX_SUR_MESURE_DES}}+ EUR",
         "sameAs": ["https://www.instagram.com/alcalspark/"],
         "makesOffer": [
           {
@@ -113,7 +113,7 @@
             "itemOffered": {
               "@type": "Service",
               "name": "Website design",
-              "description": "Custom showcase sites, e-commerce and web applications, optimized for performance and user experience."
+              "description": "Custom showcase sites and web applications, optimized for performance and user experience."
             }
           },
           {
@@ -203,6 +203,7 @@
   <ul class="nav-links" role="list">
     <li><a href="../index.html" class="nav-link">Home</a></li>
     <li><a href="../services.html" class="nav-link active">Services</a></li>
+    <li><a href="../services/automatisation-n8n-castres.html" class="nav-link">AI Automation</a></li>
     <li><a href="../tarifs.html" class="nav-link">Pricing</a></li>
     <li><a href="../portfolio.html" class="nav-link">Portfolio</a></li>
     <li><a href="../about.html" class="nav-link">About</a></li>
@@ -220,6 +221,7 @@
 <div class="nav-mobile" aria-hidden="true">
   <a href="../index.html" class="nav-link">Home</a>
   <a href="../services.html" class="nav-link">Services</a>
+  <a href="../services/automatisation-n8n-castres.html" class="nav-link">AI Automation</a>
   <a href="../tarifs.html" class="nav-link">Pricing</a>
   <a href="../portfolio.html" class="nav-link">Portfolio</a>
   <a href="../about.html" class="nav-link">About</a>
@@ -227,7 +229,7 @@
   <a href="../../ressources.html" class="nav-link">Resources</a>
   <a href="../produits.html" class="nav-link">Products</a>
   <a href="../contact.html" class="nav-link">Contact</a>
-  <a href="../offre-site-artisan-btp.html" class="nav-mobile-cta" onclick="if (typeof gtag === 'function') gtag('event', 'cta_menu_mobile', {'event_category': 'CTA', 'event_label': 'Menu mobile - Offre artisan BTP'})">Start a project</a>
+  <a href="../contact.html" class="nav-mobile-cta" onclick="if (typeof gtag === 'function') gtag('event', 'cta_menu_mobile', {'event_category': 'CTA', 'event_label': 'Menu mobile - Contact'})">Start a project</a>
   <a href="../../services/branding.html" class="nav-lang" hreflang="fr" lang="fr" aria-label="View the site in French"><span>FR</span></a>
 </div>
 
@@ -333,7 +335,7 @@
       <div class="reveal delay-3">
         <a href="../contact.html" class="btn btn-primary" style="margin-right:1rem;">Start my project</a>
         <a href="tel:0663054481" class="btn btn-outline">+33 6 63 05 44 81</a>
-        <p style="margin-top:1rem;font-size:.85rem;color:var(--c50,rgba(248,245,242,.5));">I call back {{HORAIRES_RAPPEL_EN}}. For a written reply within 24h, use the form.</p>
+        <p style="margin-top:1rem;font-size:.85rem;color:var(--c50,rgba(248,245,242,.5));">Written reply within 24h: use the form, or message us on WhatsApp.</p>
       </div>
     </div>
   </section>
@@ -377,6 +379,7 @@
         <li><a href="design-ui-ux.html">UI/UX Design</a></li>
         <li><a href="branding.html">Branding</a></li>
         <li><a href="seo-marketing.html">SEO &amp; Marketing</a></li>
+        <li><a href="automatisation-n8n-castres.html">AI Automation</a></li>
       </ul>
       <h4 style="margin-top:1.25rem;">Areas</h4>
       <ul role="list">
@@ -386,10 +389,6 @@
         <li><a href="../../services/creation-site-web-toulouse.html">Toulouse</a></li>
         <li><a href="../../services/creation-site-web-occitanie.html">Occitanie</a></li>
       </ul>
-      <h4 style="margin-top:1.25rem;">Automation</h4>
-      <ul role="list">
-        <li><a href="../../services/automatisation-n8n-castres.html">n8n Automation, Castres</a></li>
-      </ul>
     </div>
     <div class="footer-col">
       <h4>Studio</h4>
@@ -398,6 +397,7 @@
         <li><a href="../portfolio.html">Portfolio</a></li>
         <li><a href="../produits.html">Products</a></li>
         <li><a href="../contact.html">Contact</a></li>
+        <li><a href="../agencies.html">Agencies</a></li>
         <li><a href="../../mentions-legales.html">Legal notice</a></li>
         <li><a href="../../cgv.html">CGV (FR)</a></li>
       </ul>
@@ -407,7 +407,7 @@
       <ul role="list">
         <li><a href="mailto:contact@alcalspark.com">contact@alcalspark.com</a></li>
         <li><a href="tel:0663054481">+33 6 63 05 44 81</a></li>
-        <li class="footer-callback" style="color:rgba(250,248,245,0.4);font-size:.85rem;">I call back {{HORAIRES_RAPPEL_EN}}. WhatsApp or the contact form is best.</li>
+        <li class="footer-callback" style="color:rgba(250,248,245,0.4);font-size:.85rem;">Reply within 24h. WhatsApp or the contact form is best.</li>
         <li style="color:var(--c50);font-size:.85rem;">90 av. Georges Guynemer,<br>81200 Mazamet, France</li>
       </ul>
     </div>
@@ -426,7 +426,7 @@
 </footer>
 
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
-<script src="../../js/main.js?v=5" defer></script>
+<script src="../../js/main.js?v=6" defer></script>
 <script src="../../js/cursor.js" defer></script>
 
 <a href="https://wa.me/33663054481" class="whatsapp-btn" target="_blank" rel="noopener" aria-label="Contact AlcalSpark on WhatsApp">

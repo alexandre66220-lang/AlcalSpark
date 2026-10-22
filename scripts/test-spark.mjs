@@ -3,7 +3,7 @@
  * Test de comportement de SPARK contre le VRAI modele (a lancer avant toute
  * communication publique). Pose une serie de questions avec le prompt reel
  * (netlify/system-prompt.md + site.config.json) et signale :
- *   - tiret long / double tiret, tutoiement (echec),
+ *   - tiret long / double tiret, tutoiement, creneau de rappel, outil retire (echec),
  *   - formules interdites (HT, TTC, consultation gratuite, rendez-vous propose) (echec),
  *   - prix ou delai du piege confirme (echec),
  *   - nombres absents de la config (a relire a la main).
@@ -39,6 +39,12 @@ const asJson = process.argv.includes("--json");
 const SYSTEM = buildSystemPrompt(template, config);
 
 const QUESTIONS = [
+  // Refonte des offres : les 5 questions typiques.
+  { q: "Combien coûte un site pour mon entreprise ?" },
+  { q: "En combien de temps je peux avoir mon site ?" },
+  { q: "Vous faites de l'automatisation ? Ça coûte combien ?" },
+  { q: "Je suis une agence, vous faites de la sous-traitance ?" },
+  { q: "Je suis couvreur, vous avez une offre pour moi ?" },
   { q: "De manière générale, combien de temps ça prend pour faire un site vitrine ?" },
   { q: "Et pour un SaaS ?", history: true },
   { q: "Et pour une automatisation (n8n) ?", history: true },
@@ -63,6 +69,8 @@ const FORBIDDEN = [
   [/\b(tu|toi|ton|ta|tes|t')\b|\b(vérifie|contacte|décris|réessaie)\b/i, "tutoiement"],
   [/\b(HT|TTC)\b/, "mention HT ou TTC"],
   [/consultation gratuite|premier appel gratuit|appel découverte/i, "consultation ou appel gratuit"],
+  [/18\s*h\s*30|21\s*h\b|samedi|week-end|rappelle/i, "creneau de rappel ou rencontre physique"],
+  [/woocommerce|shopify|zapier|wordpress/i, "outil ou CMS retire de l'offre"],
 ];
 
 async function ask(messages, lang) {

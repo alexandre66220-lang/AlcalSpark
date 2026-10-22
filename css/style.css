@@ -395,6 +395,19 @@ p { max-width: 62ch; text-wrap: pretty; }
   border-color: var(--cream);
 }
 
+/* Dix entrées de menu : jamais de retour à la ligne, espacement resserré sous 1500px,
+   menu burger sous 1240px (le menu complet ne tient plus sur une ligne). */
+.nav-link, .nav-cta { white-space: nowrap; }
+@media (max-width: 1500px) {
+  .nav-links { gap: clamp(1rem, 1.5vw, 1.6rem); }
+  .nav-link { letter-spacing: .14em; }
+  .nav-cta { letter-spacing: .14em; padding: .6rem 1.1rem; }
+}
+@media (max-width: 1240px) {
+  .nav-links { display: none; }
+  .nav-burger { display: flex; }
+}
+
 /* ── Language switcher (FR/EN) ───────────────────────────────── */
 .nav-lang {
   font-size: .62rem;

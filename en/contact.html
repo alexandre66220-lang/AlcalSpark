@@ -4,14 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#0A0D0B" />
-  <meta name="description" content="Contact AlcalSpark, strategic studio based in Mazamet, France. Tell me about your project or the analysis you need, straight reply within 24h, working across Occitanie and remotely." />
+  <meta name="description" content="Contact AlcalSpark, studio based in Mazamet, France. Describe your website or automation project: reply within 24h, fixed price given before we start, 100% remote." />
   <!-- Open Graph / Twitter Card -->
   <meta property="og:site_name" content="AlcalSpark" />
   <meta property="og:locale" content="en_US" />
 <meta property="og:type" content="website" />
   <meta property="og:url" content="https://alcalspark.com/en/contact" />
   <meta property="og:title" content="Contact - Strategy, Websites & SaaS Quotes | AlcalSpark" />
-  <meta property="og:description" content="Contact AlcalSpark, strategic studio based in Mazamet, France. Tell me about your project or the analysis you need, straight reply within 24h, working across Occitanie and remotely." />
+  <meta property="og:description" content="Contact AlcalSpark, studio based in Mazamet, France. Describe your website or automation project: reply within 24h, fixed price given before we start, 100% remote." />
   <meta property="og:image" content="https://alcalspark.com/assets/og-cover.jpg" />
 <meta property="og:image:alt" content="AlcalSpark, strategic studio based in Mazamet, France" />
   <meta property="og:image:width" content="1200" />
@@ -30,8 +30,9 @@
   <link rel="icon" type="image/png" sizes="48x48" href="../favicon-48.png" />
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="../css/as-tokens.css?v=2" />
-<link rel="stylesheet" href="../css/style.css?v=4" />
+<link rel="stylesheet" href="../css/style.css?v=5" />
   <link rel="stylesheet" href="../css/contact.css?v=2" />
+  <link rel="stylesheet" href="../css/offres.css?v=2" />
   <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
@@ -100,7 +101,7 @@
       { "@type": "City", "name": "Toulouse" },
       { "@type": "AdministrativeArea", "name": "Occitanie" }
     ],
-    "priceRange": "€€€",
+    "priceRange": "{{PRIX_ESSENTIEL}} - {{PRIX_SUR_MESURE_DES}}+ EUR",
     "sameAs": ["https://www.instagram.com/alcalspark/"],
     "makesOffer": [
       {
@@ -173,7 +174,7 @@
         "name": "How does the collaboration work?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "My process runs in 4 steps: Discovery (brief, research), Strategy (mockups, validation), Build (development, revisions), Launch (testing, go-live, training). You're involved at every step with regular check-ins."
+          "text": "You describe your need with this form and get a reply within 24h, then a fixed-price quote before we start. A single expert delivers your project, from brief to go-live, with {{DELAI_PLAGE_EN}} delivery for the Essential and Premium packs. Everything happens remotely."
         }
       },
       {
@@ -181,7 +182,7 @@
         "name": "Do you offer maintenance after launch?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes, I offer monthly maintenance plans that include security updates, backups, small changes and priority support. I stay available to support your growth long-term."
+          "text": "Yes: maintenance is €{{PRIX_MAINTENANCE_STANDARD}} per month (updates and fixes, small content changes, support by message, site uptime monitoring), with no minimum commitment."
         }
       },
       {
@@ -189,7 +190,7 @@
         "name": "Will I be able to edit my site myself?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Absolutely. I integrate a CMS (WordPress, Strapi or another depending on the project) so you can edit content easily with no technical skills. Training is included in every Premium project."
+          "text": "Your site is built in custom code, without WordPress, and the source code is delivered to you. To change content, you can ask us or go through maintenance, which includes small content changes."
         }
       },
       {
@@ -238,6 +239,7 @@
     <ul class="nav-links" role="list">
       <li><a href="index.html"     class="nav-link">Home</a></li>
       <li><a href="services.html"  class="nav-link">Services</a></li>
+      <li><a href="services/automatisation-n8n-castres.html" class="nav-link">AI Automation</a></li>
       <li><a href="tarifs.html" class="nav-link">Pricing</a></li>
       <li><a href="portfolio.html" class="nav-link">Portfolio</a></li>
       <li><a href="about.html"     class="nav-link">About</a></li>
@@ -255,6 +257,7 @@
   <div class="nav-mobile" aria-hidden="true">
     <a href="index.html"     class="nav-link">Home</a>
     <a href="services.html"  class="nav-link">Services</a>
+    <a href="services/automatisation-n8n-castres.html" class="nav-link">AI Automation</a>
     <a href="tarifs.html" class="nav-link">Pricing</a>
     <a href="portfolio.html" class="nav-link">Portfolio</a>
     <a href="about.html"     class="nav-link">About</a>
@@ -262,7 +265,7 @@
     <a href="../ressources.html" class="nav-link">Resources</a>
     <a href="produits.html" class="nav-link">Products</a>
   <a href="contact.html"   class="nav-link active">Contact</a>
-    <a href="offre-site-artisan-btp.html" class="nav-mobile-cta" onclick="if (typeof gtag === 'function') gtag('event', 'cta_menu_mobile', {'event_category': 'CTA', 'event_label': 'Menu mobile - Offre artisan BTP'})">Start a project</a>
+    <a href="contact.html" class="nav-mobile-cta" onclick="if (typeof gtag === 'function') gtag('event', 'cta_menu_mobile', {'event_category': 'CTA', 'event_label': 'Menu mobile - Contact'})">Start a project</a>
     <a href="../contact.html" class="nav-lang" hreflang="fr" lang="fr" aria-label="View the site in French"><span>FR</span></a>
   </div>
 
@@ -361,7 +364,7 @@
                 </div>
                 <div>
                   <span class="cc-label">Availability</span>
-                  <span class="cc-value">I call back {{HORAIRES_RAPPEL_EN}}. WhatsApp or the contact form is best.</span>
+                  <span class="cc-value">Reply within 24h. WhatsApp or the contact form is best.</span>
                 </div>
               </div>
             </div>
@@ -428,6 +431,7 @@
                     <option value="branding">Branding &amp; identity</option>
                     <option value="saas">SaaS &amp; web app</option>
                     <option value="seo">SEO &amp; marketing</option>
+                    <option value="automatisation">AI automation</option>
                     <option value="conseil">Strategic consulting</option>
                     <option value="autre">Other / not sure yet</option>
                   </select>
@@ -436,14 +440,13 @@
               </div>
 
               <div class="form-group form-select-group">
-                <label class="select-label" for="budget">Estimated budget</label>
+                <label class="select-label" for="budget">Offer considered</label>
                 <div class="select-wrap">
                   <select id="budget" name="budget">
-                    <option value="">Select your budget</option>
-                    <option value="small">Small project</option>
-                    <option value="starter">Standard project</option>
-                    <option value="premium">Premium project</option>
-                    <option value="enterprise">Custom / long-term project</option>
+                    <option value="">Select an offer</option>
+                    <option value="essentiel">Essential pack</option>
+                    <option value="premium">Premium pack</option>
+                    <option value="surmesure">Custom</option>
                     <option value="unknown">Not sure yet</option>
                   </select>
                   <div class="select-arrow" aria-hidden="true">↓</div>
@@ -471,6 +474,7 @@
               </button>
 
             </form>
+            <p class="form-subtle">Subcontracting, collaboration or partnership inquiries: <a href="mailto:contact@alcalspark.com?subject=Collaboration%20%2F%20subcontracting">contact@alcalspark.com</a></p>
           </div>
         </div>
       </div>
@@ -492,7 +496,7 @@
               <span class="faq-icon" aria-hidden="true">+</span>
             </button>
             <div class="faq-answer" hidden>
-              <p>My process runs in 4 steps: Discovery (brief, research), Strategy (mockups, validation), Build (development, revisions), Launch (testing, go-live, training). You're involved at every step with regular check-ins.</p>
+              <p>You describe your need with this form and get a reply within 24h, then a fixed-price quote before we start. A single expert delivers your project, from brief to go-live, with {{DELAI_PLAGE_EN}} delivery for the Essential and Premium packs. Everything happens remotely.</p>
             </div>
           </div>
 
@@ -502,7 +506,7 @@
               <span class="faq-icon" aria-hidden="true">+</span>
             </button>
             <div class="faq-answer" hidden>
-              <p>Yes, I offer monthly maintenance plans that include security updates, backups, small changes and priority support. I stay available to support your growth long-term.</p>
+              <p>Yes: maintenance is €{{PRIX_MAINTENANCE_STANDARD}} per month (updates and fixes, small content changes, support by message, site uptime monitoring), with no minimum commitment.</p>
             </div>
           </div>
 
@@ -512,7 +516,7 @@
               <span class="faq-icon" aria-hidden="true">+</span>
             </button>
             <div class="faq-answer" hidden>
-              <p>Absolutely. I integrate a CMS (WordPress, Strapi or another depending on the project) so you can edit content easily with no technical skills. Training is included in every Premium project.</p>
+              <p>Your site is built in custom code, without WordPress, and the source code is delivered to you. To change content, you can ask us or go through maintenance, which includes small content changes.</p>
             </div>
           </div>
 
@@ -557,6 +561,7 @@
           <li><a href="../services/design-ui-ux.html">UI/UX Design</a></li>
           <li><a href="../services/branding.html">Branding</a></li>
           <li><a href="../services/seo-marketing.html">SEO &amp; Marketing</a></li>
+          <li><a href="services/automatisation-n8n-castres.html">AI Automation</a></li>
         </ul>
         <h4 style="margin-top:1.25rem;">Areas</h4>
         <ul role="list">
@@ -566,10 +571,6 @@
           <li><a href="../services/creation-site-web-toulouse.html">Toulouse</a></li>
           <li><a href="../services/creation-site-web-occitanie.html">Occitanie</a></li>
         </ul>
-        <h4 style="margin-top:1.25rem;">Automation</h4>
-        <ul role="list">
-          <li><a href="../services/automatisation-n8n-castres.html">n8n Automation, Castres</a></li>
-        </ul>
       </div>
       <div class="footer-col">
         <h4>Studio</h4>
@@ -578,6 +579,7 @@
           <li><a href="portfolio.html">Portfolio</a></li>
           <li><a href="produits.html">Products</a></li>
           <li><a href="contact.html">Contact</a></li>
+          <li><a href="agencies.html">Agencies</a></li>
           <li><a href="../mentions-legales.html">Legal notice</a></li>
           <li><a href="../cgv.html">CGV (FR)</a></li>
         </ul>
@@ -587,7 +589,7 @@
         <ul role="list">
           <li><a href="mailto:contact@alcalspark.com">contact@alcalspark.com</a></li>
           <li><a href="tel:0663054481">+33 6 63 05 44 81</a></li>
-          <li class="footer-callback" style="color:rgba(250,248,245,0.4);font-size:.85rem;">I call back {{HORAIRES_RAPPEL_EN}}. WhatsApp or the contact form is best.</li>
+          <li class="footer-callback" style="color:rgba(250,248,245,0.4);font-size:.85rem;">Reply within 24h. WhatsApp or the contact form is best.</li>
           <li style="color: rgba(250,248,245,0.4); font-size: 0.88rem;">90 av. Georges Guynemer, 81200 Mazamet, France</li>
         </ul>
       </div>
@@ -606,7 +608,7 @@
   </footer>
 
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
-  <script src="../js/main.js?v=5" defer></script>
+  <script src="../js/main.js?v=6" defer></script>
   <script>
     (function () {
       // ── FAQ accordion ────────────────────────────────────────

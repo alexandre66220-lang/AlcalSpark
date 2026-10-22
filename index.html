@@ -4,13 +4,13 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="theme-color" content="#0A0D0B" />
-<meta name="description" content="Un seul expert analyse votre entreprise, identifie ses leviers de croissance, puis conçoit et réalise le système digital qui les active. Diagnostic gratuit en ligne." />
+<meta name="description" content="Sites premium dès {{PRIX_ESSENTIEL}} € livrés en {{DELAI_PLAGE}}, prix fixe. Un seul expert, du brief à la mise en ligne. Automatisation IA et n8n pour PME." />
 <meta property="og:site_name" content="AlcalSpark" />
 <meta property="og:locale" content="fr_FR" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://alcalspark.com/" />
-<meta property="og:title" content="AlcalSpark, studio d'un seul expert" />
-<meta property="og:description" content="Un seul expert analyse votre entreprise, identifie ses leviers de croissance, puis conçoit et réalise le système digital qui les active. Diagnostic gratuit en ligne." />
+<meta property="og:title" content="AlcalSpark, sites premium dès {{PRIX_ESSENTIEL}} € en {{DELAI_PLAGE}}, prix fixe" />
+<meta property="og:description" content="Sites premium dès {{PRIX_ESSENTIEL}} € livrés en {{DELAI_PLAGE}}, prix fixe. Un seul expert, du brief à la mise en ligne. Automatisation IA et n8n pour PME." />
 <meta property="og:image" content="https://alcalspark.com/assets/og-cover.jpg" />
 <meta property="og:image:alt" content="AlcalSpark, studio stratégique à Mazamet dans le Tarn" />
 <meta property="og:image:width" content="1200" />
@@ -24,14 +24,14 @@
 <meta name="geo.placename" content="Mazamet, Tarn, Occitanie" />
 <meta name="geo.position" content="43.4914;2.3769" />
 <meta name="ICBM" content="43.4914, 2.3769" />
-<title>AlcalSpark, studio d'un seul expert</title>
+<title>AlcalSpark, sites premium dès {{PRIX_ESSENTIEL}} € en {{DELAI_PLAGE}}, prix fixe</title>
 
 <link rel="icon" type="image/png" sizes="96x96" href="favicon.png" />
 <link rel="icon" type="image/png" sizes="48x48" href="favicon-48.png" />
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
 
 <link rel="stylesheet" href="css/as-tokens.css?v=2" />
-<link rel="stylesheet" href="css/style.css?v=4" />
+<link rel="stylesheet" href="css/style.css?v=5" />
 <link rel="stylesheet" href="css/home.css?v=3" />
 <link rel="stylesheet" href="css/hero-chat.css?v=3" />
 <link rel="stylesheet" href="css/contact.css" />
@@ -47,6 +47,7 @@
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300;1,400;1,600&family=Syne:wght@400;500;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" crossorigin /></noscript>
 <link rel="stylesheet" href="css/da-overrides.css?v=3" />
 <link rel="stylesheet" href="css/glass.css?v=4" />
+<link rel="stylesheet" href="css/offres.css?v=2" />
 <link rel="stylesheet" href="css/diagnostic.css?v=2" />
 <link rel="stylesheet" href="css/reposition.css?v=7" />
 
@@ -117,7 +118,7 @@
         { "@type": "AdministrativeArea", "name": "Tarn" },
         { "@type": "AdministrativeArea", "name": "Occitanie" }
       ],
-      "priceRange": "€€€",
+      "priceRange": "{{PRIX_ESSENTIEL}} - {{PRIX_SUR_MESURE_DES}}+ EUR",
       "image": "https://alcalspark.com/assets/logo.png",
       "sameAs": [
         "https://www.instagram.com/alcalspark/",
@@ -126,50 +127,126 @@
       "makesOffer": [
         {
           "@type": "Offer",
+          "name": "Site vitrine Essentiel",
+          "price": "{{PRIX_ESSENTIEL}}",
+          "priceCurrency": "EUR",
+          "deliveryLeadTime": {
+            "@type": "QuantitativeValue",
+            "value": {{DELAI_ESSENTIEL_JOURS}},
+            "unitCode": "DAY"
+          },
           "itemOffered": {
             "@type": "Service",
-            "name": "Stratégie et conseil",
-            "description": "Accompagnement stratégique digital : diagnostic, priorisation et feuille de route sur mesure."
+            "name": "Site vitrine Essentiel",
+            "description": "1 page responsive, formulaire de contact, SEO de base, mise en ligne, 1 tour de retouches, en français."
           }
         },
         {
           "@type": "Offer",
+          "name": "Site vitrine Premium",
+          "price": "{{PRIX_PREMIUM}}",
+          "priceCurrency": "EUR",
+          "deliveryLeadTime": {
+            "@type": "QuantitativeValue",
+            "value": {{DELAI_PREMIUM_JOURS}},
+            "unitCode": "DAY"
+          },
           "itemOffered": {
             "@type": "Service",
-            "name": "Création de sites web",
-            "description": "Sites vitrine, e-commerce et applications web sur mesure, optimisés pour la performance et l'expérience utilisateur."
+            "name": "Site vitrine Premium",
+            "description": "5 pages, SEO technique, Analytics et Search Console configurés, FR/EN, 2 tours de retouches."
           }
         },
         {
           "@type": "Offer",
+          "name": "Site sur-mesure",
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "minPrice": "{{PRIX_SUR_MESURE_DES}}",
+            "priceCurrency": "EUR"
+          },
           "itemOffered": {
             "@type": "Service",
-            "name": "Identité visuelle",
-            "description": "Création et harmonisation de l'identité de marque : logo, charte graphique et déclinaisons."
+            "name": "Site sur-mesure",
+            "description": "Tout Premium plus animations avancées et intégrations, devis fixe après brief."
           }
         },
         {
           "@type": "Offer",
+          "name": "Automatisation IA : capture de leads",
+          "price": "{{PRIX_AUTOMATISATION_LEADS}}",
+          "priceCurrency": "EUR",
+          "deliveryLeadTime": {
+            "@type": "QuantitativeValue",
+            "value": {{DELAI_AUTOMATISATION_JOURS}},
+            "unitCode": "DAY"
+          },
           "itemOffered": {
             "@type": "Service",
-            "name": "Performance et conversion",
-            "description": "SEO, tracking, analyse des données et optimisation du tunnel de conversion."
+            "name": "Workflow n8n de capture de leads",
+            "description": "Formulaire, email de confirmation, notification et tableur. Option ajoutée à un projet."
           }
         },
         {
           "@type": "Offer",
+          "name": "Automatisation IA : workflow complet",
+          "price": "{{PRIX_AUTOMATISATION_COMPLET}}",
+          "priceCurrency": "EUR",
+          "deliveryLeadTime": {
+            "@type": "QuantitativeValue",
+            "value": {{DELAI_AUTOMATISATION_JOURS}},
+            "unitCode": "DAY"
+          },
           "itemOffered": {
             "@type": "Service",
-            "name": "SaaS custom",
-            "description": "Applications SaaS et outils métier sur mesure, de l'idée au produit fonctionnel."
+            "name": "Workflow n8n complet",
+            "description": "Relances, devis et notifications. Option ajoutée à un projet."
           }
         },
         {
           "@type": "Offer",
+          "name": "Audit et plan d'action",
+          "price": "{{PRIX_AUDIT}}",
+          "priceCurrency": "EUR",
+          "deliveryLeadTime": {
+            "@type": "QuantitativeValue",
+            "value": {{DELAI_AUDIT_HEURES}},
+            "unitCode": "HUR"
+          },
           "itemOffered": {
             "@type": "Service",
-            "name": "Automatisation",
-            "description": "Automatisation des tâches et process métier pour gagner du temps et fiabiliser les opérations."
+            "name": "Audit site, SEO et conversion",
+            "description": "Audit et plan d'action priorisé, déductible du projet."
+          }
+        },
+        {
+          "@type": "Offer",
+          "name": "Maintenance",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "price": "{{PRIX_MAINTENANCE_STANDARD}}",
+            "priceCurrency": "EUR",
+            "unitText": "MONTH"
+          },
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Maintenance de site",
+            "description": "Mises à jour, corrections, petites modifications de contenu et surveillance de la disponibilité."
+          }
+        },
+        {
+          "@type": "Offer",
+          "name": "Intégration marque blanche pour agences",
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "minPrice": "{{PRIX_AGENCE_MIN}}",
+            "maxPrice": "{{PRIX_AGENCE_MAX}}",
+            "priceCurrency": "EUR"
+          },
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Intégration Figma vers code",
+            "description": "HTML/CSS/JS propre, responsive et performant à partir de vos maquettes, par intégration selon le nombre de pages."
           }
         }
       ]
@@ -215,6 +292,7 @@
   <ul class="nav-links" role="list">
     <li><a href="index.html" class="nav-link active">Accueil</a></li>
     <li><a href="services.html" class="nav-link">Services</a></li>
+    <li><a href="services/automatisation-n8n-castres.html" class="nav-link">Automatisation IA</a></li>
     <li><a href="tarifs.html" class="nav-link">Tarifs</a></li>
     <li><a href="portfolio.html" class="nav-link">Portfolio</a></li>
     <li><a href="about.html" class="nav-link">À propos</a></li>
@@ -233,6 +311,7 @@
 <div class="nav-mobile" aria-hidden="true">
   <a href="index.html" class="nav-link">Accueil</a>
   <a href="services.html" class="nav-link">Services</a>
+  <a href="services/automatisation-n8n-castres.html" class="nav-link">Automatisation IA</a>
   <a href="tarifs.html" class="nav-link">Tarifs</a>
   <a href="portfolio.html" class="nav-link">Portfolio</a>
   <a href="about.html" class="nav-link">À propos</a>
@@ -240,7 +319,7 @@
   <a href="ressources.html" class="nav-link">Ressources</a>
   <a href="produits.html" class="nav-link">Produits</a>
   <a href="contact.html" class="nav-link">Contact</a>
-  <a href="offre-site-artisan-btp.html" class="nav-mobile-cta" onclick="if (typeof gtag === 'function') gtag('event', 'cta_menu_mobile', {'event_category': 'CTA', 'event_label': 'Menu mobile - Offre artisan BTP'})">Démarrer un projet</a>
+  <a href="contact.html" class="nav-mobile-cta" onclick="if (typeof gtag === 'function') gtag('event', 'cta_menu_mobile', {'event_category': 'CTA', 'event_label': 'Menu mobile - Contact'})">Démarrer un projet</a>
   <a href="en/index.html" class="nav-lang" hreflang="en" lang="en" aria-label="Voir le site en anglais"><span>EN</span></a>
 </div>
 
@@ -280,9 +359,13 @@
 
   <!-- Contenu centré -->
   <div class="hero-content">
-    <h1 class="hero-title" id="hero-title">Studio d'un seul expert.<br>Exigence d'une équipe entière.</h1>
-    <p class="hero-desc">Un seul interlocuteur qui comprend votre entreprise avant de construire quoi que ce soit.</p>
-    <a href="contact.html" class="btn hero-btn" onclick="gtag('event', 'cta_demarrer_projet', {'event_category': 'CTA', 'event_label': 'Hero - Démarrer un projet'})">Démarrer un projet</a>
+    <p class="hero-signature">Studio d'un seul expert</p>
+    <h1 class="hero-title" id="hero-title">Votre site premium livré en {{DELAI_PREMIUM}}.<br>Prix fixe.</h1>
+    <p class="hero-desc">Un seul expert, du brief à la mise en ligne. Dès {{PRIX_ESSENTIEL}} €<!--IF:PRIX_MENTION--> ({{PRIX_MENTION}})<!--ENDIF:PRIX_MENTION-->.</p>
+    <div class="hero-actions">
+      <a href="tarifs.html" class="btn hero-btn" onclick="gtag('event', 'cta_voir_tarifs', {'event_category': 'CTA', 'event_label': 'Hero - Voir les tarifs'})">Voir les tarifs</a>
+      <a href="contact.html" class="hero-btn-secondary" onclick="gtag('event', 'cta_reponse_24h', {'event_category': 'CTA', 'event_label': 'Hero - Réponse sous 24h'})">Recevoir une réponse sous 24h</a>
+    </div>
 
     <!-- Chat SPARK -- questions sur ALCALSPARK uniquement. La réponse
          s'affiche dans #hero-eye-speech ci-dessus, pas ici. -->
@@ -301,48 +384,123 @@
 </section>
 
 <!-- ══════════════════════════════════════
-  BANDEAU DE PREUVE IMMÉDIATE
+  NOS OFFRES
 ══════════════════════════════════════ -->
+<section class="offers-section" id="offres" aria-labelledby="offres-title">
+  <div class="container">
+    <div class="offers-head">
+      <div class="eyebrow reveal">Nos offres</div>
+      <h2 id="offres-title" class="reveal delay-1">Trois packs,<br /><em>un prix fixe</em></h2>
+      <p class="reveal delay-2">Du site vitrine au projet sur-mesure, le prix et le délai sont annoncés avant de démarrer. Code source livré, aucun abonnement imposé.</p>
+    </div>
+    <div class="offers-grid">
+      <article class="offer-card card reveal delay-1">
+        <div class="offer-badge">Essentiel</div>
+        <div class="offer-price"><span class="offer-currency"></span><span class="offer-amount">{{PRIX_ESSENTIEL}}</span><span class="offer-currency">€</span></div>
+        <p class="offer-delay">Livré en {{DELAI_ESSENTIEL}}</p>
+        
+        <ul class="offer-features">
+          <li>1 page responsive, formulaire de contact</li>
+          <li>SEO de base et mise en ligne</li>
+          <li>1 tour de retouches, en français</li>
+        </ul>
+        <a href="contact.html" class="btn btn-primary" onclick="gtag('event', 'cta_offre_essentiel', {'event_category': 'CTA', 'event_label': 'cta_offre_essentiel'})">Choisir Essentiel</a>
+      </article>
+      <article class="offer-card glass-strong reveal delay-2">
+        <div class="offer-badge">Premium</div>
+        <div class="offer-price"><span class="offer-currency"></span><span class="offer-amount">{{PRIX_PREMIUM_AFFICHE}}</span><span class="offer-currency">€</span></div>
+        <p class="offer-delay">Livré en {{DELAI_PREMIUM}}</p>
+        
+        <ul class="offer-features">
+          <li>5 pages responsives, formulaire avec email de confirmation</li>
+          <li>SEO technique : balises, données structurées, sitemap</li>
+          <li>Analytics et Search Console configurés</li>
+          <li>Site FR/EN, 2 tours de retouches</li>
+        </ul>
+        <a href="contact.html" class="btn btn-primary" onclick="gtag('event', 'cta_offre_premium', {'event_category': 'CTA', 'event_label': 'cta_offre_premium'})">Choisir Premium</a>
+      </article>
+      <article class="offer-card card reveal delay-3">
+        <div class="offer-badge">Sur-mesure</div>
+        <div class="offer-price"><span class="offer-from">dès</span><span class="offer-currency"></span><span class="offer-amount">{{PRIX_SUR_MESURE_DES_AFFICHE}}</span><span class="offer-currency">€</span></div>
+        <p class="offer-delay">Délai annoncé au devis</p>
+        
+        <ul class="offer-features">
+          <li>Tout Premium, plus animations avancées (Three.js, GSAP)</li>
+          <li>Pages et intégrations supplémentaires</li>
+          <li>Devis fixe après brief</li>
+        </ul>
+        <a href="contact.html" class="btn btn-primary" onclick="gtag('event', 'cta_offre_surmesure', {'event_category': 'CTA', 'event_label': 'cta_offre_surmesure'})">Demander un devis</a>
+      </article>
+    </div>
+    <p class="offer-note reveal">Détail des packs, options et maintenance sur la page <a href="tarifs.html">Tarifs</a>.<!--IF:PRIX_MENTION--> {{PRIX_MENTION}}.<!--ENDIF:PRIX_MENTION--></p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+  AUTOMATISATION IA
+══════════════════════════════════════ -->
+<section class="offers-section" id="automatisation-ia" aria-labelledby="auto-title">
+  <div class="container">
+    <div class="offers-head">
+      <div class="eyebrow reveal">Automatisation IA</div>
+      <h2 id="auto-title" class="reveal delay-1">Automatisez vos process,<br /><em>en {{DELAI_AUTOMATISATION}}</em></h2>
+      <p class="reveal delay-2">Des workflows n8n qui s'ajoutent à votre projet : plus aucun lead perdu, des relances qui partent toutes seules.</p>
+    </div>
+    <div class="offers-grid offers-grid--2">
+      <article class="offer-card card reveal delay-1">
+        <div class="offer-badge">Capture de leads</div>
+        <div class="offer-price"><span class="offer-from">+</span><span class="offer-currency"></span><span class="offer-amount">{{PRIX_AUTOMATISATION_LEADS}}</span><span class="offer-currency">€</span></div>
+        <p class="offer-delay">Livré en {{DELAI_AUTOMATISATION}}</p>
+        
+        <ul class="offer-features">
+          <li>Formulaire, puis email de confirmation</li>
+          <li>Notification pour vous</li>
+          <li>Leads consignés dans un tableur</li>
+        </ul>
+        <a href="services/automatisation-n8n-castres.html" class="btn btn-primary" onclick="gtag('event', 'cta_auto_leads', {'event_category': 'CTA', 'event_label': 'cta_auto_leads'})">Voir l'automatisation IA</a>
+      </article>
+      <article class="offer-card card reveal delay-2">
+        <div class="offer-badge">Workflow complet</div>
+        <div class="offer-price"><span class="offer-from">+</span><span class="offer-currency"></span><span class="offer-amount">{{PRIX_AUTOMATISATION_COMPLET}}</span><span class="offer-currency">€</span></div>
+        <p class="offer-delay">Livré en {{DELAI_AUTOMATISATION}}</p>
+        
+        <ul class="offer-features">
+          <li>Relances automatiques</li>
+          <li>Devis et notifications</li>
+          <li>Construit avec n8n, connecté à vos outils</li>
+        </ul>
+        <a href="services/automatisation-n8n-castres.html" class="btn btn-primary" onclick="gtag('event', 'cta_auto_complet', {'event_category': 'CTA', 'event_label': 'cta_auto_complet'})">Voir l'automatisation IA</a>
+      </article>
+    </div>
+  </div>
+</section>
+
 <section class="proof-section" aria-label="Ce qui est vérifiable avant contact">
   <div class="container">
     <p class="proof-intro reveal">Ce que vous pouvez vérifier avant même de nous contacter.</p>
     <div class="proof-grid">
       <div class="proof-item reveal">
-        <span class="proof-num">2 à 3 semaines</span>
-        <span class="proof-label">Délai de livraison moyen</span>
+        <span class="proof-num">{{DELAI_PLAGE}}</span>
+        <span class="proof-label">Délai de livraison</span>
       </div>
       <div class="proof-item reveal delay-1">
         <span class="proof-num">1 seul<br>interlocuteur</span>
-        <span class="proof-label">Du brief au déploiement</span>
+        <span class="proof-label">Du brief à la mise en ligne</span>
       </div>
       <div class="proof-item reveal delay-2">
-        <span class="proof-num">1 projet<br>à la fois</span>
-        <span class="proof-label">Jamais partagé</span>
+        <span class="proof-num">{{CAPACITE_PROJETS_MOIS}} projets<br>par mois</span>
+        <span class="proof-label">Places limitées</span>
       </div>
       <div class="proof-item reveal delay-3">
-        <span class="proof-num">Production<br>accélérée</span>
-        <span class="proof-label">Grâce à des outils internes, IA incluse</span>
+        <span class="proof-num">Code source<br>livré</span>
+        <span class="proof-label">Aucun abonnement imposé</span>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════
-  POURQUOI ALCALSPARK EXISTE
-══════════════════════════════════════ -->
-<section class="raison-section" aria-labelledby="raison-title">
-  <div class="container">
-    <div class="raison-inner">
-      <h2 id="raison-title" class="reveal">Pourquoi AlcalSpark existe</h2>
-      <div class="raison-body reveal delay-1">
-        <p>La plupart des prestataires vendent une compétence.<br>
-        Les agences vendent une prestation.<br>
-        Les consultants vendent des recommandations.<br>
-        Les développeurs vendent du code.</p>
-        <p>AlcalSpark est né d'un constat simple :</p>
-        <p class="raison-punch">Une entreprise n'a pas besoin d'un site.<br>Elle a besoin de résoudre un problème.</p>
-        <p>Tant que ce problème n'est pas identifié, aucune technologie n'a de valeur.</p>
+<!--IF:PAGESPEED_MOBILE-->
+      <div class="proof-item reveal delay-4">
+        <span class="proof-num">{{PAGESPEED_MOBILE}} / {{PAGESPEED_DESKTOP}}</span>
+        <span class="proof-label">Score PageSpeed mobile / desktop</span>
       </div>
+<!--ENDIF:PAGESPEED_MOBILE-->
     </div>
   </div>
 </section>
@@ -360,22 +518,221 @@
 
     <div class="segment-grid">
       <article class="segment-card card reveal delay-1">
-        <h3>Artisan ou commerçant local</h3>
-        <p>Vous voulez un site qui vous ramène des clients, sans jargon ni mauvaise surprise contractuelle. Artisan du BTP : site vitrine, fiche Google et SEO local à {{PRIX_FIXE}}€ prix fixe<!--IF:PRIX_MENTION--> ({{PRIX_MENTION}})<!--ENDIF:PRIX_MENTION-->, commandé en ligne, sans appel.</p>
+        <h3>Entreprise, startup ou agence</h3>
+        <p>Vous voulez un site performant, livré vite et à prix fixe, ou un renfort de développement pour vos clients. Packs vitrine dès {{PRIX_ESSENTIEL}} €, automatisation IA, intégration marque blanche.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:0.75rem;">
+          <a href="tarifs.html" class="btn btn-primary segment-btn" data-segment="entreprise" onclick="gtag('event', 'cta_voir_tarifs', {'event_category': 'CTA', 'event_label': 'Segmentation - Voir les tarifs'})">Voir les tarifs</a>
+          <a href="agences.html" class="btn btn-outline-inv segment-btn" data-segment="agence" onclick="gtag('event', 'cta_agences', {'event_category': 'CTA', 'event_label': 'Segmentation - Agences'})">Agences : marque blanche</a>
+        </div>
+      </article>
+      <article class="segment-card card reveal delay-2">
+        <h3>Artisan du BTP</h3>
+        <p>Vous voulez un site qui vous ramène des clients, sans jargon ni mauvaise surprise contractuelle. Site vitrine, fiche Google et SEO local à {{PRIX_FIXE}}€ prix fixe<!--IF:PRIX_MENTION--> ({{PRIX_MENTION}})<!--ENDIF:PRIX_MENTION-->, commandé en ligne, sans appel.</p>
         <div style="display:flex;flex-wrap:wrap;gap:0.75rem;">
           <a href="offre-site-artisan-btp.html" class="btn btn-primary segment-btn" data-segment="artisan-offre" onclick="gtag('event', 'cta_commander_site_artisan', {'event_category': 'CTA', 'event_label': 'Segmentation - Commander site artisan BTP'})">Commander mon site</a>
           <a href="#diagnostic" class="btn btn-outline-inv segment-btn" data-segment="artisan" onclick="gtag('event', 'cta_diagnostic_artisan', {'event_category': 'CTA', 'event_label': 'Segmentation - Diagnostic artisan'})">Faire mon diagnostic gratuit</a>
         </div>
       </article>
-      <article class="segment-card card reveal delay-2">
-        <h3>Entreprise en croissance</h3>
-        <p>Votre croissance est freinée par un système digital qui ne suit plus, un site qui ne convertit pas, un process encore manuel. Vous cherchez un partenaire technique direct, pas un prestataire de plus.</p>
-        <a href="#contact-direct" class="btn btn-outline-inv segment-btn" data-segment="entreprise" onclick="gtag('event', 'cta_contact_entreprise', {'event_category': 'CTA', 'event_label': 'Segmentation - Échanger sur mon projet'})">Échanger sur mon projet</a>
-      </article>
     </div>
 
   </div>
 </section>
+
+<section class="methode-section" id="methode" aria-labelledby="methode-title">
+  <div class="container">
+    <div class="methode-intro">
+      <div class="eyebrow reveal">La méthode</div>
+      <h2 id="methode-title" class="reveal delay-1">Du brief à la mise en ligne,<br /><em>sans intermédiaire</em></h2>
+      <p class="reveal delay-2">Un seul expert, de l'analyse à la livraison : pas de relais commercial, pas de chef de projet. {{CAPACITE_PROJETS_MOIS}} projets par mois, places limitées.</p>
+    </div>
+    <ol class="steps-3 reveal delay-2">
+      <li><span class="step-n">01</span><strong>Brief sous 24h</strong><p>Vous décrivez votre besoin, vous recevez une réponse sous 24h.</p></li>
+      <li><span class="step-n">02</span><strong>Devis à prix fixe</strong><p>Le prix est annoncé avant de démarrer, sans surprise ni abonnement imposé.</p></li>
+      <li><span class="step-n">03</span><strong>Livraison en {{DELAI_PLAGE}}</strong><p>Votre site est livré avec son code source.</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+  PORTFOLIO TEASER
+══════════════════════════════════════ -->
+<section class="portfolio-teaser" aria-labelledby="portfolio-title">
+
+  <div class="portfolio-header">
+    <div>
+      <div class="eyebrow reveal">Nos réalisations</div>
+      <h2 id="portfolio-title" class="reveal delay-1">Des projets qui<br /><em>parlent d'eux-mêmes</em></h2>
+      <p class="portfolio-disclaimer reveal delay-2">Ces projets sont des démonstrations techniques complètes, pensées et réalisées de bout en bout pour prouver un savoir-faire, pas des clients anonymisés maquillés en projets réels. <em>La transparence, ça commence ici.</em></p>
+    </div>
+    <a href="portfolio.html" class="btn btn-outline reveal delay-3">Voir tout</a>
+  </div>
+
+  <div class="portfolio-grid">
+
+    <!-- Auréa -->
+    <a class="portfolio-item reveal delay-2" href="portfolio/aurea.html" aria-label="Voir le projet Auréa">
+      <div class="pi-image">
+        <picture>
+          <source srcset="assets/lucid-origin_a_cinematic_photo_of_Elegant_luxury_jewelry_editorial_photography_close-up_of_a_-0.webp" type="image/webp" />
+          <img
+            class="pi-real-img"
+            src="assets/lucid-origin_a_cinematic_photo_of_Elegant_luxury_jewelry_editorial_photography_close-up_of_a_-0.jpg"
+            alt="Aperçu du site Auréa, joaillerie premium créé par AlcalSpark"
+            loading="lazy"
+            width="1344"
+            height="768"
+          />
+        </picture>
+        <div class="pi-overlay">
+          <div class="pi-info">
+            <span class="badge">Création Web · UI/UX</span>
+            <h3>Auréa</h3>
+            <p>Site vitrine premium avec une direction artistique raffinée.</p>
+            <span class="btn btn-ghost" style="color:var(--cream);">Voir le projet <span class="arrow-line"></span></span>
+          </div>
+        </div>
+      </div>
+      <div class="pi-meta">
+        <div>
+          <h4>Auréa</h4>
+          <span>Création Web · Design UI/UX</span>
+        </div>
+        <span class="pi-concept-badge" style="color:rgba(56,200,100,.7);border-color:rgba(56,200,100,.25);">Live</span>
+      </div>
+    </a>
+
+    <!-- Vitrum -->
+    <a class="portfolio-item reveal delay-3" href="portfolio/vitrum.html" aria-label="Voir le projet Vitrum">
+      <div class="pi-image">
+        <picture>
+          <source srcset="assets/gpt-image-2_a_cinematic_photo_of_Abstract_financial_data_visualization_glowing_amber_orange_-0.webp" type="image/webp" />
+          <img
+            class="pi-real-img"
+            src="assets/gpt-image-2_a_cinematic_photo_of_Abstract_financial_data_visualization_glowing_amber_orange_-0.jpg"
+            alt="Aperçu de Vitrum, plateforme SaaS financière créée par AlcalSpark"
+            loading="lazy"
+            width="1344"
+            height="768"
+          />
+        </picture>
+        <div class="pi-overlay">
+          <div class="pi-info">
+            <span class="badge">SaaS · Design UI/UX</span>
+            <h3>Vitrum</h3>
+            <p>Plateforme SaaS tout-en-un CRM et automation. Direction artistique corporate, animations Three.js, dark mode Midnight &amp; Amber.</p>
+            <span class="btn btn-ghost" style="color:var(--cream);">Voir le projet <span class="arrow-line"></span></span>
+          </div>
+        </div>
+      </div>
+      <div class="pi-meta">
+        <div>
+          <h4>Vitrum</h4>
+          <span>SaaS · Design UI/UX</span>
+        </div>
+        <span class="pi-concept-badge" style="color:rgba(56,200,100,.7);border-color:rgba(56,200,100,.25);">Live</span>
+      </div>
+    </a>
+
+    <!-- Kairox Studios -->
+    <a class="portfolio-item reveal delay-4" href="portfolio/kairox-studios.html" aria-label="Voir le projet Kairox Studios">
+      <div class="pi-image">
+        <picture>
+          <source srcset="assets/lucid-origin_a_cinematic_photo_of_Epic_dark_fantasy_game_environment_concept_art_stormy_drama-0.webp" type="image/webp" />
+          <img
+            class="pi-real-img"
+            src="assets/lucid-origin_a_cinematic_photo_of_Epic_dark_fantasy_game_environment_concept_art_stormy_drama-0.jpg"
+            alt="Aperçu du site Kairox Studios, studio de jeux vidéo créé par AlcalSpark"
+            loading="lazy"
+            width="1344"
+            height="768"
+          />
+        </picture>
+        <div class="pi-overlay">
+          <div class="pi-info">
+            <span class="badge">Game Studio · Web Design</span>
+            <h3>Kairox Studios</h3>
+            <p>Site immersif multi-pages pour un studio de jeux AA action/aventure. Animations Three.js et dark UI cinématique.</p>
+            <span class="btn btn-ghost" style="color:var(--cream);">Voir le projet <span class="arrow-line"></span></span>
+          </div>
+        </div>
+      </div>
+      <div class="pi-meta">
+        <div>
+          <h4>Kairox Studios</h4>
+          <span>Game Studio · Web Design</span>
+        </div>
+        <span class="pi-concept-badge" style="color:rgba(56,200,100,.7);border-color:rgba(56,200,100,.25);">Live</span>
+      </div>
+    </a>
+
+    <!-- Alchemist -->
+    <a class="portfolio-item reveal delay-5" href="portfolio/alchemist.html" aria-label="Voir le projet Alchemist">
+      <div class="pi-image">
+        <picture>
+          <source srcset="assets/lucid-origin_a_cinematic_photo_of_Luxury_whisky_bottle_product_photography_dark_oak_barrel_ba-0.webp" type="image/webp" />
+          <img
+            class="pi-real-img"
+            src="assets/lucid-origin_a_cinematic_photo_of_Luxury_whisky_bottle_product_photography_dark_oak_barrel_ba-0.jpg"
+            alt="Aperçu du site Alchemist, marque de whisky premium créée par AlcalSpark"
+            loading="lazy"
+            width="1344"
+            height="768"
+          />
+        </picture>
+        <div class="pi-overlay">
+          <div class="pi-info">
+            <span class="badge">Branding &amp; Web Design</span>
+            <h3>Alchemist</h3>
+            <p>Site multi-pages premium pour une marque de whisky fictive. Design sombre et élégant avec accents dorés, animations Framer Motion.</p>
+            <span class="btn btn-ghost" style="color:var(--cream);">Voir le projet <span class="arrow-line"></span></span>
+          </div>
+        </div>
+      </div>
+      <div class="pi-meta">
+        <div>
+          <h4>Alchemist</h4>
+          <span>Branding &amp; Web Design</span>
+        </div>
+        <span class="pi-concept-badge" style="color:rgba(56,200,100,.7);border-color:rgba(56,200,100,.25);">Live</span>
+      </div>
+    </a>
+
+  </div>
+
+  <div class="portfolio-reasoning card reveal">
+    <div class="pr-header">
+      <span class="pr-eyebrow">Le raisonnement</span>
+      <h3>Vitrum, plateforme SaaS CRM et automation</h3>
+    </div>
+    <div class="pr-grid">
+      <div class="pr-block">
+        <h4>Le problème posé</h4>
+        <p>Les PME qui jonglent entre CRM, facturation et automatisation séparés perdent du temps à faire communiquer ces outils entre eux, et paient plusieurs abonnements pour des fonctionnalités qui se chevauchent.</p>
+      </div>
+      <div class="pr-block">
+        <h4>Les choix techniques, et pourquoi</h4>
+        <p>Architecture modulaire pensée dès le départ (chaque brique fonctionne seule ou ensemble) mais avec une base de données unique, pour éviter la duplication des données clients entre modules.</p>
+      </div>
+      <div class="pr-block">
+        <h4>Ce qui a été délibérément écarté</h4>
+        <p>Un système de plugins tiers ouverts à des développeurs externes, écarté au profit d'une roadmap interne maîtrisée, pour garder la cohérence de l'expérience et éviter la dette technique liée à du code non maîtrisé.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+  TÉMOIGNAGES : bloc masqué. À activer quand de vrais retours clients existent
+  (remplacer ce commentaire par la section ci-dessous, avec de vrais noms, métiers et textes).
+  Ne jamais publier de témoignage ou de chiffre client inventé.
+
+  <section class="home-testimonials" id="temoignages" aria-labelledby="temoignages-title">
+    <div class="container">
+      <h2 id="temoignages-title">Ce que disent nos clients</h2>
+      ... un <figure> par témoignage réel : citation, prénom, entreprise, lien vérifiable si possible ...
+    </div>
+  </section>
+══════════════════════════════════════ -->
 
 <!-- ══════════════════════════════════════
   4a. DIAGNOSTIC INTERACTIF — 3 axes en parallèle (persona A)
@@ -568,219 +925,7 @@
           WhatsApp direct
         </a>
       </div>
-      <p class="contact-callback" style="margin-top:1.25rem;font-size:0.85rem;color:rgba(248,245,242,0.5);">Je rappelle {{HORAIRES_RAPPEL}}. WhatsApp ou formulaire de préférence.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════
-  LA MÉTHODE
-══════════════════════════════════════ -->
-<section class="methode-section" id="methode" aria-labelledby="methode-title">
-  <div class="container">
-
-    <div class="methode-intro">
-      <div class="eyebrow reveal">La méthode</div>
-      <h2 id="methode-title" class="reveal delay-1">Ce qu'une agence ne peut pas<br /><em>vous offrir</em></h2>
-      <p class="reveal delay-2">Le développement n'est pas l'offre, c'est la capacité d'exécution qui suit une vraie analyse. La méthode suit toujours le même ordre : comprendre l'entreprise et ses leviers de croissance avant de concevoir quoi que ce soit, puis réaliser. La plupart des agences inversent l'ordre, elles vendent d'abord une prestation (un site, une app), et découvrent la stratégie en cours de route.</p>
-    </div>
-
-    <ol class="methode-sequence reveal delay-2" aria-label="La séquence de travail, dans l'ordre">
-      <li class="ms-step"><span class="ms-num">01</span><span class="ms-label">Analyse de l'entreprise et de son marché</span></li>
-      <li class="ms-step"><span class="ms-num">02</span><span class="ms-label">Identification des leviers de croissance prioritaires</span></li>
-      <li class="ms-step"><span class="ms-num">03</span><span class="ms-label">Conception de la solution la plus pertinente <em>(pas la plus impressionnante)</em></span></li>
-      <li class="ms-step"><span class="ms-num">04</span><span class="ms-label">Réalisation</span></li>
-    </ol>
-
-    <div class="methode-grid">
-
-      <article class="methode-point methode-point--lead card reveal delay-2">
-        <span class="methode-point-num" aria-hidden="true">01</span>
-        <h3>Zéro dilution</h3>
-        <p>La personne qui analyse votre entreprise est la même qui conçoit et réalise la solution. Rien ne se perd entre l'analyse et l'exécution, parce qu'il n'y a qu'un seul interlocuteur.</p>
-      </article>
-
-      <div class="methode-secondary">
-        <article class="methode-point reveal delay-3">
-          <span class="methode-point-num" aria-hidden="true">02</span>
-          <h4>Implication stratégique totale</h4>
-          <p>Chaque projet commence par une vraie analyse business, pas par une demande de devis pour une prestation déjà décidée.</p>
-        </article>
-        <article class="methode-point reveal delay-4">
-          <span class="methode-point-num" aria-hidden="true">03</span>
-          <h4>Sélectivité réelle</h4>
-          <p>Un seul projet à la fois, par contrainte de capacité assumée et vérifiable, pas par posture marketing.</p>
-        </article>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════
-  PORTFOLIO TEASER
-══════════════════════════════════════ -->
-<section class="portfolio-teaser" aria-labelledby="portfolio-title">
-
-  <div class="portfolio-header">
-    <div>
-      <div class="eyebrow reveal">Nos réalisations</div>
-      <h2 id="portfolio-title" class="reveal delay-1">Des projets qui<br /><em>parlent d'eux-mêmes</em></h2>
-      <p class="portfolio-disclaimer reveal delay-2">Ces projets sont des démonstrations techniques complètes, pensées et réalisées de bout en bout pour prouver un savoir-faire, pas des clients anonymisés maquillés en projets réels. <em>La transparence, ça commence ici.</em></p>
-    </div>
-    <a href="portfolio.html" class="btn btn-outline reveal delay-3">Voir tout</a>
-  </div>
-
-  <div class="portfolio-grid">
-
-    <!-- Auréa -->
-    <a class="portfolio-item reveal delay-2" href="portfolio/aurea.html" aria-label="Voir le projet Auréa">
-      <div class="pi-image">
-        <picture>
-          <source srcset="assets/lucid-origin_a_cinematic_photo_of_Elegant_luxury_jewelry_editorial_photography_close-up_of_a_-0.webp" type="image/webp" />
-          <img
-            class="pi-real-img"
-            src="assets/lucid-origin_a_cinematic_photo_of_Elegant_luxury_jewelry_editorial_photography_close-up_of_a_-0.jpg"
-            alt="Aperçu du site Auréa, joaillerie premium créé par AlcalSpark"
-            loading="lazy"
-            width="1344"
-            height="768"
-          />
-        </picture>
-        <div class="pi-overlay">
-          <div class="pi-info">
-            <span class="badge">Création Web · UI/UX</span>
-            <h3>Auréa</h3>
-            <p>Site vitrine premium avec une direction artistique raffinée.</p>
-            <span class="btn btn-ghost" style="color:var(--cream);">Voir le projet <span class="arrow-line"></span></span>
-          </div>
-        </div>
-      </div>
-      <div class="pi-meta">
-        <div>
-          <h4>Auréa</h4>
-          <span>Création Web · Design UI/UX</span>
-        </div>
-        <span class="pi-concept-badge" style="color:rgba(56,200,100,.7);border-color:rgba(56,200,100,.25);">Live</span>
-      </div>
-    </a>
-
-    <!-- Vitrum -->
-    <a class="portfolio-item reveal delay-3" href="portfolio/vitrum.html" aria-label="Voir le projet Vitrum">
-      <div class="pi-image">
-        <picture>
-          <source srcset="assets/gpt-image-2_a_cinematic_photo_of_Abstract_financial_data_visualization_glowing_amber_orange_-0.webp" type="image/webp" />
-          <img
-            class="pi-real-img"
-            src="assets/gpt-image-2_a_cinematic_photo_of_Abstract_financial_data_visualization_glowing_amber_orange_-0.jpg"
-            alt="Aperçu de Vitrum, plateforme SaaS financière créée par AlcalSpark"
-            loading="lazy"
-            width="1344"
-            height="768"
-          />
-        </picture>
-        <div class="pi-overlay">
-          <div class="pi-info">
-            <span class="badge">SaaS · Design UI/UX</span>
-            <h3>Vitrum</h3>
-            <p>Plateforme SaaS tout-en-un CRM et automation. Direction artistique corporate, animations Three.js, dark mode Midnight &amp; Amber.</p>
-            <span class="btn btn-ghost" style="color:var(--cream);">Voir le projet <span class="arrow-line"></span></span>
-          </div>
-        </div>
-      </div>
-      <div class="pi-meta">
-        <div>
-          <h4>Vitrum</h4>
-          <span>SaaS · Design UI/UX</span>
-        </div>
-        <span class="pi-concept-badge" style="color:rgba(56,200,100,.7);border-color:rgba(56,200,100,.25);">Live</span>
-      </div>
-    </a>
-
-    <!-- Kairox Studios -->
-    <a class="portfolio-item reveal delay-4" href="portfolio/kairox-studios.html" aria-label="Voir le projet Kairox Studios">
-      <div class="pi-image">
-        <picture>
-          <source srcset="assets/lucid-origin_a_cinematic_photo_of_Epic_dark_fantasy_game_environment_concept_art_stormy_drama-0.webp" type="image/webp" />
-          <img
-            class="pi-real-img"
-            src="assets/lucid-origin_a_cinematic_photo_of_Epic_dark_fantasy_game_environment_concept_art_stormy_drama-0.jpg"
-            alt="Aperçu du site Kairox Studios, studio de jeux vidéo créé par AlcalSpark"
-            loading="lazy"
-            width="1344"
-            height="768"
-          />
-        </picture>
-        <div class="pi-overlay">
-          <div class="pi-info">
-            <span class="badge">Game Studio · Web Design</span>
-            <h3>Kairox Studios</h3>
-            <p>Site immersif multi-pages pour un studio de jeux AA action/aventure. Animations Three.js et dark UI cinématique.</p>
-            <span class="btn btn-ghost" style="color:var(--cream);">Voir le projet <span class="arrow-line"></span></span>
-          </div>
-        </div>
-      </div>
-      <div class="pi-meta">
-        <div>
-          <h4>Kairox Studios</h4>
-          <span>Game Studio · Web Design</span>
-        </div>
-        <span class="pi-concept-badge" style="color:rgba(56,200,100,.7);border-color:rgba(56,200,100,.25);">Live</span>
-      </div>
-    </a>
-
-    <!-- Alchemist -->
-    <a class="portfolio-item reveal delay-5" href="portfolio/alchemist.html" aria-label="Voir le projet Alchemist">
-      <div class="pi-image">
-        <picture>
-          <source srcset="assets/lucid-origin_a_cinematic_photo_of_Luxury_whisky_bottle_product_photography_dark_oak_barrel_ba-0.webp" type="image/webp" />
-          <img
-            class="pi-real-img"
-            src="assets/lucid-origin_a_cinematic_photo_of_Luxury_whisky_bottle_product_photography_dark_oak_barrel_ba-0.jpg"
-            alt="Aperçu du site Alchemist, marque de whisky premium créée par AlcalSpark"
-            loading="lazy"
-            width="1344"
-            height="768"
-          />
-        </picture>
-        <div class="pi-overlay">
-          <div class="pi-info">
-            <span class="badge">Branding &amp; Web Design</span>
-            <h3>Alchemist</h3>
-            <p>Site multi-pages premium pour une marque de whisky fictive. Design sombre et élégant avec accents dorés, animations Framer Motion.</p>
-            <span class="btn btn-ghost" style="color:var(--cream);">Voir le projet <span class="arrow-line"></span></span>
-          </div>
-        </div>
-      </div>
-      <div class="pi-meta">
-        <div>
-          <h4>Alchemist</h4>
-          <span>Branding &amp; Web Design</span>
-        </div>
-        <span class="pi-concept-badge" style="color:rgba(56,200,100,.7);border-color:rgba(56,200,100,.25);">Live</span>
-      </div>
-    </a>
-
-  </div>
-
-  <div class="portfolio-reasoning card reveal">
-    <div class="pr-header">
-      <span class="pr-eyebrow">Le raisonnement</span>
-      <h3>Vitrum, plateforme SaaS CRM et automation</h3>
-    </div>
-    <div class="pr-grid">
-      <div class="pr-block">
-        <h4>Le problème posé</h4>
-        <p>Les PME qui jonglent entre CRM, facturation et automatisation séparés perdent du temps à faire communiquer ces outils entre eux, et paient plusieurs abonnements pour des fonctionnalités qui se chevauchent.</p>
-      </div>
-      <div class="pr-block">
-        <h4>Les choix techniques, et pourquoi</h4>
-        <p>Architecture modulaire pensée dès le départ (chaque brique fonctionne seule ou ensemble) mais avec une base de données unique, pour éviter la duplication des données clients entre modules.</p>
-      </div>
-      <div class="pr-block">
-        <h4>Ce qui a été délibérément écarté</h4>
-        <p>Un système de plugins tiers ouverts à des développeurs externes, écarté au profit d'une roadmap interne maîtrisée, pour garder la cohérence de l'expérience et éviter la dette technique liée à du code non maîtrisé.</p>
-      </div>
+      <p class="contact-callback" style="margin-top:1.25rem;font-size:0.85rem;color:rgba(248,245,242,0.5);">Réponse sous 24h. WhatsApp ou formulaire de préférence.</p>
     </div>
   </div>
 </section>
@@ -793,6 +938,48 @@
     <div class="section-header text-center">
       <div class="eyebrow reveal">Questions fréquentes</div>
       <h2 id="faq-title" class="reveal delay-1">Ce que vous vous demandez<br /><em>avant de nous contacter</em></h2>
+    </div>
+
+    <div class="faq-group">
+      <h3 class="faq-group-title reveal">Prix, délais et commande</h3>
+      <div class="faq-list">
+        <div class="faq-item reveal delay-1">
+          <button class="faq-question" aria-expanded="false">
+            <span>Combien coûte un site ?</span>
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer" hidden>
+            <p>Trois packs à prix fixe : Essentiel {{PRIX_ESSENTIEL}} €, Premium {{PRIX_PREMIUM_AFFICHE}} €, et Sur-mesure dès {{PRIX_SUR_MESURE_DES_AFFICHE}} € avec un devis fixe après brief. Code source livré, aucun abonnement imposé. Détail sur la page <a href="tarifs.html">Tarifs</a>.<!--IF:PRIX_MENTION--> {{PRIX_MENTION}}.<!--ENDIF:PRIX_MENTION--></p>
+          </div>
+        </div>
+        <div class="faq-item reveal delay-2">
+          <button class="faq-question" aria-expanded="false">
+            <span>Quel est le délai de livraison ?</span>
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer" hidden>
+            <p>{{DELAI_ESSENTIEL}} pour l'Essentiel, {{DELAI_PREMIUM}} pour le Premium. Pour le Sur-mesure, le délai est annoncé au devis.</p>
+          </div>
+        </div>
+        <div class="faq-item reveal delay-3">
+          <button class="faq-question" aria-expanded="false">
+            <span>Comment se passe une commande ?</span>
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer" hidden>
+            <p>Vous décrivez votre besoin avec le formulaire de contact et recevez une réponse sous 24h, puis un devis à prix fixe avant tout démarrage.</p>
+          </div>
+        </div>
+        <div class="faq-item reveal delay-4">
+          <button class="faq-question" aria-expanded="false">
+            <span>Pourquoi seulement {{CAPACITE_PROJETS_MOIS}} projets par mois ?</span>
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer" hidden>
+            <p>Un seul expert réalise chaque projet. Limiter le nombre de projets permet de tenir les délais annoncés : les places sont limitées.</p>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="faq-group">
@@ -837,7 +1024,7 @@
             <span class="faq-icon" aria-hidden="true">+</span>
           </button>
           <div class="faq-answer" hidden>
-            <p>La sélectivité (un projet à la fois) existe justement pour garantir que la capacité suit l'engagement pris. Si un projet dépasse le cadre initial, on en discute avant, pas après.</p>
+            <p>La capacité est limitée à {{CAPACITE_PROJETS_MOIS}} projets par mois justement pour que l'engagement pris soit tenu. Si un projet dépasse le cadre initial, on en discute avant, pas après ; le Sur-mesure se chiffre sur devis fixe.</p>
           </div>
         </div>
       </div>
@@ -857,9 +1044,10 @@
       <a href="contact.html" class="btn btn-outline" onclick="gtag('event', 'cta_final_contact', {'event_category': 'CTA', 'event_label': 'CTA final - Réponse sous 24h'})">Recevoir une réponse sous 24h</a>
       <a href="portfolio.html" class="btn btn-outline">Voir nos projets</a>
     </div>
-    <p class="cta-trust reveal delay-3">Réponse sous 24h · Un projet à la fois · Livraison 2 à 3 semaines</p>
+    <p class="cta-trust reveal delay-3">Réponse sous 24h · {{CAPACITE_PROJETS_MOIS}} projets par mois · Livraison {{DELAI_PLAGE}}</p>
   </div>
 </section>
+
 
 </main>
 
@@ -895,6 +1083,7 @@
             <li><a href="services/design-ui-ux.html">Design UI/UX</a></li>
             <li><a href="services/branding.html">Branding</a></li>
             <li><a href="services/seo-marketing.html">SEO &amp; Marketing</a></li>
+            <li><a href="services/automatisation-n8n-castres.html">Automatisation IA</a></li>
           </ul>
           <h4>Zones</h4>
           <ul role="list">
@@ -903,10 +1092,6 @@
             <li><a href="services/creation-site-web-albi.html">Albi</a></li>
             <li><a href="services/creation-site-web-toulouse.html">Toulouse</a></li>
             <li><a href="services/creation-site-web-occitanie.html">Occitanie</a></li>
-          </ul>
-          <h4 style="margin-top:1.25rem;">Automatisation</h4>
-          <ul role="list">
-            <li><a href="services/automatisation-n8n-castres.html">Automatisation n8n, Castres</a></li>
           </ul>
         </div>
 
@@ -917,6 +1102,7 @@
             <li><a href="portfolio.html">Portfolio</a></li>
             <li><a href="produits.html">Produits</a></li>
             <li><a href="contact.html">Contact</a></li>
+            <li><a href="agences.html">Agences</a></li>
             <li><a href="mentions-legales.html">Mentions légales</a></li>
             <li><a href="cgv.html">CGV</a></li>
           </ul>
@@ -927,7 +1113,7 @@
           <ul role="list">
             <li><a href="mailto:contact@alcalspark.com">contact@alcalspark.com</a></li>
             <li><a href="tel:0663054481">06 63 05 44 81</a></li>
-            <li class="footer-callback" style="color:rgba(250,248,245,0.4);font-size:.85rem;">Je rappelle {{HORAIRES_RAPPEL}}. WhatsApp ou formulaire de préférence.</li>
+            <li class="footer-callback" style="color:rgba(250,248,245,0.4);font-size:.85rem;">Réponse sous 24h. WhatsApp ou formulaire de préférence.</li>
             <li class="footer-address">90 av. Georges Guynemer,<br>81200 Mazamet</li>
           </ul>
         </div>
@@ -953,8 +1139,8 @@
 
 <!-- Scripts -->
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
-<script src="js/spark-chat-core.js?v=2" defer></script>
-<script src="js/main.js?v=5" defer></script>
+<script src="js/spark-chat-core.js?v=3" defer></script>
+<script src="js/main.js?v=6" defer></script>
 
 <a href="https://wa.me/33663054481" class="whatsapp-btn" target="_blank" rel="noopener" aria-label="Contactez AlcalSpark sur WhatsApp" onclick="gtag('event', 'cta_whatsapp', {'event_category': 'CTA', 'event_label': 'Bouton flottant WhatsApp'})">
   <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>

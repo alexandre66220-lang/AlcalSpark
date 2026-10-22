@@ -31,7 +31,7 @@
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
 
   <link rel="stylesheet" href="../css/as-tokens.css?v=2" />
-  <link rel="stylesheet" href="../css/style.css?v=4" />
+  <link rel="stylesheet" href="../css/style.css?v=5" />
   <link rel="stylesheet" href="../css/portfolio.css" />
   <link rel="stylesheet" href="../css/seo-local.css?v=2" />
 
@@ -98,7 +98,7 @@
         "latitude": 43.4914,
         "longitude": 2.3769
       },
-        "priceRange": "€€€",
+        "priceRange": "{{PRIX_ESSENTIEL}} - {{PRIX_SUR_MESURE_DES}}+ EUR",
         "sameAs": ["https://www.instagram.com/alcalspark/"],
         "makesOffer": [
           {
@@ -205,6 +205,7 @@
   <ul class="nav-links" role="list">
     <li><a href="../index.html" class="nav-link">Accueil</a></li>
     <li><a href="../services.html" class="nav-link">Services</a></li>
+    <li><a href="../services/automatisation-n8n-castres.html" class="nav-link">Automatisation IA</a></li>
     <li><a href="../tarifs.html" class="nav-link">Tarifs</a></li>
     <li><a href="../portfolio.html" class="nav-link active">Portfolio</a></li>
     <li><a href="../about.html" class="nav-link">À propos</a></li>
@@ -222,6 +223,7 @@
 <div class="nav-mobile" aria-hidden="true">
   <a href="../index.html" class="nav-link">Accueil</a>
   <a href="../services.html" class="nav-link">Services</a>
+  <a href="../services/automatisation-n8n-castres.html" class="nav-link">Automatisation IA</a>
   <a href="../tarifs.html" class="nav-link">Tarifs</a>
   <a href="../portfolio.html" class="nav-link">Portfolio</a>
   <a href="../about.html" class="nav-link">À propos</a>
@@ -229,7 +231,7 @@
   <a href="../ressources.html" class="nav-link">Ressources</a>
   <a href="../produits.html" class="nav-link">Produits</a>
   <a href="../contact.html" class="nav-link">Contact</a>
-  <a href="../offre-site-artisan-btp.html" class="nav-mobile-cta" onclick="if (typeof gtag === 'function') gtag('event', 'cta_menu_mobile', {'event_category': 'CTA', 'event_label': 'Menu mobile - Offre artisan BTP'})">Démarrer un projet</a>
+  <a href="../contact.html" class="nav-mobile-cta" onclick="if (typeof gtag === 'function') gtag('event', 'cta_menu_mobile', {'event_category': 'CTA', 'event_label': 'Menu mobile - Contact'})">Démarrer un projet</a>
   <a href="../en/portfolio/kairox-studios.html" class="nav-lang" hreflang="en" lang="en" aria-label="Voir le site en anglais"><span>EN</span></a>
 </div>
 
@@ -362,6 +364,7 @@
         <li><a href="../services/design-ui-ux.html">Design UI/UX</a></li>
         <li><a href="../services/branding.html">Branding</a></li>
         <li><a href="../services/seo-marketing.html">SEO &amp; Marketing</a></li>
+        <li><a href="../services/automatisation-n8n-castres.html">Automatisation IA</a></li>
       </ul>
       <h4 style="margin-top:1.25rem;">Zones</h4>
       <ul role="list">
@@ -371,10 +374,6 @@
         <li><a href="../services/creation-site-web-toulouse.html">Toulouse</a></li>
         <li><a href="../services/creation-site-web-occitanie.html">Occitanie</a></li>
       </ul>
-      <h4 style="margin-top:1.25rem;">Automatisation</h4>
-      <ul role="list">
-        <li><a href="../services/automatisation-n8n-castres.html">Automatisation n8n, Castres</a></li>
-      </ul>
     </div>
     <div class="footer-col">
       <h4>Studio</h4>
@@ -383,6 +382,7 @@
         <li><a href="../portfolio.html">Portfolio</a></li>
         <li><a href="../produits.html">Produits</a></li>
         <li><a href="../contact.html">Contact</a></li>
+        <li><a href="../agences.html">Agences</a></li>
         <li><a href="../mentions-legales.html">Mentions légales</a></li>
         <li><a href="../cgv.html">CGV</a></li>
       </ul>
@@ -410,7 +410,7 @@
 </footer>
 
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
-<script src="../js/main.js?v=5" defer></script>
+<script src="../js/main.js?v=6" defer></script>
 <script src="../js/cursor.js" defer></script>
 
 <a href="https://wa.me/33663054481" class="whatsapp-btn" target="_blank" rel="noopener" aria-label="Contactez AlcalSpark sur WhatsApp">

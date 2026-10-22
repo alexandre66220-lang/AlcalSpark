@@ -4,14 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#0A0D0B" />
-  <meta name="description" content="Construction trades website at €{{PRIX_FIXE}} net<!--IF:PRIX_MENTION_EN-->, VAT not applicable<!--ENDIF:PRIX_MENTION_EN-->, delivered in 2 to 3 weeks. Other projects on quote. AlcalSpark, studio in Mazamet, France." />
+  <meta name="description" content="Websites from €{{PRIX_ESSENTIEL}} delivered in {{DELAI_PLAGE_EN}}, fixed price. Essential, Premium and Custom packs, AI automation, audit and maintenance." />
   <!-- Open Graph / Twitter Card -->
   <meta property="og:site_name" content="AlcalSpark" />
   <meta property="og:locale" content="en_US" />
 <meta property="og:type" content="website" />
   <meta property="og:url" content="https://alcalspark.com/en/tarifs" />
-  <meta property="og:title" content="Pricing, Strategy, websites & SaaS | AlcalSpark" />
-  <meta property="og:description" content="Construction trades website at €{{PRIX_FIXE}} net<!--IF:PRIX_MENTION_EN-->, VAT not applicable<!--ENDIF:PRIX_MENTION_EN-->, delivered in 2 to 3 weeks. Other projects on quote. AlcalSpark, studio in Mazamet, France." />
+  <meta property="og:title" content="Pricing, websites from €{{PRIX_ESSENTIEL}} in {{DELAI_PLAGE_EN}}, fixed price | AlcalSpark" />
+  <meta property="og:description" content="Websites from €{{PRIX_ESSENTIEL}} delivered in {{DELAI_PLAGE_EN}}, fixed price. Essential, Premium and Custom packs, AI automation, audit and maintenance." />
   <meta property="og:image" content="https://alcalspark.com/assets/og-cover.jpg" />
 <meta property="og:image:alt" content="AlcalSpark, strategic studio based in Mazamet, France" />
   <meta property="og:image:width" content="1200" />
@@ -25,14 +25,15 @@
   <meta name="geo.placename" content="Mazamet, Tarn, Occitanie" />
   <meta name="geo.position" content="43.4914;2.3769" />
   <meta name="ICBM" content="43.4914, 2.3769" />
-  <title>Pricing, Strategy, websites & SaaS | AlcalSpark</title>
+  <title>Pricing, websites from €{{PRIX_ESSENTIEL}} in {{DELAI_PLAGE_EN}}, fixed price | AlcalSpark</title>
   <link rel="icon" type="image/png" sizes="96x96" href="../favicon.png" />
   <link rel="icon" type="image/png" sizes="48x48" href="../favicon-48.png" />
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="../css/as-tokens.css?v=2" />
-<link rel="stylesheet" href="../css/style.css?v=4" />
+<link rel="stylesheet" href="../css/style.css?v=5" />
   <link rel="stylesheet" href="../css/services.css?v=4" />
   <link rel="stylesheet" href="../css/tarifs.css?v=5" />
+  <link rel="stylesheet" href="../css/offres.css?v=2" />
   <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
@@ -101,58 +102,134 @@
       { "@type": "City", "name": "Toulouse" },
       { "@type": "AdministrativeArea", "name": "Occitanie" }
     ],
-    "priceRange": "€€€",
+    "priceRange": "{{PRIX_ESSENTIEL}} - {{PRIX_SUR_MESURE_DES}}+ EUR",
     "sameAs": ["https://www.instagram.com/alcalspark/"],
     "makesOffer": [
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Strategy & consulting",
-          "description": "Strategic digital support: diagnosis, prioritization and a tailored roadmap."
+        {
+          "@type": "Offer",
+          "name": "Essential showcase website",
+          "price": "{{PRIX_ESSENTIEL}}",
+          "priceCurrency": "EUR",
+          "deliveryLeadTime": {
+            "@type": "QuantitativeValue",
+            "value": {{DELAI_ESSENTIEL_JOURS}},
+            "unitCode": "DAY"
+          },
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Essential showcase website",
+            "description": "1 responsive page, contact form, basic SEO, go-live, 1 round of revisions, in French."
+          }
+        },
+        {
+          "@type": "Offer",
+          "name": "Premium showcase website",
+          "price": "{{PRIX_PREMIUM}}",
+          "priceCurrency": "EUR",
+          "deliveryLeadTime": {
+            "@type": "QuantitativeValue",
+            "value": {{DELAI_PREMIUM_JOURS}},
+            "unitCode": "DAY"
+          },
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Premium showcase website",
+            "description": "5 pages, technical SEO, Analytics and Search Console set up, FR/EN, 2 rounds of revisions."
+          }
+        },
+        {
+          "@type": "Offer",
+          "name": "Custom website",
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "minPrice": "{{PRIX_SUR_MESURE_DES}}",
+            "priceCurrency": "EUR"
+          },
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Custom website",
+            "description": "Everything in Premium plus advanced animations and integrations, fixed quote after the brief."
+          }
+        },
+        {
+          "@type": "Offer",
+          "name": "AI automation: lead capture",
+          "price": "{{PRIX_AUTOMATISATION_LEADS}}",
+          "priceCurrency": "EUR",
+          "deliveryLeadTime": {
+            "@type": "QuantitativeValue",
+            "value": {{DELAI_AUTOMATISATION_JOURS}},
+            "unitCode": "DAY"
+          },
+          "itemOffered": {
+            "@type": "Service",
+            "name": "n8n lead capture workflow",
+            "description": "Form, confirmation email, notification and spreadsheet logging. Option added to a project."
+          }
+        },
+        {
+          "@type": "Offer",
+          "name": "AI automation: full workflow",
+          "price": "{{PRIX_AUTOMATISATION_COMPLET}}",
+          "priceCurrency": "EUR",
+          "deliveryLeadTime": {
+            "@type": "QuantitativeValue",
+            "value": {{DELAI_AUTOMATISATION_JOURS}},
+            "unitCode": "DAY"
+          },
+          "itemOffered": {
+            "@type": "Service",
+            "name": "n8n full workflow",
+            "description": "Follow-ups, quotes and notifications. Option added to a project."
+          }
+        },
+        {
+          "@type": "Offer",
+          "name": "Audit and action plan",
+          "price": "{{PRIX_AUDIT}}",
+          "priceCurrency": "EUR",
+          "deliveryLeadTime": {
+            "@type": "QuantitativeValue",
+            "value": {{DELAI_AUDIT_HEURES}},
+            "unitCode": "HUR"
+          },
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Site, SEO and conversion audit",
+            "description": "Audit and prioritized action plan, deductible from the project."
+          }
+        },
+        {
+          "@type": "Offer",
+          "name": "Maintenance",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "price": "{{PRIX_MAINTENANCE_STANDARD}}",
+            "priceCurrency": "EUR",
+            "unitText": "MONTH"
+          },
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Website maintenance",
+            "description": "Updates, fixes, small content changes and uptime monitoring."
+          }
+        },
+        {
+          "@type": "Offer",
+          "name": "White-label integration for agencies",
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "minPrice": "{{PRIX_AGENCE_MIN}}",
+            "maxPrice": "{{PRIX_AGENCE_MAX}}",
+            "priceCurrency": "EUR"
+          },
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Figma to code integration",
+            "description": "Clean, responsive, fast HTML/CSS/JS from your mockups, per integration depending on page count."
+          }
         }
-      },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Website design",
-          "description": "Custom showcase sites, e-commerce and web applications, optimized for performance and user experience."
-        }
-      },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Visual identity",
-          "description": "Creation and consistency of brand identity: logo, brand guidelines and applications."
-        }
-      },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Performance & conversion",
-          "description": "SEO, tracking, data analysis and conversion funnel optimization."
-        }
-      },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Custom SaaS",
-          "description": "Custom SaaS applications and business tools, from idea to working product."
-        }
-      },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Automation",
-          "description": "Task and process automation to save time and make operations more reliable."
-        }
-      }
-    ]
+      ]
   }
   </script>
 <!-- Google tag (gtag.js) -->
@@ -190,6 +267,7 @@
     <ul class="nav-links" role="list">
       <li><a href="index.html"     class="nav-link">Home</a></li>
       <li><a href="services.html"  class="nav-link">Services</a></li>
+      <li><a href="services/automatisation-n8n-castres.html" class="nav-link">AI Automation</a></li>
       <li><a href="tarifs.html" class="nav-link active">Pricing</a></li>
       <li><a href="portfolio.html" class="nav-link">Portfolio</a></li>
       <li><a href="about.html"     class="nav-link">About</a></li>
@@ -207,6 +285,7 @@
   <div class="nav-mobile" aria-hidden="true">
     <a href="index.html"     class="nav-link">Home</a>
     <a href="services.html"  class="nav-link">Services</a>
+    <a href="services/automatisation-n8n-castres.html" class="nav-link">AI Automation</a>
     <a href="tarifs.html" class="nav-link">Pricing</a>
     <a href="portfolio.html" class="nav-link">Portfolio</a>
     <a href="about.html"     class="nav-link">About</a>
@@ -214,7 +293,7 @@
     <a href="../ressources.html" class="nav-link">Resources</a>
     <a href="produits.html" class="nav-link">Products</a>
   <a href="contact.html"   class="nav-link">Contact</a>
-    <a href="offre-site-artisan-btp.html" class="nav-mobile-cta" onclick="if (typeof gtag === 'function') gtag('event', 'cta_menu_mobile', {'event_category': 'CTA', 'event_label': 'Menu mobile - Offre artisan BTP'})">Start a project</a>
+    <a href="contact.html" class="nav-mobile-cta" onclick="if (typeof gtag === 'function') gtag('event', 'cta_menu_mobile', {'event_category': 'CTA', 'event_label': 'Menu mobile - Contact'})">Start a project</a>
     <a href="../tarifs.html" class="nav-lang" hreflang="fr" lang="fr" aria-label="View the site in French"><span>FR</span></a>
   </div>
 
@@ -224,9 +303,9 @@
       <div class="ph-bg" aria-hidden="true"></div>
       <div class="container ph-content">
         <div class="eyebrow reveal">Our pricing</div>
-        <h1 id="ph-title" class="reveal delay-1">Pricing that<br /><em class="text-gradient">matches our method</em></h1>
+        <h1 id="ph-title" class="reveal delay-1">Fixed prices,<br /><em class="text-gradient">given before we start</em></h1>
         <p class="ph-desc reveal delay-2">
-          A fixed-price offer for construction tradespeople. For everything else, analysis comes before delivery, and the pricing below reflects that order.
+          Three packs, AI automation options and simple maintenance. Source code delivered, no subscription imposed.
         </p>
         <div class="ph-breadcrumb reveal delay-3">
           <a href="index.html">Home</a>
@@ -236,166 +315,140 @@
       </div>
     </section>
 
-    <!-- ── 0. FIXED-PRICE OFFER ────────────────────────────────── -->
-    <section class="section tarifs-featured-section" style="background:#0D1210;" aria-labelledby="tarifs-fixe-title">
+    <!-- ── PACKS ───────────────────────────────────────────── -->
+    <section class="offers-section" id="packs" aria-labelledby="packs-title">
       <div class="container">
-        <div class="section-header text-center">
-          <div class="eyebrow reveal">Fixed-price offer</div>
-          <h2 id="tarifs-fixe-title" class="reveal delay-1">Construction trades:<br /><em class="text-gradient">a website at a fixed price</em></h2>
-          <div class="tarifs-section-intro reveal delay-2">
-            <p>No quote, no call. You order online and you know what you pay before you start.</p>
-          </div>
-          <div class="gold-line-center reveal delay-2"></div>
+        <div class="offers-head">
+          <div class="eyebrow reveal">Websites</div>
+          <h2 id="packs-title" class="reveal delay-1">Choose your pack</h2>
+          <p class="reveal delay-2">From a showcase site to a custom project, price and timeline are given before we start.</p>
         </div>
+    <div class="offers-grid">
+      <article class="offer-card card reveal delay-1">
+        <div class="offer-badge">Essential</div>
+        <div class="offer-price"><span class="offer-currency">€</span><span class="offer-amount">{{PRIX_ESSENTIEL}}</span><span class="offer-currency"></span></div>
+        <p class="offer-delay">Delivered in {{DELAI_ESSENTIEL_EN}}</p>
+        
+        <ul class="offer-features">
+          <li>1 responsive page with a contact form</li>
+          <li>Basic SEO and go-live</li>
+          <li>1 round of revisions, in French</li>
+        </ul>
+        <a href="contact.html" class="btn btn-primary" onclick="gtag('event', 'cta_offre_essentiel', {'event_category': 'CTA', 'event_label': 'cta_offre_essentiel'})">Choose Essential</a>
+      </article>
+      <article class="offer-card glass-strong reveal delay-2">
+        <div class="offer-badge">Premium</div>
+        <div class="offer-price"><span class="offer-currency">€</span><span class="offer-amount">{{PRIX_PREMIUM_AFFICHE_EN}}</span><span class="offer-currency"></span></div>
+        <p class="offer-delay">Delivered in {{DELAI_PREMIUM_EN}}</p>
+        
+        <ul class="offer-features">
+          <li>5 responsive pages, contact form with a confirmation email</li>
+          <li>Technical SEO: tags, structured data, sitemap</li>
+          <li>Analytics and Search Console set up</li>
+          <li>FR/EN site, 2 rounds of revisions</li>
+        </ul>
+        <a href="contact.html" class="btn btn-primary" onclick="gtag('event', 'cta_offre_premium', {'event_category': 'CTA', 'event_label': 'cta_offre_premium'})">Choose Premium</a>
+      </article>
+      <article class="offer-card card reveal delay-3">
+        <div class="offer-badge">Custom</div>
+        <div class="offer-price"><span class="offer-from">from</span><span class="offer-currency">€</span><span class="offer-amount">{{PRIX_SUR_MESURE_DES_AFFICHE_EN}}</span><span class="offer-currency"></span></div>
+        <p class="offer-delay">Timeline given in the quote</p>
+        
+        <ul class="offer-features">
+          <li>Everything in Premium, plus advanced animations (Three.js, GSAP)</li>
+          <li>Extra pages and integrations</li>
+          <li>Fixed quote after the brief</li>
+        </ul>
+        <a href="contact.html" class="btn btn-primary" onclick="gtag('event', 'cta_offre_surmesure', {'event_category': 'CTA', 'event_label': 'cta_offre_surmesure'})">Request a quote</a>
+      </article>
+    </div>
+        <p class="offer-note reveal">Need a different scope? Custom work is priced with a fixed quote, after a brief.<!--IF:PRIX_MENTION_EN--> {{PRIX_MENTION_EN}}.<!--ENDIF:PRIX_MENTION_EN--></p>
+      </div>
+    </section>
 
-        <div class="pricing-single pricing-featured mt-lg">
-          <div class="pricing-card card pricing-card-featured reveal delay-1" id="offre-artisan-btp">
-            <div class="pc-badge">Construction trades offer</div>
-            <!--IF:OFFRE_LANCEMENT_ACTIVE-->
-            <div class="pc-launch">{{OFFRE_LANCEMENT_TEXTE_EN}}</div>
-            <!--ENDIF:OFFRE_LANCEMENT_ACTIVE-->
-            <div class="gold-line"></div>
-            <div class="pc-price">
-              <span class="pc-num"><span class="pc-currency">€</span>{{PRIX_FIXE}}</span>
-            </div>
-            <p class="pc-price-note">fixed price, delivered in 2 to 3 weeks</p>
-            <!--IF:PRIX_MENTION_EN-->
-            <p class="pc-mention">{{PRIX_MENTION_EN}}</p>
-            <!--ENDIF:PRIX_MENTION_EN-->
-            <ul class="pc-features">
-              <li>Showcase website built around your trade</li>
-              <li>Optimised Google Business Profile listing</li>
-              <li>Local SEO basics</li>
-              <li>100% online order, no call</li>
-              <li>Source code delivered, no multi-year commitment</li>
-              <li>Maintenance option at €{{PRIX_MAINTENANCE}} per month<!--IF:PRIX_MENTION_EN--> ({{PRIX_MENTION_EN}})<!--ENDIF:PRIX_MENTION_EN--></li>
-            </ul>
-            <a href="offre-site-artisan-btp.html" class="btn btn-card-cta" style="width:100%; justify-content:center;" onclick="gtag('event', 'cta_commander_site_artisan', {'event_category': 'CTA', 'event_label': 'Pricing - Construction trades offer'})">Order my website</a>
-            <a href="offre-site-artisan-btp.html#inclus" class="tarifs-featured-link">See the offer details</a>
-          </div>
+    <!-- ── OPTIONS AUTOMATISATION ──────────────────────────── -->
+    <section class="offers-section" id="automatisation" style="background:#0D1210;" aria-labelledby="auto-title">
+      <div class="container">
+        <div class="offers-head">
+          <div class="eyebrow reveal">AI automation</div>
+          <h2 id="auto-title" class="reveal delay-1">Add automation<br /><em>to your project</em></h2>
+          <p class="reveal delay-2">n8n options added to a website pack, delivered in {{DELAI_AUTOMATISATION_EN}}.</p>
+        </div>
+    <div class="offers-grid offers-grid--2">
+      <article class="offer-card card reveal delay-1">
+        <div class="offer-badge">Lead capture</div>
+        <div class="offer-price"><span class="offer-from">+</span><span class="offer-currency">€</span><span class="offer-amount">{{PRIX_AUTOMATISATION_LEADS}}</span><span class="offer-currency"></span></div>
+        <p class="offer-delay">Delivered in {{DELAI_AUTOMATISATION_EN}}</p>
+        
+        <ul class="offer-features">
+          <li>Form, then confirmation email</li>
+          <li>Notification to you</li>
+          <li>Leads logged in a spreadsheet</li>
+        </ul>
+        <a href="services/automatisation-n8n-castres.html" class="btn btn-primary" onclick="gtag('event', 'cta_auto_leads', {'event_category': 'CTA', 'event_label': 'cta_auto_leads'})">See AI automation</a>
+      </article>
+      <article class="offer-card card reveal delay-2">
+        <div class="offer-badge">Full workflow</div>
+        <div class="offer-price"><span class="offer-from">+</span><span class="offer-currency">€</span><span class="offer-amount">{{PRIX_AUTOMATISATION_COMPLET}}</span><span class="offer-currency"></span></div>
+        <p class="offer-delay">Delivered in {{DELAI_AUTOMATISATION_EN}}</p>
+        
+        <ul class="offer-features">
+          <li>Automatic follow-ups</li>
+          <li>Quotes and notifications</li>
+          <li>Built with n8n, connected to your tools</li>
+        </ul>
+        <a href="services/automatisation-n8n-castres.html" class="btn btn-primary" onclick="gtag('event', 'cta_auto_complet', {'event_category': 'CTA', 'event_label': 'cta_auto_complet'})">See AI automation</a>
+      </article>
+    </div>
+      </div>
+    </section>
+
+    <!-- ── AUDIT ET MAINTENANCE ────────────────────────────── -->
+    <section class="offers-section" id="audit-maintenance" aria-labelledby="audit-title">
+      <div class="container">
+        <div class="offers-head">
+          <div class="eyebrow reveal">Before and after the project</div>
+          <h2 id="audit-title" class="reveal delay-1">Audit and maintenance</h2>
+        </div>
+        <div class="offers-grid offers-grid--2">
+      <article class="offer-card card reveal delay-1">
+        <div class="offer-badge">Audit + action plan</div>
+        <div class="offer-price"><span class="offer-currency">€</span><span class="offer-amount">{{PRIX_AUDIT}}</span><span class="offer-currency"></span></div>
+        <p class="offer-delay">Delivered in {{DELAI_AUDIT_EN}}</p>
+        
+        <ul class="offer-features">
+          <li>Audit of your site, its SEO and its conversion</li>
+          <li>Prioritized action plan</li>
+          <li>Deductible from your project if you entrust it to us</li>
+        </ul>
+        <a href="contact.html" class="btn btn-primary" onclick="gtag('event', 'cta_offre_audit', {'event_category': 'CTA', 'event_label': 'cta_offre_audit'})">Request an audit</a>
+      </article>
+      <article class="offer-card card reveal delay-2">
+        <div class="offer-badge">Maintenance</div>
+        <div class="offer-price"><span class="offer-currency">€</span><span class="offer-amount">{{PRIX_MAINTENANCE_STANDARD}}</span><span class="offer-currency"></span><span class="offer-from">per month</span></div>
+        <p class="offer-delay">No minimum commitment</p>
+        
+        <ul class="offer-features">
+          <li>Updates and fixes</li>
+          <li>Small content changes (2 per month, quoted beyond that)</li>
+          <li>Support by message</li>
+          <li>Site uptime monitoring</li>
+        </ul>
+        <a href="contact.html" class="btn btn-primary" onclick="gtag('event', 'cta_offre_maintenance', {'event_category': 'CTA', 'event_label': 'cta_offre_maintenance'})">Add maintenance</a>
+      </article>
         </div>
       </div>
     </section>
 
-    <!-- ── 1. STRATEGIC ANALYSIS ─────────────────────────────── -->
-    <section class="section pricing-section" aria-labelledby="tarifs-analyse-title">
+    <!-- ── AGENCES ET COLLABORATIONS ───────────────────────── -->
+    <section class="offers-section" id="agences" style="background:#0D1210;" aria-labelledby="agences-title">
       <div class="container">
-        <div class="section-header text-center">
-          <div class="eyebrow reveal">Strategic analysis</div>
-          <h2 id="tarifs-analyse-title" class="reveal delay-1">Understand before building</h2>
-          <div class="tarifs-section-intro reveal delay-2">
-            <p>Every project starts with an analysis. It's the only way to propose the right solution, not the most impressive one.</p>
+        <div class="offer-aside card reveal">
+          <div>
+            <h3 id="agences-title">Agencies and collaborations</h3>
+            <p>White-label integration of your Figma mockups into clean, responsive, fast code: from €{{PRIX_AGENCE_MIN}} to €{{PRIX_AGENCE_MAX}} per integration, depending on page count.</p>
           </div>
-          <div class="gold-line-center reveal delay-2"></div>
-        </div>
-
-        <div class="pricing-grid pricing-grid-2 mt-lg">
-
-          <div class="pricing-card card reveal delay-1" id="consultation">
-            <div class="pc-badge">Consultation</div>
-            <div class="gold-line"></div>
-            <div class="pc-price">
-              <span class="pc-num">90<span class="pc-currency">€</span></span><span class="abo-per">/hour</span>
-            </div>
-            <!--IF:PRIX_MENTION_EN-->
-            <p class="pc-mention">{{PRIX_MENTION_EN}}</p>
-            <!--ENDIF:PRIX_MENTION_EN-->
-            <ul class="pc-features">
-              <li>1-hour session by video call or phone, on a booked slot in the evening or at the weekend</li>
-              <li>Diagnostic of your current situation</li>
-              <li>Identification of priority levers</li>
-              <li>Concrete action plan by the end of the session</li>
-              <li>Written summary included</li>
-            </ul>
-            <a href="contact.html" class="btn btn-card-cta" style="width:100%; justify-content:center;">Book a session</a>
-          </div>
-
-          <div class="pricing-card card reveal delay-2">
-            <div class="pc-badge">Ongoing support</div>
-            <div class="gold-line"></div>
-            <div class="pc-price">
-              <span class="pc-from">from</span>
-              <span class="pc-num">350<span class="pc-currency">€</span></span><span class="abo-per">/month</span>
-            </div>
-            <!--IF:PRIX_MENTION_EN-->
-            <p class="pc-mention">{{PRIX_MENTION_EN}}</p>
-            <!--ENDIF:PRIX_MENTION_EN-->
-            <ul class="pc-features">
-              <li>2 strategic check-ins per month (video call or phone)</li>
-              <li>Availability by message between sessions</li>
-              <li>Ongoing support as your business structures itself</li>
-              <li>Continuous adjustment based on your priorities</li>
-            </ul>
-            <a href="contact.html" class="btn btn-card-cta" style="width:100%; justify-content:center;">Start ongoing support</a>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ── 2. CUSTOM DELIVERY ──────────────────────────── -->
-    <section class="section" style="background:#0D1210;" aria-labelledby="tarifs-realisation-title">
-      <div class="container">
-        <div class="section-header text-center">
-          <div class="eyebrow reveal">Delivery</div>
-          <h2 id="tarifs-realisation-title" class="reveal delay-1">The solution defined<br /><em class="text-gradient">after the analysis</em></h2>
-          <div class="tarifs-section-intro reveal delay-2">
-            <p>Once the levers are identified, AlcalSpark designs and builds the right solution. A conversion-focused website, SaaS platform, automation, internal tool or redesign: the format is a consequence of the analysis, never a starting point.</p>
-          </div>
-          <div class="gold-line-center reveal delay-2"></div>
-        </div>
-
-        <div class="pricing-single mt-lg">
-          <div class="pricing-card card reveal delay-1">
-            <div class="pc-badge">Custom</div>
-            <div class="gold-line"></div>
-            <div class="pc-price">
-              <span class="pc-from">from</span>
-              <span class="pc-num pc-quote">On quote</span>
-            </div>
-            <p class="pc-price-note">depending on the nature and scope of the project identified during the analysis, written quote within 24h</p>
-            <ul class="pc-features">
-              <li>Full design and development</li>
-              <li>Custom UI/UX design</li>
-              <li>Mobile optimization and performance</li>
-              <li>Technical SEO built in from the start</li>
-              <li>Delivered in 2 to 3 weeks</li>
-              <li>Source code delivered, no imposed subscription</li>
-            </ul>
-            <a href="#consultation" class="btn btn-card-cta" style="width:100%; justify-content:center;">Start with an analysis</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── 3. ONGOING SUPPORT ──────────────────────────── -->
-    <section class="section" aria-labelledby="tarifs-abo-title">
-      <div class="container">
-        <div class="section-header text-center">
-          <div class="eyebrow reveal">Monthly support</div>
-          <h2 id="tarifs-abo-title" class="reveal delay-1">A long-term<br /><em class="text-gradient">partner</em></h2>
-          <div class="gold-line-center reveal delay-2"></div>
-        </div>
-
-        <div class="pricing-single mt-lg">
-          <div class="abo-card card reveal delay-1">
-            <div class="pc-badge">Maintenance & Support</div>
-            <div class="gold-line"></div>
-            <div class="pc-price">
-              <span class="pc-num">49<span class="pc-currency">€</span></span><span class="abo-per">/month</span>
-            </div>
-            <!--IF:PRIX_MENTION_EN-->
-            <p class="pc-mention">{{PRIX_MENTION_EN}}</p>
-            <!--ENDIF:PRIX_MENTION_EN-->
-            <ul class="pc-features">
-              <li>Updates and fixes</li>
-              <li>Small content changes (2 per month, quote beyond that)</li>
-              <li>Priority support by message</li>
-              <li>Site uptime monitoring</li>
-              <li>Billed monthly, no commitment period: renews month by month, cancellable in writing at any time, effective at the end of the current month</li>
-            </ul>
-            <a href="contact.html" class="btn btn-card-cta" style="width:100%; justify-content:center;">Learn more</a>
-          </div>
+          <a href="agencies.html" class="btn btn-outline">See the agency offer</a>
         </div>
       </div>
     </section>
@@ -431,12 +484,12 @@
       </div>
     </section>
 
-    <!-- ── 5. TRANSPARENCY NOTE ─────────────────────────────── -->
+    <!-- ── NOTE DE TRANSPARENCE ────────────────────────────── -->
     <section class="section tarifs-transparency-section" aria-label="Transparency note">
       <div class="container">
         <div class="tarifs-transparency-inner reveal">
-          <p>The construction trades website offer has a fixed price: no quote, no call required. For a project outside this offer, every case is different: describe your need in writing and you get a reply within 24h. Consultation, ongoing support and training remain available on request.</p>
-          <a href="contact.html" class="btn btn-outline">Describe my need</a>
+          <p>Prices are fixed and given before we start.<!--IF:PRIX_MENTION_EN--> {{PRIX_MENTION_EN}}.<!--ENDIF:PRIX_MENTION_EN--> Describe your need in writing: you get a reply within 24h. {{CAPACITE_PROJETS_MOIS}} projects per month, limited spots.</p>
+          <a href="contact.html" class="btn btn-outline">Get a reply within 24h</a>
         </div>
       </div>
     </section>
@@ -469,6 +522,7 @@
           <li><a href="services/design-ui-ux.html">UI/UX Design</a></li>
           <li><a href="services/branding.html">Branding</a></li>
           <li><a href="services/seo-marketing.html">SEO &amp; Marketing</a></li>
+          <li><a href="services/automatisation-n8n-castres.html">AI Automation</a></li>
         </ul>
         <h4 style="margin-top:1.25rem;">Areas</h4>
         <ul role="list">
@@ -478,10 +532,6 @@
           <li><a href="../services/creation-site-web-toulouse.html">Toulouse</a></li>
           <li><a href="../services/creation-site-web-occitanie.html">Occitanie</a></li>
         </ul>
-        <h4 style="margin-top:1.25rem;">Automation</h4>
-        <ul role="list">
-          <li><a href="../services/automatisation-n8n-castres.html">n8n Automation, Castres</a></li>
-        </ul>
       </div>
       <div class="footer-col">
         <h4>Studio</h4>
@@ -490,6 +540,7 @@
           <li><a href="portfolio.html">Portfolio</a></li>
           <li><a href="produits.html">Products</a></li>
           <li><a href="contact.html">Contact</a></li>
+          <li><a href="agencies.html">Agencies</a></li>
           <li><a href="../mentions-legales.html">Legal notice</a></li>
           <li><a href="../cgv.html">CGV (FR)</a></li>
         </ul>
@@ -499,7 +550,7 @@
         <ul role="list">
           <li><a href="mailto:contact@alcalspark.com">contact@alcalspark.com</a></li>
           <li><a href="tel:0663054481">+33 6 63 05 44 81</a></li>
-          <li class="footer-callback" style="color:rgba(250,248,245,0.4);font-size:.85rem;">I call back {{HORAIRES_RAPPEL_EN}}. WhatsApp or the contact form is best.</li>
+          <li class="footer-callback" style="color:rgba(250,248,245,0.4);font-size:.85rem;">Reply within 24h. WhatsApp or the contact form is best.</li>
         </ul>
       </div>
     </div>
@@ -517,7 +568,7 @@
   </footer>
 
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
-  <script src="../js/main.js?v=5" defer></script>
+  <script src="../js/main.js?v=6" defer></script>
 <a href="https://wa.me/33663054481" class="whatsapp-btn" target="_blank" rel="noopener" aria-label="Contact AlcalSpark on WhatsApp">
   <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>

@@ -13,6 +13,9 @@
  *     pages noindex absentes.
  *  7. CGV : page /cgv en noindex tant qu'elle porte le marqueur "A COMPLETER",
  *     case CGV obligatoire dans les deux questionnaires de brief.
+ *  9. Refonte des offres : termes retires du site (WooCommerce, Shopify, Zapier, creneau
+ *     de rappel, "tarifs adaptes", "un projet a la fois"), navigation et pied de page
+ *     (Automatisation IA, Agences), pages agences FR/EN, hreflang, ligne de sous-traitance.
  *
  * Usage : node scripts/lint.mjs   (code de sortie 1 si une verification echoue)
  */
@@ -51,6 +54,15 @@ if (truthy(config.LIEN_PAIEMENT_ACOMPTE) && !/^https:\/\/\S+$/.test(String(confi
 }
 if (!(Number(config.PRIX_FIXE) > 0)) fail("config", "PRIX_FIXE doit etre un nombre positif.");
 if (!(Number(config.PRIX_MAINTENANCE) > 0)) fail("config", "PRIX_MAINTENANCE doit etre un nombre positif.");
+for (const k of ["PRIX_ESSENTIEL", "PRIX_PREMIUM", "PRIX_SUR_MESURE_DES", "PRIX_AUTOMATISATION_LEADS", "PRIX_AUTOMATISATION_COMPLET", "PRIX_AUDIT", "PRIX_MAINTENANCE_STANDARD", "PRIX_AGENCE_MIN", "PRIX_AGENCE_MAX", "CAPACITE_PROJETS_MOIS", "DELAI_ESSENTIEL_JOURS", "DELAI_PREMIUM_JOURS", "DELAI_AUTOMATISATION_JOURS", "DELAI_AUDIT_HEURES"]) {
+  if (!(Number(config[k]) > 0)) fail("config", `${k} doit etre un nombre positif.`);
+}
+if (Number(config.PRIX_AGENCE_MIN) > Number(config.PRIX_AGENCE_MAX)) fail("config", "PRIX_AGENCE_MIN doit etre inferieur ou egal a PRIX_AGENCE_MAX.");
+if (!(Number(config.PRIX_ESSENTIEL) < Number(config.PRIX_PREMIUM) && Number(config.PRIX_PREMIUM) < Number(config.PRIX_SUR_MESURE_DES))) fail("config", "La grille doit etre croissante : Essentiel < Premium < Sur-mesure.");
+if (truthy(config.PAGESPEED_MOBILE) !== truthy(config.PAGESPEED_DESKTOP)) fail("config", "PAGESPEED_MOBILE et PAGESPEED_DESKTOP doivent etre renseignes ensemble (ou tous deux vides).");
+for (const k of ["PAGESPEED_MOBILE", "PAGESPEED_DESKTOP"]) {
+  if (truthy(config[k]) && !(Number(config[k]) >= 0 && Number(config[k]) <= 100)) fail("config", `${k} doit etre un score entre 0 et 100 (mesure reelle uniquement).`);
+}
 
 // Acompte / solde : montants derives du prix fixe (CGV, article 4).
 {
@@ -199,8 +211,7 @@ if (!existsSync(cgvFile)) {
   for (const [n, token] of hard) {
     if (new RegExp(`(?<![0-9{])${n}\\s*€`).test(article)) fail("cgv", `montant ${n} € ecrit en dur dans cgv.html, utiliser ${token}`);
   }
-  if (article.includes(String(config.HORAIRES_RAPPEL))) fail("cgv", "creneau de rappel ecrit en dur dans cgv.html, utiliser {{HORAIRES_RAPPEL}}");
-  for (const t of ["PRIX_FIXE", "PRIX_MAINTENANCE", "ACOMPTE_MONTANT", "ACOMPTE_POURCENT", "SOLDE_MONTANT", "SOLDE_POURCENT", "HORAIRES_RAPPEL", "PRIX_MENTION"]) {
+  for (const t of ["PRIX_FIXE", "PRIX_MAINTENANCE", "ACOMPTE_MONTANT", "ACOMPTE_POURCENT", "SOLDE_MONTANT", "SOLDE_POURCENT", "PRIX_MENTION"]) {
     if (!cgv.includes(`{{${t}}}`)) fail("cgv", `cgv.html n'utilise pas le jeton {{${t}}}`);
   }
 }
@@ -233,6 +244,119 @@ for (const [file, selectors] of [
       }
     }
   }
+}
+
+
+/* 9. Refonte des offres ---------------------------------------------- */
+const publicHtml = htmlFiles.filter((f) => !/portfolio\/|ressources\//.test(rel(f).replace(/\\/g, "/")));
+const visibleText = (f) => readFileSync(f, "utf-8").replace(/<script\b[\s\S]*?<\/script>/g, "").replace(/<style\b[\s\S]*?<\/style>/g, "").replace(/<!--[\s\S]*?-->/g, "");
+const BANNED = [
+  [/woocommerce|shopify|zapier|prestashop/i, "outil ou CMS retire de l'offre"],
+  [/\bMake\s*(?:·|\/|,|\.com)|\bMake\b\s+et\s+Zapier/i, "Make retire de l'offre (n8n uniquement)"],
+  [/18\s*h\s*30|21\s*h\b/, "creneau de rappel 18h30-21h"],
+  [/tarifs? adaptés? (?:au marché|aux)|agences? parisiennes?|adapté à tous les budgets|tarifs accessibles/i, "wording de prix retire"],
+  [/un (?:seul )?projet à la fois|one project at a time|one at a time/i, "'un projet a la fois' (remplace par la capacite mensuelle)"],
+  [/rencontre possible|le samedi|Saturday|en venant directement à notre studio|come to our studio/i, "rencontre physique"],
+  [/ces tarifs sont des repères/i, "'repères, pas des prix fixes'"],
+  [/90\s?€\s?\/\s?h|350\s?€\s?\/\s?mois/, "consultation ou accompagnement retire de la grille"],
+];
+for (const f of publicHtml) {
+  const txt = visibleText(f);
+  for (const [re, label] of BANNED) {
+    const m = txt.match(re);
+    if (m) fail("refonte", `${rel(f)}: ${label} ("${m[0]}")`);
+  }
+  // CMS / WordPress : uniquement dans la formule "sans WordPress".
+  for (const m of txt.matchAll(/\bCMS\b|WordPress/g)) {
+    const ctx = txt.slice(Math.max(0, m.index - 12), m.index + 12);
+    if (!/(sans|without|no) WordPress/i.test(ctx)) fail("refonte", `${rel(f)}: mention ${m[0]} a retirer (code sur mesure, sans WordPress)`);
+  }
+  // Delai ancien : 2 a 3 semaines uniquement sur l'offre BTP, les CGV et la carte BTP du contact.
+  if (/2 à 3 semaines|2 to 3 weeks/.test(txt) && !/offre-site-artisan-btp|cgv\.html|contact\.html|brief-site/.test(rel(f).replace(/\\/g, "/") + " ")) {
+    fail("refonte", `${rel(f)}: delai '2 a 3 semaines' reserve a l'offre BTP (utiliser DELAI_PLAGE)`);
+  }
+}
+
+// Navigation : lien Automatisation IA (menu desktop, mobile, pied de page) et lien Agences (pied de page).
+for (const f of publicHtml) {
+  const html = readFileSync(f, "utf-8");
+  const r = rel(f).replace(/\\/g, "/");
+  if (!/automatisation-n8n-castres\.html"[^>]*class="nav-link[^"]*">(?:Automatisation IA|AI Automation|AI automation)</.test(html)) fail("refonte", `${r}: lien 'Automatisation IA' absent du menu`);
+  if (!/(?:agences|agencies)\.html">(?:Agences|Agencies)</.test(html)) fail("refonte", `${r}: lien Agences absent du pied de page`);
+  if (/class="nav-mobile-cta"[^>]*>[^<]*<\/a>/.test(html)) {
+    const cta = html.match(/<a href="([^"]*)" class="nav-mobile-cta"/);
+    if (cta && !/(?:^|\/)contact\.html$/.test(cta[1])) fail("refonte", `${r}: le CTA du menu mobile doit pointer vers contact.html (trouve ${cta[1]})`);
+  }
+}
+
+// Pages agences FR/EN : existence, tokens, mailto avec objet prerempli, hreflang reciproque, sitemap.
+for (const [file, subject, other, url] of [
+  ["agences.html", "Collaboration%20%2F%20sous-traitance", "en/agencies", "https://alcalspark.com/agences"],
+  ["en/agencies.html", "Collaboration%20%2F%20subcontracting", "agences", "https://alcalspark.com/en/agencies"],
+]) {
+  const abs = join(ROOT, file);
+  if (!existsSync(abs)) { fail("refonte", `${file} est absent`); continue; }
+  const html = readFileSync(abs, "utf-8");
+  if (!html.includes(`mailto:contact@alcalspark.com?subject=${subject}`)) fail("refonte", `${file}: mailto avec objet prerempli absent`);
+  if (!html.includes(`hreflang="${file.startsWith("en/") ? "fr" : "en"}" href="https://alcalspark.com/${other}"`)) fail("refonte", `${file}: hreflang vers ${other} absent`);
+  if (!sitemap.includes(`<loc>${url}</loc>`)) fail("sitemap", `${url} absent de sitemap.xml`);
+  if (!new RegExp(`<loc>${url.replace(/[.*+?^${}()|[\]\\\/]/g, "\\$&")}</loc>\\s*<xhtml:link rel="alternate" hreflang="fr"`).test(sitemap)) fail("sitemap", `${url}: annotations hreflang absentes du sitemap`);
+}
+if (!existsSync(join(ROOT, "en/services/automatisation-n8n-castres.html"))) fail("refonte", "en/services/automatisation-n8n-castres.html est absent");
+
+// hreflang : une seule annotation par langue et par page.
+for (const f of htmlFiles) {
+  const langs = [...readFileSync(f, "utf-8").matchAll(/<link rel="alternate" hreflang="([^"]+)"/g)].map((m) => m[1]);
+  const dup = langs.find((l, i) => langs.indexOf(l) !== i);
+  if (dup) fail("refonte", `${rel(f)}: hreflang="${dup}" declare plusieurs fois`);
+}
+
+// Pages EN : les liens internes d'une page /en/ ne pointent pas vers la version francaise (sauf le selecteur de langue).
+for (const f of htmlFiles.filter((x) => rel(x).replace(/\\/g, "/").startsWith("en/"))) {
+  const html = readFileSync(f, "utf-8");
+  const dir = dirname(f);
+  for (const m of html.matchAll(/<a\s[^>]*href="([^"#?]+\.html)"[^>]*>/g)) {
+    if (/hreflang="fr"|lang="fr"/.test(m[0]) || /^(https?:|mailto:)/.test(m[1])) continue;
+    const target = resolve(dir, m[1]);
+    const r = relative(ROOT, target).replace(/\\/g, "/");
+    if (r.startsWith("en/") || r.startsWith("..")) continue;
+    if (!/automatisation-n8n-castres|agences/.test(r)) continue; // autres liens de services : voir le rapport de refonte
+    const enTwin = join(ROOT, "en", r === "index.html" ? "index.html" : r);
+    if (existsSync(enTwin)) fail("refonte", `${rel(f)}: lien vers la version francaise "${m[1]}" alors que ${relative(ROOT, enTwin)} existe`);
+  }
+}
+
+// Contact : ligne de sous-traitance visible, aucune heure de rappel.
+for (const [file, needle] of [
+  ["contact.html", "Sous-traitance, collaboration ou partenariat : écrivez-nous à"],
+  ["en/contact.html", "Subcontracting, collaboration or partnership inquiries:"],
+]) {
+  if (!readFileSync(join(ROOT, file), "utf-8").includes(needle)) fail("refonte", `${file}: ligne de sous-traitance absente`);
+}
+
+// Accueil et tarifs : sections et textes cles.
+for (const [file, needles] of [
+  ["index.html", ['id="offres"', 'id="automatisation-ia"', 'href="tarifs.html"', "Entreprise, startup ou agence", "offre-site-artisan-btp.html"]],
+  ["en/index.html", ['id="offres"', 'id="automatisation-ia"', 'href="tarifs.html"', "Business, startup or agency", "offre-site-artisan-btp.html"]],
+]) {
+  const html = readFileSync(join(ROOT, file), "utf-8");
+  for (const n of needles) if (!html.includes(n)) fail("refonte", `${file}: element attendu absent (${n})`);
+  const hero = (html.match(/<h1 class="hero-title"[\s\S]*?<\/h1>/) || [""])[0];
+  if (!hero.includes("{{DELAI_PREMIUM") || /2 à 3|2 to 3/.test(hero)) fail("refonte", `${file}: le H1 doit annoncer le delai Premium via {{DELAI_PREMIUM}}`);
+  if (/<h2[^>]*>[^<]*(?:Pourquoi AlcalSpark existe|Why AlcalSpark exists)/i.test(html)) fail("refonte", `${file}: bloc 'Pourquoi AlcalSpark existe' a retirer`);
+}
+// PageSpeed : uniquement des valeurs reelles de la config, jamais en dur.
+for (const f of publicHtml) {
+  const txt = visibleText(f);
+  if (/PageSpeed[^<]{0,40}\b(?:9\d|100)\b/i.test(txt) && !readFileSync(f, "utf-8").includes("IF:PAGESPEED_MOBILE")) {
+    fail("refonte", `${rel(f)}: score PageSpeed ecrit en dur (utiliser PAGESPEED_MOBILE / PAGESPEED_DESKTOP de site.config.json)`);
+  }
+}
+// Offres JSON-LD : la page d'accueil et /tarifs declarent leurs Offers.
+for (const f of ["index.html", "en/index.html", "tarifs.html", "en/tarifs.html"]) {
+  const html = readFileSync(join(ROOT, f), "utf-8");
+  if (!/"@type": "Offer"/.test(html) || !html.includes('"price": "{{PRIX_ESSENTIEL}}"')) fail("refonte", `${f}: makesOffer sans les Offers de la grille`);
+  if (/"priceRange": "€€€"/.test(html)) fail("refonte", `${f}: priceRange generique a remplacer`);
 }
 
 /* Bilan -------------------------------------------------------------- */

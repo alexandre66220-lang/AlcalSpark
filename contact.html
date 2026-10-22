@@ -4,14 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#0A0D0B" />
-  <meta name="description" content="Contactez AlcalSpark, studio stratégique à Mazamet (Tarn). Décrivez votre projet ou votre besoin d'analyse, réponse franche sous 24h, partout en Occitanie." />
+  <meta name="description" content="Contactez AlcalSpark, studio à Mazamet (Tarn). Décrivez votre projet de site ou d'automatisation : réponse sous 24h, prix fixe annoncé avant de démarrer, 100 % à distance." />
   <!-- Open Graph / Twitter Card -->
   <meta property="og:site_name" content="AlcalSpark" />
   <meta property="og:locale" content="fr_FR" />
 <meta property="og:type" content="website" />
   <meta property="og:url" content="https://alcalspark.com/contact" />
   <meta property="og:title" content="Contact - Devis stratégie, sites & SaaS | AlcalSpark" />
-  <meta property="og:description" content="Contactez AlcalSpark, studio stratégique à Mazamet (Tarn). Décrivez votre projet ou votre besoin d'analyse, réponse franche sous 24h, partout en Occitanie." />
+  <meta property="og:description" content="Contactez AlcalSpark, studio à Mazamet (Tarn). Décrivez votre projet de site ou d'automatisation : réponse sous 24h, prix fixe annoncé avant de démarrer, 100 % à distance." />
   <meta property="og:image" content="https://alcalspark.com/assets/og-cover.jpg" />
 <meta property="og:image:alt" content="AlcalSpark, studio stratégique à Mazamet dans le Tarn" />
   <meta property="og:image:width" content="1200" />
@@ -30,8 +30,9 @@
   <link rel="icon" type="image/png" sizes="48x48" href="favicon-48.png" />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="css/as-tokens.css?v=2" />
-<link rel="stylesheet" href="css/style.css?v=4" />
+<link rel="stylesheet" href="css/style.css?v=5" />
   <link rel="stylesheet" href="css/contact.css?v=2" />
+  <link rel="stylesheet" href="css/offres.css?v=2" />
   <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
@@ -100,7 +101,7 @@
       { "@type": "City", "name": "Toulouse" },
       { "@type": "AdministrativeArea", "name": "Occitanie" }
     ],
-    "priceRange": "€€€",
+    "priceRange": "{{PRIX_ESSENTIEL}} - {{PRIX_SUR_MESURE_DES}}+ EUR",
     "sameAs": ["https://www.instagram.com/alcalspark/"],
     "makesOffer": [
       {
@@ -173,7 +174,7 @@
         "name": "Comment se déroule la collaboration ?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Mon processus se déroule en 4 étapes : Découverte (brief, recherches), Stratégie (maquettes, validation), Création (développement, révisions), Lancement (tests, mise en ligne, formation). Vous êtes impliqué à chaque étape avec des points réguliers."
+          "text": "Vous décrivez votre besoin avec ce formulaire et recevez une réponse sous 24h, puis un devis à prix fixe avant de démarrer. Un seul expert réalise votre projet, du brief à la mise en ligne, avec une livraison en {{DELAI_PLAGE}} pour les packs Essentiel et Premium. Tout se passe à distance."
         }
       },
       {
@@ -181,7 +182,7 @@
         "name": "Proposez-vous de la maintenance après la livraison ?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Oui, je propose des contrats de maintenance mensuels qui incluent les mises à jour de sécurité, les sauvegardes, les petites modifications et un support prioritaire. Je reste disponible pour accompagner votre croissance sur le long terme."
+          "text": "Oui : la maintenance est à {{PRIX_MAINTENANCE_STANDARD}} € par mois (mises à jour et corrections, petites modifications de contenu, support par message, surveillance de la disponibilité du site), sans engagement de durée."
         }
       },
       {
@@ -189,7 +190,7 @@
         "name": "Est-ce que je pourrai modifier mon site moi-même ?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Absolument. J'intègre un CMS (WordPress, Strapi ou autre selon le projet) qui vous permet de modifier le contenu facilement sans compétences techniques. Une formation est incluse dans chaque projet Premium."
+          "text": "Votre site est réalisé en code sur mesure, sans WordPress, et le code source vous est livré. Pour modifier le contenu, vous pouvez nous le demander ou passer par la maintenance, qui inclut de petites modifications de contenu."
         }
       },
       {
@@ -238,6 +239,7 @@
     <ul class="nav-links" role="list">
       <li><a href="index.html"     class="nav-link">Accueil</a></li>
       <li><a href="services.html"  class="nav-link">Services</a></li>
+      <li><a href="services/automatisation-n8n-castres.html" class="nav-link">Automatisation IA</a></li>
       <li><a href="tarifs.html" class="nav-link">Tarifs</a></li>
       <li><a href="portfolio.html" class="nav-link">Portfolio</a></li>
       <li><a href="about.html"     class="nav-link">À propos</a></li>
@@ -255,6 +257,7 @@
   <div class="nav-mobile" aria-hidden="true">
     <a href="index.html"     class="nav-link">Accueil</a>
     <a href="services.html"  class="nav-link">Services</a>
+    <a href="services/automatisation-n8n-castres.html" class="nav-link">Automatisation IA</a>
     <a href="tarifs.html" class="nav-link">Tarifs</a>
     <a href="portfolio.html" class="nav-link">Portfolio</a>
     <a href="about.html"     class="nav-link">À propos</a>
@@ -262,7 +265,7 @@
     <a href="ressources.html" class="nav-link">Ressources</a>
     <a href="produits.html" class="nav-link">Produits</a>
   <a href="contact.html"   class="nav-link active">Contact</a>
-    <a href="offre-site-artisan-btp.html" class="nav-mobile-cta" onclick="if (typeof gtag === 'function') gtag('event', 'cta_menu_mobile', {'event_category': 'CTA', 'event_label': 'Menu mobile - Offre artisan BTP'})">Démarrer un projet</a>
+    <a href="contact.html" class="nav-mobile-cta" onclick="if (typeof gtag === 'function') gtag('event', 'cta_menu_mobile', {'event_category': 'CTA', 'event_label': 'Menu mobile - Contact'})">Démarrer un projet</a>
     <a href="en/contact.html" class="nav-lang" hreflang="en" lang="en" aria-label="Voir le site en anglais"><span>EN</span></a>
   </div>
 
@@ -361,7 +364,7 @@
                 </div>
                 <div>
                   <span class="cc-label">Disponibilité</span>
-                  <span class="cc-value">Je rappelle {{HORAIRES_RAPPEL}}. WhatsApp ou formulaire de préférence.</span>
+                  <span class="cc-value">Réponse sous 24h. WhatsApp ou formulaire de préférence.</span>
                 </div>
               </div>
             </div>
@@ -428,6 +431,7 @@
                     <option value="branding">Branding &amp; Identité</option>
                     <option value="saas">Application SaaS &amp; Web App</option>
                     <option value="seo">SEO &amp; Marketing</option>
+                    <option value="automatisation">Automatisation IA</option>
                     <option value="conseil">Conseil Stratégique</option>
                     <option value="autre">Autre / Je ne sais pas encore</option>
                   </select>
@@ -436,14 +440,13 @@
               </div>
 
               <div class="form-group form-select-group">
-                <label class="select-label" for="budget">Budget estimé</label>
+                <label class="select-label" for="budget">Offre envisagée</label>
                 <div class="select-wrap">
                   <select id="budget" name="budget">
-                    <option value="">Sélectionnez votre budget</option>
-                    <option value="small">Petit projet</option>
-                    <option value="starter">Projet standard</option>
-                    <option value="premium">Projet premium</option>
-                    <option value="enterprise">Projet sur mesure / long terme</option>
+                    <option value="">Sélectionnez une offre</option>
+                    <option value="essentiel">Pack Essentiel</option>
+                    <option value="premium">Pack Premium</option>
+                    <option value="surmesure">Sur-mesure</option>
                     <option value="unknown">Je ne sais pas encore</option>
                   </select>
                   <div class="select-arrow" aria-hidden="true">↓</div>
@@ -471,6 +474,7 @@
               </button>
 
             </form>
+            <p class="form-subtle">Sous-traitance, collaboration ou partenariat : écrivez-nous à <a href="mailto:contact@alcalspark.com?subject=Collaboration%20%2F%20sous-traitance">contact@alcalspark.com</a></p>
           </div>
         </div>
       </div>
@@ -492,7 +496,7 @@
               <span class="faq-icon" aria-hidden="true">+</span>
             </button>
             <div class="faq-answer" hidden>
-              <p>Mon processus se déroule en 4 étapes : Découverte (brief, recherches), Stratégie (maquettes, validation), Création (développement, révisions), Lancement (tests, mise en ligne, formation). Vous êtes impliqué à chaque étape avec des points réguliers.</p>
+              <p>Vous décrivez votre besoin avec ce formulaire et recevez une réponse sous 24h, puis un devis à prix fixe avant de démarrer. Un seul expert réalise votre projet, du brief à la mise en ligne, avec une livraison en {{DELAI_PLAGE}} pour les packs Essentiel et Premium. Tout se passe à distance.</p>
             </div>
           </div>
 
@@ -502,7 +506,7 @@
               <span class="faq-icon" aria-hidden="true">+</span>
             </button>
             <div class="faq-answer" hidden>
-              <p>Oui, je propose des contrats de maintenance mensuels qui incluent les mises à jour de sécurité, les sauvegardes, les petites modifications et un support prioritaire. Je reste disponible pour accompagner votre croissance sur le long terme.</p>
+              <p>Oui : la maintenance est à {{PRIX_MAINTENANCE_STANDARD}} € par mois (mises à jour et corrections, petites modifications de contenu, support par message, surveillance de la disponibilité du site), sans engagement de durée.</p>
             </div>
           </div>
 
@@ -512,7 +516,7 @@
               <span class="faq-icon" aria-hidden="true">+</span>
             </button>
             <div class="faq-answer" hidden>
-              <p>Absolument. J'intègre un CMS (WordPress, Strapi ou autre selon le projet) qui vous permet de modifier le contenu facilement sans compétences techniques. Une formation est incluse dans chaque projet Premium.</p>
+              <p>Votre site est réalisé en code sur mesure, sans WordPress, et le code source vous est livré. Pour modifier le contenu, vous pouvez nous le demander ou passer par la maintenance, qui inclut de petites modifications de contenu.</p>
             </div>
           </div>
 
@@ -557,6 +561,7 @@
           <li><a href="services/design-ui-ux.html">Design UI/UX</a></li>
           <li><a href="services/branding.html">Branding</a></li>
           <li><a href="services/seo-marketing.html">SEO &amp; Marketing</a></li>
+          <li><a href="services/automatisation-n8n-castres.html">Automatisation IA</a></li>
         </ul>
         <h4 style="margin-top:1.25rem;">Zones</h4>
         <ul role="list">
@@ -566,10 +571,6 @@
           <li><a href="services/creation-site-web-toulouse.html">Toulouse</a></li>
           <li><a href="services/creation-site-web-occitanie.html">Occitanie</a></li>
         </ul>
-        <h4 style="margin-top:1.25rem;">Automatisation</h4>
-        <ul role="list">
-          <li><a href="services/automatisation-n8n-castres.html">Automatisation n8n, Castres</a></li>
-        </ul>
       </div>
       <div class="footer-col">
         <h4>Studio</h4>
@@ -578,6 +579,7 @@
           <li><a href="portfolio.html">Portfolio</a></li>
           <li><a href="produits.html">Produits</a></li>
           <li><a href="contact.html">Contact</a></li>
+          <li><a href="agences.html">Agences</a></li>
           <li><a href="mentions-legales.html">Mentions légales</a></li>
           <li><a href="cgv.html">CGV</a></li>
         </ul>
@@ -587,7 +589,7 @@
         <ul role="list">
           <li><a href="mailto:contact@alcalspark.com">contact@alcalspark.com</a></li>
           <li><a href="tel:0663054481">06 63 05 44 81</a></li>
-          <li class="footer-callback" style="color:rgba(250,248,245,0.4);font-size:.85rem;">Je rappelle {{HORAIRES_RAPPEL}}. WhatsApp ou formulaire de préférence.</li>
+          <li class="footer-callback" style="color:rgba(250,248,245,0.4);font-size:.85rem;">Réponse sous 24h. WhatsApp ou formulaire de préférence.</li>
           <li style="color: rgba(250,248,245,0.4); font-size: 0.88rem;">90 av. Georges Guynemer, 81200 Mazamet</li>
         </ul>
       </div>
@@ -606,7 +608,7 @@
   </footer>
 
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
-  <script src="js/main.js?v=5" defer></script>
+  <script src="js/main.js?v=6" defer></script>
   <script>
     (function () {
       // ── FAQ accordion ────────────────────────────────────────

@@ -4,13 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#0A0D0B" />
-  <meta name="description" content="AlcalSpark, studio stratégique à Castres (Tarn 81) : analyse votre activité et crée le site adapté, vitrine, e-commerce ou SaaS. Devis gratuit." />
+  <meta name="description" content="Création de site web à Castres : sites premium dès {{PRIX_ESSENTIEL}} € livrés en {{DELAI_PLAGE}}, prix fixe. Un seul expert, 100 % à distance, SEO local." />
   <meta property="og:site_name" content="AlcalSpark" />
   <meta property="og:locale" content="fr_FR" />
 <meta property="og:type" content="website" />
   <meta property="og:url" content="https://alcalspark.com/services/creation-site-web-castres" />
   <meta property="og:title" content="Création de site web à Castres (81) | AlcalSpark" />
-  <meta property="og:description" content="AlcalSpark, studio stratégique à Castres (Tarn 81) : analyse votre activité et crée le site adapté, vitrine, e-commerce ou SaaS. Devis gratuit." />
+  <meta property="og:description" content="Création de site web à Castres : sites premium dès {{PRIX_ESSENTIEL}} € livrés en {{DELAI_PLAGE}}, prix fixe. Un seul expert, 100 % à distance, SEO local." />
   <meta property="og:image" content="https://alcalspark.com/assets/og-cover.jpg" />
 <meta property="og:image:alt" content="AlcalSpark, studio stratégique à Mazamet dans le Tarn" />
   <meta property="og:image:width" content="1200" />
@@ -28,7 +28,7 @@
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
 
   <link rel="stylesheet" href="../css/as-tokens.css?v=2" />
-<link rel="stylesheet" href="../css/style.css?v=4" />
+<link rel="stylesheet" href="../css/style.css?v=5" />
   <link rel="stylesheet" href="../css/seo-local.css?v=2" />
 
   <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
@@ -95,7 +95,7 @@
       "@type": "City",
       "name": "Castres"
     },
-    "priceRange": "€€€",
+    "priceRange": "{{PRIX_ESSENTIEL}} - {{PRIX_SUR_MESURE_DES}}+ EUR",
     "image": "https://alcalspark.com/assets/logo.png",
     "sameAs": ["https://www.instagram.com/alcalspark/"],
     "makesOffer": [
@@ -112,7 +112,7 @@
         "itemOffered": {
           "@type": "Service",
           "name": "Création de sites web",
-          "description": "Sites vitrine, e-commerce et applications web sur mesure, optimisés pour la performance et l'expérience utilisateur."
+          "description": "Sites vitrine, sites sur mesure et applications web, optimisés pour la performance et l'expérience utilisateur."
         }
       },
       {
@@ -185,7 +185,7 @@
       "name": "Combien coûte un site internet à Castres ?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "L'offre site artisan BTP est à prix fixe : {{PRIX_FIXE}}€<!--IF:PRIX_MENTION--> ({{PRIX_MENTION}})<!--ENDIF:PRIX_MENTION-->, livrée en 2 à 3 semaines, commandée en ligne via un questionnaire de brief, sans appel. Pour un projet hors de cette offre (e-commerce, application, développement sur mesure), décrivez votre besoin avec le formulaire de contact : vous recevez une réponse écrite sous 24h."
+        "text": "Trois packs à prix fixe : Essentiel {{PRIX_ESSENTIEL}} €, Premium {{PRIX_PREMIUM_AFFICHE}} € et Sur-mesure dès {{PRIX_SUR_MESURE_DES_AFFICHE}} €<!--IF:PRIX_MENTION--> ({{PRIX_MENTION}})<!--ENDIF:PRIX_MENTION-->. Code source livré, aucun abonnement imposé. Pour un artisan du BTP, le site est à {{PRIX_FIXE}} € prix fixe, commandé en ligne, sans appel."
       }
     },
     {
@@ -193,7 +193,7 @@
       "name": "Combien de temps faut-il pour créer un site web ?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Comptez généralement 2 à 3 semaines entre la validation du brief et la mise en ligne pour un site vitrine. Ce délai peut varier selon la complexité du projet (e-commerce, développement sur mesure) et la réactivité sur les validations."
+        "text": "Comptez {{DELAI_PLAGE}} pour un site Essentiel ({{DELAI_ESSENTIEL}}) ou Premium ({{DELAI_PREMIUM}}). Pour un projet Sur-mesure, le délai est annoncé au devis."
       }
     },
     {
@@ -201,7 +201,7 @@
       "name": "AlcalSpark intervient-il partout en Occitanie ?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Oui. En plus de Castres, AlcalSpark accompagne des clients à Mazamet, Albi, Toulouse et dans toute l'Occitanie. Je travaille principalement à distance, avec un échange en visio possible sur créneau réservé le soir ou le week-end, et une rencontre le samedi sur demande à Castres et Mazamet."
+        "text": "Oui. En plus de Castres, AlcalSpark accompagne des clients à Mazamet, Albi et Toulouse et dans toute l'Occitanie. Tout se fait 100 % à distance (visio, téléphone, WhatsApp, email), avec une réponse sous 24h."
       }
     },
     {
@@ -209,7 +209,7 @@
       "name": "Quels types de sites AlcalSpark crée-t-il ?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Des sites vitrines, des boutiques e-commerce et des applications web ou SaaS sur mesure, développés avec des technologies modernes (HTML/CSS/JS, React, Next.js) adaptées à votre activité."
+        "text": "Des sites vitrines (packs Essentiel et Premium), des projets sur-mesure avec animations avancées et intégrations, et des applications web ou SaaS, développés en code (HTML/CSS/JS, React, Next.js) adapté à votre activité."
       }
     },
     {
@@ -257,6 +257,7 @@
   <ul class="nav-links" role="list">
     <li><a href="../index.html" class="nav-link">Accueil</a></li>
     <li><a href="../services.html" class="nav-link active">Services</a></li>
+    <li><a href="../services/automatisation-n8n-castres.html" class="nav-link">Automatisation IA</a></li>
     <li><a href="../tarifs.html" class="nav-link">Tarifs</a></li>
     <li><a href="../portfolio.html" class="nav-link">Portfolio</a></li>
     <li><a href="../about.html" class="nav-link">À propos</a></li>
@@ -274,6 +275,7 @@
 <div class="nav-mobile" aria-hidden="true">
   <a href="../index.html" class="nav-link">Accueil</a>
   <a href="../services.html" class="nav-link">Services</a>
+  <a href="../services/automatisation-n8n-castres.html" class="nav-link">Automatisation IA</a>
   <a href="../tarifs.html" class="nav-link">Tarifs</a>
   <a href="../portfolio.html" class="nav-link">Portfolio</a>
   <a href="../about.html" class="nav-link">À propos</a>
@@ -281,7 +283,7 @@
   <a href="../ressources.html" class="nav-link">Ressources</a>
   <a href="../produits.html" class="nav-link">Produits</a>
   <a href="../contact.html" class="nav-link">Contact</a>
-  <a href="../offre-site-artisan-btp.html" class="nav-mobile-cta" onclick="if (typeof gtag === 'function') gtag('event', 'cta_menu_mobile', {'event_category': 'CTA', 'event_label': 'Menu mobile - Offre artisan BTP'})">Démarrer un projet</a>
+  <a href="../contact.html" class="nav-mobile-cta" onclick="if (typeof gtag === 'function') gtag('event', 'cta_menu_mobile', {'event_category': 'CTA', 'event_label': 'Menu mobile - Contact'})">Démarrer un projet</a>
   <a href="../en/index.html" class="nav-lang" hreflang="en" lang="en" aria-label="Voir le site en anglais"><span>EN</span></a>
 </div>
 
@@ -305,8 +307,8 @@
         et automatisation intégrée, pour que votre présence en ligne devienne votre meilleur commercial.
       </p>
       <div class="hero-ctas reveal delay-3">
-        <a href="../contact.html" class="btn btn-primary">Demander un devis gratuit</a>
-        <a href="../portfolio.html" class="btn btn-outline">Voir nos réalisations</a>
+        <a href="../contact.html" class="btn btn-primary">Recevoir une réponse sous 24h</a>
+        <a href="../tarifs.html" class="btn btn-outline">Voir les tarifs</a>
       </div>
     </div>
   </section>
@@ -325,7 +327,7 @@
             performant n'est plus une option, c'est un impératif concurrentiel.
           </p>
           <p>
-            Chez AlcalSpark, nous travaillons exclusivement sur un projet à la fois. Votre site reçoit
+            Chez AlcalSpark, nous limitons volontairement le nombre de projets à {{CAPACITE_PROJETS_MOIS}} par mois. Votre site reçoit
             toute notre attention, du premier brief jusqu'à la mise en ligne et au suivi SEO. Basés à
             Mazamet, à seulement 20 minutes de Castres, nous connaissons le marché local, ses acteurs
             et ses spécificités, un avantage concret pour votre stratégie digitale.
@@ -359,11 +361,11 @@
               </li>
               <li style="display:flex;gap:.75rem;align-items:flex-start;font-size:.9rem;color:var(--c72);">
                 <span style="color:var(--gold);flex-shrink:0;">✦</span>
-                Performance Lighthouse 90+ garantie
+                Performance et Core Web Vitals soignées
               </li>
               <li style="display:flex;gap:.75rem;align-items:flex-start;font-size:.9rem;color:var(--c72);">
                 <span style="color:var(--gold);flex-shrink:0;">✦</span>
-                Accompagnement post-lancement inclus
+                Code source livré, aucun abonnement imposé
               </li>
             </ul>
           </div>
@@ -384,9 +386,9 @@
           <span class="sc-tag">HTML · CSS · JS</span>
         </div>
         <div class="seo-service-card reveal delay-1">
-          <h3>E-commerce &amp; boutique en ligne</h3>
-          <p>Vous souhaitez vendre en ligne depuis Castres ? Nous développons votre boutique e-commerce sur mesure avec une expérience d'achat fluide, un tunnel de conversion optimisé et une gestion de stock simplifiée.</p>
-          <span class="sc-tag">Shopify · WooCommerce</span>
+          <h3>Sur-mesure &amp; applications web</h3>
+          <p>Un projet plus ambitieux ? Animations avancées (Three.js, GSAP), pages et intégrations supplémentaires, application web : le Sur-mesure se chiffre sur devis fixe, après un brief.</p>
+          <span class="sc-tag">Three.js · GSAP · API</span>
         </div>
         <div class="seo-service-card reveal delay-2">
           <h3>Design UI/UX &amp; identité visuelle</h3>
@@ -399,9 +401,9 @@
           <span class="sc-tag">SEO · Schema.org · Core Web Vitals</span>
         </div>
         <div class="seo-service-card reveal">
-          <h3>Automatisation &amp; outils métier</h3>
-          <p>Gagnez du temps en automatisant vos processus : prise de rendez-vous en ligne, envoi d'emails, synchronisation CRM, devis automatiques. Nous connectons votre site à vos outils pour que votre business tourne même quand vous dormez.</p>
-          <span class="sc-tag">Zapier · Make · API</span>
+          <h3>Automatisation IA &amp; n8n</h3>
+          <p>Gagnez du temps avec des workflows n8n : capture de leads (+{{PRIX_AUTOMATISATION_LEADS}} €) ou workflow complet avec relances, devis et notifications (+{{PRIX_AUTOMATISATION_COMPLET}} €), livrés en {{DELAI_AUTOMATISATION}}.</p>
+          <span class="sc-tag">n8n · API</span>
         </div>
         <div class="seo-service-card reveal delay-1">
           <h3>Maintenance &amp; évolution</h3>
@@ -425,13 +427,13 @@
         </div>
         <div class="advantage-card reveal delay-1">
           <span class="ac-icon">✦</span>
-          <h3>Un seul projet à la fois</h3>
-          <p>Contrairement aux grandes agences web qui gèrent des dizaines de clients simultanément, AlcalSpark travaille sur un projet à la fois. Votre site bénéficie d'une attention totale et d'une exécution sans compromis. Résultat : des délais tenus et une qualité irréprochable.</p>
+          <h3>{{CAPACITE_PROJETS_MOIS}} projets par mois</h3>
+          <p>Contrairement aux grandes agences web qui gèrent des dizaines de clients simultanément, AlcalSpark limite ses projets à {{CAPACITE_PROJETS_MOIS}} par mois, places limitées. Votre site bénéficie d'une attention totale et d'une exécution sans compromis. Résultat : des délais tenus et une qualité irréprochable.</p>
         </div>
         <div class="advantage-card reveal delay-2">
           <span class="ac-icon">◎</span>
-          <h3>Proximité géographique</h3>
-          <p>Mazamet est à 20 km de Castres. Je travaille principalement à distance (visio, téléphone, WhatsApp). Rencontre possible le samedi sur demande à Castres et Mazamet. Un interlocuteur local, disponible et réactif, ça change tout dans la conduite d'un projet web.</p>
+          <h3>100 % à distance, réponse sous 24h</h3>
+          <p>Mazamet est à 20 km de Castres, mais tout se fait à distance (visio, téléphone, WhatsApp, email). Un interlocuteur unique, disponible et réactif, avec une réponse sous 24h, ça change tout dans la conduite d'un projet web.</p>
         </div>
         <div class="advantage-card reveal">
           <span class="ac-icon">⬡</span>
@@ -441,11 +443,11 @@
         <div class="advantage-card reveal delay-1">
           <span class="ac-icon">◐</span>
           <h3>Stack technique moderne</h3>
-          <p>Nos sites sont développés avec les technologies les plus performantes du marché : HTML/CSS/JS vanilla, React, Next.js ou Astro selon vos besoins. Chaque site est optimisé pour atteindre un score Lighthouse supérieur à 90 sur les métriques Core Web Vitals de Google.</p>
+          <p>Nos sites sont développés avec les technologies les plus performantes du marché : HTML/CSS/JS vanilla, React, Next.js ou Astro selon vos besoins. Chaque site est optimisé pour les métriques Core Web Vitals de Google.</p>
         </div>
         <div class="advantage-card reveal delay-2">
           <span class="ac-icon">✧</span>
-          <h3>Devis transparent &amp; sans surprise</h3>
+          <h3>Prix fixe, sans surprise</h3>
           <p>Nous vous présentons un devis détaillé et fixe avant de démarrer. Pas de coûts cachés, pas de facturation à l'heure imprévue. Vous savez exactement ce que vous payez et ce que vous obtenez, avec des jalons clairs tout au long du projet.</p>
         </div>
       </div>
@@ -502,7 +504,7 @@
       <div class="reveal delay-3">
         <a href="../contact.html" class="btn btn-primary" style="margin-right:1rem;">Démarrer mon projet</a>
         <a href="tel:0663054481" class="btn btn-outline">06 63 05 44 81</a>
-        <p style="margin-top:1rem;font-size:.85rem;color:var(--c50,rgba(248,245,242,.5));">Je rappelle {{HORAIRES_RAPPEL}}. Pour une réponse écrite sous 24h, utilisez le formulaire.</p>
+        <p style="margin-top:1rem;font-size:.85rem;color:var(--c50,rgba(248,245,242,.5));">Réponse écrite sous 24h : utilisez le formulaire, ou écrivez-nous sur WhatsApp.</p>
       </div>
       <p class="reveal delay-3" style="margin-top:1.75rem;font-size:0.95rem;color:var(--c72);">Artisan du BTP à Castres ? <a href="../offre-site-artisan-btp.html" style="color:var(--off-white);border-bottom:1px solid var(--c15);">Découvrez le site à {{PRIX_FIXE}}€ prix fixe, commandé en ligne, sans appel</a>.</p>
     </div>
@@ -540,7 +542,7 @@
             <span class="faq-icon" aria-hidden="true">+</span>
           </button>
           <div class="faq-answer" hidden>
-            <p>L'offre <a href="../offre-site-artisan-btp.html">site artisan BTP</a> est à prix fixe : {{PRIX_FIXE}}€<!--IF:PRIX_MENTION--> ({{PRIX_MENTION}})<!--ENDIF:PRIX_MENTION-->, livrée en 2 à 3 semaines, commandée en ligne via un questionnaire de brief, sans appel. Pour un projet hors de cette offre (e-commerce, application, développement sur mesure), décrivez votre besoin avec le <a href="../contact.html">formulaire de contact</a> : vous recevez une réponse écrite sous 24h.</p>
+            <p>Trois packs à prix fixe (détail sur la page <a href="../tarifs.html">Tarifs</a>) : Essentiel {{PRIX_ESSENTIEL}} €, Premium {{PRIX_PREMIUM_AFFICHE}} € et Sur-mesure dès {{PRIX_SUR_MESURE_DES_AFFICHE}} €<!--IF:PRIX_MENTION--> ({{PRIX_MENTION}})<!--ENDIF:PRIX_MENTION-->. Code source livré, aucun abonnement imposé. Pour un artisan du BTP, le <a href="../offre-site-artisan-btp.html">site est à {{PRIX_FIXE}} € prix fixe</a>, commandé en ligne, sans appel.</p>
           </div>
         </div>
 
@@ -550,7 +552,7 @@
             <span class="faq-icon" aria-hidden="true">+</span>
           </button>
           <div class="faq-answer" hidden>
-            <p>Comptez généralement 2 à 3 semaines entre la validation du brief et la mise en ligne pour un site vitrine. Ce délai peut varier selon la complexité du projet (e-commerce, développement sur mesure) et la réactivité sur les validations.</p>
+            <p>Comptez {{DELAI_PLAGE}} pour un site Essentiel ({{DELAI_ESSENTIEL}}) ou Premium ({{DELAI_PREMIUM}}). Pour un projet Sur-mesure, le délai est annoncé au devis.</p>
           </div>
         </div>
 
@@ -560,7 +562,7 @@
             <span class="faq-icon" aria-hidden="true">+</span>
           </button>
           <div class="faq-answer" hidden>
-            <p>Oui. En plus de Castres, AlcalSpark accompagne des clients à Mazamet, Albi, Toulouse et dans toute l'Occitanie. Je travaille principalement à distance, avec un échange en visio possible sur créneau réservé le soir ou le week-end, et une rencontre le samedi sur demande à Castres et Mazamet.</p>
+            <p>Oui. En plus de Castres, AlcalSpark accompagne des clients à Mazamet, Albi et Toulouse et dans toute l'Occitanie. Tout se fait 100 % à distance (visio, téléphone, WhatsApp, email), avec une réponse sous 24h.</p>
           </div>
         </div>
 
@@ -570,7 +572,7 @@
             <span class="faq-icon" aria-hidden="true">+</span>
           </button>
           <div class="faq-answer" hidden>
-            <p>Des sites vitrines, des boutiques e-commerce et des applications web ou SaaS sur mesure, développés avec des technologies modernes (HTML/CSS/JS, React, Next.js) adaptées à votre activité.</p>
+            <p>Des sites vitrines (packs Essentiel et Premium), des projets sur-mesure avec animations avancées et intégrations, et des applications web ou SaaS, développés en code (HTML/CSS/JS, React, Next.js) adapté à votre activité.</p>
           </div>
         </div>
 
@@ -612,6 +614,7 @@
         <li><a href="../services/design-ui-ux.html">Design UI/UX</a></li>
         <li><a href="../services/branding.html">Branding</a></li>
         <li><a href="../services/seo-marketing.html">SEO &amp; Marketing</a></li>
+        <li><a href="../services/automatisation-n8n-castres.html">Automatisation IA</a></li>
       </ul>
       <h4 style="margin-top:1.25rem;">Zones</h4>
       <ul role="list">
@@ -621,10 +624,6 @@
         <li><a href="creation-site-web-toulouse.html">Toulouse</a></li>
         <li><a href="creation-site-web-occitanie.html">Occitanie</a></li>
       </ul>
-      <h4 style="margin-top:1.25rem;">Automatisation</h4>
-      <ul role="list">
-        <li><a href="automatisation-n8n-castres.html">Automatisation n8n, Castres</a></li>
-      </ul>
     </div>
     <div class="footer-col">
       <h4>Studio</h4>
@@ -633,6 +632,7 @@
         <li><a href="../portfolio.html">Portfolio</a></li>
         <li><a href="../produits.html">Produits</a></li>
         <li><a href="../contact.html">Contact</a></li>
+        <li><a href="../agences.html">Agences</a></li>
         <li><a href="../mentions-legales.html">Mentions légales</a></li>
         <li><a href="../cgv.html">CGV</a></li>
       </ul>
@@ -642,7 +642,7 @@
       <ul role="list">
         <li><a href="mailto:contact@alcalspark.com">contact@alcalspark.com</a></li>
         <li><a href="tel:0663054481">06 63 05 44 81</a></li>
-        <li class="footer-callback" style="color:rgba(250,248,245,0.4);font-size:.85rem;">Je rappelle {{HORAIRES_RAPPEL}}. WhatsApp ou formulaire de préférence.</li>
+        <li class="footer-callback" style="color:rgba(250,248,245,0.4);font-size:.85rem;">Réponse sous 24h. WhatsApp ou formulaire de préférence.</li>
         <li style="color:var(--c50);font-size:.85rem;">90 av. Georges Guynemer,<br>81200 Mazamet</li>
       </ul>
     </div>
@@ -661,7 +661,7 @@
 </footer>
 
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
-<script src="../js/main.js?v=5" defer></script>
+<script src="../js/main.js?v=6" defer></script>
 <script src="../js/cursor.js" defer></script>
 <script src="../js/faq.js" defer></script>
 

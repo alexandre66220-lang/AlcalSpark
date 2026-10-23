@@ -1,0 +1,178 @@
+/* ============================================================
+   AlcalSpark, Tarifs Page Styles
+   ============================================================ */
+
+/* ── Page Hero ─────────────────────────────────────────────── */
+.tarifs-hero { background: transparent; }
+.tarifs-hero .ph-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 20%, rgba(56, 81, 68, 0.06) 0%, transparent 70%);
+}
+
+/* ── Intro de section, centrée, sous le h2 ─────────────────────── */
+.tarifs-section-intro {
+  max-width: 640px;
+  margin: 0 auto 1.5rem;
+  text-align: center;
+}
+.tarifs-section-intro p {
+  margin: 0 auto;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.75;
+}
+
+/* ── Carte unique centrée (réalisation, accompagnement, formation) ── */
+.pricing-single {
+  max-width: 460px;
+  margin: 0 auto;
+}
+.pc-price-note {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin: -14px 0 24px;
+}
+
+/* Mention fiscale sous chaque prix (config PRIX_MENTION) */
+.pc-mention {
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin: -14px 0 24px;
+}
+.pc-price-note + .pc-mention { margin-top: -18px; }
+
+/* ── Grille à deux cartes (analyse stratégique) ─────────────────── */
+.pricing-grid-2 { grid-template-columns: repeat(2, 1fr); }
+
+/* ── Note de transparence finale, sobre, sans carte ─────────────── */
+.tarifs-transparency-section { padding: var(--section-py) 0; }
+.tarifs-transparency-inner { max-width: 620px; margin: 0 auto; text-align: center; }
+.tarifs-transparency-inner p {
+  margin: 0 auto 2rem;
+  color: rgba(248, 245, 242, 0.62);
+  font-size: 1.02rem;
+  line-height: 1.85;
+}
+
+/* ── Autres prestations (cards compactes) ─────────────────────── */
+.misc-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+.misc-card {
+  display: flex;
+  flex-direction: column;
+  padding: 32px 28px;
+  border: 1px solid var(--border);
+  background: rgba(248, 245, 242, 0.03);
+  border-radius: 6px;
+}
+.misc-card h3 {
+  font-size: 1.05rem;
+  margin-bottom: 10px;
+}
+.misc-price {
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--green-bright);
+  margin-bottom: 14px;
+}
+.misc-card p {
+  font-size: 0.86rem;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-bottom: 22px;
+}
+.misc-card .btn-card-cta {
+  margin-top: auto;
+}
+
+/* ── Accompagnement mensuel ────────────────────────────────────── */
+.abo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+.abo-card { padding: 44px 40px; }
+.abo-card .pc-price { margin-bottom: 18px; }
+.abo-per {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: rgba(248, 245, 242, 0.65);
+  margin-left: 4px;
+}
+.abo-card p {
+  font-size: 0.92rem;
+  color: rgba(248, 245, 242, 0.85);
+  line-height: 1.7;
+  margin-bottom: 28px;
+}
+
+/* ── Note de bas de page ───────────────────────────────────────── */
+.tarifs-footnote {
+  text-align: center;
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ── CTA "Demander un devis" harmonisé (cards Sites web, Prestations
+   complémentaires et Accompagnement mensuel), visible sur fond vert
+   comme sur fond noir ────────────────────────────────────────────── */
+.btn-card-cta {
+  background: transparent;
+  color: var(--cream);
+  border: 1px solid rgba(248, 245, 242, 0.4);
+}
+.btn-card-cta:hover {
+  background: rgba(248, 245, 242, 0.12);
+  color: var(--cream);
+  border-color: var(--cream);
+}
+.btn-card-cta-sm {
+  padding: 0.85rem 1.5rem;
+  font-size: 0.62rem;
+}
+
+/* ── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 1100px) {
+  .misc-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 700px) {
+  .abo-grid { grid-template-columns: 1fr; }
+  .pricing-grid-2 { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .misc-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Offre a prix fixe mise en avant (en tete de page) ──────────── */
+.pricing-featured { max-width: 520px; }
+.pricing-card-featured {
+  border-color: rgba(90, 138, 110, 0.6);
+  box-shadow: 0 0 0 1px rgba(90, 138, 110, 0.18), 0 18px 48px rgba(0, 0, 0, 0.35);
+}
+.pc-launch {
+  margin: 0 0 16px;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  color: var(--green-bright);
+}
+.tarifs-featured-link {
+  display: block;
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 0.85rem;
+  color: rgba(248, 245, 242, 0.62);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.25s, border-color 0.25s;
+}
+.tarifs-featured-link:hover { color: var(--cream); border-color: rgba(248, 245, 242, 0.3); }
+
+.pc-num.pc-quote { font-size: 0.55em; letter-spacing: 0.02em; }

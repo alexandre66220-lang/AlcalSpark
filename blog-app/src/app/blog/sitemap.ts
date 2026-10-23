@@ -1,8 +1,9 @@
 import type { MetadataRoute } from "next";
 import { getAllArticles } from "../../../lib/queries";
+import { withStaticArticles } from "../../../lib/staticArticles";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const articles = await getAllArticles();
+  const articles = withStaticArticles(await getAllArticles());
 
   return [
     {

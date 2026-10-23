@@ -34,7 +34,7 @@ function walk(d, out = []) {
   }
   return out;
 }
-const decode = (s) => s.replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&#39;|&apos;/g, "'").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&nbsp;/g, " ");
+const decode = (s) => s.replace(/&#x([0-9a-f]+);/gi, (_m, h) => String.fromCodePoint(parseInt(h, 16))).replace(/&#(\d+);/g, (_m, d) => String.fromCodePoint(+d)).replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&#39;|&apos;/g, "'").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&nbsp;/g, " ");
 const attr = (html, re) => { const m = html.match(re); return m ? decode(m[1]).trim() : null; };
 const val = (m) => (m ? decode(m[1] ?? m[2]).trim() : null);
 const meta = (html, key, kind = "name") =>
@@ -48,6 +48,17 @@ const pages = walk(dir).map((f) => {
   const url = slug === "index" ? `${BASE}/` : slug === "en/index" ? `${BASE}/en/` : `${BASE}/${slug}`;
   return { f, rel, url, html, noindex: /<meta\s+name=["']robots["']\s+content=["'][^"']*noindex/i.test(html) };
 });
+
+// Articles de blog statiques (copies dans /blog/<slug>/ par build.sh) : audites depuis leur source.
+const staticDir = join(ROOT, "blog-static");
+if (existsSync(staticDir)) {
+  for (const slug of readdirSync(staticDir)) {
+    const f = join(staticDir, slug, "index.html");
+    if (!existsSync(f)) continue;
+    const html = readFileSync(f, "utf-8");
+    pages.push({ f, rel: `blog/${slug}/`, url: `${BASE}/blog/${slug}/`, html, noindex: false, isBlogStatic: true });
+  }
+}
 
 const defects = [];
 const bad = (p, msg) => defects.push(`${p.rel}: ${msg}`);
@@ -123,7 +134,7 @@ for (const p of pages) {
       if (canon && last && last.item !== canon) bad(p, `BreadcrumbList : dernier element ${last.item} different du canonical`);
     }
   }
-  const hasFaqHtml = /class="faq-item/.test(html);
+  const hasFaqHtml = /class="faq-item/.test(html) || /<h2[^>]*>\s*(?:FAQ|Questions fr[ée]quentes)\s*<\/h2>/i.test(html);
   if (hasFaqHtml && !types.includes("FAQPage")) bad(p, "FAQ affichee sans JSON-LD FAQPage");
   if (!hasFaqHtml && types.includes("FAQPage")) bad(p, "JSON-LD FAQPage sans FAQ affichee");
   if (types.includes("LocalBusiness")) bad(p, "entite LocalBusiness : utiliser ProfessionalService");

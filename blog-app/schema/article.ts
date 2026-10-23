@@ -12,13 +12,6 @@ export const articleType = defineType({
       validation: (r) => r.required().max(100),
     }),
     defineField({
-      name: "titreSeo",
-      title: "Titre SEO (balise title, optionnel)",
-      description: "60 caractères maximum. S'il est vide, le titre est utilisé.",
-      type: "string",
-      validation: (r) => r.max(60),
-    }),
-    defineField({
       name: "slug",
       title: "Slug (URL)",
       type: "slug",

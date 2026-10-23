@@ -13,6 +13,7 @@
  *     pages noindex absentes.
  *  7. CGV : page /cgv en noindex tant qu'elle porte le marqueur "A COMPLETER",
  *     case CGV obligatoire dans les deux questionnaires de brief.
+ * 10. Articles de blog statiques : canonical, h1 unique, JSON-LD (BlogPosting, FAQPage), sitemap, liste du blog.
  *  9. Refonte des offres : termes retires du site (WooCommerce, Shopify, Zapier, creneau
  *     de rappel, "tarifs adaptes", "un projet a la fois"), navigation et pied de page
  *     (Automatisation IA, Agences), pages agences FR/EN, hreflang, ligne de sous-traitance.
@@ -27,7 +28,7 @@ import { spawnSync } from "child_process";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const config = JSON.parse(readFileSync(join(ROOT, "site.config.json"), "utf-8"));
-const SKIP = new Set(["node_modules", ".git", "out", "blog-app", "design_handoff_alcalspark_da", "netlify", ".claude"]);
+const SKIP = new Set(["node_modules", ".git", "out", "blog-app", "blog-static", "design_handoff_alcalspark_da", "netlify", ".claude", "captures-fix-visuel", "captures-hero"]);
 
 function walk(dir, ext, out = []) {
   for (const e of readdirSync(dir)) {
@@ -370,6 +371,31 @@ for (const f of ["index.html", "en/index.html", "tarifs.html", "en/tarifs.html"]
   const html = readFileSync(join(ROOT, f), "utf-8");
   if (!/"@type": "Offer"/.test(html) || !html.includes('"price": "{{PRIX_ESSENTIEL}}"')) fail("refonte", `${f}: makesOffer sans les Offers de la grille`);
   if (/"priceRange": "€€€"/.test(html)) fail("refonte", `${f}: priceRange generique a remplacer`);
+}
+
+/* 10. Articles de blog statiques (blog-static/<slug>/index.html) ------- */
+{
+  const dir = join(ROOT, "blog-static");
+  const listed = readFileSync(join(ROOT, "blog-app/lib/staticArticles.ts"), "utf-8");
+  for (const slug of existsSync(dir) ? readdirSync(dir) : []) {
+    const f = join(dir, slug, "index.html");
+    if (!existsSync(f)) { fail("blog", `blog-static/${slug}/index.html est absent`); continue; }
+    const html = readFileSync(f, "utf-8");
+    const url = `https://alcalspark.com/blog/${slug}/`;
+    if (!listed.includes(`current: "${slug}"`)) fail("blog", `${slug} absent de blog-app/lib/staticArticles.ts (liste du blog et sitemap du blog)`);
+    if (!sitemap.includes(`<loc>${url}</loc>`)) fail("blog", `${url} absent de sitemap.xml (npm run fix-sitemap)`);
+    if (!html.includes(`<link rel="canonical" href="${url}" />`)) fail("blog", `${slug}: canonical attendu ${url}`);
+    if ((html.match(/<h1[\s>]/g) || []).length !== 1) fail("blog", `${slug}: un seul h1 attendu`);
+    if (!/"@type":\s*"BlogPosting"/.test(html) || !/"@type":\s*"FAQPage"/.test(html)) fail("blog", `${slug}: JSON-LD BlogPosting et FAQPage attendus`);
+    for (const m of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
+      try { JSON.parse(m[1]); } catch (e) { fail("blog", `${slug}: JSON-LD invalide (${e.message})`); }
+    }
+    if (/aggregateRating|"review"/i.test(html)) fail("blog", `${slug}: avis ou note interdits`);
+    if (!html.includes("mailto:contact@alcalspark.com?subject=Collaboration%20%2F%20sous-traitance") && /sous-traiter/.test(slug)) fail("blog", `${slug}: lien mailto de collaboration absent`);
+    const visible = html.replace(/<script\b[\s\S]*?<\/script>/g, "");
+    if (/[—–]/.test(visible)) fail("blog", `${slug}: tiret cadratin ou demi-cadratin dans le texte`);
+    for (const m of visible.matchAll(/<img\b[^>]*>/g)) if (!/\salt=/.test(m[0])) fail("blog", `${slug}: image sans alt`);
+  }
 }
 
 /* Bilan -------------------------------------------------------------- */

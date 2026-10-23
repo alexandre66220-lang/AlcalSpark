@@ -68,12 +68,11 @@ export async function generateMetadata({
   const article = await getArticleBySlug(params.slug);
   if (!article) return {};
 
-  const title = article.titreSeo || article.titre;
+  const title = article.titre;
   const image = ARTICLE_IMAGES[params.slug] ?? "/assets/og-cover.jpg";
 
   return {
-    // titreSeo est un titre complet (60 caractères max) : pas de suffixe de marque ajouté.
-    title: article.titreSeo ? { absolute: article.titreSeo } : article.titre,
+    title: article.titre,
     description: article.extrait,
     alternates: {
       canonical: `/blog/${params.slug}/`,

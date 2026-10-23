@@ -77,6 +77,15 @@ function collectRealUrls() {
     }
   }
 
+  // Articles de blog statiques : blog-static/<slug>/index.html -> /blog/<slug>/
+  const staticDir = join(ROOT, "blog-static");
+  if (existsSync(staticDir)) {
+    for (const slug of readdirSync(staticDir)) {
+      const f = join(staticDir, slug, "index.html");
+      if (existsSync(f) && !isNoindex(f)) urls.set(`${BASE_URL}/blog/${slug}/`, { priority: "0.6" });
+    }
+  }
+
   return urls;
 }
 

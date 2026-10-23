@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getAllArticles } from "../../../lib/queries";
 import { ArticleGrid } from "./components/ArticleGrid";
+import { withStaticArticles } from "../../../lib/staticArticles";
 
 export const metadata: Metadata = {
   title: "Blog - Conseils création web et SEO",
@@ -27,7 +28,7 @@ export const metadata: Metadata = {
 };
 
 export default async function BlogListPage() {
-  const articles = await getAllArticles();
+  const articles = withStaticArticles(await getAllArticles());
 
   return (
     <>

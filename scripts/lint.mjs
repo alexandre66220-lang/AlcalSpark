@@ -218,14 +218,14 @@ if (!existsSync(cgvFile)) {
 for (const p of ["brief-site-artisan-btp.html", "en/brief-site-artisan-btp.html"]) {
   const html = readFileSync(join(ROOT, p), "utf-8");
   if (!/<input[^>]*name="cgv_acceptees"[^>]*\brequired\b/.test(html)) fail("cgv", `${p}: case CGV obligatoire absente`);
-  const link = html.match(/<a [^>]*href="(?:\.\.\/)?cgv\.html"[^>]*>/);
+  const link = html.match(/<a [^>]*href="\/cgv"[^>]*>/);
   if (!link) fail("cgv", `${p}: lien vers cgv.html absent`);
   else if (!/target="_blank"/.test(link[0]) || !/rel="[^"]*noopener/.test(link[0])) fail("cgv", `${p}: le lien CGV doit s'ouvrir dans un nouvel onglet (target="_blank" rel="noopener")`);
 }
 // Lien CGV dans le pied de page de chaque page.
 for (const f of htmlFiles) {
   const html = readFileSync(f, "utf-8");
-  if (!/<li><a href="(?:\.\.\/)*cgv\.html">/.test(html)) fail("cgv", `${rel(f)}: lien CGV absent du pied de page`);
+  if (!/<li><a href="\/cgv">/.test(html)) fail("cgv", `${rel(f)}: lien CGV absent du pied de page`);
 }
 
 /* 8. Numeros decoratifs : toujours via le token --accent-num (contraste >= 3:1),
@@ -281,13 +281,13 @@ for (const f of publicHtml) {
 for (const f of publicHtml) {
   const html = readFileSync(f, "utf-8");
   const r = rel(f).replace(/\\/g, "/");
-  if (!/automatisation-ia\.html"[^>]*class="nav-link[^"]*">(?:Automatisation IA|AI Automation|AI automation)</.test(html)) fail("refonte", `${r}: lien 'Automatisation IA' absent du menu`);
+  if (!/automatisation-ia"[^>]*class="nav-link[^"]*">(?:Automatisation IA|AI Automation|AI automation)</.test(html)) fail("refonte", `${r}: lien 'Automatisation IA' absent du menu`);
   const navHtml = (html.match(/<nav id="navbar"[\s\S]*?<\/nav>/) || [""])[0] + (html.match(/<div class="nav-mobile"[\s\S]*?<\/div>/) || [""])[0];
   if (!/offre-site-artisan-btp/.test(r) && /offre-site-artisan-btp/.test(navHtml)) fail("refonte", `${r}: l'offre BTP ne doit pas figurer dans le menu`);
-  if (!/(?:agences|agencies)\.html">(?:Agences|Agencies)</.test(html)) fail("refonte", `${r}: lien Agences absent du pied de page`);
+  if (!/(?:agences|agencies)">(?:Agences|Agencies)</.test(html)) fail("refonte", `${r}: lien Agences absent du pied de page`);
   if (/class="nav-mobile-cta"[^>]*>[^<]*<\/a>/.test(html)) {
     const cta = html.match(/<a href="([^"]*)" class="nav-mobile-cta"/);
-    if (cta && !/(?:^|\/)contact\.html$/.test(cta[1])) fail("refonte", `${r}: le CTA du menu mobile doit pointer vers contact.html (trouve ${cta[1]})`);
+    if (cta && !/(?:^|\/)contact$/.test(cta[1])) fail("refonte", `${r}: le CTA du menu mobile doit pointer vers /contact (trouve ${cta[1]})`);
   }
 }
 
@@ -313,18 +313,29 @@ for (const f of htmlFiles) {
   if (dup) fail("refonte", `${rel(f)}: hreflang="${dup}" declare plusieurs fois`);
 }
 
-// Pages EN : les liens internes d'une page /en/ ne pointent pas vers la version francaise (sauf le selecteur de langue).
-for (const f of htmlFiles.filter((x) => rel(x).replace(/\\/g, "/").startsWith("en/"))) {
-  const html = readFileSync(f, "utf-8");
-  const dir = dirname(f);
-  for (const m of html.matchAll(/<a\s[^>]*href="([^"#?]+\.html)"[^>]*>/g)) {
-    if (/hreflang="fr"|lang="fr"/.test(m[0]) || /^(https?:|mailto:)/.test(m[1])) continue;
-    const target = resolve(dir, m[1]);
-    const r = relative(ROOT, target).replace(/\\/g, "/");
-    if (r.startsWith("en/") || r.startsWith("..")) continue;
-    const enTwin = join(ROOT, "en", r === "index.html" ? "index.html" : r);
-    if (existsSync(enTwin)) fail("refonte", `${rel(f)}: lien vers la version francaise "${m[1]}" alors que ${relative(ROOT, enTwin)} existe`);
+// Liens internes : URLs propres (pas de .html : Netlify redirige en 301) ; les pages /en/ pointent vers /en/.
+for (const f of htmlFiles) {
+  const html = readFileSync(f, "utf-8").replace(/<script\b[\s\S]*?<\/script>/g, "").replace(/<!--[\s\S]*?-->/g, "");
+  const r = rel(f).replace(/\\/g, "/");
+  for (const m of html.matchAll(/<a\s[^>]*href="([^"]+)"[^>]*>/g)) {
+    const h = m[1];
+    if (/^(https?:|mailto:|tel:|#)/.test(h) || h.includes("{{")) continue;
+    if (/\.html(#|$)/.test(h)) fail("liens", `${r}: lien interne avec .html ("${h}"), utiliser l'URL propre (301 Netlify sinon)`);
+    if (r.startsWith("en/") && h.startsWith("/") && !h.startsWith("/en/") && !/hreflang="fr"|lang="fr"/.test(m[0])) {
+      const path = h.split("#")[0].replace(/\/$/, "");
+      if (path && existsSync(join(ROOT, "en", `${path}.html`))) fail("liens", `${r}: lien vers la version francaise "${h}" alors que /en${path} existe`);
+    }
   }
+}
+// Redirections 301 de l'ancienne URL automatisation (nom local) vers /services/automatisation-ia.
+{
+  const toml = readFileSync(join(ROOT, "netlify.toml"), "utf-8");
+  for (const from of ["/services/automatisation-n8n-castres", "/en/services/automatisation-n8n-castres"]) {
+    const to = from.replace("automatisation-n8n-castres", "automatisation-ia");
+    const re = new RegExp(`from = "${from}"\\s*\\n\\s*to = "${to}"\\s*\\n\\s*status = 301`);
+    if (!re.test(toml)) fail("redirections", `netlify.toml : redirection 301 ${from} -> ${to} absente`);
+  }
+  for (const f of htmlFiles) if (/automatisation-n8n-castres/.test(readFileSync(f, "utf-8"))) fail("redirections", `${rel(f)}: reference a l'ancienne URL automatisation-n8n-castres`);
 }
 
 // Contact : ligne de sous-traitance visible, aucune heure de rappel.
@@ -337,8 +348,8 @@ for (const [file, needle] of [
 
 // Accueil et tarifs : sections et textes cles.
 for (const [file, needles] of [
-  ["index.html", ['id="offres"', 'id="automatisation-ia"', 'href="tarifs.html"', "Entreprise ou startup", "agences.html"]],
-  ["en/index.html", ['id="offres"', 'id="automatisation-ia"', 'href="tarifs.html"', "Business or startup", "agencies.html"]],
+  ["index.html", ['id="offres"', 'id="automatisation-ia"', 'href="/tarifs"', "Entreprise ou startup", "/agences"]],
+  ["en/index.html", ['id="offres"', 'id="automatisation-ia"', 'href="/en/tarifs"', "Business or startup", "/en/agencies"]],
 ]) {
   const html = readFileSync(join(ROOT, file), "utf-8");
   for (const n of needles) if (!html.includes(n)) fail("refonte", `${file}: element attendu absent (${n})`);

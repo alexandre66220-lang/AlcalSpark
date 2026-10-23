@@ -361,19 +361,19 @@
 
 <!-- Nav -->
 <nav id="navbar" role="navigation" aria-label="Navigation principale">
-  <a href="index.html" class="nav-logo" aria-label="AlcalSpark, Accueil">Alcal<em>Spark</em></a>
+  <a href="/" class="nav-logo" aria-label="AlcalSpark, Accueil">Alcal<em>Spark</em></a>
   <ul class="nav-links" role="list">
-    <li><a href="index.html" class="nav-link active">Accueil</a></li>
-    <li><a href="services.html" class="nav-link">Services</a></li>
-    <li><a href="services/automatisation-ia.html" class="nav-link">Automatisation IA</a></li>
-    <li><a href="tarifs.html" class="nav-link">Tarifs</a></li>
-    <li><a href="portfolio.html" class="nav-link">Portfolio</a></li>
-    <li><a href="about.html" class="nav-link">À propos</a></li>
+    <li><a href="/" class="nav-link active">Accueil</a></li>
+    <li><a href="/services" class="nav-link">Services</a></li>
+    <li><a href="/services/automatisation-ia" class="nav-link">Automatisation IA</a></li>
+    <li><a href="/tarifs" class="nav-link">Tarifs</a></li>
+    <li><a href="/portfolio" class="nav-link">Portfolio</a></li>
+    <li><a href="/about" class="nav-link">À propos</a></li>
     <li><a href="blog/" class="nav-link">Blog</a></li>
-    <li><a href="ressources.html" class="nav-link">Ressources</a></li>
-    <li><a href="produits.html" class="nav-link">Produits</a></li>
-    <li><a href="en/index.html" class="nav-lang" hreflang="en" lang="en">EN</a></li>
-    <li><a href="contact.html" class="nav-cta">Démarrer un projet</a></li>
+    <li><a href="/ressources" class="nav-link">Ressources</a></li>
+    <li><a href="/produits" class="nav-link">Produits</a></li>
+    <li><a href="/en/" class="nav-lang" hreflang="en" lang="en">EN</a></li>
+    <li><a href="/contact" class="nav-cta">Démarrer un projet</a></li>
   </ul>
   <button class="nav-burger" aria-label="Menu" aria-expanded="false">
     <span></span><span></span><span></span>
@@ -382,18 +382,18 @@
 
 <!-- Mobile Nav -->
 <div class="nav-mobile" aria-hidden="true">
-  <a href="index.html" class="nav-link">Accueil</a>
-  <a href="services.html" class="nav-link">Services</a>
-  <a href="services/automatisation-ia.html" class="nav-link">Automatisation IA</a>
-  <a href="tarifs.html" class="nav-link">Tarifs</a>
-  <a href="portfolio.html" class="nav-link">Portfolio</a>
-  <a href="about.html" class="nav-link">À propos</a>
+  <a href="/" class="nav-link">Accueil</a>
+  <a href="/services" class="nav-link">Services</a>
+  <a href="/services/automatisation-ia" class="nav-link">Automatisation IA</a>
+  <a href="/tarifs" class="nav-link">Tarifs</a>
+  <a href="/portfolio" class="nav-link">Portfolio</a>
+  <a href="/about" class="nav-link">À propos</a>
   <a href="blog/" class="nav-link">Blog</a>
-  <a href="ressources.html" class="nav-link">Ressources</a>
-  <a href="produits.html" class="nav-link">Produits</a>
-  <a href="contact.html" class="nav-link">Contact</a>
-  <a href="contact.html" class="nav-mobile-cta" onclick="if (typeof gtag === 'function') gtag('event', 'cta_menu_mobile', {'event_category': 'CTA', 'event_label': 'Menu mobile - Contact'})">Démarrer un projet</a>
-  <a href="en/index.html" class="nav-lang" hreflang="en" lang="en" aria-label="Voir le site en anglais"><span>EN</span></a>
+  <a href="/ressources" class="nav-link">Ressources</a>
+  <a href="/produits" class="nav-link">Produits</a>
+  <a href="/contact" class="nav-link">Contact</a>
+  <a href="/contact" class="nav-mobile-cta" onclick="if (typeof gtag === 'function') gtag('event', 'cta_menu_mobile', {'event_category': 'CTA', 'event_label': 'Menu mobile - Contact'})">Démarrer un projet</a>
+  <a href="/en/" class="nav-lang" hreflang="en" lang="en" aria-label="Voir le site en anglais"><span>EN</span></a>
 </div>
 
 <main>
@@ -426,7 +426,7 @@
     <div class="hero-eye-speech" id="hero-eye-speech" aria-live="polite">
       <p class="hero-eye-speech-query" id="hero-eye-speech-query"></p>
       <p class="hero-eye-speech-reply" id="hero-eye-speech-reply"></p>
-      <a href="contact.html" class="hero-eye-cta" id="hero-eye-cta" hidden onclick="gtag('event', 'cta_spark_chat', {'event_category': 'CTA', 'event_label': 'SPARK chat'})"></a>
+      <a href="/contact" class="hero-eye-cta" id="hero-eye-cta" hidden onclick="gtag('event', 'cta_spark_chat', {'event_category': 'CTA', 'event_label': 'SPARK chat'})"></a>
     </div>
   </div>
 
@@ -437,8 +437,8 @@
     <p class="hero-badge"><span class="hero-badge-pill">Dès&nbsp;{{PRIX_ESSENTIEL}}&nbsp;€</span><!--IF:PRIX_MENTION--> <span class="hero-badge-note">{{PRIX_MENTION}}</span><!--ENDIF:PRIX_MENTION--></p>
     <p class="hero-desc">Code sur mesure, prix fixe, livraison en <span class="nw">{{DELAI_PLAGE}}</span>. Un seul expert, du brief à la mise en ligne.</p>
     <div class="hero-actions">
-      <a href="tarifs.html" class="btn hero-btn" onclick="gtag('event', 'cta_voir_tarifs', {'event_category': 'CTA', 'event_label': 'Hero - Voir les tarifs'})">Voir les tarifs</a>
-      <a href="contact.html" class="hero-btn-secondary" onclick="gtag('event', 'cta_reponse_24h', {'event_category': 'CTA', 'event_label': 'Hero - Réponse sous 24h'})">Recevoir une réponse sous 24h</a>
+      <a href="/tarifs" class="btn hero-btn" onclick="gtag('event', 'cta_voir_tarifs', {'event_category': 'CTA', 'event_label': 'Hero - Voir les tarifs'})">Voir les tarifs</a>
+      <a href="/contact" class="hero-btn-secondary" onclick="gtag('event', 'cta_reponse_24h', {'event_category': 'CTA', 'event_label': 'Hero - Réponse sous 24h'})">Recevoir une réponse sous 24h</a>
     </div>
 
     <!-- Chat SPARK -- questions sur ALCALSPARK uniquement. La réponse
@@ -478,7 +478,7 @@
           <li>SEO de base et mise en ligne</li>
           <li>1 tour de retouches, en français</li>
         </ul>
-        <a href="contact.html" class="btn btn-primary" onclick="gtag('event', 'cta_offre_essentiel', {'event_category': 'CTA', 'event_label': 'cta_offre_essentiel'})">Choisir Essentiel</a>
+        <a href="/contact" class="btn btn-primary" onclick="gtag('event', 'cta_offre_essentiel', {'event_category': 'CTA', 'event_label': 'cta_offre_essentiel'})">Choisir Essentiel</a>
       </article>
       <article class="offer-card offer-card--featured glass-strong reveal delay-2">
         <span class="offer-flag">Le plus choisi</span>
@@ -492,7 +492,7 @@
           <li>Analytics et Search Console configurés</li>
           <li>Site FR/EN, 2 tours de retouches</li>
         </ul>
-        <a href="contact.html" class="btn btn-primary" onclick="gtag('event', 'cta_offre_premium', {'event_category': 'CTA', 'event_label': 'cta_offre_premium'})">Choisir Premium</a>
+        <a href="/contact" class="btn btn-primary" onclick="gtag('event', 'cta_offre_premium', {'event_category': 'CTA', 'event_label': 'cta_offre_premium'})">Choisir Premium</a>
       </article>
       <article class="offer-card card reveal delay-3">
         <div class="offer-badge">Sur-mesure</div>
@@ -504,11 +504,11 @@
           <li>Pages et intégrations supplémentaires</li>
           <li>Devis fixe après brief</li>
         </ul>
-        <a href="contact.html" class="btn btn-primary" onclick="gtag('event', 'cta_offre_surmesure', {'event_category': 'CTA', 'event_label': 'cta_offre_surmesure'})">Demander un devis</a>
+        <a href="/contact" class="btn btn-primary" onclick="gtag('event', 'cta_offre_surmesure', {'event_category': 'CTA', 'event_label': 'cta_offre_surmesure'})">Demander un devis</a>
       </article>
     </div>
     <p class="offer-note offer-note--hosting reveal">Hébergement inclus avec la maintenance ; sinon, le site est livré sur votre compte.</p>
-        <p class="offer-note reveal">Détail des packs, options et maintenance sur la page <a href="tarifs.html">Tarifs</a>.<!--IF:PRIX_MENTION--> {{PRIX_MENTION}}.<!--ENDIF:PRIX_MENTION--></p>
+        <p class="offer-note reveal">Détail des packs, options et maintenance sur la page <a href="/tarifs">Tarifs</a>.<!--IF:PRIX_MENTION--> {{PRIX_MENTION}}.<!--ENDIF:PRIX_MENTION--></p>
   </div>
 </section>
 
@@ -533,7 +533,7 @@
           <li>Notification pour vous</li>
           <li>Leads consignés dans un tableur</li>
         </ul>
-        <a href="services/automatisation-ia.html" class="btn btn-primary" onclick="gtag('event', 'cta_auto_leads', {'event_category': 'CTA', 'event_label': 'cta_auto_leads'})">Voir l'automatisation IA</a>
+        <a href="/services/automatisation-ia" class="btn btn-primary" onclick="gtag('event', 'cta_auto_leads', {'event_category': 'CTA', 'event_label': 'cta_auto_leads'})">Voir l'automatisation IA</a>
       </article>
       <article class="offer-card card reveal delay-2">
         <div class="offer-badge">Workflow complet</div>
@@ -545,7 +545,7 @@
           <li>Devis et notifications</li>
           <li>Construit avec n8n, connecté à vos outils</li>
         </ul>
-        <a href="services/automatisation-ia.html" class="btn btn-primary" onclick="gtag('event', 'cta_auto_complet', {'event_category': 'CTA', 'event_label': 'cta_auto_complet'})">Voir l'automatisation IA</a>
+        <a href="/services/automatisation-ia" class="btn btn-primary" onclick="gtag('event', 'cta_auto_complet', {'event_category': 'CTA', 'event_label': 'cta_auto_complet'})">Voir l'automatisation IA</a>
       </article>
     </div>
   </div>
@@ -597,7 +597,7 @@
         <h3>Entreprise ou startup</h3>
         <p>Vous voulez un site performant, livré vite et à prix fixe. Packs vitrine dès {{PRIX_ESSENTIEL}} €, automatisation IA, hébergement avec la maintenance.</p>
         <div style="display:flex;flex-wrap:wrap;gap:0.75rem;">
-          <a href="tarifs.html" class="btn btn-primary segment-btn" data-segment="entreprise" onclick="gtag('event', 'cta_voir_tarifs', {'event_category': 'CTA', 'event_label': 'Segmentation - Voir les tarifs'})">Voir les tarifs</a>
+          <a href="/tarifs" class="btn btn-primary segment-btn" data-segment="entreprise" onclick="gtag('event', 'cta_voir_tarifs', {'event_category': 'CTA', 'event_label': 'Segmentation - Voir les tarifs'})">Voir les tarifs</a>
           <a href="#diagnostic" class="btn btn-outline-inv segment-btn" data-segment="diagnostic" onclick="gtag('event', 'cta_diagnostic', {'event_category': 'CTA', 'event_label': 'Segmentation - Diagnostic'})">Faire mon diagnostic gratuit</a>
         </div>
       </article>
@@ -605,7 +605,7 @@
         <h3>Agence</h3>
         <p>Vous avez les maquettes, il vous faut du code propre, responsive et performant, sous votre marque. De {{PRIX_AGENCE_MIN}} à {{PRIX_AGENCE_MAX}} € par intégration, 100 % à distance.</p>
         <div style="display:flex;flex-wrap:wrap;gap:0.75rem;">
-          <a href="agences.html" class="btn btn-primary segment-btn" data-segment="agence" onclick="gtag('event', 'cta_agences', {'event_category': 'CTA', 'event_label': 'Segmentation - Agences'})">Agences : marque blanche</a>
+          <a href="/agences" class="btn btn-primary segment-btn" data-segment="agence" onclick="gtag('event', 'cta_agences', {'event_category': 'CTA', 'event_label': 'Segmentation - Agences'})">Agences : marque blanche</a>
         </div>
       </article>
     </div>
@@ -639,13 +639,13 @@
       <h2 id="portfolio-title" class="reveal delay-1">Des projets qui<br /><em>parlent d'eux-mêmes</em></h2>
       <p class="portfolio-disclaimer reveal delay-2">Ces projets sont des démonstrations techniques complètes, pensées et réalisées de bout en bout pour prouver un savoir-faire, pas des clients anonymisés maquillés en projets réels. <em>La transparence, ça commence ici.</em></p>
     </div>
-    <a href="portfolio.html" class="btn btn-outline reveal delay-3">Voir tout</a>
+    <a href="/portfolio" class="btn btn-outline reveal delay-3">Voir tout</a>
   </div>
 
   <div class="portfolio-grid">
 
     <!-- Auréa -->
-    <a class="portfolio-item reveal delay-2" href="portfolio/aurea.html" aria-label="Voir le projet Auréa">
+    <a class="portfolio-item reveal delay-2" href="/portfolio/aurea" aria-label="Voir le projet Auréa">
       <div class="pi-image">
         <picture>
           <source srcset="assets/lucid-origin_a_cinematic_photo_of_Elegant_luxury_jewelry_editorial_photography_close-up_of_a_-0.webp" type="image/webp" />
@@ -677,7 +677,7 @@
     </a>
 
     <!-- Vitrum -->
-    <a class="portfolio-item reveal delay-3" href="portfolio/vitrum.html" aria-label="Voir le projet Vitrum">
+    <a class="portfolio-item reveal delay-3" href="/portfolio/vitrum" aria-label="Voir le projet Vitrum">
       <div class="pi-image">
         <picture>
           <source srcset="assets/gpt-image-2_a_cinematic_photo_of_Abstract_financial_data_visualization_glowing_amber_orange_-0.webp" type="image/webp" />
@@ -709,7 +709,7 @@
     </a>
 
     <!-- Kairox Studios -->
-    <a class="portfolio-item reveal delay-4" href="portfolio/kairox-studios.html" aria-label="Voir le projet Kairox Studios">
+    <a class="portfolio-item reveal delay-4" href="/portfolio/kairox-studios" aria-label="Voir le projet Kairox Studios">
       <div class="pi-image">
         <picture>
           <source srcset="assets/lucid-origin_a_cinematic_photo_of_Epic_dark_fantasy_game_environment_concept_art_stormy_drama-0.webp" type="image/webp" />
@@ -741,7 +741,7 @@
     </a>
 
     <!-- Alchemist -->
-    <a class="portfolio-item reveal delay-5" href="portfolio/alchemist.html" aria-label="Voir le projet Alchemist">
+    <a class="portfolio-item reveal delay-5" href="/portfolio/alchemist" aria-label="Voir le projet Alchemist">
       <div class="pi-image">
         <picture>
           <source srcset="assets/lucid-origin_a_cinematic_photo_of_Luxury_whisky_bottle_product_photography_dark_oak_barrel_ba-0.webp" type="image/webp" />
@@ -895,7 +895,7 @@
             <input type="hidden" name="access_key" value="fdb9cf8f-13eb-4676-94ff-ac3f07efaa50" />
             <input type="hidden" name="subject" value="Nouveau diagnostic AlcalSpark" />
             <input type="hidden" name="from_name" value="AlcalSpark Diagnostic" />
-            <input type="hidden" name="redirect" value="https://alcalspark.com/contact-merci.html" />
+            <input type="hidden" name="redirect" value="https://alcalspark.com/contact-merci" />
             <input type="hidden" name="botcheck" value="" style="display:none" />
             <input type="hidden" name="diagnostic" id="diag-recap-field" value="" />
 
@@ -928,7 +928,7 @@
               <label class="checkbox-wrap">
                 <input type="checkbox" id="diag-rgpd" name="rgpd" required />
                 <span class="checkbox-custom" aria-hidden="true"></span>
-                <span>J'accepte que mes données soient utilisées pour répondre à ma demande, conformément à la <a href="mentions-legales.html">politique de confidentialité</a>.</span>
+                <span>J'accepte que mes données soient utilisées pour répondre à ma demande, conformément à la <a href="/mentions-legales">politique de confidentialité</a>.</span>
               </label>
             </div>
 
@@ -994,7 +994,7 @@
       <h2 id="contact-direct-title">Un enjeu de croissance à résoudre ?</h2>
       <p>Pas besoin d'arriver avec une solution déjà arrêtée (SaaS, refonte, automatisation). La première étape est de comprendre votre activité et d'identifier le bon levier, la solution technique vient après, pas avant. Décrivez votre situation, vous aurez une réponse sous 24h avec un avis franc, pas un argumentaire commercial.</p>
       <div class="contact-direct-actions">
-        <a href="contact.html" class="btn btn-outline-inv" onclick="gtag('event', 'cta_decrire_situation', {'event_category': 'CTA', 'event_label': 'Contact direct - Décrire ma situation'})">Décrire ma situation</a>
+        <a href="/contact" class="btn btn-outline-inv" onclick="gtag('event', 'cta_decrire_situation', {'event_category': 'CTA', 'event_label': 'Contact direct - Décrire ma situation'})">Décrire ma situation</a>
         <a href="https://wa.me/33663054481" class="whatsapp-inline-link" target="_blank" rel="noopener" onclick="gtag('event', 'cta_whatsapp', {'event_category': 'CTA', 'event_label': 'Contact direct - WhatsApp inline'})">
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884" fill="currentColor"/></svg>
           WhatsApp direct
@@ -1024,7 +1024,7 @@
             <span class="faq-icon" aria-hidden="true">+</span>
           </button>
           <div class="faq-answer" hidden>
-            <p>Trois packs à prix fixe : Essentiel {{PRIX_ESSENTIEL}} €, Premium {{PRIX_PREMIUM_AFFICHE}} €, et Sur-mesure dès {{PRIX_SUR_MESURE_DES_AFFICHE}} € avec un devis fixe après brief. Code source livré, aucun abonnement imposé. Détail sur la page <a href="tarifs.html">Tarifs</a>.<!--IF:PRIX_MENTION--> {{PRIX_MENTION}}.<!--ENDIF:PRIX_MENTION--></p>
+            <p>Trois packs à prix fixe : Essentiel {{PRIX_ESSENTIEL}} €, Premium {{PRIX_PREMIUM_AFFICHE}} €, et Sur-mesure dès {{PRIX_SUR_MESURE_DES_AFFICHE}} € avec un devis fixe après brief. Code source livré, aucun abonnement imposé. Détail sur la page <a href="/tarifs">Tarifs</a>.<!--IF:PRIX_MENTION--> {{PRIX_MENTION}}.<!--ENDIF:PRIX_MENTION--></p>
           </div>
         </div>
         <div class="faq-item reveal delay-2">
@@ -1116,8 +1116,8 @@
     <h2 id="cta-title" class="reveal">Un projet en tête ? Écrivez-nous.</h2>
     <p class="reveal delay-1">Décrivez votre projet par écrit et recevez une réponse franche sous 24h : si on peut vous aider, et comment. Si ce n'est pas le cas, vous repartez avec au moins une piste. Un appel, seulement si vous le souhaitez.</p>
     <div class="cta-actions reveal delay-2">
-      <a href="contact.html" class="btn btn-outline" onclick="gtag('event', 'cta_final_contact', {'event_category': 'CTA', 'event_label': 'CTA final - Réponse sous 24h'})">Recevoir une réponse sous 24h</a>
-      <a href="portfolio.html" class="btn btn-outline">Voir nos projets</a>
+      <a href="/contact" class="btn btn-outline" onclick="gtag('event', 'cta_final_contact', {'event_category': 'CTA', 'event_label': 'CTA final - Réponse sous 24h'})">Recevoir une réponse sous 24h</a>
+      <a href="/portfolio" class="btn btn-outline">Voir nos projets</a>
     </div>
     <p class="cta-trust reveal delay-3">Réponse sous 24h · {{CAPACITE_PROJETS_MOIS}} projets par mois · Livraison {{DELAI_PLAGE}}</p>
   </div>
@@ -1139,7 +1139,7 @@
 
       <!-- Colonne brand — 40% -->
       <div class="footer-brand">
-        <a href="index.html" class="footer-logo-link" aria-label="AlcalSpark, Accueil">Alcal<em>Spark</em></a>
+        <a href="/" class="footer-logo-link" aria-label="AlcalSpark, Accueil">Alcal<em>Spark</em></a>
         <p class="footer-tagline">Studio d'un seul expert.</p>
         <div class="footer-socials">
           <a href="https://www.instagram.com/alcalspark/" aria-label="Instagram AlcalSpark" class="social-icon" target="_blank" rel="noopener">ig</a>
@@ -1154,32 +1154,32 @@
         <div class="footer-col">
           <h4>Services</h4>
           <ul role="list">
-            <li><a href="services/creation-web.html">Création Web</a></li>
-            <li><a href="services/design-ui-ux.html">Design UI/UX</a></li>
-            <li><a href="services/branding.html">Branding</a></li>
-            <li><a href="services/seo-marketing.html">SEO &amp; Marketing</a></li>
-            <li><a href="services/automatisation-ia.html">Automatisation IA</a></li>
+            <li><a href="/services/creation-web">Création Web</a></li>
+            <li><a href="/services/design-ui-ux">Design UI/UX</a></li>
+            <li><a href="/services/branding">Branding</a></li>
+            <li><a href="/services/seo-marketing">SEO &amp; Marketing</a></li>
+            <li><a href="/services/automatisation-ia">Automatisation IA</a></li>
           </ul>
           <h4>Zones</h4>
           <ul role="list">
-            <li><a href="services/creation-site-web-castres.html">Castres</a></li>
-            <li><a href="services/creation-site-web-mazamet.html">Mazamet</a></li>
-            <li><a href="services/creation-site-web-albi.html">Albi</a></li>
-            <li><a href="services/creation-site-web-toulouse.html">Toulouse</a></li>
-            <li><a href="services/creation-site-web-occitanie.html">Occitanie</a></li>
+            <li><a href="/services/creation-site-web-castres">Castres</a></li>
+            <li><a href="/services/creation-site-web-mazamet">Mazamet</a></li>
+            <li><a href="/services/creation-site-web-albi">Albi</a></li>
+            <li><a href="/services/creation-site-web-toulouse">Toulouse</a></li>
+            <li><a href="/services/creation-site-web-occitanie">Occitanie</a></li>
           </ul>
         </div>
 
         <div class="footer-col">
           <h4>Studio</h4>
           <ul role="list">
-            <li><a href="about.html">À propos</a></li>
-            <li><a href="portfolio.html">Portfolio</a></li>
-            <li><a href="produits.html">Produits</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="agences.html">Agences</a></li>
-            <li><a href="mentions-legales.html">Mentions légales</a></li>
-            <li><a href="cgv.html">CGV</a></li>
+            <li><a href="/about">À propos</a></li>
+            <li><a href="/portfolio">Portfolio</a></li>
+            <li><a href="/produits">Produits</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="/agences">Agences</a></li>
+            <li><a href="/mentions-legales">Mentions légales</a></li>
+            <li><a href="/cgv">CGV</a></li>
           </ul>
         </div>
 
@@ -1198,7 +1198,7 @@
     </div>
 
     <div class="footer-legal">
-      <a href="mentions-legales.html">Mentions légales</a>
+      <a href="/mentions-legales">Mentions légales</a>
     </div>
 
     <div class="footer-certifications">

@@ -42,7 +42,7 @@
   // Optional "brief:" / "contact:" / "tarifs:" prefix picks the destination; a marker
   // without prefix keeps pointing to the contact page.
   var CTA_RE = /\[\[CTA:(?:(brief|contact|tarifs):)?([^\]]{1,60})\]\]\s*$/;
-  var CTA_PAGES = { contact: 'contact.html', brief: 'brief-site-artisan-btp.html', tarifs: 'tarifs.html' };
+  var CTA_PAGES = { contact: 'contact', brief: 'brief-site-artisan-btp', tarifs: 'tarifs' };
 
   function ctaHref(target) {
     var prefix = document.documentElement.lang === 'en' ? '/en/' : '/';

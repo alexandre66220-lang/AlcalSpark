@@ -127,16 +127,16 @@ export default function RootLayout({
             </label>
             <nav className="blog-nav blog-nav-desktop">
               <a href="/">Accueil</a>
-              <a href="/services.html">Services</a>
-              <a href="/tarifs.html">Tarifs</a>
-              <a href="/portfolio.html">Portfolio</a>
-              <a href="/about.html">À propos</a>
+              <a href="/services">Services</a>
+              <a href="/tarifs">Tarifs</a>
+              <a href="/portfolio">Portfolio</a>
+              <a href="/about">À propos</a>
               <a href="/blog/" aria-current="page">
                 Blog
               </a>
-              <a href="/ressources.html">Ressources</a>
-              <a href="/produits.html">Produits</a>
-              <a href="/contact.html" className="blog-nav-cta">
+              <a href="/ressources">Ressources</a>
+              <a href="/produits">Produits</a>
+              <a href="/contact" className="blog-nav-cta">
                 Démarrer un projet
               </a>
             </nav>
@@ -144,16 +144,16 @@ export default function RootLayout({
         </header>
         <nav className="blog-nav blog-nav-mobile">
           <a href="/">Accueil</a>
-          <a href="/services.html">Services</a>
-          <a href="/tarifs.html">Tarifs</a>
-          <a href="/portfolio.html">Portfolio</a>
-          <a href="/about.html">À propos</a>
+          <a href="/services">Services</a>
+          <a href="/tarifs">Tarifs</a>
+          <a href="/portfolio">Portfolio</a>
+          <a href="/about">À propos</a>
           <a href="/blog/" aria-current="page">
             Blog
           </a>
-          <a href="/ressources.html">Ressources</a>
-          <a href="/produits.html">Produits</a>
-          <a href="/contact.html" className="blog-nav-cta">
+          <a href="/ressources">Ressources</a>
+          <a href="/produits">Produits</a>
+          <a href="/contact" className="blog-nav-cta">
             Démarrer un projet
           </a>
         </nav>
@@ -164,8 +164,8 @@ export default function RootLayout({
               &copy; {new Date().getFullYear()} AlcalSpark. Studio stratégique.
             </p>
             <nav>
-              <a href="/mentions-legales.html">Mentions legales</a>
-              <a href="/contact.html">Contact</a>
+              <a href="/mentions-legales">Mentions legales</a>
+              <a href="/contact">Contact</a>
               <a href="/blog/">Blog</a>
             </nav>
           </div>

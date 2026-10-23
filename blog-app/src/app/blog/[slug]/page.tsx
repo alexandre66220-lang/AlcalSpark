@@ -169,7 +169,7 @@ export default async function ArticlePage({
             est le bon levier, on la conçoit et on la réalise. Sinon, on vous le
             dit clairement.
           </p>
-          <a href="/contact.html" className="article-cta-btn">
+          <a href="/contact" className="article-cta-btn">
             Prendre 30 minutes pour en parler <span aria-hidden="true">&#8594;</span>
           </a>
         </div>

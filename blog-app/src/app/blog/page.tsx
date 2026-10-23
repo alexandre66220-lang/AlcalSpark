@@ -36,7 +36,7 @@ export default async function BlogListPage() {
 
       <p className="blog-resources-banner">
         Vous préférez les formats visuels ?{" "}
-        <a href="/ressources.html">Découvrez nos guides en carrousel →</a>
+        <a href="/ressources">Découvrez nos guides en carrousel →</a>
       </p>
     </>
   );

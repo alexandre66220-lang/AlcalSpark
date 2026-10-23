@@ -4,18 +4,20 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="theme-color" content="#0A0D0B" />
-<meta name="description" content="Premium websites from €{{PRIX_ESSENTIEL}}, delivered in {{DELAI_PLAGE_EN}}, fixed price. One expert, from brief to go-live. AI and n8n automation for SMEs." />
+<meta name="description" content="Premium websites in custom code, built to convert. Fixed price from €{{PRIX_ESSENTIEL}}, delivered in {{DELAI_PLAGE_EN}}. One expert from brief to launch." />
 <meta property="og:site_name" content="AlcalSpark" />
 <meta property="og:locale" content="en_US" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://alcalspark.com/en/" />
-<meta property="og:title" content="AlcalSpark, premium websites from €{{PRIX_ESSENTIEL}} in {{DELAI_PLAGE_EN}}, fixed price" />
-<meta property="og:description" content="Premium websites from €{{PRIX_ESSENTIEL}}, delivered in {{DELAI_PLAGE_EN}}, fixed price. One expert, from brief to go-live. AI and n8n automation for SMEs." />
+<meta property="og:title" content="AlcalSpark, custom premium websites from €{{PRIX_ESSENTIEL}}, delivered in {{DELAI_PLAGE_EN}}" />
+<meta property="og:description" content="Premium websites in custom code, built to convert. Fixed price from €{{PRIX_ESSENTIEL}}, delivered in {{DELAI_PLAGE_EN}}. One expert from brief to launch." />
 <meta property="og:image" content="https://alcalspark.com/assets/og-cover.jpg" />
 <meta property="og:image:alt" content="AlcalSpark, strategic studio based in Mazamet, France" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="AlcalSpark, custom premium websites from €{{PRIX_ESSENTIEL}}, delivered in {{DELAI_PLAGE_EN}}" />
+<meta name="twitter:description" content="Premium websites in custom code, built to convert. Fixed price from €{{PRIX_ESSENTIEL}}, delivered in {{DELAI_PLAGE_EN}}. One expert from brief to launch." />
 <link rel="canonical" href="https://alcalspark.com/en/" />
 <link rel="alternate" hreflang="fr" href="https://alcalspark.com/" />
 <link rel="alternate" hreflang="en" href="https://alcalspark.com/en/" />
@@ -24,14 +26,14 @@
 <meta name="geo.placename" content="Mazamet, Tarn, Occitanie" />
 <meta name="geo.position" content="43.4914;2.3769" />
 <meta name="ICBM" content="43.4914, 2.3769" />
-<title>AlcalSpark, premium websites from €{{PRIX_ESSENTIEL}} in {{DELAI_PLAGE_EN}}, fixed price</title>
+<title>AlcalSpark, custom premium websites from €{{PRIX_ESSENTIEL}}, delivered in {{DELAI_PLAGE_EN}}</title>
 
 <link rel="icon" type="image/png" sizes="96x96" href="../favicon.png" />
 <link rel="icon" type="image/png" sizes="48x48" href="../favicon-48.png" />
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
 
 <link rel="stylesheet" href="../css/as-tokens.css?v=2" />
-<link rel="stylesheet" href="../css/style.css?v=6" />
+<link rel="stylesheet" href="../css/style.css?v=7" />
 <link rel="stylesheet" href="../css/home.css?v=3" />
 <link rel="stylesheet" href="../css/hero-chat.css?v=3" />
 <link rel="stylesheet" href="../css/contact.css" />
@@ -361,8 +363,9 @@
   <!-- Centered content -->
   <div class="hero-content">
     <p class="hero-signature">One expert studio</p>
-    <h1 class="hero-title" id="hero-title">Your premium website delivered in {{DELAI_PREMIUM_EN}}.<br>Fixed price.</h1>
-    <p class="hero-desc">One expert, from brief to go-live. From €{{PRIX_ESSENTIEL}}<!--IF:PRIX_MENTION_EN--> ({{PRIX_MENTION_EN}})<!--ENDIF:PRIX_MENTION_EN-->.</p>
+    <h1 class="hero-title" id="hero-title">Premium websites, built to convert.</h1>
+    <p class="hero-badge"><span class="hero-badge-pill">From&nbsp;€{{PRIX_ESSENTIEL}}</span><!--IF:PRIX_MENTION_EN--> <span class="hero-badge-note">{{PRIX_MENTION_EN}}</span><!--ENDIF:PRIX_MENTION_EN--></p>
+    <p class="hero-desc">Custom code, fixed price, delivered in <span class="nw">{{DELAI_PLAGE_EN}}</span>. One expert from brief to launch.</p>
     <div class="hero-actions">
       <a href="tarifs.html" class="btn hero-btn" onclick="gtag('event', 'cta_voir_tarifs', {'event_category': 'CTA', 'event_label': 'Hero - Voir les tarifs'})">See pricing</a>
       <a href="contact.html" class="hero-btn-secondary" onclick="gtag('event', 'cta_reponse_24h', {'event_category': 'CTA', 'event_label': 'Hero - Réponse sous 24h'})">Get a reply within 24h</a>

@@ -343,8 +343,8 @@ for (const [file, needles] of [
   const html = readFileSync(join(ROOT, file), "utf-8");
   for (const n of needles) if (!html.includes(n)) fail("refonte", `${file}: element attendu absent (${n})`);
   if (/offre-site-artisan-btp|Artisan du BTP|Construction trades/.test(html.replace(/<!--[\s\S]*?-->/g, ""))) fail("refonte", `${file}: l'offre BTP ne doit plus apparaitre sur l'accueil`);
-  const hero = (html.match(/<h1 class="hero-title"[\s\S]*?<\/h1>/) || [""])[0];
-  if (!hero.includes("{{DELAI_PREMIUM") || /2 à 3|2 to 3/.test(hero)) fail("refonte", `${file}: le H1 doit annoncer le delai Premium via {{DELAI_PREMIUM}}`);
+  const hero = (html.match(/<h1 class="hero-title"[\s\S]*?<div class="hero-actions">/) || [""])[0];
+  if (!/\{\{DELAI_PLAGE(?:_EN)?\}\}/.test(hero) || !hero.includes("{{PRIX_ESSENTIEL}}") || /2 à 3|2 to 3|5 jours|5 days/.test(hero)) fail("refonte", `${file}: le hero doit annoncer le prix Essentiel et la fourchette {{DELAI_PLAGE}} via la config`);
   if (/<h2[^>]*>[^<]*(?:Pourquoi AlcalSpark existe|Why AlcalSpark exists)/i.test(html)) fail("refonte", `${file}: bloc 'Pourquoi AlcalSpark existe' a retirer`);
 }
 // PageSpeed : uniquement des valeurs reelles de la config, jamais en dur.

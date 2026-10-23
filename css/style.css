@@ -1333,3 +1333,24 @@ p { max-width: 62ch; text-wrap: pretty; }
 .offer-aside .btn-outline:focus-visible,
 .seo-hero .btn-outline:focus-visible,
 .tarifs-transparency-inner .btn-outline:focus-visible { outline: 2px solid var(--cream); outline-offset: 3px; }
+
+/* Accueil : badge de prix sous le titre du hero */
+.hero-badge { margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: .6rem; }
+.hero-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: .35rem .85rem;
+  border-radius: var(--radius-full, 999px);
+  border: 1px solid color-mix(in srgb, var(--green-bright) 55%, transparent);
+  background: color-mix(in srgb, var(--green-bright) 16%, transparent);
+  font-family: var(--font-ui);
+  font-size: .85rem;
+  font-weight: 600;
+  letter-spacing: .02em;
+  color: var(--cream);
+}
+.hero-badge-note { font-size: .72rem; color: var(--muted); }
+@media (max-width: 960px) { .hero-badge { justify-content: center; } }
+/* Titre du hero : lignes équilibrées, pas de coupure de mot */
+.hero-title { text-wrap: balance; overflow-wrap: normal; hyphens: manual; }
+.nw { white-space: nowrap; }

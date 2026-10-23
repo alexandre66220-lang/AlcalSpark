@@ -10,6 +10,8 @@
  *    twitter:card + twitter:title / twitter:description alignes sur og:*
  *  - toutes les <img> ont un attribut alt
  *  - hreflang : fr + en + x-default, reciproque (la page EN pointe vers la page FR et inversement)
+ *  - JSON-LD : JSON valide, aucune note/avis (AggregateRating, Review), FAQPage present si une FAQ est affichee,
+ *    BreadcrumbList sur les pages internes (dernier element = canonical), entite ProfessionalService
  *
  * Usage : node scripts/seo-audit.mjs [dossier]   (defaut : ./out, a produire avec build.sh)
  * Code de sortie 1 si au moins un defaut est trouve. Le blog (Next.js/Sanity) n'est pas concerne.
@@ -102,6 +104,30 @@ for (const p of pages) {
     }
   }
   p.alt = map;
+  // JSON-LD
+  const types = [];
+  for (const m of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
+    let j;
+    try { j = JSON.parse(m[1]); } catch (e) { bad(p, `JSON-LD invalide (${e.message})`); continue; }
+    const walkLd = (o) => {
+      if (Array.isArray(o)) return o.forEach(walkLd);
+      if (o && typeof o === "object") {
+        if (o["@type"]) types.push(...[].concat(o["@type"]));
+        for (const k of Object.keys(o)) { if (/^(aggregateRating|review|ratingValue|reviewCount)$/i.test(k)) bad(p, `JSON-LD : propriete ${k} interdite (aucun avis ni note)`); walkLd(o[k]); }
+      }
+    };
+    walkLd(j);
+    if (j["@type"] === "BreadcrumbList") {
+      const items = j.itemListElement || [];
+      const last = items[items.length - 1];
+      if (canon && last && last.item !== canon) bad(p, `BreadcrumbList : dernier element ${last.item} different du canonical`);
+    }
+  }
+  const hasFaqHtml = /class="faq-item/.test(html);
+  if (hasFaqHtml && !types.includes("FAQPage")) bad(p, "FAQ affichee sans JSON-LD FAQPage");
+  if (!hasFaqHtml && types.includes("FAQPage")) bad(p, "JSON-LD FAQPage sans FAQ affichee");
+  if (types.includes("LocalBusiness")) bad(p, "entite LocalBusiness : utiliser ProfessionalService");
+  if (!p.noindex && !p.rel.endsWith("index.html") && !types.includes("BreadcrumbList") && !/^(brief-|contact-merci|cgv|mentions)/.test(p.rel.replace(/^en\//, ""))) bad(p, "BreadcrumbList absent");
 }
 for (const [t, list] of titles) if (list.length > 1) defects.push(`title en double "${t}" : ${list.join(", ")}`);
 for (const [d, list] of descs) if (list.length > 1) defects.push(`description en double "${d.slice(0, 60)}..." : ${list.join(", ")}`);

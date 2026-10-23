@@ -281,7 +281,7 @@ for (const f of publicHtml) {
 for (const f of publicHtml) {
   const html = readFileSync(f, "utf-8");
   const r = rel(f).replace(/\\/g, "/");
-  if (!/automatisation-n8n-castres\.html"[^>]*class="nav-link[^"]*">(?:Automatisation IA|AI Automation|AI automation)</.test(html)) fail("refonte", `${r}: lien 'Automatisation IA' absent du menu`);
+  if (!/automatisation-ia\.html"[^>]*class="nav-link[^"]*">(?:Automatisation IA|AI Automation|AI automation)</.test(html)) fail("refonte", `${r}: lien 'Automatisation IA' absent du menu`);
   const navHtml = (html.match(/<nav id="navbar"[\s\S]*?<\/nav>/) || [""])[0] + (html.match(/<div class="nav-mobile"[\s\S]*?<\/div>/) || [""])[0];
   if (!/offre-site-artisan-btp/.test(r) && /offre-site-artisan-btp/.test(navHtml)) fail("refonte", `${r}: l'offre BTP ne doit pas figurer dans le menu`);
   if (!/(?:agences|agencies)\.html">(?:Agences|Agencies)</.test(html)) fail("refonte", `${r}: lien Agences absent du pied de page`);
@@ -304,7 +304,7 @@ for (const [file, subject, other, url] of [
   if (!sitemap.includes(`<loc>${url}</loc>`)) fail("sitemap", `${url} absent de sitemap.xml`);
   if (!new RegExp(`<loc>${url.replace(/[.*+?^${}()|[\]\\\/]/g, "\\$&")}</loc>\\s*<xhtml:link rel="alternate" hreflang="fr"`).test(sitemap)) fail("sitemap", `${url}: annotations hreflang absentes du sitemap`);
 }
-if (!existsSync(join(ROOT, "en/services/automatisation-n8n-castres.html"))) fail("refonte", "en/services/automatisation-n8n-castres.html est absent");
+if (!existsSync(join(ROOT, "en/services/automatisation-ia.html"))) fail("refonte", "en/services/automatisation-ia.html est absent");
 
 // hreflang : une seule annotation par langue et par page.
 for (const f of htmlFiles) {

@@ -79,7 +79,7 @@ en {{DELAI_AUTOMATISATION}} :
 - Capture de leads : +{{PRIX_AUTOMATISATION_LEADS}}€ (formulaire, email de confirmation, notification,
   tableur).
 - Workflow complet : +{{PRIX_AUTOMATISATION_COMPLET}}€ (relances, devis, notifications).
-Page : /services/automatisation-n8n-castres.
+Page : /services/automatisation-ia.
 
 **Audit + plan d'action** : {{PRIX_AUDIT}}€, livré en {{DELAI_AUDIT}}, déductible du projet si le
 visiteur confie ensuite le projet à ALCALSPARK.

@@ -90,7 +90,7 @@
       "publisher": { "@id": "https://alcalspark.com/#business" }
     },
     {
-      "@type": ["LocalBusiness", "ProfessionalService"],
+      "@type": "ProfessionalService",
       "@id": "https://alcalspark.com/#business",
       "name": "AlcalSpark",
       "description": "Strategic studio based in Mazamet, France: strategic analysis and growth-lever identification, followed by the design and delivery of digital systems (conversion-focused websites, SaaS, automation) for SMEs and independent businesses across Occitanie",
@@ -263,6 +263,78 @@
   gtag('js', new Date());
   gtag('config', 'G-GH6PR00V1L');
 </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How much does a website cost?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Three fixed-price packs: Essential €790, Premium €1,290, and Custom from €1,990 with a fixed quote after the brief. Source code delivered, no subscription imposed. Details on the Pricing page.@@@@ VAT not applicable, art. 293 B of the French Tax Code (CGI).@@@@"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the delivery time?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "3 days for Essential, 5 days for Premium. For Custom, the timeline is given in the quote."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does ordering work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You describe your need with the contact form and get a reply within 24h, then a fixed-price quote before anything starts. Payment: 50% at order and 50% on delivery for the packs, in 3 instalments (30 / 40 / 30%) for Custom work."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why only 2 projects per month?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A single expert delivers every project. Limiting the number of projects is what lets the announced timelines be met: spots are limited."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Am I locking into a multi-year commitment like some offers I've already received?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Every quote is detailed with no hidden commitment. No commitment period: maintenance renews month by month and can be cancelled at any time."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How can I be sure the site will actually be visible on Google?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No serious studio, us included, can guarantee a position on Google. What we can guarantee: a clean technical foundation (sitemap, structured data, load times) from day one, a necessary condition for visibility."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can one person really handle a strategic project?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "That's precisely the question worth asking with any provider, agency or solo. The difference here: you talk directly to the person doing the work, not a salesperson who'll pass your request to someone else. The portfolio and a first conversation let you judge the technical skill before committing."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What happens if the project grows faster than expected?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Capacity is limited to 2 projects per month precisely so that the commitment made is kept. If a project outgrows its initial scope, we discuss it beforehand, not after; custom work is priced with a fixed quote."
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -293,7 +365,7 @@
   <ul class="nav-links" role="list">
     <li><a href="index.html" class="nav-link active">Home</a></li>
     <li><a href="services.html" class="nav-link">Services</a></li>
-    <li><a href="services/automatisation-n8n-castres.html" class="nav-link">AI Automation</a></li>
+    <li><a href="services/automatisation-ia.html" class="nav-link">AI Automation</a></li>
     <li><a href="tarifs.html" class="nav-link">Pricing</a></li>
     <li><a href="portfolio.html" class="nav-link">Portfolio</a></li>
     <li><a href="about.html" class="nav-link">About</a></li>
@@ -312,7 +384,7 @@
 <div class="nav-mobile" aria-hidden="true">
   <a href="index.html" class="nav-link">Home</a>
   <a href="services.html" class="nav-link">Services</a>
-  <a href="services/automatisation-n8n-castres.html" class="nav-link">AI Automation</a>
+  <a href="services/automatisation-ia.html" class="nav-link">AI Automation</a>
   <a href="tarifs.html" class="nav-link">Pricing</a>
   <a href="portfolio.html" class="nav-link">Portfolio</a>
   <a href="about.html" class="nav-link">About</a>
@@ -463,7 +535,7 @@
           <li>Notification to you</li>
           <li>Leads logged in a spreadsheet</li>
         </ul>
-        <a href="services/automatisation-n8n-castres.html" class="btn btn-primary" onclick="gtag('event', 'cta_auto_leads', {'event_category': 'CTA', 'event_label': 'cta_auto_leads'})">See AI automation</a>
+        <a href="services/automatisation-ia.html" class="btn btn-primary" onclick="gtag('event', 'cta_auto_leads', {'event_category': 'CTA', 'event_label': 'cta_auto_leads'})">See AI automation</a>
       </article>
       <article class="offer-card card reveal delay-2">
         <div class="offer-badge">Full workflow</div>
@@ -475,7 +547,7 @@
           <li>Quotes and notifications</li>
           <li>Built with n8n, connected to your tools</li>
         </ul>
-        <a href="services/automatisation-n8n-castres.html" class="btn btn-primary" onclick="gtag('event', 'cta_auto_complet', {'event_category': 'CTA', 'event_label': 'cta_auto_complet'})">See AI automation</a>
+        <a href="services/automatisation-ia.html" class="btn btn-primary" onclick="gtag('event', 'cta_auto_complet', {'event_category': 'CTA', 'event_label': 'cta_auto_complet'})">See AI automation</a>
       </article>
     </div>
   </div>
@@ -1083,7 +1155,7 @@
             <li><a href="services/design-ui-ux.html">UI/UX Design</a></li>
             <li><a href="services/branding.html">Branding</a></li>
             <li><a href="services/seo-marketing.html">SEO &amp; Marketing</a></li>
-            <li><a href="services/automatisation-n8n-castres.html">AI Automation</a></li>
+            <li><a href="services/automatisation-ia.html">AI Automation</a></li>
           </ul>
         </div>
 

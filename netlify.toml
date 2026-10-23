@@ -35,6 +35,31 @@
 [build.processing.images]
   compress = true
 
+# Page automatisation : ancienne URL locale vers la nouvelle URL nationale (301)
+[[redirects]]
+  from = "/services/automatisation-n8n-castres"
+  to = "/services/automatisation-ia"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/services/automatisation-n8n-castres.html"
+  to = "/services/automatisation-ia"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/en/services/automatisation-n8n-castres"
+  to = "/en/services/automatisation-ia"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/en/services/automatisation-n8n-castres.html"
+  to = "/en/services/automatisation-ia"
+  status = 301
+  force = true
+
 # Canonicalisation du domaine : www → apex en 301
 [[redirects]]
   from = "https://www.alcalspark.com/*"

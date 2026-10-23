@@ -18,6 +18,48 @@ export async function generateStaticParams() {
   return slugs.map((slug) => ({ slug }));
 }
 
+/** Texte brut d'un bloc Portable Text. */
+function blockText(b: unknown): string {
+  const children = (b as { children?: Array<{ text?: string }> }).children;
+  return (children ?? []).map((c) => c.text ?? "").join("");
+}
+
+/** Ancre d'un titre : minuscules, sans accents, tirets. Sert aux liens du sommaire (#ancre). */
+function slugify(text: string): string {
+  return text
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+function childrenText(children?: React.ReactNode): string {
+  if (typeof children === "string") return children;
+  if (Array.isArray(children)) return children.map((c) => childrenText(c as React.ReactNode)).join("");
+  return "";
+}
+
+/** Questions/réponses d'une section H2 "FAQ" (H3 = question, paragraphes = réponse), pour le JSON-LD FAQPage. */
+function extractFaq(contenu?: unknown[]): Array<{ q: string; a: string }> {
+  if (!contenu) return [];
+  const faq: Array<{ q: string; a: string }> = [];
+  let inFaq = false;
+  for (const raw of contenu) {
+    const b = raw as { _type?: string; style?: string };
+    if (b._type !== "block") continue;
+    const text = blockText(b).trim();
+    if (b.style === "h2") {
+      inFaq = /^(faq|questions fr[ée]quentes)$/i.test(text);
+      continue;
+    }
+    if (!inFaq) continue;
+    if (b.style === "h3") faq.push({ q: text, a: "" });
+    else if (faq.length && text) faq[faq.length - 1].a += (faq[faq.length - 1].a ? " " : "") + text;
+  }
+  return faq.filter((f) => f.a);
+}
+
 export async function generateMetadata({
   params,
 }: {
@@ -26,18 +68,31 @@ export async function generateMetadata({
   const article = await getArticleBySlug(params.slug);
   if (!article) return {};
 
+  const title = article.titreSeo || article.titre;
+  const image = ARTICLE_IMAGES[params.slug] ?? "/assets/og-cover.jpg";
+
   return {
-    title: article.titre,
+    // titreSeo est un titre complet (60 caractères max) : pas de suffixe de marque ajouté.
+    title: article.titreSeo ? { absolute: article.titreSeo } : article.titre,
     description: article.extrait,
     alternates: {
       canonical: `/blog/${params.slug}/`,
     },
     openGraph: {
-      title: article.titre,
+      title,
       description: article.extrait,
       type: "article",
       publishedTime: article.date,
       url: `/blog/${params.slug}/`,
+      siteName: "AlcalSpark Blog",
+      locale: "fr_FR",
+      images: [{ url: image, width: 1200, height: 630, alt: article.titre }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description: article.extrait,
+      images: [image],
     },
   };
 }
@@ -53,8 +108,8 @@ function formatDate(dateStr: string) {
 
 const portableComponents = {
   block: {
-    h2: ({ children }: { children?: React.ReactNode }) => <h2>{children}</h2>,
-    h3: ({ children }: { children?: React.ReactNode }) => <h3>{children}</h3>,
+    h2: ({ children }: { children?: React.ReactNode }) => <h2 id={slugify(childrenText(children))}>{children}</h2>,
+    h3: ({ children }: { children?: React.ReactNode }) => <h3 id={slugify(childrenText(children))}>{children}</h3>,
     normal: ({ children }: { children?: React.ReactNode }) => <p>{children}</p>,
     blockquote: ({ children }: { children?: React.ReactNode }) => (
       <blockquote>{children}</blockquote>
@@ -107,13 +162,14 @@ export default async function ArticlePage({
       "@type": "WebPage",
       "@id": `https://alcalspark.com/blog/${params.slug}/`,
     },
+    dateModified: article.date,
     author: {
-      "@type": "Organization",
-      "@id": "https://alcalspark.com/#business",
-      name: "AlcalSpark",
+      "@type": "Person",
+      name: "Alexandre Lenique",
+      url: "https://alcalspark.com/about",
     },
     publisher: {
-      "@type": "Organization",
+      "@type": "ProfessionalService",
       "@id": "https://alcalspark.com/#business",
       name: "AlcalSpark",
       logo: {
@@ -126,12 +182,44 @@ export default async function ArticlePage({
       : "https://alcalspark.com/assets/og-cover.jpg",
   };
 
+  const faq = extractFaq(article.contenu);
+  const faqJsonLd = faq.length
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: faq.map((f) => ({
+          "@type": "Question",
+          name: f.q,
+          acceptedAnswer: { "@type": "Answer", text: f.a },
+        })),
+      }
+    : null;
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Accueil", item: "https://alcalspark.com/" },
+      { "@type": "ListItem", position: 2, name: "Blog", item: "https://alcalspark.com/blog/" },
+      { "@type": "ListItem", position: 3, name: article.titre, item: `https://alcalspark.com/blog/${params.slug}/` },
+    ],
+  };
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      {faqJsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        />
+      )}
       <article>
         {heroImg && (
           <div className="article-cover">
@@ -170,8 +258,13 @@ export default async function ArticlePage({
             dit clairement.
           </p>
           <a href="/contact" className="article-cta-btn">
-            Prendre 30 minutes pour en parler <span aria-hidden="true">&#8594;</span>
+            Décrire mon besoin par écrit <span aria-hidden="true">&#8594;</span>
           </a>
+          <p className="article-cta-links">
+            Voir aussi : <a href="/tarifs">tarifs et packs</a>,{" "}
+            <a href="/services/automatisation-ia">automatisation IA</a>,{" "}
+            <a href="/agences">offre agences (marque blanche)</a>.
+          </p>
         </div>
       </section>
     </>

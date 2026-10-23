@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     template: "%s | AlcalSpark Blog",
   },
   description:
-    "Conseils, stratégies digitales et expertises web par AlcalSpark, studio stratégique basé à Mazamet.",
+    "Conseils, stratégies digitales et expertises web par AlcalSpark, studio d'un seul expert.",
   openGraph: {
     siteName: "AlcalSpark Blog",
     locale: "fr_FR",
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
 
 const localBusinessJsonLd = {
   "@context": "https://schema.org",
-  "@type": "LocalBusiness",
+  "@type": "ProfessionalService",
   "@id": "https://alcalspark.com/#business",
   name: "AlcalSpark",
   description:
@@ -166,6 +166,9 @@ export default function RootLayout({
             <nav>
               <a href="/mentions-legales">Mentions legales</a>
               <a href="/contact">Contact</a>
+              <a href="/tarifs">Tarifs</a>
+              <a href="/services/automatisation-ia">Automatisation IA</a>
+              <a href="/agences">Agences</a>
               <a href="/blog/">Blog</a>
             </nav>
           </div>

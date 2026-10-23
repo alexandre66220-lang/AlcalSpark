@@ -11,6 +11,7 @@ export function urlFor(source: SanityImageSource) {
 export interface Article {
   _id: string;
   titre: string;
+  titreSeo?: string;
   slug: { current: string };
   date: string;
   categorie: string;
@@ -42,6 +43,7 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
     `*[_type == "article" && slug.current == $slug][0] {
       _id,
       titre,
+      titreSeo,
       slug,
       date,
       categorie,

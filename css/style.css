@@ -1354,3 +1354,7 @@ p { max-width: 62ch; text-wrap: pretty; }
 /* Titre du hero : lignes équilibrées, pas de coupure de mot */
 .hero-title { text-wrap: balance; overflow-wrap: normal; hyphens: manual; }
 .nw { white-space: nowrap; }
+
+/* Pages services : phrase de maillage interne sous l'appel à l'action */
+.seo-context { margin: 1rem auto 0; max-width: 62ch; font-size: .9rem; line-height: 1.7; color: var(--c72); text-align: center; }
+.seo-context a { color: var(--cream); text-decoration: underline; text-underline-offset: 3px; }

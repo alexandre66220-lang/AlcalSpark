@@ -67,7 +67,7 @@
 .spark-widget-eye { display: block; width: 100%; height: 100%; overflow: visible; }
 .sw-ring { fill: none; stroke: #385144; stroke-width: 3; opacity: 0.6; }
 .sw-ring--mid { stroke: var(--sw-accent); opacity: 0.45; }
-.sw-pupil { fill: #f8f5f2; opacity: 0.92; transform-origin: 50% 50%; }
+.sw-pupil { fill: #E6E1D8; opacity: 0.92; transform-origin: 50% 50%; }
 
 /* idle -- slow ambient breathing, same visual language as js/hero-eye-lite.js's lite eye */
 .sw-pupil { animation: sw-breathe 3.4s ease-in-out infinite; }
@@ -157,7 +157,7 @@
 .spark-widget-close {
   background: transparent;
   border: none;
-  color: rgba(248, 245, 242, 0.6);
+  color: rgba(230, 225, 216, 0.6);
   font-size: 1.2rem;
   line-height: 1;
   cursor: pointer;
@@ -187,8 +187,8 @@
 }
 .spark-widget-msg--user {
   align-self: flex-end;
-  color: rgba(248, 245, 242, 0.7);
-  background: rgba(248, 245, 242, 0.06);
+  color: rgba(230, 225, 216, 0.7);
+  background: rgba(230, 225, 216, 0.06);
   border-radius: 8px 8px 2px 8px;
   padding: 0.45rem 0.65rem;
 }
@@ -257,12 +257,12 @@
   background: transparent;
   border: none;
   outline: none;
-  color: #f8f5f2;
+  color: #E6E1D8;
   font-family: var(--font-ui, sans-serif);
   font-size: 0.82rem;
   min-width: 0;
 }
-.spark-widget-input::placeholder { color: rgba(248, 245, 242, 0.35); }
+.spark-widget-input::placeholder { color: rgba(230, 225, 216, 0.35); }
 .spark-widget-send {
   background: transparent;
   border: none;
@@ -281,7 +281,7 @@
   font-family: var(--font-mono, monospace);
   font-size: 0.58rem;
   letter-spacing: 0.02em;
-  color: rgba(248, 245, 242, 0.32);
+  color: rgba(230, 225, 216, 0.32);
   padding: 0 0.9rem 0.6rem;
   margin: 0;
   flex: 0 0 auto;

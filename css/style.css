@@ -1,13 +1,13 @@
 /* ═══════════════════════════════════════════════════════════════
    AlcalSpark — Design System
-   Palette exclusive : #385144 (vert) + #F8F5F2 (crème)
+   Palette exclusive : #385144 (vert) + #E6E1D8 (crème)
 ═══════════════════════════════════════════════════════════════ */
 
 /* ── Tokens ──────────────────────────────────────────────────── */
 :root {
   color-scheme: light;
   --green: #385144;
-  --cream: #F8F5F2;
+  --cream: #E6E1D8;
 
   --g90: rgba(56,81,68,.9);
   --g70: rgba(56,81,68,.7);
@@ -17,13 +17,13 @@
   --g08: rgba(56,81,68,.08);
   --g04: rgba(56,81,68,.04);
 
-  --c90: rgba(248,245,242,.9);
-  --c70: rgba(248,245,242,.7);
-  --c50: rgba(248,245,242,.5);
-  --c30: rgba(248,245,242,.3);
-  --c15: rgba(248,245,242,.15);
-  --c08: rgba(248,245,242,.08);
-  --c72: rgba(248,245,242,.72);
+  --c90: rgba(230,225,216,.9);
+  --c70: rgba(230,225,216,.7);
+  --c50: rgba(230,225,216,.5);
+  --c30: rgba(230,225,216,.3);
+  --c15: rgba(230,225,216,.15);
+  --c08: rgba(230,225,216,.08);
+  --c72: rgba(230,225,216,.72);
 
   --font-serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
   --font-sans:  'Raleway', 'Segoe UI', system-ui, sans-serif;
@@ -744,7 +744,7 @@ p { max-width: 62ch; text-wrap: pretty; }
 /* ── Footer ──────────────────────────────────────────────────── */
 #footer {
   background: #243029;
-  border-top: 1px solid rgba(248,245,242,0.12);
+  border-top: 1px solid rgba(230,225,216,0.12);
   color: var(--cream);
   padding: 3.5rem var(--pad-x) 2rem;
 }
@@ -809,7 +809,7 @@ p { max-width: 62ch; text-wrap: pretty; }
   font-weight: 700;
   letter-spacing: .26em;
   text-transform: uppercase;
-  color: rgba(248, 245, 242, 0.58);
+  color: rgba(230, 225, 216, 0.58);
   margin-bottom: 1.5rem;
 }
 .footer-col ul { display: flex; flex-direction: column; gap: .75rem; }
@@ -827,7 +827,7 @@ p { max-width: 62ch; text-wrap: pretty; }
   justify-content: space-between;
   align-items: center;
   font-size: .75rem;
-  color: rgba(248, 245, 242, 0.58);
+  color: rgba(230, 225, 216, 0.58);
 }
 
 /* ── WhatsApp ────────────────────────────────────────────────── */
@@ -1359,17 +1359,17 @@ p { max-width: 62ch; text-wrap: pretty; }
    Design « humain » (branche design-humain) : accueil, /tarifs, /agences,
    automatisation, /contact. Tout est préfixé .hm-* ou limité à body.hm,
    les autres pages (légales, CGV, blog, portfolio) ne sont pas touchées.
-   Sections sombres (#0A0D0B) et crème (#F8F5F2) en alternance, filets fins,
+   Sections sombres (#0A0D0B) et crème (#E6E1D8) en alternance, filets fins,
    pas de verre dépoli ni de halo derrière le texte.
    ========================================================================== */
 .hm-sec { position: relative; padding: clamp(3.5rem, 8vw, 6.5rem) 0; }
 .hm-sec--dark {
-  --hm-ink: #F8F5F2; --hm-muted: rgba(248, 245, 242, .72); --hm-line: rgba(248, 245, 242, .16); --hm-accent: #F8F5F2;
-  background: #0A0D0B; color: #F8F5F2;
+  --hm-ink: #E6E1D8; --hm-muted: rgba(230, 225, 216, .72); --hm-line: rgba(230, 225, 216, .16); --hm-accent: #E6E1D8;
+  background: #0A0D0B; color: #E6E1D8;
 }
 .hm-sec--cream {
   --hm-ink: #0A0D0B; --hm-muted: rgba(10, 13, 11, .72); --hm-line: rgba(10, 13, 11, .16); --hm-accent: #385144;
-  background: #F8F5F2; color: #0A0D0B;
+  background: #E6E1D8; color: #0A0D0B;
 }
 .hm-wrap { width: 100%; max-width: 1120px; margin: 0 auto; padding: 0 var(--pad-x); box-sizing: border-box; }
 .hm-split { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: clamp(1.5rem, 5vw, 5rem); align-items: start; }
@@ -1465,8 +1465,8 @@ body.hm .portfolio-item, body.hm .diag-axis, body.hm .contact-form-wrap, body.hm
 body.hm .portfolio-item::before, body.hm .portfolio-item::after, body.hm .diag-axis::before, body.hm .diag-axis::after,
 body.hm .contact-form-wrap::before, body.hm .contact-form-wrap::after, body.hm .contact-card::before, body.hm .contact-card::after { content: none !important; display: none !important; }
 body.hm .diag-axis-blobs { display: none !important; }
-body.hm .diag-axis { border-top: 1px solid rgba(248, 245, 242, .16) !important; }
-body.hm .diag-axis:last-child { border-bottom: 1px solid rgba(248, 245, 242, .16) !important; }
+body.hm .diag-axis { border-top: 1px solid rgba(230, 225, 216, .16) !important; }
+body.hm .diag-axis:last-child { border-bottom: 1px solid rgba(230, 225, 216, .16) !important; }
 
 /* Réalisations (accueil) : images nettes, légende sous l'image */
 .hm-works .portfolio-grid { margin-top: 2rem; }
@@ -1480,8 +1480,8 @@ body.hm .diag-axis:last-child { border-bottom: 1px solid rgba(248, 245, 242, .16
 @media (max-width: 860px) { .hm-reasoning .pr-grid { grid-template-columns: minmax(0, 1fr); } }
 
 /* Fonds : priorité sur les règles de section héritées (transparent, halos) */
-body.hm .hm-sec--dark { background: #0A0D0B; color: #F8F5F2; }
-body.hm .hm-sec--cream { background: #F8F5F2; color: #0A0D0B; }
+body.hm .hm-sec--dark { background: #0A0D0B; color: #E6E1D8; }
+body.hm .hm-sec--cream { background: #E6E1D8; color: #0A0D0B; }
 body.hm .hm-sec h2 { margin-bottom: 1rem; }
 body.hm .hm-split > h2 { margin-bottom: 0; }
 body.hm .hm-sec { overflow: visible; }
@@ -1513,4 +1513,7 @@ body.hm .contact-cards { gap: .5rem; margin-top: 1.5rem; }
 body.hm .contact-card { padding-left: 0 !important; padding-right: 0 !important; }
 body.hm .form-intro { margin: 0 0 1.5rem; }
 .hm-reasoning .pr-block h4, .hm-reasoning h4 { color: var(--hm-ink) !important; }
-body.hm .select-arrow { color: rgba(248, 245, 242, .6); }
+body.hm .select-arrow { color: rgba(230, 225, 216, .6); }
+.hm-row { grid-template-columns: minmax(0, 1fr) 7.5rem 12.5rem; }
+.hm-row-side .hm-link { white-space: nowrap; }
+@media (max-width: 860px) { .hm-row { grid-template-columns: minmax(0, 1fr) auto; } }

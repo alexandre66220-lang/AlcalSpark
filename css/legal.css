@@ -119,7 +119,7 @@
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(248, 245, 242, 0.82);
+  color: rgba(230, 225, 216, 0.82);
   margin: 24px 0 10px;
 }
 .legal-article p {
@@ -180,13 +180,13 @@
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(248, 245, 242, 0.62);
+  color: rgba(230, 225, 216, 0.62);
   min-width: 220px;
   flex-shrink: 0;
 }
 .lib-value {
   font-size: 0.9rem;
-  color: rgba(248, 245, 242, 0.92);
+  color: rgba(230, 225, 216, 0.92);
 }
 .lib-value a { color: var(--gold-300); text-decoration: none; }
 .lib-value a:hover { text-decoration: underline; }
@@ -222,7 +222,7 @@
   border-radius: 3px;
 }
 .cgv-draft-banner strong { display: block; letter-spacing: 0.12em; color: #C9A84C; margin-bottom: 8px; }
-.cgv-draft-banner p { margin: 0; font-size: 0.9rem; color: rgba(248, 245, 242, 0.8); }
+.cgv-draft-banner p { margin: 0; font-size: 0.9rem; color: rgba(230, 225, 216, 0.8); }
 .legal-article p.cgv-todo {
   display: inline-block;
   margin: 0 0 14px;

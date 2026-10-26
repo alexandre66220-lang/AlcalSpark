@@ -368,7 +368,7 @@
   background: rgba(56, 81, 68, 0.92) !important;
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
-  color: #F8F5F2 !important;
+  color: #E6E1D8 !important;
   border: 1px solid rgba(90, 138, 110, 0.4) !important;
   border-radius: 999px !important;
   letter-spacing: 0.14em;
@@ -383,7 +383,7 @@
   gap: 0.6rem;
   background: none !important;
   border: none !important;
-  color: rgba(248, 245, 242, 0.6) !important;
+  color: rgba(230, 225, 216, 0.6) !important;
   font-size: 0.68rem !important;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -418,7 +418,7 @@
   border-radius: 12px;
   background: rgba(56, 81, 68, 0.22) !important;
   border: 1px solid rgba(90, 138, 110, 0.28) !important;
-  color: #F8F5F2 !important;
+  color: #E6E1D8 !important;
   flex-shrink: 0;
 }
 
@@ -489,7 +489,7 @@
   background: rgba(20, 27, 23, 0.45) !important;
   border: 1px solid var(--glass-border) !important;
   border-radius: 10px !important;
-  color: #F8F5F2 !important;
+  color: #E6E1D8 !important;
   transition: border-color 0.3s ease, background 0.3s ease;
 }
 
@@ -518,7 +518,7 @@
 .filter-btn.active {
   background: rgba(56, 81, 68, 0.35) !important;
   border-color: rgba(90, 138, 110, 0.45) !important;
-  color: #F8F5F2 !important;
+  color: #E6E1D8 !important;
 }
 
 /* ============================================================
@@ -532,7 +532,7 @@
   background: rgba(56, 81, 68, 0.18) !important;
   border: 1px solid rgba(90, 138, 110, 0.25) !important;
   border-radius: 999px !important;
-  color: rgba(248, 245, 242, 0.75) !important;
+  color: rgba(230, 225, 216, 0.75) !important;
 }
 
 /* ============================================================
@@ -631,7 +631,7 @@
 
 .section-dark {
   background: transparent !important;
-  color: var(--cream, #F8F5F2) !important;
+  color: var(--cream, #E6E1D8) !important;
   position: relative;
   overflow: hidden;
 }
@@ -659,14 +659,14 @@
 .section-dark .btn-gold,
 .section-dark .btn-primary {
   background: transparent !important;
-  color: rgba(248, 245, 242, 0.85) !important;
-  border: 1px solid rgba(248, 245, 242, 0.3) !important;
+  color: rgba(230, 225, 216, 0.85) !important;
+  border: 1px solid rgba(230, 225, 216, 0.3) !important;
 }
 .section-dark .btn-gold:hover,
 .section-dark .btn-primary:hover {
-  border-color: rgba(248, 245, 242, 0.65) !important;
-  color: #F8F5F2 !important;
-  background: rgba(248, 245, 242, 0.04) !important;
+  border-color: rgba(230, 225, 216, 0.65) !important;
+  color: #E6E1D8 !important;
+  background: rgba(230, 225, 216, 0.04) !important;
 }
 
 /* ============================================================

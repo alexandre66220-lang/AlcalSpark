@@ -97,11 +97,11 @@
   gap: 12px;
   font-family: var(--font-body);
   font-size: 0.9rem;
-  color: rgba(248, 245, 242, 0.88);
+  color: rgba(230, 225, 216, 0.88);
 }
 .service-features li::before {
   content: '✦';
-  color: rgba(248, 245, 242, 0.5);
+  color: rgba(230, 225, 216, 0.5);
   font-size: 0.55rem;
   flex-shrink: 0;
 }
@@ -139,7 +139,7 @@
 /* Browser mockup */
 .web-mockup { padding-bottom: 20px; }
 .sv-browser-bar {
-  background: rgba(248, 245, 242, 0.04);
+  background: rgba(230, 225, 216, 0.04);
   padding: 12px 16px;
   display: flex;
   align-items: center;
@@ -153,12 +153,12 @@
 }
 .sv-url {
   flex: 1;
-  background: rgba(248, 245, 242, 0.05);
+  background: rgba(230, 225, 216, 0.05);
   border-radius: 3px;
   padding: 5px 12px;
   font-family: var(--font-body);
   font-size: 0.72rem;
-  color: rgba(248, 245, 242, 0.3);
+  color: rgba(230, 225, 216, 0.3);
 }
 .sv-screen { padding: 16px; }
 .sv-nav-mock {
@@ -227,7 +227,7 @@
 .ui-rows { display: flex; flex-direction: column; gap: 4px; margin-bottom: 8px; }
 .ui-rows div {
   height: 10px;
-  background: rgba(248, 245, 242, 0.08);
+  background: rgba(230, 225, 216, 0.08);
   border-radius: 2px;
 }
 .ui-cta-mock {
@@ -293,7 +293,7 @@
   flex-direction: column;
   align-items: center;
   gap: 8px;
-  color: rgba(248, 245, 242, 0.72);
+  color: rgba(230, 225, 216, 0.72);
 }
 
 /* SEO mockup */
@@ -337,7 +337,7 @@
 .seo-kpi span:last-child {
   display: block;
   font-size: 0.7rem;
-  color: rgba(248, 245, 242, 0.4);
+  color: rgba(230, 225, 216, 0.4);
   margin-top: 4px;
 }
 
@@ -351,7 +351,7 @@
 
 .saas-sidebar {
   width: 36px;
-  background: rgba(248, 245, 242, 0.02);
+  background: rgba(230, 225, 216, 0.02);
   border-right: 1px solid rgba(56, 81, 68, 0.1);
   display: flex;
   flex-direction: column;
@@ -364,7 +364,7 @@
   width: 14px;
   height: 3px;
   border-radius: 2px;
-  background: rgba(248, 245, 242, 0.12);
+  background: rgba(230, 225, 216, 0.12);
 }
 .saas-sidebar-dot.active { background: rgba(56, 81, 68, 0.65); }
 
@@ -397,7 +397,7 @@
 .saas-metric-lbl {
   height: 3px;
   width: 75%;
-  background: rgba(248, 245, 242, 0.08);
+  background: rgba(230, 225, 216, 0.08);
   border-radius: 1px;
 }
 
@@ -438,13 +438,13 @@
 .saas-table-row span:nth-child(1) {
   flex: 2;
   height: 5px;
-  background: rgba(248, 245, 242, 0.07);
+  background: rgba(230, 225, 216, 0.07);
   border-radius: 1px;
 }
 .saas-table-row span:nth-child(2) {
   flex: 1;
   height: 5px;
-  background: rgba(248, 245, 242, 0.05);
+  background: rgba(230, 225, 216, 0.05);
   border-radius: 1px;
 }
 .saas-badge {
@@ -583,7 +583,7 @@
 .si-card:hover h3 { color: var(--c90); }
 .si-card > p {
   font-size: 0.88rem;
-  color: rgba(248, 245, 242, 0.85);
+  color: rgba(230, 225, 216, 0.85);
   line-height: 1.8;
 }
 
@@ -627,11 +627,11 @@
   margin-right: auto;
 }
 .pricing-cta-block .btn-outline {
-  border-color: rgba(248, 245, 242, 0.4);
+  border-color: rgba(230, 225, 216, 0.4);
   color: var(--cream);
 }
 .pricing-cta-block .btn-outline:hover {
-  background: rgba(248, 245, 242, 0.12);
+  background: rgba(230, 225, 216, 0.12);
   color: var(--cream);
   border-color: var(--cream);
 }
@@ -674,7 +674,7 @@
 .pc-from {
   display: block;
   font-size: 0.78rem;
-  color: rgba(248, 245, 242, 0.65);
+  color: rgba(230, 225, 216, 0.65);
   margin-bottom: 6px;
 }
 .pc-num {
@@ -702,7 +702,7 @@
   align-items: center;
   gap: 10px;
   font-size: 0.88rem;
-  color: rgba(248, 245, 242, 0.88);
+  color: rgba(230, 225, 216, 0.88);
 }
 .pc-features li::before {
   content: '✦';
@@ -765,3 +765,8 @@
 .service-small-card[id] {
   scroll-margin-top: calc(var(--nav-h) + 1.5rem);
 }
+
+/* Page Services : titres moins imposants */
+.services-hero .ph-content h1 { font-size: clamp(2.6rem, 5.6vw, 4.6rem); line-height: 1.04; }
+.sr-info h2 { font-size: clamp(1.75rem, 2.9vw, 2.75rem); line-height: 1.12; }
+.sr-num { font-size: clamp(2.4rem, 4.2vw, 3.6rem); }

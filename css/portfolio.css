@@ -248,7 +248,7 @@
 .pf-wrap:focus-within .pf-hover-content { transform: translateY(0); }
 .pf-hover-content::-webkit-scrollbar { width: 4px; }
 .pf-hover-content::-webkit-scrollbar-thumb {
-  background: rgba(248, 245, 242, 0.25);
+  background: rgba(230, 225, 216, 0.25);
   border-radius: 4px;
 }
 

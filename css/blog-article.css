@@ -9,12 +9,12 @@
 
 :root {
   --bg: #0A0D0B;
-  --text: #f8f5f2;
+  --text: #E6E1D8;
   --gold: #5a8a6e;
   --green: #385144;
-  --muted: rgba(248, 245, 242, 0.55);
+  --muted: rgba(230, 225, 216, 0.55);
   --card-bg: rgba(255, 255, 255, 0.04);
-  --border: rgba(248, 245, 242, 0.08);
+  --border: rgba(230, 225, 216, 0.08);
   --font-heading: var(--font-cormorant), "Georgia", serif;
   --font-body: var(--font-raleway), system-ui, sans-serif;
 }
@@ -468,7 +468,7 @@ body:has(#blog-nav-toggle:checked) .blog-nav-toggle-label span:nth-child(3) {
 
 .article-body p {
   margin-bottom: 1.25rem;
-  color: rgba(248, 245, 242, 0.85);
+  color: rgba(230, 225, 216, 0.85);
 }
 
 .article-body strong {
@@ -493,7 +493,7 @@ body:has(#blog-nav-toggle:checked) .blog-nav-toggle-label span:nth-child(3) {
 .article-body ol {
   margin: 0 0 1.25rem 0;
   padding-left: 1.4rem;
-  color: rgba(248, 245, 242, 0.85);
+  color: rgba(230, 225, 216, 0.85);
 }
 
 .article-body li {
@@ -518,7 +518,7 @@ body:has(#blog-nav-toggle:checked) .blog-nav-toggle-label span:nth-child(3) {
   font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
   font-size: 0.85rem;
   line-height: 1.6;
-  color: rgba(248, 245, 242, 0.85);
+  color: rgba(230, 225, 216, 0.85);
   white-space: pre;
 }
 
@@ -561,7 +561,7 @@ body:has(#blog-nav-toggle:checked) .blog-nav-toggle-label span:nth-child(3) {
 }
 
 .article-cta-inner p {
-  color: rgba(248, 245, 242, 0.75);
+  color: rgba(230, 225, 216, 0.75);
   max-width: 480px;
   margin: 0 auto 2rem;
 }

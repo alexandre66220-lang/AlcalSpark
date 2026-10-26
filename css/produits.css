@@ -26,8 +26,8 @@
 /* ── Carte produit ────────────────────────────────────────── */
 .product-card {
   position: relative;
-  background: rgba(248,245,242,0.03);
-  border: 1px solid rgba(248,245,242,0.07);
+  background: rgba(230,225,216,0.03);
+  border: 1px solid rgba(230,225,216,0.07);
   border-radius: 4px;
   padding: 44px 40px 40px;
   display: flex;
@@ -39,7 +39,7 @@
 }
 .product-card:hover {
   transform: translateY(-4px);
-  border-color: rgba(248,245,242,0.12);
+  border-color: rgba(230,225,216,0.12);
 }
 
 /* Bande de couleur accent en haut de carte */
@@ -72,7 +72,7 @@
   font-family: var(--font-ui);
   font-size: clamp(1.5rem, 2.8vw, 2rem);
   font-weight: 700;
-  color: #F8F5F2;
+  color: #E6E1D8;
   line-height: 1.1;
   margin-bottom: 8px;
   letter-spacing: -0.01em;
@@ -86,7 +86,7 @@
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(248,245,242,0.60);
+  color: rgba(230,225,216,0.60);
 }
 .product-badge-disponible {
   display: inline-flex;
@@ -123,7 +123,7 @@
 /* ── Séparateur ───────────────────────────────────────────── */
 .product-card-divider {
   height: 1px;
-  background: rgba(248,245,242,0.06);
+  background: rgba(230,225,216,0.06);
   margin-bottom: 22px;
 }
 
@@ -132,7 +132,7 @@
   font-family: var(--font-body);
   font-size: 0.92rem;
   font-weight: 300;
-  color: rgba(248,245,242,0.65);
+  color: rgba(230,225,216,0.65);
   line-height: 1.75;
   margin-bottom: 28px;
   max-width: 100%;
@@ -150,16 +150,16 @@
   font-size: 0.66rem;
   font-weight: 500;
   letter-spacing: 0.06em;
-  color: rgba(248,245,242,0.5);
-  border: 1px solid rgba(248,245,242,0.1);
+  color: rgba(230,225,216,0.5);
+  border: 1px solid rgba(230,225,216,0.1);
   border-radius: 3px;
   padding: 4px 11px;
-  background: rgba(248,245,242,0.03);
+  background: rgba(230,225,216,0.03);
   transition: color 0.2s, border-color 0.2s, background 0.2s;
 }
 .product-card:hover .stack-pill {
-  color: rgba(248,245,242,0.72);
-  border-color: rgba(248,245,242,0.15);
+  color: rgba(230,225,216,0.72);
+  border-color: rgba(230,225,216,0.15);
 }
 
 /* ── CTA bouton ───────────────────────────────────────────── */
@@ -172,7 +172,7 @@
   font-weight: 600;
   letter-spacing: 0.04em;
   background: #385144;
-  color: #F8F5F2;
+  color: #E6E1D8;
   border: 1px solid #385144;
   border-radius: 2px;
   padding: 0.85rem 1.75rem;
@@ -195,8 +195,8 @@
 
 /* ── Carte placeholder (a venir) ─────────────────────────── */
 .product-card.placeholder {
-  border: 1px dashed rgba(248,245,242,0.08);
-  background: rgba(248,245,242,0.015);
+  border: 1px dashed rgba(230,225,216,0.08);
+  background: rgba(230,225,216,0.015);
   pointer-events: none;
 }
 .product-placeholder-inner {
@@ -213,8 +213,8 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: rgba(248,245,242,0.04);
-  border: 1px solid rgba(248,245,242,0.1);
+  background: rgba(230,225,216,0.04);
+  border: 1px solid rgba(230,225,216,0.1);
   border-radius: 20px;
   padding: 5px 14px;
   font-family: var(--font-ui);
@@ -222,19 +222,19 @@
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(248,245,242,0.5);
+  color: rgba(230,225,216,0.5);
 }
 .product-placeholder-title {
   font-family: var(--font-ui);
   font-size: 1.15rem;
   font-weight: 700;
-  color: rgba(248,245,242,0.5);
+  color: rgba(230,225,216,0.5);
 }
 .product-placeholder-text {
   font-family: var(--font-body);
   font-size: 0.84rem;
   font-weight: 300;
-  color: rgba(248,245,242,0.5);
+  color: rgba(230,225,216,0.5);
   line-height: 1.65;
   max-width: 26ch;
   margin: 0;
@@ -243,19 +243,19 @@
 /* ── Section CTA bas de page ──────────────────────────────── */
 .products-cta-section {
   background: transparent;
-  border-top: 1px solid rgba(248,245,242,0.06);
-  border-bottom: 1px solid rgba(248,245,242,0.06);
+  border-top: 1px solid rgba(230,225,216,0.06);
+  border-bottom: 1px solid rgba(230,225,216,0.06);
   text-align: center;
 }
 .products-cta-section .eyebrow {
   justify-content: center;
 }
 .products-cta-section h2 {
-  color: #F8F5F2;
+  color: #E6E1D8;
   margin-bottom: 20px;
 }
 .products-cta-section p {
-  color: rgba(248,245,242,0.55);
+  color: rgba(230,225,216,0.55);
   font-family: var(--font-body);
   font-size: 1rem;
   line-height: 1.8;

@@ -124,7 +124,7 @@
 
 .hel-ring { fill: none; stroke: #1a8f6e; stroke-width: 1.5; opacity: 0.55; }
 .hel-ring--mid { stroke: #39ffc4; opacity: 0.4; }
-.hel-pupil { fill: #f8f5f2; opacity: 0.9; transform-origin: 50% 50%; }
+.hel-pupil { fill: #E6E1D8; opacity: 0.9; transform-origin: 50% 50%; }
 .hel-lid { fill: #05070a; }
 .hel-lid--top { transform: scaleY(0); transform-origin: 50% 0%; }
 .hel-lid--bottom { transform: scaleY(0); transform-origin: 50% 100%; }
@@ -188,7 +188,7 @@
   max-width: 46ch;
   margin-top: 0.75rem;
   border: 1px solid rgba(57, 255, 196, 0.22);
-  background: rgba(248, 245, 242, 0.03);
+  background: rgba(230, 225, 216, 0.03);
   border-radius: 4px;
 }
 
@@ -216,7 +216,7 @@
   font-size: 0.85rem;
   min-width: 0;
 }
-.hero-chat-input::placeholder { color: rgba(248, 245, 242, 0.35); }
+.hero-chat-input::placeholder { color: rgba(230, 225, 216, 0.35); }
 
 .hero-chat-send {
   background: transparent;
@@ -236,7 +236,7 @@
   font-family: var(--font-mono);
   font-size: 0.62rem;
   letter-spacing: 0.02em;
-  color: rgba(248, 245, 242, 0.32);
+  color: rgba(230, 225, 216, 0.32);
   padding: 0 0.9rem 0.7rem;
   margin: 0;
 }

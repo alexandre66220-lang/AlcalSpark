@@ -245,7 +245,7 @@
 }
 
 .faq-item {
-  border-bottom: 1px solid rgba(248, 245, 242, 0.07);
+  border-bottom: 1px solid rgba(230, 225, 216, 0.07);
   transition: background 0.3s;
 }
 
@@ -266,7 +266,7 @@
   font-family: var(--font-ui);
   font-size: clamp(0.88rem, 1.2vw, 1.02rem);
   font-weight: 500;
-  color: rgba(248, 245, 242, 0.75);
+  color: rgba(230, 225, 216, 0.75);
   transition: color 0.3s;
 }
 
@@ -290,7 +290,7 @@
 
 .faq-answer p {
   font-size: 0.88rem;
-  color: rgba(248, 245, 242, 0.55);
+  color: rgba(230, 225, 216, 0.55);
   line-height: 1.85;
 }
 

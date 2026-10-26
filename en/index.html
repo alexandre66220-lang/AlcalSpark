@@ -264,7 +264,7 @@
   gtag('config', 'G-GH6PR00V1L');
 </script>
 </head>
-<body>
+<body class="hm">
 
 <div class="noise-overlay" aria-hidden="true"></div>
 
@@ -388,188 +388,283 @@
 </section>
 
 <!-- ══════════════════════════════════════
-  NOS OFFRES
+  TARIFS
 ══════════════════════════════════════ -->
-<section class="offers-section" id="offres" aria-labelledby="offres-title">
-  <div class="container">
-    <div class="offers-head">
-      <div class="eyebrow reveal">Our offers</div>
-      <h2 id="offres-title" class="reveal delay-1">Three packs,<br /><em>one fixed price</em></h2>
-      <p class="reveal delay-2">From a showcase site to a custom project, price and timeline are given before we start. Source code delivered, no subscription imposed.</p>
+<section class="hm-sec hm-sec--cream" id="offres" aria-labelledby="offres-title">
+  <div class="hm-wrap hm-split">
+    <div>
+      <h2 id="offres-title">Pricing</h2>
+      <p class="hm-lead">Price and timeline are given before we start. Source code delivered, no subscription imposed.</p>
     </div>
-    <div class="offers-grid">
-      <article class="offer-card card reveal delay-1">
-        <div class="offer-badge">Essential</div>
-        <div class="offer-price"><span class="offer-amount">€{{PRIX_ESSENTIEL}}</span></div>
-        <p class="offer-delay">Delivered in {{DELAI_ESSENTIEL_EN}}</p>
-        
-        <ul class="offer-features">
-          <li>1 responsive page with a contact form</li>
-          <li>Basic SEO and go-live</li>
-          <li>1 round of revisions, in French</li>
-        </ul>
-        <a href="contact.html" class="btn btn-primary" onclick="gtag('event', 'cta_offre_essentiel', {'event_category': 'CTA', 'event_label': 'cta_offre_essentiel'})">Choose Essential</a>
-      </article>
-      <article class="offer-card offer-card--featured glass-strong reveal delay-2">
-        <span class="offer-flag">Most popular</span>
-        <div class="offer-badge">Premium</div>
-        <div class="offer-price"><span class="offer-amount">€{{PRIX_PREMIUM_AFFICHE_EN}}</span></div>
-        <p class="offer-delay">Delivered in {{DELAI_PREMIUM_EN}}</p>
-        
-        <ul class="offer-features">
-          <li>5 responsive pages, contact form with a confirmation email</li>
-          <li>Technical SEO: tags, structured data, sitemap</li>
-          <li>Analytics and Search Console set up</li>
-          <li>FR/EN site, 2 rounds of revisions</li>
-        </ul>
-        <a href="contact.html" class="btn btn-primary" onclick="gtag('event', 'cta_offre_premium', {'event_category': 'CTA', 'event_label': 'cta_offre_premium'})">Choose Premium</a>
-      </article>
-      <article class="offer-card card reveal delay-3">
-        <div class="offer-badge">Custom</div>
-        <div class="offer-price"><span class="offer-from">from&nbsp;</span><span class="offer-amount">€{{PRIX_SUR_MESURE_DES_AFFICHE_EN}}</span></div>
-        <p class="offer-delay">Timeline given in the quote</p>
-        
-        <ul class="offer-features">
-          <li>Everything in Premium, plus advanced animations (Three.js, GSAP)</li>
-          <li>Extra pages and integrations</li>
-          <li>Fixed quote after the brief</li>
-        </ul>
-        <a href="contact.html" class="btn btn-primary" onclick="gtag('event', 'cta_offre_surmesure', {'event_category': 'CTA', 'event_label': 'cta_offre_surmesure'})">Request a quote</a>
-      </article>
-    </div>
-    <p class="offer-note offer-note--hosting reveal">Hosting included with maintenance; otherwise, the site is delivered on your account.</p>
-        <p class="offer-note reveal">Pack details, options and maintenance on the <a href="tarifs.html">Pricing</a> page.<!--IF:PRIX_MENTION_EN--> {{PRIX_MENTION_EN}}.<!--ENDIF:PRIX_MENTION_EN--></p>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════
-  AUTOMATISATION IA
-══════════════════════════════════════ -->
-<section class="offers-section" id="automatisation-ia" aria-labelledby="auto-title">
-  <div class="container">
-    <div class="offers-head">
-      <div class="eyebrow reveal">AI automation</div>
-      <h2 id="auto-title" class="reveal delay-1">Automate your processes,<br /><em>in {{DELAI_AUTOMATISATION_EN}}</em></h2>
-      <p class="reveal delay-2">n8n workflows added to your project: no more lost leads, follow-ups that send themselves.</p>
-    </div>
-    <div class="offers-grid offers-grid--2">
-      <article class="offer-card card reveal delay-1">
-        <div class="offer-badge">Lead capture</div>
-        <div class="offer-price"><span class="offer-amount">+€{{PRIX_AUTOMATISATION_LEADS}}</span></div>
-        <p class="offer-delay">Delivered in {{DELAI_AUTOMATISATION_EN}}</p>
-        
-        <ul class="offer-features">
-          <li>Form, then confirmation email</li>
-          <li>Notification to you</li>
-          <li>Leads logged in a spreadsheet</li>
-        </ul>
-        <a href="services/automatisation-n8n-castres.html" class="btn btn-primary" onclick="gtag('event', 'cta_auto_leads', {'event_category': 'CTA', 'event_label': 'cta_auto_leads'})">See AI automation</a>
-      </article>
-      <article class="offer-card card reveal delay-2">
-        <div class="offer-badge">Full workflow</div>
-        <div class="offer-price"><span class="offer-amount">+€{{PRIX_AUTOMATISATION_COMPLET}}</span></div>
-        <p class="offer-delay">Delivered in {{DELAI_AUTOMATISATION_EN}}</p>
-        
-        <ul class="offer-features">
-          <li>Automatic follow-ups</li>
-          <li>Quotes and notifications</li>
-          <li>Built with n8n, connected to your tools</li>
-        </ul>
-        <a href="services/automatisation-n8n-castres.html" class="btn btn-primary" onclick="gtag('event', 'cta_auto_complet', {'event_category': 'CTA', 'event_label': 'cta_auto_complet'})">See AI automation</a>
-      </article>
-    </div>
-  </div>
-</section>
-
-<section class="proof-section" aria-label="What you can verify before contacting us">
-  <div class="container">
-    <p class="proof-intro reveal">What you can verify before even getting in touch.</p>
-    <div class="proof-grid">
-      <div class="proof-item reveal">
-        <span class="proof-num">{{DELAI_PLAGE_EN}}</span>
-        <span class="proof-label">Delivery time</span>
-      </div>
-      <div class="proof-item reveal delay-1">
-        <span class="proof-num">1 single<br>point of contact</span>
-        <span class="proof-label">From brief to go-live</span>
-      </div>
-      <div class="proof-item reveal delay-2">
-        <span class="proof-num">{{CAPACITE_PROJETS_MOIS}} projects<br>per month</span>
-        <span class="proof-label">Limited spots</span>
-      </div>
-      <div class="proof-item reveal delay-3">
-        <span class="proof-num">Source code<br>delivered</span>
-        <span class="proof-label">No subscription imposed</span>
-      </div>
-<!--IF:PAGESPEED_MOBILE-->
-      <div class="proof-item reveal delay-4">
-        <span class="proof-num">{{PAGESPEED_MOBILE}} / {{PAGESPEED_DESKTOP}}</span>
-        <span class="proof-label">PageSpeed score mobile / desktop</span>
-      </div>
-<!--ENDIF:PAGESPEED_MOBILE-->
+    <div>
+    <ul class="hm-rows">
+      <li class="hm-row">
+        <div class="hm-row-main">
+          <h3 class="hm-row-name">Essential</h3>
+          <p class="hm-row-desc">1 responsive page, contact form, basic SEO, go-live.</p>
+        </div>
+        <p class="hm-row-delay">Delivered in {{DELAI_ESSENTIEL_EN}}</p>
+        <div class="hm-row-side">
+          <p class="hm-price">€{{PRIX_ESSENTIEL}}</p>
+          <a class="hm-link" href="contact.html" onclick="gtag('event', 'cta_offre_essentiel', {'event_category': 'CTA', 'event_label': 'cta_offre_essentiel'})">Order →</a>
+        </div>
+      </li>
+      <li class="hm-row">
+        <div class="hm-row-main">
+          <h3 class="hm-row-name">Premium</h3>
+          <p class="hm-row-desc">5 responsive pages, technical SEO, Analytics and Search Console, FR/EN site.</p>
+        </div>
+        <p class="hm-row-delay">Delivered in {{DELAI_PREMIUM_EN}}</p>
+        <div class="hm-row-side">
+          <p class="hm-price">€{{PRIX_PREMIUM_AFFICHE_EN}}</p>
+          <a class="hm-link" href="contact.html" onclick="gtag('event', 'cta_offre_premium', {'event_category': 'CTA', 'event_label': 'cta_offre_premium'})">Order →</a>
+        </div>
+      </li>
+      <li class="hm-row">
+        <div class="hm-row-main">
+          <h3 class="hm-row-name">Custom</h3>
+          <p class="hm-row-desc">Everything in Premium, plus advanced animations, extra pages and integrations.</p>
+        </div>
+        <p class="hm-row-delay">Timeline given in the quote</p>
+        <div class="hm-row-side">
+          <p class="hm-price"><small>from&nbsp;</small>€{{PRIX_SUR_MESURE_DES_AFFICHE_EN}}</p>
+          <a class="hm-link" href="contact.html" onclick="gtag('event', 'cta_offre_surmesure', {'event_category': 'CTA', 'event_label': 'cta_offre_surmesure'})">Request a quote →</a>
+        </div>
+      </li>
+    </ul>
+      <p class="hm-note">Hosting included with maintenance; otherwise, the site is delivered on your account.<!--IF:PRIX_MENTION_EN--> {{PRIX_MENTION_EN}}.<!--ENDIF:PRIX_MENTION_EN--></p>
+      <p class="hm-note">I also build n8n automations (lead capture, follow-ups, quotes), delivered in {{DELAI_AUTOMATISATION_EN}}. <a class="hm-link" href="services/automatisation-n8n-castres.html">See the Automation page →</a></p>
+      <p style="margin-top:1.5rem"><a class="hm-link" href="tarifs.html">See everything on the pricing page →</a></p>
     </div>
   </div>
 </section>
 
 <!-- ══════════════════════════════════════
-  SEGMENTATION — "You are..."
+  COMMENT ÇA SE PASSE
 ══════════════════════════════════════ -->
-<section class="segmentation-section" aria-labelledby="segmentation-title">
-  <div class="container">
-
-    <div class="segmentation-intro">
-      <h2 id="segmentation-title" class="reveal">You are…</h2>
-      <p class="reveal delay-1">Two paths, <em>the same standard</em>.</p>
+<section class="hm-sec hm-sec--dark" id="methode" aria-labelledby="methode-title">
+  <div class="hm-wrap hm-split">
+    <div>
+      <h2 id="methode-title">How it works</h2>
+      <p class="hm-lead">I reply within 24h, deliver in {{DELAI_PLAGE_EN}} and take {{CAPACITE_PROJETS_MOIS}} projects per month: spots are limited.</p>
     </div>
-
-    <div class="segment-grid">
-      <article class="segment-card card reveal delay-1">
-        <h3>Business or startup</h3>
-        <p>You want a fast, high-performing website at a fixed price. Showcase packs from €{{PRIX_ESSENTIEL}}, AI automation, hosting with maintenance.</p>
-        <div style="display:flex;flex-wrap:wrap;gap:0.75rem;">
-          <a href="tarifs.html" class="btn btn-primary segment-btn" data-segment="entreprise" onclick="gtag('event', 'cta_voir_tarifs', {'event_category': 'CTA', 'event_label': 'Segmentation - See pricing'})">See pricing</a>
-          <a href="#diagnostic" class="btn btn-outline-inv segment-btn" data-segment="diagnostic" onclick="gtag('event', 'cta_diagnostic', {'event_category': 'CTA', 'event_label': 'Segmentation - Diagnostic'})">Get my free diagnostic</a>
-        </div>
-      </article>
-      <article class="segment-card card reveal delay-2">
-        <h3>Agency</h3>
-        <p>You have the mockups, you need clean, responsive, fast code under your brand. From €{{PRIX_AGENCE_MIN}} to €{{PRIX_AGENCE_MAX}} per integration, 100% remote.</p>
-        <div style="display:flex;flex-wrap:wrap;gap:0.75rem;">
-          <a href="agencies.html" class="btn btn-primary segment-btn" data-segment="agence" onclick="gtag('event', 'cta_agences', {'event_category': 'CTA', 'event_label': 'Segmentation - Agencies'})">Agencies: white-label</a>
-        </div>
-      </article>
-    </div>
-
-  </div>
-</section>
-
-<section class="methode-section" id="methode" aria-labelledby="methode-title">
-  <div class="container">
-    <div class="methode-intro">
-      <div class="eyebrow reveal">The method</div>
-      <h2 id="methode-title" class="reveal delay-1">From brief to go-live,<br /><em>with no middleman</em></h2>
-      <p class="reveal delay-2">One expert, from analysis to delivery: no sales relay, no project manager. {{CAPACITE_PROJETS_MOIS}} projects per month, limited spots.</p>
-    </div>
-    <ol class="steps-3 reveal delay-2">
-      <li><span class="step-n">01</span><strong>Brief within 24h</strong><p>You describe your need, you get a reply within 24h.</p></li>
-      <li><span class="step-n">02</span><strong>Fixed-price quote</strong><p>The price is given before we start, with no surprises and no imposed subscription.</p></li>
-      <li><span class="step-n">03</span><strong>Delivery in {{DELAI_PLAGE_EN}}</strong><p>Your website is delivered with its source code.</p></li>
+    <ol class="hm-steps hm-steps--col">
+      <li><span>01</span><strong>You describe your need</strong><p>With the contact form or on WhatsApp. I reply within 24h.</p></li>
+      <li><span>02</span><strong>I send you a quote</strong><p>The price is given before we start, with no subscription imposed.</p></li>
+      <li><span>03</span><strong>I deliver the site</strong><p>It is delivered with its source code in {{DELAI_PLAGE_EN}}.</p></li>
     </ol>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+  POUR QUI
+══════════════════════════════════════ -->
+<section class="hm-sec hm-sec--cream" aria-labelledby="pourqui-title">
+  <div class="hm-wrap">
+    <h2 id="pourqui-title" style="margin-bottom:2.5rem">Who I work with</h2>
+    <div class="hm-cols">
+      <div>
+        <h3>For businesses</h3>
+        <p>You want a fast, high-performing website at a fixed price: packs from €{{PRIX_ESSENTIEL}}, optional n8n automation, hosting included with maintenance.</p>
+        <div class="hm-links">
+          <a class="hm-link" href="tarifs.html" data-segment="entreprise" onclick="gtag('event', 'cta_voir_tarifs', {'event_category': 'CTA', 'event_label': 'cta_voir_tarifs'})">See pricing →</a>
+          <a class="hm-link" href="#diagnostic" data-segment="diagnostic" onclick="gtag('event', 'cta_diagnostic', {'event_category': 'CTA', 'event_label': 'cta_diagnostic'})">Get my free diagnostic →</a>
+        </div>
+      </div>
+      <div>
+        <h3>For agencies</h3>
+        <p>You have the mockups and need clean, responsive, fast code under your brand: from €{{PRIX_AGENCE_MIN}} to €{{PRIX_AGENCE_MAX}} per integration, 100% remote.</p>
+        <div class="hm-links">
+          <a class="hm-link" href="agencies.html" data-segment="agence" onclick="gtag('event', 'cta_agences', {'event_category': 'CTA', 'event_label': 'cta_agences'})">See the agency offer →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+  4a. INTERACTIVE DIAGNOSTIC — 3 axes in parallel (persona A)
+══════════════════════════════════════ -->
+<section class="diagnostic-section hm-sec hm-sec--dark" id="diagnostic" aria-labelledby="diagnostic-title">
+  <div class="container">
+
+    <div class="diagnostic-intro">
+      <h2 id="diagnostic-title">Free diagnostic</h2>
+      <p class="hm-lead">Three areas, a few clicks. You leave with a clear view of your priorities, with no commitment, and I reply to you personally within 24h.</p>
+    </div>
+
+    <div class="diag-progress reveal delay-2" aria-live="polite">
+      <span class="diag-progress-label" id="diag-progress-label">0/3 areas completed</span>
+      <div class="diag-progress-bar"><div class="diag-progress-fill" id="diag-progress-fill"></div></div>
+    </div>
+    <p class="diag-step-indicator" id="diag-step-indicator" aria-live="polite"></p>
+
+    <div class="diag-axes" id="diag-axes">
+
+      <!-- Axis 1: Web presence -->
+      <article class="diag-axis card reveal" data-axis="presence">
+        <div class="diag-axis-blobs" aria-hidden="true"><canvas class="diag-blob-canvas"></canvas></div>
+        <button type="button" class="diag-axis-toggle" aria-expanded="false" aria-controls="diag-body-presence">
+          <span class="diag-axis-icon" aria-hidden="true">◈</span>
+          <span class="diag-axis-heading">
+            <span class="diag-axis-eyebrow">Area 01</span>
+            <span class="diag-axis-title">Web presence</span>
+          </span>
+          <span class="diag-axis-status">To explore</span>
+          <span class="diag-axis-chevron" aria-hidden="true"></span>
+        </button>
+        <div class="diag-axis-body" id="diag-body-presence" hidden></div>
+      </article>
+
+      <!-- Axis 2: Visual identity -->
+      <article class="diag-axis card reveal delay-1" data-axis="identite">
+        <div class="diag-axis-blobs" aria-hidden="true"><canvas class="diag-blob-canvas"></canvas></div>
+        <button type="button" class="diag-axis-toggle" aria-expanded="false" aria-controls="diag-body-identite">
+          <span class="diag-axis-icon" aria-hidden="true">✦</span>
+          <span class="diag-axis-heading">
+            <span class="diag-axis-eyebrow">Area 02</span>
+            <span class="diag-axis-title">Visual identity</span>
+          </span>
+          <span class="diag-axis-status">To explore</span>
+          <span class="diag-axis-chevron" aria-hidden="true"></span>
+        </button>
+        <div class="diag-axis-body" id="diag-body-identite" hidden></div>
+      </article>
+
+      <!-- Axis 3: Performance and conversion -->
+      <article class="diag-axis card reveal delay-2" data-axis="performance">
+        <div class="diag-axis-blobs" aria-hidden="true"><canvas class="diag-blob-canvas"></canvas></div>
+        <button type="button" class="diag-axis-toggle" aria-expanded="false" aria-controls="diag-body-performance">
+          <span class="diag-axis-icon" aria-hidden="true">◎</span>
+          <span class="diag-axis-heading">
+            <span class="diag-axis-eyebrow">Area 03</span>
+            <span class="diag-axis-title">Performance &amp; conversion</span>
+          </span>
+          <span class="diag-axis-status">To explore</span>
+          <span class="diag-axis-chevron" aria-hidden="true"></span>
+        </button>
+        <div class="diag-axis-body" id="diag-body-performance" hidden></div>
+      </article>
+
+    </div>
+
+    <!-- Final summary: displayed by js/diagnostic.en.js once all 3 areas are complete -->
+    <div class="diag-final" id="diag-final" hidden>
+
+      <div class="diag-final-recap">
+        <h3 class="diag-final-heading">Your priorities, at a glance</h3>
+        <ul class="diag-recap-list" id="diag-recap-list"></ul>
+      </div>
+
+      <div class="diag-final-layout">
+
+        <!-- Left: contact form -->
+        <div class="diag-final-form-wrap contact-form-wrap">
+          <h4>Let's take action</h4>
+          <p>Send me your diagnostic: I'll get back to you within 24h with a concrete plan.</p>
+          <form id="diag-contact-form" class="contact-form" name="diagnostic" method="POST" action="https://api.web3forms.com/submit" aria-label="Contact form, diagnostic">
+            <input type="hidden" name="access_key" value="fdb9cf8f-13eb-4676-94ff-ac3f07efaa50" />
+            <input type="hidden" name="subject" value="New diagnostic, AlcalSpark" />
+            <input type="hidden" name="from_name" value="AlcalSpark Diagnostic" />
+            <input type="hidden" name="redirect" value="https://alcalspark.com/en/contact-merci.html" />
+            <input type="hidden" name="botcheck" value="" style="display:none" />
+            <input type="hidden" name="diagnostic" id="diag-recap-field" value="" />
+
+            <div class="form-row">
+              <div class="form-group">
+                <input type="text" id="diag-fname" name="fname" placeholder="First name" required autocomplete="given-name" />
+                <label for="diag-fname">First name</label>
+                <div class="form-underline"></div>
+              </div>
+              <div class="form-group">
+                <input type="text" id="diag-lname" name="lname" placeholder="Last name" required autocomplete="family-name" />
+                <label for="diag-lname">Last name</label>
+                <div class="form-underline"></div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <input type="email" id="diag-email" name="email" placeholder="Email" required autocomplete="email" />
+              <label for="diag-email">Email address</label>
+              <div class="form-underline"></div>
+            </div>
+
+            <div class="form-group">
+              <textarea id="diag-message" name="message" placeholder="Message" rows="4" required></textarea>
+              <label for="diag-message">A word about your project</label>
+              <div class="form-underline"></div>
+            </div>
+
+            <div class="form-rgpd">
+              <label class="checkbox-wrap">
+                <input type="checkbox" id="diag-rgpd" name="rgpd" required />
+                <span class="checkbox-custom" aria-hidden="true"></span>
+                <span>I agree that my data will be used to respond to my request, in accordance with the <a href="../mentions-legales.html">privacy policy</a>.</span>
+              </label>
+            </div>
+
+            <button type="submit" class="btn btn-gold form-submit" style="width:100%; justify-content:center;" aria-label="Send message">
+              <span class="submit-text">Send my diagnostic</span>
+              <span class="submit-icon" aria-hidden="true">→</span>
+            </button>
+          </form>
+        </div>
+
+        <!-- Right: direct contact details -->
+        <div class="diag-final-info contact-info">
+          <div class="contact-cards">
+            <div class="contact-card">
+              <div class="cc-icon">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M2 4a2 2 0 012-2h12a2 2 0 012 2v12a2 2 0 01-2 2H4a2 2 0 01-2-2V4z" stroke="currentColor" stroke-width="1.5"/>
+                  <path d="M2 7l8 5 8-5" stroke="currentColor" stroke-width="1.5"/>
+                </svg>
+              </div>
+              <div>
+                <span class="cc-label">Email</span>
+                <a href="mailto:contact@alcalspark.com" class="cc-value">contact@alcalspark.com</a>
+              </div>
+            </div>
+            <div class="contact-card">
+              <div class="cc-icon">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M4 2a2 2 0 00-2 2v1c0 7.18 5.82 13 13 13h1a2 2 0 002-2v-3.5a.5.5 0 00-.5-.5h-3a.5.5 0 00-.5.5V14a9 9 0 01-9-9h.5a.5.5 0 00.5-.5v-3A.5.5 0 006.5 1H4z" stroke="currentColor" stroke-width="1.5"/>
+                </svg>
+              </div>
+              <div>
+                <span class="cc-label">Phone</span>
+                <a href="tel:0663054481" class="cc-value">+33 6 63 05 44 81</a>
+              </div>
+            </div>
+            <div class="contact-card">
+              <div class="cc-icon">
+                <svg viewBox="0 0 24 24" fill="none" width="20" height="20" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884" fill="currentColor"/></svg>
+              </div>
+              <div>
+                <span class="cc-label">WhatsApp</span>
+                <a href="https://wa.me/33663054481" class="cc-value" target="_blank" rel="noopener" onclick="gtag('event', 'cta_whatsapp', {'event_category': 'CTA', 'event_label': 'Contact card - WhatsApp'})">+33 6 63 05 44 81</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
   </div>
 </section>
 
 <!-- ══════════════════════════════════════
   PORTFOLIO TEASER
 ══════════════════════════════════════ -->
-<section class="portfolio-teaser" aria-labelledby="portfolio-title">
+<section class="portfolio-teaser hm-sec hm-sec--cream hm-works" aria-labelledby="portfolio-title">
 
-  <div class="portfolio-header">
+  <div class="hm-wrap hm-split">
+    <h2 id="portfolio-title">Projects</h2>
     <div>
-      <div class="eyebrow reveal">Our work</div>
-      <h2 id="portfolio-title" class="reveal delay-1">Projects that<br /><em>speak for themselves</em></h2>
-      <p class="portfolio-disclaimer reveal delay-2">These projects are complete technical demonstrations, designed and built end to end to prove a skill set, not anonymized clients dressed up as real projects. <em>Transparency starts here.</em></p>
+      <p class="hm-lead" style="margin-top:0">These projects are demonstrations I designed, not client orders.</p>
+      <p style="margin-top:1rem"><a class="hm-link" href="portfolio.html">See all →</a></p>
     </div>
-    <a href="portfolio.html" class="btn btn-outline reveal delay-3">See all</a>
   </div>
 
   <div class="portfolio-grid">
@@ -704,11 +799,8 @@
 
   </div>
 
-  <div class="portfolio-reasoning card reveal">
-    <div class="pr-header">
-      <span class="pr-eyebrow">The reasoning</span>
-      <h3>Vitrum, CRM and automation SaaS platform</h3>
-    </div>
+  <div class="hm-wrap"><div class="hm-reasoning">
+    <h3>Vitrum, CRM and automation SaaS platform</h3>
     <div class="pr-grid">
       <div class="pr-block">
         <h4>The problem</h4>
@@ -723,7 +815,7 @@
         <p>A third-party plugin system open to external developers, dropped in favor of a controlled internal roadmap, to keep the experience consistent and avoid technical debt from unmanaged code.</p>
       </div>
     </div>
-  </div>
+  </div></div>
 </section>
 
 <!-- ══════════════════════════════════════
@@ -733,323 +825,92 @@
 
   <section class="home-testimonials" id="temoignages" aria-labelledby="temoignages-title">
     <div class="container">
-      <h2 id="temoignages-title">Ce que disent nos clients</h2>
+      <h2 id="temoignages-title">Ce que disent mes clients</h2>
       ... un <figure> par témoignage réel : citation, prénom, entreprise, lien vérifiable si possible ...
     </div>
   </section>
 ══════════════════════════════════════ -->
 
 <!-- ══════════════════════════════════════
-  4a. INTERACTIVE DIAGNOSTIC — 3 axes in parallel (persona A)
+  CONTACT DIRECT
 ══════════════════════════════════════ -->
-<section class="diagnostic-section" id="diagnostic" aria-labelledby="diagnostic-title">
-  <div class="container">
-
-    <div class="diagnostic-intro">
-      <div class="eyebrow reveal">Quick diagnostic</div>
-      <h2 id="diagnostic-title" class="reveal delay-1">Where does your<br />digital presence stand?</h2>
-      <p class="reveal delay-2">Three areas, a few clicks. This isn't a contact form in disguise, it's the starting point of every analysis at AlcalSpark: understand before proposing anything. Walk away with a clear view of your priorities, no commitment, and a human reply within 24h, not an automated email.</p>
-    </div>
-
-    <div class="diag-progress reveal delay-2" aria-live="polite">
-      <span class="diag-progress-label" id="diag-progress-label">0/3 areas completed</span>
-      <div class="diag-progress-bar"><div class="diag-progress-fill" id="diag-progress-fill"></div></div>
-    </div>
-    <p class="diag-step-indicator" id="diag-step-indicator" aria-live="polite"></p>
-
-    <div class="diag-axes" id="diag-axes">
-
-      <!-- Axis 1: Web presence -->
-      <article class="diag-axis card reveal" data-axis="presence">
-        <div class="diag-axis-blobs" aria-hidden="true"><canvas class="diag-blob-canvas"></canvas></div>
-        <button type="button" class="diag-axis-toggle" aria-expanded="false" aria-controls="diag-body-presence">
-          <span class="diag-axis-icon" aria-hidden="true">◈</span>
-          <span class="diag-axis-heading">
-            <span class="diag-axis-eyebrow">Area 01</span>
-            <span class="diag-axis-title">Web presence</span>
-          </span>
-          <span class="diag-axis-status">To explore</span>
-          <span class="diag-axis-chevron" aria-hidden="true"></span>
-        </button>
-        <div class="diag-axis-body" id="diag-body-presence" hidden></div>
-      </article>
-
-      <!-- Axis 2: Visual identity -->
-      <article class="diag-axis card reveal delay-1" data-axis="identite">
-        <div class="diag-axis-blobs" aria-hidden="true"><canvas class="diag-blob-canvas"></canvas></div>
-        <button type="button" class="diag-axis-toggle" aria-expanded="false" aria-controls="diag-body-identite">
-          <span class="diag-axis-icon" aria-hidden="true">✦</span>
-          <span class="diag-axis-heading">
-            <span class="diag-axis-eyebrow">Area 02</span>
-            <span class="diag-axis-title">Visual identity</span>
-          </span>
-          <span class="diag-axis-status">To explore</span>
-          <span class="diag-axis-chevron" aria-hidden="true"></span>
-        </button>
-        <div class="diag-axis-body" id="diag-body-identite" hidden></div>
-      </article>
-
-      <!-- Axis 3: Performance and conversion -->
-      <article class="diag-axis card reveal delay-2" data-axis="performance">
-        <div class="diag-axis-blobs" aria-hidden="true"><canvas class="diag-blob-canvas"></canvas></div>
-        <button type="button" class="diag-axis-toggle" aria-expanded="false" aria-controls="diag-body-performance">
-          <span class="diag-axis-icon" aria-hidden="true">◎</span>
-          <span class="diag-axis-heading">
-            <span class="diag-axis-eyebrow">Area 03</span>
-            <span class="diag-axis-title">Performance &amp; conversion</span>
-          </span>
-          <span class="diag-axis-status">To explore</span>
-          <span class="diag-axis-chevron" aria-hidden="true"></span>
-        </button>
-        <div class="diag-axis-body" id="diag-body-performance" hidden></div>
-      </article>
-
-    </div>
-
-    <!-- Final summary: displayed by js/diagnostic.en.js once all 3 areas are complete -->
-    <div class="diag-final" id="diag-final" hidden>
-
-      <div class="diag-final-recap">
-        <div class="eyebrow">Your diagnostic</div>
-        <h3 class="diag-final-heading">Your priorities, at a glance</h3>
-        <ul class="diag-recap-list" id="diag-recap-list"></ul>
+<section class="hm-sec hm-sec--dark" id="contact-direct" aria-labelledby="contact-direct-title">
+  <div class="hm-wrap hm-split">
+    <h2 id="contact-direct-title">A project to describe?</h2>
+    <div>
+      <p>You don't need to arrive with a solution already decided (SaaS, redesign, automation). I first look at your business and look for the right lever; the technical work comes after. Describe your situation and you get a reply within 24h.</p>
+      <div class="hm-links">
+        <a class="hm-link" href="contact.html" onclick="gtag('event', 'cta_decrire_situation', {'event_category': 'CTA', 'event_label': 'Contact direct - Décrire ma situation'})">Describe my situation →</a>
+        <a class="hm-link" href="https://wa.me/33663054481" target="_blank" rel="noopener" onclick="gtag('event', 'cta_whatsapp', {'event_category': 'CTA', 'event_label': 'Contact direct - WhatsApp inline'})">WhatsApp direct →</a>
       </div>
-
-      <div class="diag-final-layout">
-
-        <!-- Left: contact form -->
-        <div class="diag-final-form-wrap contact-form-wrap">
-          <h4>Let's take action</h4>
-          <p>Share your diagnostic with us: we'll get back to you within 24h with a concrete plan.</p>
-          <form id="diag-contact-form" class="contact-form" name="diagnostic" method="POST" action="https://api.web3forms.com/submit" aria-label="Contact form, diagnostic">
-            <input type="hidden" name="access_key" value="fdb9cf8f-13eb-4676-94ff-ac3f07efaa50" />
-            <input type="hidden" name="subject" value="New diagnostic, AlcalSpark" />
-            <input type="hidden" name="from_name" value="AlcalSpark Diagnostic" />
-            <input type="hidden" name="redirect" value="https://alcalspark.com/en/contact-merci.html" />
-            <input type="hidden" name="botcheck" value="" style="display:none" />
-            <input type="hidden" name="diagnostic" id="diag-recap-field" value="" />
-
-            <div class="form-row">
-              <div class="form-group">
-                <input type="text" id="diag-fname" name="fname" placeholder="First name" required autocomplete="given-name" />
-                <label for="diag-fname">First name</label>
-                <div class="form-underline"></div>
-              </div>
-              <div class="form-group">
-                <input type="text" id="diag-lname" name="lname" placeholder="Last name" required autocomplete="family-name" />
-                <label for="diag-lname">Last name</label>
-                <div class="form-underline"></div>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <input type="email" id="diag-email" name="email" placeholder="Email" required autocomplete="email" />
-              <label for="diag-email">Email address</label>
-              <div class="form-underline"></div>
-            </div>
-
-            <div class="form-group">
-              <textarea id="diag-message" name="message" placeholder="Message" rows="4" required></textarea>
-              <label for="diag-message">A word about your project</label>
-              <div class="form-underline"></div>
-            </div>
-
-            <div class="form-rgpd">
-              <label class="checkbox-wrap">
-                <input type="checkbox" id="diag-rgpd" name="rgpd" required />
-                <span class="checkbox-custom" aria-hidden="true"></span>
-                <span>I agree that my data will be used to respond to my request, in accordance with the <a href="../mentions-legales.html">privacy policy</a>.</span>
-              </label>
-            </div>
-
-            <button type="submit" class="btn btn-gold form-submit" style="width:100%; justify-content:center;" aria-label="Send message">
-              <span class="submit-text">Send my diagnostic</span>
-              <span class="submit-icon" aria-hidden="true">→</span>
-            </button>
-          </form>
-        </div>
-
-        <!-- Right: direct contact details -->
-        <div class="diag-final-info contact-info">
-          <div class="eyebrow">Direct contact</div>
-          <div class="contact-cards">
-            <div class="contact-card">
-              <div class="cc-icon">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                  <path d="M2 4a2 2 0 012-2h12a2 2 0 012 2v12a2 2 0 01-2 2H4a2 2 0 01-2-2V4z" stroke="currentColor" stroke-width="1.5"/>
-                  <path d="M2 7l8 5 8-5" stroke="currentColor" stroke-width="1.5"/>
-                </svg>
-              </div>
-              <div>
-                <span class="cc-label">Email</span>
-                <a href="mailto:contact@alcalspark.com" class="cc-value">contact@alcalspark.com</a>
-              </div>
-            </div>
-            <div class="contact-card">
-              <div class="cc-icon">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                  <path d="M4 2a2 2 0 00-2 2v1c0 7.18 5.82 13 13 13h1a2 2 0 002-2v-3.5a.5.5 0 00-.5-.5h-3a.5.5 0 00-.5.5V14a9 9 0 01-9-9h.5a.5.5 0 00.5-.5v-3A.5.5 0 006.5 1H4z" stroke="currentColor" stroke-width="1.5"/>
-                </svg>
-              </div>
-              <div>
-                <span class="cc-label">Phone</span>
-                <a href="tel:0663054481" class="cc-value">+33 6 63 05 44 81</a>
-              </div>
-            </div>
-            <div class="contact-card">
-              <div class="cc-icon">
-                <svg viewBox="0 0 24 24" fill="none" width="20" height="20" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884" fill="currentColor"/></svg>
-              </div>
-              <div>
-                <span class="cc-label">WhatsApp</span>
-                <a href="https://wa.me/33663054481" class="cc-value" target="_blank" rel="noopener" onclick="gtag('event', 'cta_whatsapp', {'event_category': 'CTA', 'event_label': 'Contact card - WhatsApp'})">+33 6 63 05 44 81</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════
-  4b. DIRECT CONTACT (persona B)
-══════════════════════════════════════ -->
-<section class="contact-direct-section" id="contact-direct" aria-labelledby="contact-direct-title">
-  <div class="container">
-    <div class="contact-direct-card card reveal">
-      <div class="eyebrow">Direct project</div>
-      <h2 id="contact-direct-title">A growth challenge to solve?</h2>
-      <p>No need to show up with a solution already decided (SaaS, redesign, automation). The first step is understanding your business and identifying the right lever, the technical solution comes after, not before. Describe your situation, you'll get a reply within 24h with a frank opinion, not a sales pitch.</p>
-      <div class="contact-direct-actions">
-        <a href="contact.html" class="btn btn-outline-inv" onclick="gtag('event', 'cta_decrire_situation', {'event_category': 'CTA', 'event_label': 'Direct contact - Describe my situation'})">Describe my situation</a>
-        <a href="https://wa.me/33663054481" class="whatsapp-inline-link" target="_blank" rel="noopener" onclick="gtag('event', 'cta_whatsapp', {'event_category': 'CTA', 'event_label': 'Direct contact - WhatsApp inline'})">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884" fill="currentColor"/></svg>
-          WhatsApp direct
-        </a>
-      </div>
-      <p class="contact-callback" style="margin-top:1.25rem;font-size:0.85rem;color:rgba(248,245,242,0.5);">Reply within 24h. WhatsApp or the contact form is best.</p>
+      <p class="hm-note">Reply within 24h. WhatsApp or the contact form is best.</p>
     </div>
   </div>
 </section>
 
 <!-- ══════════════════════════════════════
-  FAQ — OBJECTIONS
+  QUESTIONS FRÉQUENTES
 ══════════════════════════════════════ -->
-<section class="section faq-section" id="faq" aria-labelledby="faq-title">
-  <div class="container">
-    <div class="section-header text-center">
-      <div class="eyebrow reveal">Frequently asked questions</div>
-      <h2 id="faq-title" class="reveal delay-1">What you're wondering<br /><em>before contacting us</em></h2>
-    </div>
-
-    <div class="faq-group">
-      <h3 class="faq-group-title reveal">Pricing, timelines and ordering</h3>
-      <div class="faq-list">
-        <div class="faq-item reveal delay-1">
-          <button class="faq-question" aria-expanded="false">
-            <span>How much does a website cost?</span>
-            <span class="faq-icon" aria-hidden="true">+</span>
-          </button>
-          <div class="faq-answer" hidden>
-            <p>Three fixed-price packs: Essential €{{PRIX_ESSENTIEL}}, Premium €{{PRIX_PREMIUM_AFFICHE_EN}}, and Custom from €{{PRIX_SUR_MESURE_DES_AFFICHE_EN}} with a fixed quote after the brief. Source code delivered, no subscription imposed. Details on the <a href="tarifs.html">Pricing</a> page.<!--IF:PRIX_MENTION_EN--> {{PRIX_MENTION_EN}}.<!--ENDIF:PRIX_MENTION_EN--></p>
-          </div>
-        </div>
-        <div class="faq-item reveal delay-2">
-          <button class="faq-question" aria-expanded="false">
-            <span>What is the delivery time?</span>
-            <span class="faq-icon" aria-hidden="true">+</span>
-          </button>
-          <div class="faq-answer" hidden>
-            <p>{{DELAI_ESSENTIEL_EN}} for Essential, {{DELAI_PREMIUM_EN}} for Premium. For Custom, the timeline is given in the quote.</p>
-          </div>
-        </div>
-        <div class="faq-item reveal delay-3">
-          <button class="faq-question" aria-expanded="false">
-            <span>How does ordering work?</span>
-            <span class="faq-icon" aria-hidden="true">+</span>
-          </button>
-          <div class="faq-answer" hidden>
-            <p>You describe your need with the contact form and get a reply within 24h, then a fixed-price quote before anything starts. Payment: {{PAIEMENT_PACK_ACOMPTE_POURCENT}}% at order and {{PAIEMENT_PACK_SOLDE_POURCENT}}% on delivery for the packs, in 3 instalments ({{PAIEMENT_SURMESURE_1_POURCENT}} / {{PAIEMENT_SURMESURE_2_POURCENT}} / {{PAIEMENT_SURMESURE_3_POURCENT}}%) for Custom work.</p>
-          </div>
-        </div>
-        <div class="faq-item reveal delay-4">
-          <button class="faq-question" aria-expanded="false">
-            <span>Why only {{CAPACITE_PROJETS_MOIS}} projects per month?</span>
-            <span class="faq-icon" aria-hidden="true">+</span>
-          </button>
-          <div class="faq-answer" hidden>
-            <p>A single expert delivers every project. Limiting the number of projects is what lets the announced timelines be met: spots are limited.</p>
-          </div>
-        </div>
+<section class="hm-sec hm-sec--cream" id="faq" aria-labelledby="faq-title">
+  <div class="hm-wrap hm-split">
+    <h2 id="faq-title">Frequently asked questions</h2>
+    <div>
+      <div class="hm-faq-group">
+        <h3>Pricing, timelines and ordering</h3>
+        <details class="hm-faq">
+          <summary>How much does a website cost?</summary>
+          <div><p>Three fixed-price packs: Essential €{{PRIX_ESSENTIEL}}, Premium €{{PRIX_PREMIUM_AFFICHE_EN}}, and Custom from €{{PRIX_SUR_MESURE_DES_AFFICHE_EN}} with a fixed quote after the brief. Source code delivered, no subscription imposed. Details on the <a href="tarifs.html">Pricing</a> page.<!--IF:PRIX_MENTION_EN--> {{PRIX_MENTION_EN}}.<!--ENDIF:PRIX_MENTION_EN--></p></div>
+        </details>
+        <details class="hm-faq">
+          <summary>What is the delivery time?</summary>
+          <div><p>{{DELAI_ESSENTIEL_EN}} for Essential, {{DELAI_PREMIUM_EN}} for Premium. For Custom, the timeline is given in the quote.</p></div>
+        </details>
+        <details class="hm-faq">
+          <summary>How does ordering work?</summary>
+          <div><p>You describe your need with the contact form, I reply within 24h, then I send a fixed-price quote before anything starts. Payment: {{PAIEMENT_PACK_ACOMPTE_POURCENT}}% at order and {{PAIEMENT_PACK_SOLDE_POURCENT}}% on delivery for the packs, in 3 instalments ({{PAIEMENT_SURMESURE_1_POURCENT}} / {{PAIEMENT_SURMESURE_2_POURCENT}} / {{PAIEMENT_SURMESURE_3_POURCENT}}%) for Custom work.</p></div>
+        </details>
+        <details class="hm-faq">
+          <summary>Why only {{CAPACITE_PROJETS_MOIS}} projects per month?</summary>
+          <div><p>I deliver every project myself. Limiting the number of projects is what lets me meet the announced timelines: spots are limited.</p></div>
+        </details>
+      </div>
+      <div class="hm-faq-group">
+        <h3>For independent trades and local businesses</h3>
+        <details class="hm-faq">
+          <summary>Am I locking into a multi-year commitment like some offers I've already received?</summary>
+          <div><p>No. Every quote is detailed with no hidden commitment. No commitment period: maintenance renews month by month and can be cancelled at any time.</p></div>
+        </details>
+        <details class="hm-faq">
+          <summary>How can I be sure the site will actually be visible on Google?</summary>
+          <div><p>Nobody can guarantee a position on Google, me included. I guarantee a clean technical foundation (sitemap, structured data, load times) from day one, a necessary condition for visibility.</p></div>
+        </details>
+      </div>
+      <div class="hm-faq-group">
+        <h3>For growing businesses</h3>
+        <details class="hm-faq">
+          <summary>Can one person really handle a strategic project?</summary>
+          <div><p>That's the question to ask any provider, agency or solo. Here, you talk directly to the person doing the work, with no salesperson between you and me. The portfolio and a first conversation let you judge the technical skill before committing.</p></div>
+        </details>
+        <details class="hm-faq">
+          <summary>What happens if the project grows faster than expected?</summary>
+          <div><p>If a project outgrows its initial scope, I discuss it with you before going further, never after; custom work is priced with a fixed quote. Capacity is limited to {{CAPACITE_PROJETS_MOIS}} projects per month so that I keep the commitment made.</p></div>
+        </details>
       </div>
     </div>
-
-    <div class="faq-group">
-      <h3 class="faq-group-title reveal">For independent trades and local businesses</h3>
-      <div class="faq-list">
-        <div class="faq-item reveal delay-1">
-          <button class="faq-question" aria-expanded="false">
-            <span>Am I locking into a multi-year commitment like some offers I've already received?</span>
-            <span class="faq-icon" aria-hidden="true">+</span>
-          </button>
-          <div class="faq-answer" hidden>
-            <p>No. Every quote is detailed with no hidden commitment. No commitment period: maintenance renews month by month and can be cancelled at any time.</p>
-          </div>
-        </div>
-        <div class="faq-item reveal delay-2">
-          <button class="faq-question" aria-expanded="false">
-            <span>How can I be sure the site will actually be visible on Google?</span>
-            <span class="faq-icon" aria-hidden="true">+</span>
-          </button>
-          <div class="faq-answer" hidden>
-            <p>No serious studio, us included, can guarantee a position on Google. What we can guarantee: a clean technical foundation (sitemap, structured data, load times) from day one, a necessary condition for visibility.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="faq-group">
-      <h3 class="faq-group-title reveal">For growing businesses</h3>
-      <div class="faq-list">
-        <div class="faq-item reveal delay-1">
-          <button class="faq-question" aria-expanded="false">
-            <span>Can one person really handle a strategic project?</span>
-            <span class="faq-icon" aria-hidden="true">+</span>
-          </button>
-          <div class="faq-answer" hidden>
-            <p>That's precisely the question worth asking with any provider, agency or solo. The difference here: you talk directly to the person doing the work, not a salesperson who'll pass your request to someone else. The portfolio and a first conversation let you judge the technical skill before committing.</p>
-          </div>
-        </div>
-        <div class="faq-item reveal delay-2">
-          <button class="faq-question" aria-expanded="false">
-            <span>What happens if the project grows faster than expected?</span>
-            <span class="faq-icon" aria-hidden="true">+</span>
-          </button>
-          <div class="faq-answer" hidden>
-            <p>Capacity is limited to {{CAPACITE_PROJETS_MOIS}} projects per month precisely so that the commitment made is kept. If a project outgrows its initial scope, we discuss it beforehand, not after; custom work is priced with a fixed quote.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
   </div>
 </section>
 
-<!-- ══════════════════════════════════════
-  CTA
-══════════════════════════════════════ -->
-<section class="cta-section section" aria-labelledby="cta-title">
-  <div class="container">
-    <h2 id="cta-title" class="reveal">Got a project in mind? Write to us.</h2>
-    <p class="reveal delay-1">Describe your project in writing and get a frank answer within 24h: whether we can help, and how. If not, you'll still walk away with a lead. A call, only if you want one.</p>
-    <div class="cta-actions reveal delay-2">
-      <a href="contact.html" class="btn btn-outline" onclick="gtag('event', 'cta_final_contact', {'event_category': 'CTA', 'event_label': 'Final CTA - Reply within 24h'})">Get a reply within 24h</a>
-      <a href="portfolio.html" class="btn btn-outline">See our projects</a>
+<section class="hm-sec hm-sec--dark" aria-labelledby="cta-title">
+  <div class="hm-wrap hm-split">
+    <h2 id="cta-title">A project in mind? Write to me.</h2>
+    <div>
+      <p>Describe your project in writing: I reply within 24h to say whether I can help, and how. A call, only if you want one.</p>
+      <div class="hm-links">
+        <a class="hm-link" href="contact.html" onclick="gtag('event', 'cta_final_contact', {'event_category': 'CTA', 'event_label': 'CTA final - Réponse sous 24h'})">Get a reply within 24h →</a>
+        <a class="hm-link" href="portfolio.html">See my projects →</a>
+      </div>
+      <p class="hm-note">Reply within 24h · {{CAPACITE_PROJETS_MOIS}} projects per month · Delivery {{DELAI_PLAGE_EN}}</p>
     </div>
-    <p class="cta-trust reveal delay-3">Reply within 24h · {{CAPACITE_PROJETS_MOIS}} projects per month · {{DELAI_PLAGE_EN}} delivery</p>
   </div>
 </section>
 

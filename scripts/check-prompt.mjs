@@ -193,7 +193,7 @@ if (prompt) {
     for (const t of tokens) if (!page(file).includes(t)) errors.push(`${file} n'utilise plus le jeton ${t} : la regle sur les textes doit venir de site.config.json`);
   }
   // Formation SEO local : montant affiche sur la page Tarifs.
-  if (!new RegExp(`(?<![0-9])${config.PRIX_FORMATION_SEO}<span class="pc-currency">`).test(page("tarifs.html"))) {
+  if (!new RegExp(`(?<![0-9])${config.PRIX_FORMATION_SEO}<span class="pc-currency">|\\{\\{PRIX_FORMATION_SEO\\}\\}&nbsp;€`).test(page("tarifs.html"))) {
     errors.push(`tarifs.html n'affiche plus ${config.PRIX_FORMATION_SEO} € (PRIX_FORMATION_SEO) : le prompt et la page divergent`);
   }
 

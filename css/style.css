@@ -1354,3 +1354,149 @@ p { max-width: 62ch; text-wrap: pretty; }
 /* Titre du hero : lignes équilibrées, pas de coupure de mot */
 .hero-title { text-wrap: balance; overflow-wrap: normal; hyphens: manual; }
 .nw { white-space: nowrap; }
+
+/* ==========================================================================
+   Design « humain » (branche design-humain) : accueil, /tarifs, /agences,
+   automatisation, /contact. Tout est préfixé .hm-* ou limité à body.hm,
+   les autres pages (légales, CGV, blog, portfolio) ne sont pas touchées.
+   Sections sombres (#0A0D0B) et crème (#F8F5F2) en alternance, filets fins,
+   pas de verre dépoli ni de halo derrière le texte.
+   ========================================================================== */
+.hm-sec { position: relative; padding: clamp(3.5rem, 8vw, 6.5rem) 0; }
+.hm-sec--dark {
+  --hm-ink: #F8F5F2; --hm-muted: rgba(248, 245, 242, .72); --hm-line: rgba(248, 245, 242, .16); --hm-accent: #F8F5F2;
+  background: #0A0D0B; color: #F8F5F2;
+}
+.hm-sec--cream {
+  --hm-ink: #0A0D0B; --hm-muted: rgba(10, 13, 11, .72); --hm-line: rgba(10, 13, 11, .16); --hm-accent: #385144;
+  background: #F8F5F2; color: #0A0D0B;
+}
+.hm-wrap { width: 100%; max-width: 1120px; margin: 0 auto; padding: 0 var(--pad-x); box-sizing: border-box; }
+.hm-split { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: clamp(1.5rem, 5vw, 5rem); align-items: start; }
+.hm-sec h1, .hm-sec h2, .hm-sec h3 { color: var(--hm-ink); font-family: var(--font-ui); text-align: left; text-transform: none; letter-spacing: -.015em; }
+.hm-sec h1 em, .hm-sec h2 em, .hm-sec h3 em { font-style: normal; }
+.hm-sec h1 { font-size: clamp(2.3rem, 5.2vw, 4rem); font-weight: 600; line-height: 1.06; margin: 0; }
+.hm-sec h2 { font-size: clamp(1.7rem, 3.2vw, 2.5rem); font-weight: 600; line-height: 1.12; margin: 0; }
+.hm-sec h3 { font-size: 1.15rem; font-weight: 600; line-height: 1.3; margin: 0; }
+.hm-sec p { color: var(--hm-ink); font-family: var(--font-body); font-weight: 400; font-size: 1rem; line-height: 1.7; max-width: 62ch; margin: 0; }
+.hm-sec p + p { margin-top: 1rem; }
+.hm-sec .hm-muted, .hm-muted { color: var(--hm-muted); }
+.hm-lead { margin-top: 1.1rem; color: var(--hm-muted) !important; font-size: 1.05rem !important; }
+.hm-sec a:not(.hm-link):not(.btn) { color: inherit; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--hm-line); }
+.hm-sec a:not(.hm-link):not(.btn):hover { text-decoration-color: currentColor; }
+
+/* Titre de page (sombre) */
+.hm-hero { padding-top: calc(var(--nav-h, 4.5rem) + clamp(2.5rem, 6vw, 4.5rem)); padding-bottom: clamp(2.5rem, 6vw, 4rem); }
+.hm-crumb { margin: 0 0 1.5rem; font-size: .85rem; color: var(--hm-muted); }
+.hm-crumb a { color: inherit !important; text-decoration: none !important; }
+.hm-crumb a:hover { color: var(--hm-ink) !important; }
+.hm-hero .hm-lead { max-width: 56ch; }
+
+/* Lien texte avec flèche */
+.hm-link {
+  display: inline-block; font-family: var(--font-ui); font-size: .95rem; font-weight: 600; line-height: 1.4;
+  color: var(--hm-accent); text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: 1px;
+}
+.hm-link:hover { opacity: .75; }
+.hm-link:focus-visible, .hm-sec summary:focus-visible { outline: 2px solid var(--hm-accent); outline-offset: 3px; }
+.hm-links { display: flex; flex-wrap: wrap; gap: .6rem 1.75rem; margin-top: 1.25rem; }
+
+/* Liste de tarifs : lignes séparées par un filet */
+.hm-group { margin: 0 0 1rem; }
+.hm-rows { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--hm-line); }
+.hm-row {
+  display: grid; grid-template-columns: minmax(0, 1fr) 9rem 13rem; gap: .35rem 2rem; align-items: start;
+  padding: 1.5rem 0; border-bottom: 1px solid var(--hm-line);
+}
+.hm-row-name { margin: 0; }
+.hm-row-desc { margin: .4rem 0 0 !important; color: var(--hm-muted) !important; font-size: .95rem !important; line-height: 1.6 !important; max-width: 56ch; }
+.hm-row-delay { margin: .25rem 0 0 !important; font-size: .85rem !important; line-height: 1.4 !important; color: var(--hm-muted) !important; }
+.hm-row-side { text-align: right; }
+.hm-sec p.hm-price { margin: 0; font-family: var(--font-ui); font-size: clamp(1.8rem, 3vw, 2.35rem); font-weight: 600; line-height: 1.1; letter-spacing: -.02em; white-space: nowrap; color: var(--hm-ink); }
+.hm-price small { font-family: var(--font-body); font-size: .85rem; font-weight: 500; letter-spacing: 0; color: var(--hm-muted); }
+.hm-row-side .hm-link { margin-top: .7rem; }
+.hm-note { margin-top: 1.25rem !important; font-size: .88rem !important; line-height: 1.6 !important; color: var(--hm-muted) !important; max-width: 64ch; }
+.hm-note + .hm-note { margin-top: .5rem !important; }
+.hm-tight .hm-row { padding: 1.25rem 0; }
+
+@media (max-width: 860px) {
+  .hm-split { grid-template-columns: minmax(0, 1fr); }
+  .hm-row { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "name price" "desc desc" "delay delay" "link link"; gap: .35rem 1rem; padding: 1.25rem 0; }
+  .hm-row-main, .hm-row-side { display: contents; }
+  .hm-row-name { grid-area: name; align-self: baseline; }
+  .hm-sec p.hm-price { grid-area: price; align-self: baseline; text-align: right; font-size: 1.7rem; }
+  .hm-row-desc { grid-area: desc; margin-top: .25rem !important; }
+  .hm-row-delay { grid-area: delay; margin-top: .15rem !important; }
+  .hm-row-side .hm-link { grid-area: link; justify-self: start; margin-top: .6rem; }
+}
+
+/* Étapes numérotées */
+.hm-steps { list-style: none; margin: 2rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 2.5rem; }
+.hm-steps li { border-top: 1px solid var(--hm-line); padding: 1.1rem 0 0; }
+.hm-steps li > span { display: block; font-family: var(--font-ui); font-size: .9rem; font-weight: 600; color: var(--hm-muted); margin-bottom: .5rem; }
+.hm-steps strong { display: block; font-family: var(--font-ui); font-weight: 600; font-size: 1.05rem; margin-bottom: .35rem; color: var(--hm-ink); }
+.hm-steps p { color: var(--hm-muted) !important; font-size: .95rem !important; }
+.hm-steps--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+@media (max-width: 860px) { .hm-steps, .hm-steps--4 { grid-template-columns: minmax(0, 1fr); } .hm-steps li { padding-bottom: 1rem; } }
+
+/* Colonnes asymétriques de texte (pour qui) */
+.hm-cols { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(2rem, 6vw, 6rem); }
+.hm-cols h3 { margin-bottom: .6rem; }
+@media (max-width: 860px) { .hm-cols { grid-template-columns: minmax(0, 1fr); gap: 2.25rem; } }
+
+/* Questions fréquentes : <details>, un filet entre chaque */
+.hm-faq-group { margin: 0 0 2.5rem; }
+.hm-faq-group > h3 { margin: 0 0 .75rem; font-size: 1.05rem; color: var(--hm-muted); font-weight: 600; }
+.hm-faq { border-bottom: 1px solid var(--hm-line); }
+.hm-faq:first-of-type { border-top: 1px solid var(--hm-line); }
+.hm-faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; gap: 1.5rem; align-items: baseline; padding: 1.1rem 0; font-family: var(--font-ui); font-weight: 600; font-size: 1.02rem; line-height: 1.4; color: var(--hm-ink); }
+.hm-faq summary::-webkit-details-marker { display: none; }
+.hm-faq summary::after { content: '+'; flex: none; font-weight: 400; font-size: 1.4rem; line-height: 1; color: var(--hm-muted); }
+.hm-faq[open] summary::after { content: '\2212'; }
+.hm-faq > div { padding: 0 0 1.25rem; }
+.hm-faq > div p { color: var(--hm-muted) !important; font-size: .98rem !important; }
+
+/* Pages concernées : pas de verre dépoli ni de halo sur les blocs de contenu */
+body.hm .hm-sec::before, body.hm .hm-sec::after { content: none; }
+body.hm .portfolio-item, body.hm .diag-axis, body.hm .contact-form-wrap, body.hm .contact-card, body.hm .portfolio-reasoning {
+  background: none !important; border: 0 !important; border-radius: 0 !important; box-shadow: none !important;
+  -webkit-backdrop-filter: none !important; backdrop-filter: none !important; filter: none !important;
+}
+body.hm .portfolio-item::before, body.hm .portfolio-item::after, body.hm .diag-axis::before, body.hm .diag-axis::after,
+body.hm .contact-form-wrap::before, body.hm .contact-form-wrap::after, body.hm .contact-card::before, body.hm .contact-card::after { content: none !important; display: none !important; }
+body.hm .diag-axis-blobs { display: none !important; }
+body.hm .diag-axis { border-top: 1px solid rgba(248, 245, 242, .16) !important; }
+body.hm .diag-axis:last-child { border-bottom: 1px solid rgba(248, 245, 242, .16) !important; }
+
+/* Réalisations (accueil) : images nettes, légende sous l'image */
+.hm-works .portfolio-grid { margin-top: 2rem; }
+.hm-works .pi-meta, .hm-works .pi-meta h4, .hm-works .pi-meta span { color: #0A0D0B !important; }
+.hm-works .pi-meta span { color: rgba(10, 13, 11, .72) !important; }
+.hm-works .pi-concept-badge { border-color: rgba(10, 13, 11, .3) !important; color: #385144 !important; }
+.hm-reasoning { margin-top: 3.5rem; padding-top: 2rem; border-top: 1px solid var(--hm-line); }
+.hm-reasoning .pr-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem; margin-top: 1.25rem; }
+.hm-reasoning h4 { font-family: var(--font-ui); font-size: .95rem; font-weight: 600; letter-spacing: 0; text-transform: none; color: var(--hm-ink); margin: 0 0 .4rem; }
+.hm-reasoning p { color: var(--hm-muted) !important; font-size: .95rem !important; }
+@media (max-width: 860px) { .hm-reasoning .pr-grid { grid-template-columns: minmax(0, 1fr); } }
+
+/* Fonds : priorité sur les règles de section héritées (transparent, halos) */
+body.hm .hm-sec--dark { background: #0A0D0B; color: #F8F5F2; }
+body.hm .hm-sec--cream { background: #F8F5F2; color: #0A0D0B; }
+body.hm .hm-sec h2 { margin-bottom: 1rem; }
+body.hm .hm-split > h2 { margin-bottom: 0; }
+body.hm .hm-sec { overflow: visible; }
+
+/* Diagnostic : titres sans empattement, texte aligné à gauche, même largeur que les autres sections */
+body.hm .diagnostic-section > .container { max-width: 1120px; }
+body.hm .diagnostic-intro { max-width: 40rem; margin: 0 0 2.5rem; text-align: left; }
+body.hm .diagnostic-intro > p { margin: 0; color: var(--hm-muted); }
+body.hm .diag-progress { margin: 0 0 1.5rem; align-items: flex-start; }
+body.hm .diag-axis-title, body.hm .diag-axis-body h4, body.hm .diag-axis-body h3 { font-family: var(--font-ui); font-weight: 600; text-shadow: none; }
+body.hm .diag-axis-eyebrow, body.hm .diag-axis-status { text-shadow: none; }
+body.hm .diag-axis-toggle { gap: .75rem; }
+body.hm .diag-axis-heading { min-width: 0; flex: 1 1 auto; }
+body.hm .diag-axis-title { font-size: 1.05rem; }
+.hm-works .portfolio-grid { max-width: 1120px; margin: 2rem auto 0; padding: 0 var(--pad-x); box-sizing: border-box; }
+.hm-works .pi-meta { background: none !important; padding-left: 0 !important; padding-right: 0 !important; }
+.hm-works .portfolio-item, .hm-works .portfolio-item * { text-decoration: none !important; }
+.hm-works .pi-meta h4 { font-family: var(--font-ui) !important; font-weight: 600; }

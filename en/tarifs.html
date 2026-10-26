@@ -30,7 +30,7 @@
   <link rel="icon" type="image/png" sizes="48x48" href="../favicon-48.png" />
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="../css/as-tokens.css?v=2" />
-<link rel="stylesheet" href="../css/style.css?v=6" />
+<link rel="stylesheet" href="../css/style.css?v=7" />
   <link rel="stylesheet" href="../css/services.css?v=4" />
   <link rel="stylesheet" href="../css/tarifs.css?v=5" />
   <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
@@ -240,7 +240,7 @@
   gtag('config', 'G-GH6PR00V1L');
 </script>
 </head>
-<body>
+<body class="hm">
 
   <div class="noise-overlay" aria-hidden="true"></div>
 
@@ -297,205 +297,161 @@
   </div>
 
   <main>
-    <!-- ── PAGE HERO ───────────────────────────────────────── -->
-    <section class="page-hero tarifs-hero" aria-labelledby="ph-title">
-      <div class="ph-bg" aria-hidden="true"></div>
-      <div class="container ph-content">
-        <div class="eyebrow reveal">Our pricing</div>
-        <h1 id="ph-title" class="reveal delay-1">Fixed prices,<br /><em class="text-gradient">given before we start</em></h1>
-        <p class="ph-desc reveal delay-2">
-          Three packs, AI automation options and simple maintenance. Source code delivered, no subscription imposed.
-        </p>
-        <div class="ph-breadcrumb reveal delay-3">
-          <a href="index.html">Home</a>
-          <span aria-hidden="true">→</span>
-          <span>Pricing</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── PACKS ───────────────────────────────────────────── -->
-    <section class="offers-section" id="packs" aria-labelledby="packs-title">
-      <div class="container">
-        <div class="offers-head">
-          <div class="eyebrow reveal">Websites</div>
-          <h2 id="packs-title" class="reveal delay-1">Choose your pack</h2>
-          <p class="reveal delay-2">From a showcase site to a custom project, price and timeline are given before we start.</p>
-        </div>
-    <div class="offers-grid">
-      <article class="offer-card card reveal delay-1">
-        <div class="offer-badge">Essential</div>
-        <div class="offer-price"><span class="offer-amount">€{{PRIX_ESSENTIEL}}</span></div>
-        <p class="offer-delay">Delivered in {{DELAI_ESSENTIEL_EN}}</p>
-        
-        <ul class="offer-features">
-          <li>1 responsive page with a contact form</li>
-          <li>Basic SEO and go-live</li>
-          <li>1 round of revisions, in French</li>
-        </ul>
-        <a href="contact.html" class="btn btn-primary" onclick="gtag('event', 'cta_offre_essentiel', {'event_category': 'CTA', 'event_label': 'cta_offre_essentiel'})">Choose Essential</a>
-      </article>
-      <article class="offer-card offer-card--featured glass-strong reveal delay-2">
-        <span class="offer-flag">Most popular</span>
-        <div class="offer-badge">Premium</div>
-        <div class="offer-price"><span class="offer-amount">€{{PRIX_PREMIUM_AFFICHE_EN}}</span></div>
-        <p class="offer-delay">Delivered in {{DELAI_PREMIUM_EN}}</p>
-        
-        <ul class="offer-features">
-          <li>5 responsive pages, contact form with a confirmation email</li>
-          <li>Technical SEO: tags, structured data, sitemap</li>
-          <li>Analytics and Search Console set up</li>
-          <li>FR/EN site, 2 rounds of revisions</li>
-        </ul>
-        <a href="contact.html" class="btn btn-primary" onclick="gtag('event', 'cta_offre_premium', {'event_category': 'CTA', 'event_label': 'cta_offre_premium'})">Choose Premium</a>
-      </article>
-      <article class="offer-card card reveal delay-3">
-        <div class="offer-badge">Custom</div>
-        <div class="offer-price"><span class="offer-from">from&nbsp;</span><span class="offer-amount">€{{PRIX_SUR_MESURE_DES_AFFICHE_EN}}</span></div>
-        <p class="offer-delay">Timeline given in the quote</p>
-        
-        <ul class="offer-features">
-          <li>Everything in Premium, plus advanced animations (Three.js, GSAP)</li>
-          <li>Extra pages and integrations</li>
-          <li>Fixed quote after the brief</li>
-        </ul>
-        <a href="contact.html" class="btn btn-primary" onclick="gtag('event', 'cta_offre_surmesure', {'event_category': 'CTA', 'event_label': 'cta_offre_surmesure'})">Request a quote</a>
-      </article>
+  <section class="hm-sec hm-sec--dark hm-hero">
+    <div class="hm-wrap">
+      <p class="hm-crumb"><a href="index.html">Home</a> / Pricing</p>
+      <h1>Pricing</h1>
+      <p class="hm-lead">Three packs, automation options and simple maintenance. Price and timeline are given before we start. Source code delivered, no subscription imposed.</p>
     </div>
-        <p class="offer-note offer-note--hosting reveal">Hosting included with maintenance; otherwise, the site is delivered on your account.</p>
-        <p class="offer-note reveal">Need a different scope? Custom work is priced with a fixed quote, after a brief. Payment: {{PAIEMENT_PACK_ACOMPTE_POURCENT}}% at order and {{PAIEMENT_PACK_SOLDE_POURCENT}}% on delivery for the packs, in 3 instalments ({{PAIEMENT_SURMESURE_1_POURCENT}} / {{PAIEMENT_SURMESURE_2_POURCENT}} / {{PAIEMENT_SURMESURE_3_POURCENT}}%) for Custom work.<!--IF:PRIX_MENTION_EN--> {{PRIX_MENTION_EN}}.<!--ENDIF:PRIX_MENTION_EN--></p>
-      </div>
-    </section>
+  </section>
 
-    <!-- ── OPTIONS AUTOMATISATION ──────────────────────────── -->
-    <section class="offers-section" id="automatisation" style="background:#0D1210;" aria-labelledby="auto-title">
-      <div class="container">
-        <div class="offers-head">
-          <div class="eyebrow reveal">AI automation</div>
-          <h2 id="auto-title" class="reveal delay-1">Add automation<br /><em>to your project</em></h2>
-          <p class="reveal delay-2">n8n options added to a website pack, delivered in {{DELAI_AUTOMATISATION_EN}}.</p>
+  <section class="hm-sec hm-sec--cream" id="packs" aria-label="Pricing">
+    <div class="hm-wrap">
+    <div class="hm-split hm-group">
+      <h2>Websites</h2>
+      <div>
+    <ul class="hm-rows">
+      <li class="hm-row">
+        <div class="hm-row-main">
+          <h3 class="hm-row-name">Essential</h3>
+          <p class="hm-row-desc">1 responsive page with a contact form, basic SEO and go-live, 1 round of revisions, in French.</p>
         </div>
-    <div class="offers-grid offers-grid--2">
-      <article class="offer-card card reveal delay-1">
-        <div class="offer-badge">Lead capture</div>
-        <div class="offer-price"><span class="offer-amount">+€{{PRIX_AUTOMATISATION_LEADS}}</span></div>
-        <p class="offer-delay">Delivered in {{DELAI_AUTOMATISATION_EN}}</p>
-        
-        <ul class="offer-features">
-          <li>Form, then confirmation email</li>
-          <li>Notification to you</li>
-          <li>Leads logged in a spreadsheet</li>
-        </ul>
-        <a href="services/automatisation-n8n-castres.html" class="btn btn-primary" onclick="gtag('event', 'cta_auto_leads', {'event_category': 'CTA', 'event_label': 'cta_auto_leads'})">See AI automation</a>
-      </article>
-      <article class="offer-card card reveal delay-2">
-        <div class="offer-badge">Full workflow</div>
-        <div class="offer-price"><span class="offer-amount">+€{{PRIX_AUTOMATISATION_COMPLET}}</span></div>
-        <p class="offer-delay">Delivered in {{DELAI_AUTOMATISATION_EN}}</p>
-        
-        <ul class="offer-features">
-          <li>Automatic follow-ups</li>
-          <li>Quotes and notifications</li>
-          <li>Built with n8n, connected to your tools</li>
-        </ul>
-        <a href="services/automatisation-n8n-castres.html" class="btn btn-primary" onclick="gtag('event', 'cta_auto_complet', {'event_category': 'CTA', 'event_label': 'cta_auto_complet'})">See AI automation</a>
-      </article>
+        <p class="hm-row-delay">Delivered in {{DELAI_ESSENTIEL_EN}}</p>
+        <div class="hm-row-side">
+          <p class="hm-price">€{{PRIX_ESSENTIEL}}</p>
+          <a class="hm-link" href="contact.html" onclick="gtag('event', 'cta_offre_essentiel', {'event_category': 'CTA', 'event_label': 'cta_offre_essentiel'})">Order →</a>
+        </div>
+      </li>
+      <li class="hm-row">
+        <div class="hm-row-main">
+          <h3 class="hm-row-name">Premium</h3>
+          <p class="hm-row-desc">5 responsive pages, contact form with a confirmation email, technical SEO (tags, structured data, sitemap), Analytics and Search Console set up, FR/EN site, 2 rounds of revisions.</p>
+        </div>
+        <p class="hm-row-delay">Delivered in {{DELAI_PREMIUM_EN}}</p>
+        <div class="hm-row-side">
+          <p class="hm-price">€{{PRIX_PREMIUM_AFFICHE_EN}}</p>
+          <a class="hm-link" href="contact.html" onclick="gtag('event', 'cta_offre_premium', {'event_category': 'CTA', 'event_label': 'cta_offre_premium'})">Order →</a>
+        </div>
+      </li>
+      <li class="hm-row">
+        <div class="hm-row-main">
+          <h3 class="hm-row-name">Custom</h3>
+          <p class="hm-row-desc">Everything in Premium, plus advanced animations (Three.js, GSAP), extra pages and integrations, fixed quote after the brief.</p>
+        </div>
+        <p class="hm-row-delay">Timeline given in the quote</p>
+        <div class="hm-row-side">
+          <p class="hm-price"><small>from&nbsp;</small>€{{PRIX_SUR_MESURE_DES_AFFICHE_EN}}</p>
+          <a class="hm-link" href="contact.html" onclick="gtag('event', 'cta_offre_surmesure', {'event_category': 'CTA', 'event_label': 'cta_offre_surmesure'})">Request a quote →</a>
+        </div>
+      </li>
+    </ul>
+        <p class="hm-note">Hosting included with maintenance; otherwise, the site is delivered on your account.</p>
+        <p class="hm-note">Need a different scope? Custom work is priced with a fixed quote, after a brief. Payment: {{PAIEMENT_PACK_ACOMPTE_POURCENT}}% at order and {{PAIEMENT_PACK_SOLDE_POURCENT}}% on delivery for the packs, in 3 instalments ({{PAIEMENT_SURMESURE_1_POURCENT}} / {{PAIEMENT_SURMESURE_2_POURCENT}} / {{PAIEMENT_SURMESURE_3_POURCENT}}%) for Custom work.<!--IF:PRIX_MENTION_EN--> {{PRIX_MENTION_EN}}.<!--ENDIF:PRIX_MENTION_EN--></p>
+      </div>
     </div>
-      </div>
-    </section>
 
-    <!-- ── AUDIT ET MAINTENANCE ────────────────────────────── -->
-    <section class="offers-section" id="audit-maintenance" aria-labelledby="audit-title">
-      <div class="container">
-        <div class="offers-head">
-          <div class="eyebrow reveal">Before and after the project</div>
-          <h2 id="audit-title" class="reveal delay-1">Audit and maintenance</h2>
+    <div class="hm-split hm-group" id="automatisation">
+      <h2>Options</h2>
+      <div>
+    <ul class="hm-rows">
+      <li class="hm-row">
+        <div class="hm-row-main">
+          <h3 class="hm-row-name">Lead capture</h3>
+          <p class="hm-row-desc">Form then confirmation email, notification to you, leads logged in a spreadsheet.</p>
         </div>
-        <div class="offers-grid offers-grid--2">
-      <article class="offer-card card reveal delay-1">
-        <div class="offer-badge">Audit + action plan</div>
-        <div class="offer-price"><span class="offer-amount">€{{PRIX_AUDIT}}</span></div>
-        <p class="offer-delay">Delivered in {{DELAI_AUDIT_EN}}</p>
-        
-        <ul class="offer-features">
-          <li>Audit of your site, its SEO and its conversion</li>
-          <li>Prioritized action plan</li>
-          <li>Deductible from your project if you entrust it to us</li>
-        </ul>
-        <a href="contact.html" class="btn btn-primary" onclick="gtag('event', 'cta_offre_audit', {'event_category': 'CTA', 'event_label': 'cta_offre_audit'})">Request an audit</a>
-      </article>
-      <article class="offer-card card reveal delay-2">
-        <div class="offer-badge">Maintenance</div>
-        <div class="offer-price"><span class="offer-amount">€{{PRIX_MAINTENANCE}}</span><span class="offer-unit">per month</span></div>
-        <p class="offer-delay">No minimum commitment</p>
-        
-        <ul class="offer-features">
-          <li>Updates and fixes</li>
-          <li>Small content changes (2 per month, quoted beyond that)</li>
-          <li>Support by message</li>
-          <li>Site uptime monitoring</li>
-        
-          <li>Hosting included</li>
-        </ul>
-        <a href="contact.html" class="btn btn-primary" onclick="gtag('event', 'cta_offre_maintenance', {'event_category': 'CTA', 'event_label': 'cta_offre_maintenance'})">Add maintenance</a>
-      </article>
+        <p class="hm-row-delay">Delivered in {{DELAI_AUTOMATISATION_EN}}</p>
+        <div class="hm-row-side">
+          <p class="hm-price">+€{{PRIX_AUTOMATISATION_LEADS}}</p>
+          <a class="hm-link" href="services/automatisation-n8n-castres.html" onclick="gtag('event', 'cta_auto_leads', {'event_category': 'CTA', 'event_label': 'cta_auto_leads'})">See the automation →</a>
         </div>
+      </li>
+      <li class="hm-row">
+        <div class="hm-row-main">
+          <h3 class="hm-row-name">Full workflow</h3>
+          <p class="hm-row-desc">Automatic follow-ups, quotes and notifications, built with n8n and connected to your tools.</p>
+        </div>
+        <p class="hm-row-delay">Delivered in {{DELAI_AUTOMATISATION_EN}}</p>
+        <div class="hm-row-side">
+          <p class="hm-price">+€{{PRIX_AUTOMATISATION_COMPLET}}</p>
+          <a class="hm-link" href="services/automatisation-n8n-castres.html" onclick="gtag('event', 'cta_auto_complet', {'event_category': 'CTA', 'event_label': 'cta_auto_complet'})">See the automation →</a>
+        </div>
+      </li>
+      <li class="hm-row">
+        <div class="hm-row-main">
+          <h3 class="hm-row-name">Audit and action plan</h3>
+          <p class="hm-row-desc">Audit of your site, its SEO and its conversion, prioritized action plan, deductible from your project if you entrust it to me.</p>
+        </div>
+        <p class="hm-row-delay">Delivered in {{DELAI_AUDIT_EN}}</p>
+        <div class="hm-row-side">
+          <p class="hm-price">€{{PRIX_AUDIT}}</p>
+          <a class="hm-link" href="contact.html" onclick="gtag('event', 'cta_offre_audit', {'event_category': 'CTA', 'event_label': 'cta_offre_audit'})">Request an audit →</a>
+        </div>
+      </li>
+      <li class="hm-row">
+        <div class="hm-row-main">
+          <h3 class="hm-row-name">Maintenance</h3>
+          <p class="hm-row-desc">Updates and fixes, 2 small content changes per month (quoted beyond that), support by message, site uptime monitoring, hosting included.</p>
+        </div>
+        <p class="hm-row-delay">No minimum commitment</p>
+        <div class="hm-row-side">
+          <p class="hm-price">€{{PRIX_MAINTENANCE}} <small>per month</small></p>
+          <a class="hm-link" href="contact.html" onclick="gtag('event', 'cta_offre_maintenance', {'event_category': 'CTA', 'event_label': 'cta_offre_maintenance'})">Add maintenance →</a>
+        </div>
+      </li>
+    </ul>
+        <p class="hm-note">The n8n options are added to a website pack.</p>
       </div>
-    </section>
+    </div>
 
-    <!-- ── AGENCES ET COLLABORATIONS ───────────────────────── -->
-    <section class="offers-section" id="agences" style="background:#0D1210;" aria-labelledby="agences-title">
-      <div class="container">
-        <div class="offer-aside card reveal">
-          <div>
-            <h3 id="agences-title">Agencies and collaborations</h3>
-            <p>White-label integration of your Figma mockups into clean, responsive, fast code: from €{{PRIX_AGENCE_MIN}} to €{{PRIX_AGENCE_MAX}} per integration, depending on page count.</p>
-          </div>
-          <a href="agencies.html" class="btn btn-outline">See the agency offer</a>
+    <div class="hm-split hm-group" id="agences">
+      <h2>Agencies</h2>
+      <div>
+    <ul class="hm-rows">
+      <li class="hm-row">
+        <div class="hm-row-main">
+          <h3 class="hm-row-name">White-label integration</h3>
+          <p class="hm-row-desc">Integration of your Figma mockups into clean, responsive, fast code, depending on page count.</p>
         </div>
+        <div class="hm-row-side">
+          <p class="hm-price">€{{PRIX_AGENCE_MIN}} to €{{PRIX_AGENCE_MAX}} <small>per integration</small></p>
+          <a class="hm-link" href="agencies.html">See the agency offer →</a>
+        </div>
+      </li>
+    </ul>
       </div>
-    </section>
+    </div>
 
-    <!-- ── 4. LOCAL SEO TRAINING ─────────────────────────────── -->
-    <section class="section" style="background:#0D1210;" aria-labelledby="tarifs-formation-title">
-      <div class="container">
-        <div class="section-header text-center">
-          <div class="eyebrow reveal">Training</div>
-          <h2 id="tarifs-formation-title" class="reveal delay-1">Grow your visibility<br /><em class="text-gradient">on your own</em></h2>
-          <div class="gold-line-center reveal delay-2"></div>
+    <div class="hm-split hm-group">
+      <h2>Training</h2>
+      <div>
+    <ul class="hm-rows">
+      <li class="hm-row">
+        <div class="hm-row-main">
+          <h3 class="hm-row-name">Local SEO</h3>
+          <p class="hm-row-desc">Optimized Google Business Profile, listing in relevant professional directories, customer review strategy, summary PDF.</p>
         </div>
-
-        <div class="pricing-single mt-lg">
-          <div class="pricing-card card reveal delay-1">
-            <div class="pc-badge">Local SEO Training</div>
-            <div class="gold-line"></div>
-            <div class="pc-price">
-              <span class="pc-num">150<span class="pc-currency">€</span></span>
-            </div>
-            <!--IF:PRIX_MENTION_EN-->
-            <p class="pc-mention">{{PRIX_MENTION_EN}}</p>
-            <!--ENDIF:PRIX_MENTION_EN-->
-            <ul class="pc-features">
-              <li>Optimized Google Business Profile</li>
-              <li>Listing in relevant professional directories</li>
-              <li>Customer review strategy</li>
-              <li>1h30 training + summary PDF</li>
-            </ul>
-            <a href="contact.html" class="btn btn-card-cta" style="width:100%; justify-content:center;">Book a training</a>
-          </div>
+        <p class="hm-row-delay">1h30 training</p>
+        <div class="hm-row-side">
+          <p class="hm-price">€{{PRIX_FORMATION_SEO}}</p>
+          <a class="hm-link" href="contact.html">Book a training →</a>
         </div>
+      </li>
+    </ul>
       </div>
-    </section>
+    </div>
 
-    <!-- ── NOTE DE TRANSPARENCE ────────────────────────────── -->
-    <section class="section tarifs-transparency-section" aria-label="Transparency note">
-      <div class="container">
-        <div class="tarifs-transparency-inner reveal">
-          <p>Prices are fixed and given before we start.<!--IF:PRIX_MENTION_EN--> {{PRIX_MENTION_EN}}.<!--ENDIF:PRIX_MENTION_EN--> Describe your need in writing: you get a reply within 24h. {{CAPACITE_PROJETS_MOIS}} projects per month, limited spots.</p>
-          <a href="contact.html" class="btn btn-outline">Get a reply within 24h</a>
-        </div>
+    </div>
+  </section>
+
+  <section class="hm-sec hm-sec--dark" aria-labelledby="tarifs-cta-title">
+    <div class="hm-wrap hm-split">
+      <h2 id="tarifs-cta-title">A project in mind?</h2>
+      <div>
+        <p>Prices are fixed and given before we start.<!--IF:PRIX_MENTION_EN--> {{PRIX_MENTION_EN}}.<!--ENDIF:PRIX_MENTION_EN--> Describe your need in writing: you get a reply within 24h. {{CAPACITE_PROJETS_MOIS}} projects per month, limited spots.</p>
+        <div class="hm-links"><a class="hm-link" href="contact.html">Get a reply within 24h →</a></div>
       </div>
-    </section>
+    </div>
+  </section>
   </main>
 
   <footer id="footer" role="contentinfo">

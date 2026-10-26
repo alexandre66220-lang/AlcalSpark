@@ -30,7 +30,7 @@
   <link rel="icon" type="image/png" sizes="48x48" href="favicon-48.png" />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="css/as-tokens.css?v=2" />
-<link rel="stylesheet" href="css/style.css?v=6" />
+<link rel="stylesheet" href="css/style.css?v=7" />
   <link rel="stylesheet" href="css/contact.css?v=2" />
   <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -212,7 +212,7 @@
   gtag('config', 'G-GH6PR00V1L');
 </script>
 </head>
-<body>
+<body class="hm">
 
   <div class="noise-overlay" aria-hidden="true"></div>
 
@@ -269,50 +269,47 @@
   </div>
 
   <main>
-    <!-- ── PAGE HERO ─────────────────────────────────────────── -->
-    <section class="page-hero contact-hero" aria-labelledby="ph-title">
-      <div class="ph-bg" aria-hidden="true"></div>
-      <div class="container ph-content">
-        <div class="eyebrow reveal">Démarrons ensemble</div>
-        <h1 id="ph-title" class="reveal delay-1">Contact</h1>
-        <p class="ph-desc reveal delay-2">
-          Artisan du BTP : commandez votre site en ligne, sans appel. Pour toute autre demande, écrivez-moi : je réponds sous 24h par écrit.
-        </p>
-        <div class="ph-breadcrumb reveal delay-3">
-          <a href="index.html">Accueil</a>
-          <span aria-hidden="true">→</span>
-          <span>Contact</span>
-        </div>
-      </div>
-    </section>
+      <section class="hm-sec hm-sec--dark hm-hero">
+    <div class="hm-wrap">
+      <p class="hm-crumb"><a href="index.html">Accueil</a> / Contact</p>
+      <h1>Contact</h1>
+      <p class="hm-lead">Artisan du BTP : commandez votre site en ligne, sans appel. Pour toute autre demande, écrivez-moi : je réponds sous 24h par écrit.</p>
+    </div>
+  </section>
 
-    <!-- ── OFFRE ARTISAN BTP (en premier) ───────────────────── -->
-    <section class="contact-offer" aria-labelledby="co-title">
-      <div class="container">
-        <div class="contact-offer-card reveal">
-          <div class="co-text">
-            <div class="eyebrow">Artisan du BTP</div>
-            <h2 id="co-title">Votre site à {{PRIX_FIXE}}&nbsp;€, <em class="text-gradient">sans aucun appel</em></h2>
-            <p>Site vitrine, fiche Google Business Profile et SEO local de base, à prix fixe, livré en {{DELAI_SITE_ARTISAN}}. Vous remplissez le questionnaire de brief quand vous voulez, je réponds sous 24h par écrit.<!--IF:PRIX_MENTION--> <span class="co-mention">{{PRIX_MENTION}}.</span><!--ENDIF:PRIX_MENTION--></p>
-          </div>
-          <div class="co-actions">
-            <a href="brief-site-artisan-btp.html" class="btn btn-primary" onclick="gtag('event', 'cta_commander_site_artisan', {'event_category': 'CTA', 'event_label': 'Contact - Brief artisan BTP'})">Commander mon site</a>
-            <a href="offre-site-artisan-btp.html" class="co-link">Voir le détail de l'offre</a>
-          </div>
+    <section class="hm-sec hm-sec--cream" aria-labelledby="co-title">
+      <div class="hm-wrap hm-split">
+        <div>
+          <h2 id="co-title">Artisan du BTP</h2>
+          <p class="hm-lead">Vous remplissez le questionnaire de brief quand vous voulez, je réponds sous 24h par écrit.</p>
+        </div>
+        <div>
+    <ul class="hm-rows">
+      <li class="hm-row">
+        <div class="hm-row-main">
+          <h3 class="hm-row-name">Site artisan du BTP</h3>
+          <p class="hm-row-desc">Site vitrine, fiche Google Business Profile et SEO local de base, à prix fixe, commandé en ligne sans aucun appel.</p>
+        </div>
+        <p class="hm-row-delay">Livré en {{DELAI_SITE_ARTISAN}}</p>
+        <div class="hm-row-side">
+          <p class="hm-price">{{PRIX_FIXE}}&nbsp;€</p>
+          <a class="hm-link" href="brief-site-artisan-btp.html" onclick="gtag('event', 'cta_commander_site_artisan', {'event_category': 'CTA', 'event_label': 'Contact - Brief artisan BTP'})">Commander mon site →</a>
+        </div>
+      </li>
+    </ul>
+          <p class="hm-note"><a class="hm-link" href="offre-site-artisan-btp.html">Voir le détail de l'offre →</a><!--IF:PRIX_MENTION--> {{PRIX_MENTION}}.<!--ENDIF:PRIX_MENTION--></p>
         </div>
       </div>
     </section>
 
     <!-- ── CONTACT LAYOUT ─────────────────────────────────────── -->
-    <section class="section contact-section" aria-label="Formulaire de contact">
+    <section class="section contact-section hm-sec hm-sec--dark" aria-label="Formulaire de contact">
       <div class="container">
         <div class="contact-layout">
 
           <!-- LEFT: Info -->
           <div class="contact-info reveal">
-            <div class="eyebrow">Autre demande</div>
-            <h2>Un projet hors<br /><em class="text-gradient">offre artisan</em></h2>
-            <div class="gold-line"></div>
+            <h2>Autre demande</h2>
             <p>Site sur mesure, application, automatisation, consultation ou formation : décrivez votre besoin avec le formulaire, je vous réponds par écrit sous 24h.</p>
 
             <div class="contact-cards">
@@ -365,21 +362,6 @@
                   <span class="cc-label">Disponibilité</span>
                   <span class="cc-value">Réponse sous 24h. WhatsApp ou formulaire de préférence.</span>
                 </div>
-              </div>
-            </div>
-
-            <div class="contact-promise">
-              <div class="cp-item">
-                <span class="cp-icon">✦</span>
-                <span>Réponse sous 24h</span>
-              </div>
-              <div class="cp-item">
-                <span class="cp-icon">✦</span>
-                <span>Offre artisan BTP : commande 100% en ligne, sans appel</span>
-              </div>
-              <div class="cp-item">
-                <span class="cp-icon">✦</span>
-                <span>Prix fixe pour l'offre artisan, devis écrit pour le reste</span>
               </div>
             </div>
           </div>
@@ -473,61 +455,32 @@
               </button>
 
             </form>
-            <p class="form-subtle">Sous-traitance, collaboration ou partenariat : écrivez-nous à <a href="mailto:contact@alcalspark.com?subject=Collaboration%20%2F%20sous-traitance">contact@alcalspark.com</a></p>
+            <p class="form-subtle">Sous-traitance, collaboration ou partenariat : écrivez-moi à <a href="mailto:contact@alcalspark.com?subject=Collaboration%20%2F%20sous-traitance">contact@alcalspark.com</a></p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ── FAQ ────────────────────────────────────────────────── -->
-    <section class="section faq-section" aria-labelledby="faq-title">
-      <div class="container">
-        <div class="section-header text-center">
-          <div class="eyebrow reveal">Questions fréquentes</div>
-          <h2 id="faq-title" class="reveal delay-1">Tout ce que vous<br /><em class="text-gradient">devez savoir</em></h2>
-          <div class="gold-line-center reveal delay-2"></div>
-        </div>
-
-        <div class="faq-list mt-lg" id="faq-list">
-          <div class="faq-item reveal delay-1">
-            <button class="faq-question" aria-expanded="false">
-              <span>Comment se déroule la collaboration ?</span>
-              <span class="faq-icon" aria-hidden="true">+</span>
-            </button>
-            <div class="faq-answer" hidden>
-              <p>Vous décrivez votre besoin avec ce formulaire et recevez une réponse sous 24h, puis un devis à prix fixe avant de démarrer. Un seul expert réalise votre projet, du brief à la mise en ligne, avec une livraison en {{DELAI_PLAGE}} pour les packs Essentiel et Premium. Tout se passe à distance.</p>
-            </div>
-          </div>
-
-          <div class="faq-item reveal delay-3">
-            <button class="faq-question" aria-expanded="false">
-              <span>Proposez-vous de la maintenance après la livraison ?</span>
-              <span class="faq-icon" aria-hidden="true">+</span>
-            </button>
-            <div class="faq-answer" hidden>
-              <p>Oui : la maintenance est à {{PRIX_MAINTENANCE}} € par mois (hébergement inclus, mises à jour et corrections, petites modifications de contenu, support par message, surveillance de la disponibilité du site), sans engagement de durée.</p>
-            </div>
-          </div>
-
-          <div class="faq-item reveal delay-4">
-            <button class="faq-question" aria-expanded="false">
-              <span>Est-ce que je pourrai modifier mon site moi-même ?</span>
-              <span class="faq-icon" aria-hidden="true">+</span>
-            </button>
-            <div class="faq-answer" hidden>
-              <p>Votre site est réalisé en code sur mesure, sans WordPress, et le code source vous est livré. Pour modifier le contenu, vous pouvez nous le demander ou passer par la maintenance, qui inclut de petites modifications de contenu.</p>
-            </div>
-          </div>
-
-          <div class="faq-item reveal delay-5">
-            <button class="faq-question" aria-expanded="false">
-              <span>Quels modes de paiement acceptez-vous ?</span>
-              <span class="faq-icon" aria-hidden="true">+</span>
-            </button>
-            <div class="faq-answer" hidden>
-              <p>Packs Essentiel et Premium : {{PAIEMENT_PACK_ACOMPTE_POURCENT}} % à la commande et {{PAIEMENT_PACK_SOLDE_POURCENT}} % à la livraison. Projet Sur-mesure : trois versements, {{PAIEMENT_SURMESURE_1_POURCENT}} % à la commande, {{PAIEMENT_SURMESURE_2_POURCENT}} % au lancement du développement et {{PAIEMENT_SURMESURE_3_POURCENT}} % à la livraison. Offre artisan BTP : acompte de {{ACOMPTE_POURCENT}} % par lien de paiement sécurisé après l'envoi du brief, solde de {{SOLDE_POURCENT}} % à la livraison.</p>
-            </div>
-          </div>
+    <section class="hm-sec hm-sec--cream" id="faq" aria-labelledby="faq-title">
+      <div class="hm-wrap hm-split">
+        <h2 id="faq-title">Questions fréquentes</h2>
+        <div class="hm-faq-group">
+        <details class="hm-faq">
+          <summary>Comment se déroule la collaboration ?</summary>
+          <div><p>Vous décrivez votre besoin avec ce formulaire et recevez une réponse sous 24h, puis un devis à prix fixe avant de démarrer. Un seul expert réalise votre projet, du brief à la mise en ligne, avec une livraison en {{DELAI_PLAGE}} pour les packs Essentiel et Premium. Tout se passe à distance.</p></div>
+        </details>
+        <details class="hm-faq">
+          <summary>Proposez-vous de la maintenance après la livraison ?</summary>
+          <div><p>Oui : la maintenance est à {{PRIX_MAINTENANCE}} € par mois (hébergement inclus, mises à jour et corrections, petites modifications de contenu, support par message, surveillance de la disponibilité du site), sans engagement de durée.</p></div>
+        </details>
+        <details class="hm-faq">
+          <summary>Est-ce que je pourrai modifier mon site moi-même ?</summary>
+          <div><p>Votre site est réalisé en code sur mesure, sans WordPress, et le code source vous est livré. Pour modifier le contenu, vous pouvez me le demander ou passer par la maintenance, qui inclut de petites modifications de contenu.</p></div>
+        </details>
+        <details class="hm-faq">
+          <summary>Quels modes de paiement acceptez-vous ?</summary>
+          <div><p>Packs Essentiel et Premium : {{PAIEMENT_PACK_ACOMPTE_POURCENT}} % à la commande et {{PAIEMENT_PACK_SOLDE_POURCENT}} % à la livraison. Projet Sur-mesure : trois versements, {{PAIEMENT_SURMESURE_1_POURCENT}} % à la commande, {{PAIEMENT_SURMESURE_2_POURCENT}} % au lancement du développement et {{PAIEMENT_SURMESURE_3_POURCENT}} % à la livraison. Offre artisan BTP : acompte de {{ACOMPTE_POURCENT}} % par lien de paiement sécurisé après l'envoi du brief, solde de {{SOLDE_POURCENT}} % à la livraison.</p></div>
+        </details>
         </div>
       </div>
     </section>

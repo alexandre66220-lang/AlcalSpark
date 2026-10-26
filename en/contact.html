@@ -30,7 +30,7 @@
   <link rel="icon" type="image/png" sizes="48x48" href="../favicon-48.png" />
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="../css/as-tokens.css?v=2" />
-<link rel="stylesheet" href="../css/style.css?v=6" />
+<link rel="stylesheet" href="../css/style.css?v=7" />
   <link rel="stylesheet" href="../css/contact.css?v=2" />
   <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -212,7 +212,7 @@
   gtag('config', 'G-GH6PR00V1L');
 </script>
 </head>
-<body>
+<body class="hm">
 
   <div class="noise-overlay" aria-hidden="true"></div>
 
@@ -269,50 +269,47 @@
   </div>
 
   <main>
-    <!-- ── PAGE HERO ─────────────────────────────────────────── -->
-    <section class="page-hero contact-hero" aria-labelledby="ph-title">
-      <div class="ph-bg" aria-hidden="true"></div>
-      <div class="container ph-content">
-        <div class="eyebrow reveal">Let's start</div>
-        <h1 id="ph-title" class="reveal delay-1">Contact</h1>
-        <p class="ph-desc reveal delay-2">
-          Construction trades: order your website online, no call needed. For anything else, write to me: I reply in writing within 24h.
-        </p>
-        <div class="ph-breadcrumb reveal delay-3">
-          <a href="index.html">Home</a>
-          <span aria-hidden="true">→</span>
-          <span>Contact</span>
-        </div>
-      </div>
-    </section>
+      <section class="hm-sec hm-sec--dark hm-hero">
+    <div class="hm-wrap">
+      <p class="hm-crumb"><a href="index.html">Home</a> / Contact</p>
+      <h1>Contact</h1>
+      <p class="hm-lead">Construction trades: order your website online, no call needed. For anything else, write to me: I reply in writing within 24h.</p>
+    </div>
+  </section>
 
-    <!-- ── OFFRE ARTISAN BTP (en premier) ───────────────────── -->
-    <section class="contact-offer" aria-labelledby="co-title">
-      <div class="container">
-        <div class="contact-offer-card reveal">
-          <div class="co-text">
-            <div class="eyebrow">Construction trades</div>
-            <h2 id="co-title">Your website for €{{PRIX_FIXE}}, <em class="text-gradient">no call at all</em></h2>
-            <p>Showcase website, Google Business Profile and local SEO basics, at a fixed price, delivered in {{DELAI_SITE_ARTISAN_EN}}. Fill in the brief questionnaire whenever you like, I reply in writing within 24h.<!--IF:PRIX_MENTION_EN--> <span class="co-mention">{{PRIX_MENTION_EN}}.</span><!--ENDIF:PRIX_MENTION_EN--></p>
-          </div>
-          <div class="co-actions">
-            <a href="brief-site-artisan-btp.html" class="btn btn-primary" onclick="gtag('event', 'cta_commander_site_artisan', {'event_category': 'CTA', 'event_label': 'Contact EN - Brief construction trades'})">Order my website</a>
-            <a href="offre-site-artisan-btp.html" class="co-link">See the offer details</a>
-          </div>
+    <section class="hm-sec hm-sec--cream" aria-labelledby="co-title">
+      <div class="hm-wrap hm-split">
+        <div>
+          <h2 id="co-title">Construction trades</h2>
+          <p class="hm-lead">Fill in the brief questionnaire whenever you like, I reply in writing within 24h.</p>
+        </div>
+        <div>
+    <ul class="hm-rows">
+      <li class="hm-row">
+        <div class="hm-row-main">
+          <h3 class="hm-row-name">Website for construction trades</h3>
+          <p class="hm-row-desc">Showcase website, Google Business Profile and local SEO basics, at a fixed price, ordered online with no call at all.</p>
+        </div>
+        <p class="hm-row-delay">Delivered in {{DELAI_SITE_ARTISAN_EN}}</p>
+        <div class="hm-row-side">
+          <p class="hm-price">€{{PRIX_FIXE}}</p>
+          <a class="hm-link" href="brief-site-artisan-btp.html" onclick="gtag('event', 'cta_commander_site_artisan', {'event_category': 'CTA', 'event_label': 'Contact - Brief artisan BTP'})">Order my site →</a>
+        </div>
+      </li>
+    </ul>
+          <p class="hm-note"><a class="hm-link" href="offre-site-artisan-btp.html">See the offer details →</a><!--IF:PRIX_MENTION_EN--> {{PRIX_MENTION_EN}}.<!--ENDIF:PRIX_MENTION_EN--></p>
         </div>
       </div>
     </section>
 
     <!-- ── CONTACT LAYOUT ─────────────────────────────────────── -->
-    <section class="section contact-section" aria-label="Contact form">
+    <section class="section contact-section hm-sec hm-sec--dark" aria-label="Contact form">
       <div class="container">
         <div class="contact-layout">
 
           <!-- LEFT: Info -->
           <div class="contact-info reveal">
-            <div class="eyebrow">Other requests</div>
-            <h2>A project outside<br /><em class="text-gradient">the trades offer</em></h2>
-            <div class="gold-line"></div>
+            <h2>Other requests</h2>
             <p>Custom website, application, automation, consultation or training: describe your need with the form and I will reply in writing within 24h.</p>
 
             <div class="contact-cards">
@@ -365,21 +362,6 @@
                   <span class="cc-label">Availability</span>
                   <span class="cc-value">Reply within 24h. WhatsApp or the contact form is best.</span>
                 </div>
-              </div>
-            </div>
-
-            <div class="contact-promise">
-              <div class="cp-item">
-                <span class="cp-icon">✦</span>
-                <span>Reply within 24h</span>
-              </div>
-              <div class="cp-item">
-                <span class="cp-icon">✦</span>
-                <span>Construction trades offer: 100% online order, no call</span>
-              </div>
-              <div class="cp-item">
-                <span class="cp-icon">✦</span>
-                <span>Fixed price for the trades offer, written quote for the rest</span>
               </div>
             </div>
           </div>
@@ -479,55 +461,26 @@
       </div>
     </section>
 
-    <!-- ── FAQ ────────────────────────────────────────────────── -->
-    <section class="section faq-section" aria-labelledby="faq-title">
-      <div class="container">
-        <div class="section-header text-center">
-          <div class="eyebrow reveal">Frequently asked questions</div>
-          <h2 id="faq-title" class="reveal delay-1">Everything you<br /><em class="text-gradient">need to know</em></h2>
-          <div class="gold-line-center reveal delay-2"></div>
-        </div>
-
-        <div class="faq-list mt-lg" id="faq-list">
-          <div class="faq-item reveal delay-1">
-            <button class="faq-question" aria-expanded="false">
-              <span>How does the collaboration work?</span>
-              <span class="faq-icon" aria-hidden="true">+</span>
-            </button>
-            <div class="faq-answer" hidden>
-              <p>You describe your need with this form and get a reply within 24h, then a fixed-price quote before we start. A single expert delivers your project, from brief to go-live, with {{DELAI_PLAGE_EN}} delivery for the Essential and Premium packs. Everything happens remotely.</p>
-            </div>
-          </div>
-
-          <div class="faq-item reveal delay-3">
-            <button class="faq-question" aria-expanded="false">
-              <span>Do you offer maintenance after launch?</span>
-              <span class="faq-icon" aria-hidden="true">+</span>
-            </button>
-            <div class="faq-answer" hidden>
-              <p>Yes: maintenance is €{{PRIX_MAINTENANCE}} per month (hosting included, updates and fixes, small content changes, support by message, site uptime monitoring), with no minimum commitment.</p>
-            </div>
-          </div>
-
-          <div class="faq-item reveal delay-4">
-            <button class="faq-question" aria-expanded="false">
-              <span>Will I be able to edit my site myself?</span>
-              <span class="faq-icon" aria-hidden="true">+</span>
-            </button>
-            <div class="faq-answer" hidden>
-              <p>Your site is built in custom code, without WordPress, and the source code is delivered to you. To change content, you can ask us or go through maintenance, which includes small content changes.</p>
-            </div>
-          </div>
-
-          <div class="faq-item reveal delay-5">
-            <button class="faq-question" aria-expanded="false">
-              <span>What payment methods do you accept?</span>
-              <span class="faq-icon" aria-hidden="true">+</span>
-            </button>
-            <div class="faq-answer" hidden>
-              <p>Essential and Premium packs: {{PAIEMENT_PACK_ACOMPTE_POURCENT}}% at order and {{PAIEMENT_PACK_SOLDE_POURCENT}}% on delivery. Custom projects: three instalments, {{PAIEMENT_SURMESURE_1_POURCENT}}% at order, {{PAIEMENT_SURMESURE_2_POURCENT}}% at the start of development and {{PAIEMENT_SURMESURE_3_POURCENT}}% on delivery. Construction trades offer: {{ACOMPTE_POURCENT}}% deposit by secure payment link after the brief is sent, {{SOLDE_POURCENT}}% balance on delivery.</p>
-            </div>
-          </div>
+    <section class="hm-sec hm-sec--cream" id="faq" aria-labelledby="faq-title">
+      <div class="hm-wrap hm-split">
+        <h2 id="faq-title">Frequently asked questions</h2>
+        <div class="hm-faq-group">
+        <details class="hm-faq">
+          <summary>How does the collaboration work?</summary>
+          <div><p>You describe your need with this form and get a reply within 24h, then a fixed-price quote before we start. A single expert delivers your project, from brief to go-live, with {{DELAI_PLAGE_EN}} delivery for the Essential and Premium packs. Everything happens remotely.</p></div>
+        </details>
+        <details class="hm-faq">
+          <summary>Do you offer maintenance after launch?</summary>
+          <div><p>Yes: maintenance is €{{PRIX_MAINTENANCE}} per month (hosting included, updates and fixes, small content changes, support by message, site uptime monitoring), with no minimum commitment.</p></div>
+        </details>
+        <details class="hm-faq">
+          <summary>Will I be able to edit my site myself?</summary>
+          <div><p>Your site is built in custom code, without WordPress, and the source code is delivered to you. To change content, you can ask me or go through maintenance, which includes small content changes.</p></div>
+        </details>
+        <details class="hm-faq">
+          <summary>What payment methods do you accept?</summary>
+          <div><p>Essential and Premium packs: {{PAIEMENT_PACK_ACOMPTE_POURCENT}}% at order and {{PAIEMENT_PACK_SOLDE_POURCENT}}% on delivery. Custom projects: three instalments, {{PAIEMENT_SURMESURE_1_POURCENT}}% at order, {{PAIEMENT_SURMESURE_2_POURCENT}}% at the start of development and {{PAIEMENT_SURMESURE_3_POURCENT}}% on delivery. Construction trades offer: {{ACOMPTE_POURCENT}}% deposit by secure payment link after the brief is sent, {{SOLDE_POURCENT}}% balance on delivery.</p></div>
+        </details>
         </div>
       </div>
     </section>

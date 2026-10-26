@@ -31,7 +31,7 @@
   <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml" />
 
   <link rel="stylesheet" href="../../css/as-tokens.css?v=2" />
-  <link rel="stylesheet" href="../../css/style.css?v=6" />
+  <link rel="stylesheet" href="../../css/style.css?v=7" />
   <link rel="stylesheet" href="../../css/seo-local.css?v=2" />
 
   <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
@@ -191,7 +191,7 @@
   gtag('config', 'G-GH6PR00V1L');
 </script>
 </head>
-<body>
+<body class="hm">
 
 <div class="noise-overlay" aria-hidden="true"></div>
 
@@ -247,170 +247,114 @@
 </div>
 
 <main>
-
-  <!-- ── HERO ── -->
-  <section class="seo-hero" aria-labelledby="seo-title">
-    <div class="container" style="max-width:var(--max-w);margin:0 auto;">
-      <nav class="seo-breadcrumb" aria-label="Breadcrumb">
-        <a href="../index.html">Home</a>
-        <span aria-hidden="true">→</span>
-        <span>AI automation</span>
-      </nav>
-      <div class="eyebrow reveal">AI automation</div>
-      <h1 id="seo-title" class="reveal delay-1">AI and n8n automation<br /><em>for SMEs</em></h1>
-      <p class="lead reveal delay-2">
-        Quote requests to retype, follow-ups done by hand, leads that get lost: we build the n8n workflows that take care of it, delivered in {{DELAI_AUTOMATISATION_EN}} and added to your project.
-      </p>
-      <div class="hero-ctas reveal delay-3">
-        <a href="../contact.html" class="btn btn-primary">Request my automation</a>
-        <a href="../tarifs.html" class="btn btn-outline">See pricing</a>
+  <section class="hm-sec hm-sec--dark hm-hero" aria-labelledby="seo-title">
+    <div class="hm-wrap">
+      <p class="hm-crumb"><a href="../index.html">Home</a> / Automation (n8n)</p>
+      <h1 id="seo-title">Automation (n8n)</h1>
+      <p class="hm-lead">Quote requests to retype, follow-ups done by hand, leads that get lost: I build the n8n workflows that take care of it, delivered in {{DELAI_AUTOMATISATION_EN}} and added to your project.</p>
+      <div class="hm-links">
+        <a class="hm-link" href="../contact.html">Request my automation →</a>
+        <a class="hm-link" href="../tarifs.html">See pricing →</a>
       </div>
     </div>
   </section>
 
-  <!-- ── OFFRES ── -->
-  <section class="offers-section" id="offres-automatisation" aria-labelledby="auto-offres-title">
-    <div class="container">
-      <div class="offers-head">
-        <div class="eyebrow reveal">Two options, fixed price</div>
-        <h2 id="auto-offres-title" class="reveal delay-1">Choose your level<br /><em>of automation</em></h2>
-        <p class="reveal delay-2">Each option is added to a website project and delivered in {{DELAI_AUTOMATISATION_EN}}.</p>
+  <section class="hm-sec hm-sec--cream" id="offres-automatisation" aria-labelledby="auto-offres-title">
+    <div class="hm-wrap hm-split">
+      <div>
+        <h2 id="auto-offres-title">Two options, fixed price</h2>
+        <p class="hm-lead">Each option is added to a website project and delivered in {{DELAI_AUTOMATISATION_EN}}.</p>
       </div>
-    <div class="offers-grid offers-grid--2">
-      <article class="offer-card card reveal delay-1">
-        <div class="offer-badge">Lead capture</div>
-        <div class="offer-price"><span class="offer-amount">+€{{PRIX_AUTOMATISATION_LEADS}}</span></div>
-        <p class="offer-delay">Delivered in {{DELAI_AUTOMATISATION_EN}}</p>
-        
-        <ul class="offer-features">
-          <li>Form, then confirmation email</li>
-          <li>Notification to you</li>
-          <li>Leads logged in a spreadsheet</li>
-        </ul>
-        <a href="../contact.html" class="btn btn-primary" onclick="gtag('event', 'cta_auto_leads', {'event_category': 'CTA', 'event_label': 'cta_auto_leads'})">Request this option</a>
-      </article>
-      <article class="offer-card card reveal delay-2">
-        <div class="offer-badge">Full workflow</div>
-        <div class="offer-price"><span class="offer-amount">+€{{PRIX_AUTOMATISATION_COMPLET}}</span></div>
-        <p class="offer-delay">Delivered in {{DELAI_AUTOMATISATION_EN}}</p>
-        
-        <ul class="offer-features">
-          <li>Automatic follow-ups</li>
-          <li>Quotes and notifications</li>
-          <li>Built with n8n, connected to your tools</li>
-        </ul>
-        <a href="../contact.html" class="btn btn-primary" onclick="gtag('event', 'cta_auto_complet', {'event_category': 'CTA', 'event_label': 'cta_auto_complet'})">Request this option</a>
-      </article>
-    </div>
-      <!--IF:PRIX_MENTION_EN--><p class="offer-note reveal">{{PRIX_MENTION_EN}}.</p><!--ENDIF:PRIX_MENTION_EN-->
+      <div>
+    <ul class="hm-rows">
+      <li class="hm-row">
+        <div class="hm-row-main">
+          <h3 class="hm-row-name">Lead capture</h3>
+          <p class="hm-row-desc">Form then confirmation email, notification to you, leads logged in a spreadsheet.</p>
+        </div>
+        <p class="hm-row-delay">Delivered in {{DELAI_AUTOMATISATION_EN}}</p>
+        <div class="hm-row-side">
+          <p class="hm-price">+€{{PRIX_AUTOMATISATION_LEADS}}</p>
+          <a class="hm-link" href="../contact.html">Request this option →</a>
+        </div>
+      </li>
+      <li class="hm-row">
+        <div class="hm-row-main">
+          <h3 class="hm-row-name">Full workflow</h3>
+          <p class="hm-row-desc">Automatic follow-ups, quotes and notifications, built with n8n and connected to your tools.</p>
+        </div>
+        <p class="hm-row-delay">Delivered in {{DELAI_AUTOMATISATION_EN}}</p>
+        <div class="hm-row-side">
+          <p class="hm-price">+€{{PRIX_AUTOMATISATION_COMPLET}}</p>
+          <a class="hm-link" href="../contact.html">Request this option →</a>
+        </div>
+      </li>
+    </ul>
+        <p class="hm-note"><!--IF:PRIX_MENTION_EN--> {{PRIX_MENTION_EN}}.<!--ENDIF:PRIX_MENTION_EN--></p>
+      </div>
     </div>
   </section>
 
-  <!-- ── CAS CONCRETS ── -->
-  <section class="offers-section" id="cas-concrets" style="background:#0D1210;" aria-labelledby="cas-title">
-    <div class="container">
-      <div class="offers-head">
-        <div class="eyebrow reveal">Real-world use cases</div>
-        <h2 id="cas-title" class="reveal delay-1">What n8n does<br /><em>for you</em></h2>
-      </div>
-      <ol class="steps-3 steps-4">
-        <li class="reveal delay-1"><span class="step-n">01</span><strong>A request comes in on your website</strong><p>The prospect gets a confirmation email, you are notified, and the request is logged in a spreadsheet.</p></li>
-        <li class="reveal delay-2"><span class="step-n">02</span><strong>A quote goes unanswered</strong><p>A follow-up is sent automatically at the right time, without you having to think about it.</p></li>
-        <li class="reveal delay-3"><span class="step-n">03</span><strong>A customer accepts a quote</strong><p>Notifications and next steps trigger on their own.</p></li>
-        <li class="reveal delay-4"><span class="step-n">04</span><strong>A job or project is finished</strong><p>A Google review request is automatically sent to the customer.</p></li>
+  <section class="hm-sec hm-sec--dark" id="cas-concrets" aria-labelledby="cas-title">
+    <div class="hm-wrap">
+      <h2 id="cas-title">What n8n does for you</h2>
+      <ol class="hm-steps hm-steps--4">
+      <li><span>01</span><strong>A request comes in on your website</strong><p>The prospect gets a confirmation email, you are notified, and the request is logged in a spreadsheet.</p></li>
+      <li><span>02</span><strong>A quote goes unanswered</strong><p>A follow-up is sent automatically at the right time, without you having to think about it.</p></li>
+      <li><span>03</span><strong>A customer accepts a quote</strong><p>Notifications and next steps trigger on their own.</p></li>
+      <li><span>04</span><strong>A job or project is finished</strong><p>A Google review request is automatically sent to the customer.</p></li>
       </ol>
     </div>
   </section>
 
-  <!-- ── METHODE ── -->
-  <section class="offers-section" id="methode-automatisation" aria-labelledby="meth-title">
-    <div class="container">
-      <div class="offers-head">
-        <div class="eyebrow reveal">The method</div>
-        <h2 id="meth-title" class="reveal delay-1">From request<br /><em>to delivered workflow</em></h2>
-      </div>
-      <ol class="steps-3 reveal delay-2"><li><span class="step-n">01</span><strong>Brief within 24h</strong><p>You describe your tools and your need; you get a reply within 24h.</p></li><li><span class="step-n">02</span><strong>Fixed-price quote</strong><p>Option at +€{{PRIX_AUTOMATISATION_LEADS}} or +€{{PRIX_AUTOMATISATION_COMPLET}}, given before we start.</p></li><li><span class="step-n">03</span><strong>Delivery in {{DELAI_AUTOMATISATION_EN}}</strong><p>The n8n workflow is in place and connected to your tools.</p></li></ol>
+  <section class="hm-sec hm-sec--cream" id="methode-automatisation" aria-labelledby="meth-title">
+    <div class="hm-wrap">
+      <h2 id="meth-title">How it works</h2>
+      <ol class="hm-steps">
+      <li><span>01</span><strong>Brief within 24h</strong><p>You describe your tools and your need; you get a reply within 24h.</p></li>
+      <li><span>02</span><strong>Fixed-price quote</strong><p>Option at +€{{PRIX_AUTOMATISATION_LEADS}} or +€{{PRIX_AUTOMATISATION_COMPLET}}, given before we start.</p></li>
+      <li><span>03</span><strong>Delivery in {{DELAI_AUTOMATISATION_EN}}</strong><p>The n8n workflow is in place and connected to your tools.</p></li>
+      </ol>
     </div>
   </section>
 
-  <!-- ── CTA ── -->
-  <section class="seo-cta-section" aria-label="Start a project">
-    <div class="container" style="max-width:var(--max-w);margin:0 auto;">
-      <div class="eyebrow reveal" style="justify-content:center;">Your project starts here</div>
-      <h2 class="reveal delay-1">Let's automate your<br /><em class='text-gradient'>processes</em></h2>
-      <p class="reveal delay-2">
-        Describe your tools and your need: you get a reply within 24h.
-      </p>
-      <div class="reveal delay-3">
-        <a href="../contact.html" class="btn btn-primary" style="margin-right:1rem;">Get a reply within 24h</a>
-        <p style="margin-top:1rem;font-size:.85rem;color:var(--c50,rgba(248,245,242,.5));">{{CAPACITE_PROJETS_MOIS}} projects per month, limited spots.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── FAQ ── -->
-  <section class="section faq-section" aria-labelledby="faq-title">
-    <div class="container">
-      <div class="section-header text-center">
-        <div class="eyebrow reveal">Frequently asked questions</div>
-        <h2 id="faq-title" class="reveal delay-1">Everything you<br /><em class='text-gradient'>need to know</em></h2>
-      </div>
-      <div class="faq-list mt-lg" id="faq-list">
-        <div class="faq-item reveal delay-1">
-          <button class="faq-question" aria-expanded="false">
-            <span>What is n8n and what is it used for?</span>
-            <span class="faq-icon" aria-hidden="true">+</span>
-          </button>
-          <div class="faq-answer" hidden>
-            <p>n8n is a tool that automatically connects your software and forms together (website, mailbox, spreadsheet, quoting or invoicing tools). In practice, a request received on your website can send a confirmation email to the prospect, notify you and log itself in a spreadsheet, with no manual entry.</p>
-          </div>
-        </div>
-
-        <div class="faq-item reveal delay-2">
-          <button class="faq-question" aria-expanded="false">
-            <span>How much does an automation cost?</span>
-            <span class="faq-icon" aria-hidden="true">+</span>
-          </button>
-          <div class="faq-answer" hidden>
-            <p>Two fixed-price options: lead capture at +€{{PRIX_AUTOMATISATION_LEADS}} (form, confirmation email, notification, spreadsheet) and the full workflow at +€{{PRIX_AUTOMATISATION_COMPLET}} (follow-ups, quotes, notifications). They are added to a website project. {{PRIX_MENTION_EN}}.</p>
-          </div>
-        </div>
-
-        <div class="faq-item reveal delay-3">
-          <button class="faq-question" aria-expanded="false">
-            <span>How long does setup take?</span>
-            <span class="faq-icon" aria-hidden="true">+</span>
-          </button>
-          <div class="faq-answer" hidden>
-            <p>{{DELAI_AUTOMATISATION_EN}} for each option, once the need is scoped.</p>
-          </div>
-        </div>
-
-        <div class="faq-item reveal delay-4">
-          <button class="faq-question" aria-expanded="false">
-            <span>Are my current tools compatible?</span>
-            <span class="faq-icon" aria-hidden="true">+</span>
-          </button>
-          <div class="faq-answer" hidden>
-            <p>n8n connects to a very large number of common tools. Describe the ones you use in the contact form: you get a reply within 24h telling you what is feasible.</p>
-          </div>
-        </div>
+  <section class="hm-sec hm-sec--dark" id="faq-auto" aria-labelledby="faq-title">
+    <div class="hm-wrap hm-split">
+      <h2 id="faq-title">Frequently asked questions</h2>
+      <div class="hm-faq-group">
+        <details class="hm-faq">
+          <summary>What is n8n and what is it used for?</summary>
+          <div><p>n8n is a tool that automatically connects your software and forms together (website, mailbox, spreadsheet, quoting or invoicing tools). In practice, a request received on your website can send a confirmation email to the prospect, notify you and log itself in a spreadsheet, with no manual entry.</p></div>
+        </details>
+        <details class="hm-faq">
+          <summary>How much does an automation cost?</summary>
+          <div><p>Two fixed-price options: lead capture at +€{{PRIX_AUTOMATISATION_LEADS}} (form, confirmation email, notification, spreadsheet) and the full workflow at +€{{PRIX_AUTOMATISATION_COMPLET}} (follow-ups, quotes, notifications). They are added to a website project.<!--IF:PRIX_MENTION_EN--> {{PRIX_MENTION_EN}}.<!--ENDIF:PRIX_MENTION_EN--></p></div>
+        </details>
+        <details class="hm-faq">
+          <summary>How long does setup take?</summary>
+          <div><p>{{DELAI_AUTOMATISATION_EN}} for each option, once the need is scoped.</p></div>
+        </details>
+        <details class="hm-faq">
+          <summary>Are my current tools compatible?</summary>
+          <div><p>n8n connects to a very large number of common tools. Describe the ones you use in the contact form: you get a reply within 24h telling you what is feasible.</p></div>
+        </details>
       </div>
     </div>
   </section>
 
-  <!-- ── LIENS INTERNES ── -->
-  <section class="seo-internal-links" aria-label="See also">
-    <div class="container">
-      <span class="seo-il-label">See also</span>
-      <div class="seo-il-list">
-        <a href="../tarifs.html">Pricing →</a>
-        <a href="../services.html">All our services →</a>
-        <a href="../agencies.html">Agency offer →</a>
+  <section class="hm-sec hm-sec--cream" aria-label="Start a project">
+    <div class="hm-wrap hm-split">
+      <h2>A process to automate?</h2>
+      <div>
+        <p>Describe your tools and your need: you get a reply within 24h. {{CAPACITE_PROJETS_MOIS}} projects per month, limited spots.</p>
+        <div class="hm-links">
+          <a class="hm-link" href="../contact.html">Get a reply within 24h →</a>
+          <a class="hm-link" href="../tarifs.html">Pricing →</a>
+          <a class="hm-link" href="../agencies.html">Agency offer →</a>
+        </div>
       </div>
     </div>
   </section>
-
 </main>
 
 <!-- Footer -->

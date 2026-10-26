@@ -30,7 +30,7 @@
   <link rel="icon" type="image/png" sizes="48x48" href="../favicon-48.png" />
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="../css/as-tokens.css?v=2" />
-<link rel="stylesheet" href="../css/style.css?v=6" />
+<link rel="stylesheet" href="../css/style.css?v=7" />
   <link rel="stylesheet" href="../css/services.css?v=4" />
   <link rel="stylesheet" href="../css/tarifs.css?v=5" />
   <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
@@ -144,7 +144,7 @@
   gtag('config', 'G-GH6PR00V1L');
 </script>
 </head>
-<body>
+<body class="hm">
 
   <div class="noise-overlay" aria-hidden="true"></div>
 
@@ -201,72 +201,60 @@
   </div>
 
   <main>
-    <!-- ── PAGE HERO ───────────────────────────────────────── -->
-    <section class="page-hero tarifs-hero" aria-labelledby="ph-title">
-      <div class="ph-bg" aria-hidden="true"></div>
-      <div class="container ph-content">
-        <div class="eyebrow reveal">Agencies and collaborations</div>
-        <h1 id="ph-title" class="reveal delay-1">White-label integration<br /><em class='text-gradient'>for agencies</em></h1>
-        <p class="ph-desc reveal delay-2">
-          You have the mockups, we turn them into clean, responsive, fast code. 100% remote, NDA possible.
-        </p>
-        <div class="hero-actions reveal delay-3">
-          <a href="mailto:contact@alcalspark.com?subject=Collaboration%20%2F%20subcontracting" class="btn btn-primary" onclick="gtag('event', 'cta_agences_hero', {'event_category': 'CTA', 'event_label': 'Agences - Hero mail'})">Email us</a>
-        </div>
-        <div class="ph-breadcrumb reveal delay-3">
-          <a href="index.html">Home</a>
-          <span aria-hidden="true">→</span>
-          <span>Agencies</span>
-        </div>
-      </div>
-    </section>
+  <section class="hm-sec hm-sec--dark hm-hero">
+    <div class="hm-wrap">
+      <p class="hm-crumb"><a href="index.html">Home</a> / Agencies</p>
+      <h1>White-label integration for agencies</h1>
+      <p class="hm-lead">You have the mockups, I turn them into clean, responsive, fast code. 100% remote, NDA possible.</p>
+      <div class="hm-links"><a class="hm-link" href="mailto:contact@alcalspark.com?subject=Collaboration%20%2F%20subcontracting" onclick="gtag('event', 'cta_agences_hero', {'event_category': 'CTA', 'event_label': 'Agences - Hero mail'})">Email me →</a></div>
+    </div>
+  </section>
 
-    <!-- ── OFFRE ───────────────────────────────────────────── -->
-    <section class="offers-section" id="offre-agences" aria-labelledby="ag-title">
-      <div class="container">
-        <div class="offers-head">
-          <div class="eyebrow reveal">The offer</div>
-          <h2 id="ag-title" class="reveal delay-1">Integration capacity,<br /><em>under your brand</em></h2>
-          <p class="reveal delay-2">Your clients only see your agency. We deliver clean code that you can take over and maintain.</p>
-        </div>
-        <div class="offers-grid offers-grid--1">
-      <article class="offer-card card reveal delay-1">
-        <div class="offer-badge">Figma to code integration</div>
-        <div class="offer-price"><span class="offer-amount">€{{PRIX_AGENCE_MIN}} to €{{PRIX_AGENCE_MAX}}</span><span class="offer-unit">per integration</span></div>
-        <p class="offer-delay">Depending on page count</p>
-        
-        <ul class="offer-features">
-          <li>Figma mockups built as clean HTML/CSS/JS</li>
-          <li>Responsive and fast</li>
-          <li>Fast delivery, schedule given in the quote</li>
-          <li>100% remote, NDA possible</li>
-        </ul>
-        <a href="mailto:contact@alcalspark.com?subject=Collaboration%20%2F%20subcontracting" class="btn btn-primary" onclick="gtag('event', 'cta_agences_mail', {'event_category': 'CTA', 'event_label': 'cta_agences_mail'})">Email us</a>
-      </article>
-        </div>
+  <section class="hm-sec hm-sec--cream" id="offre-agences" aria-labelledby="ag-title">
+    <div class="hm-wrap hm-split">
+      <div>
+        <h2 id="ag-title">The offer</h2>
+        <p class="hm-lead">Your clients only see your agency. I deliver clean code that you can take over and maintain.</p>
       </div>
-    </section>
+      <div>
+    <ul class="hm-rows">
+      <li class="hm-row">
+        <div class="hm-row-main">
+          <h3 class="hm-row-name">Figma to code integration</h3>
+          <p class="hm-row-desc">Figma mockups built as clean HTML/CSS/JS, responsive and fast, quick delivery with the schedule given in the quote, 100% remote, NDA possible.</p>
+        </div>
+        <p class="hm-row-delay">Depending on page count</p>
+        <div class="hm-row-side">
+          <p class="hm-price">€{{PRIX_AGENCE_MIN}} to €{{PRIX_AGENCE_MAX}} <small class="hm-unit">per integration</small></p>
+          <a class="hm-link" href="mailto:contact@alcalspark.com?subject=Collaboration%20%2F%20subcontracting" onclick="gtag('event', 'cta_agences_mail', {'event_category': 'CTA', 'event_label': 'cta_agences_mail'})">Email me →</a>
+        </div>
+      </li>
+    </ul>
+        <p class="hm-note"><!--IF:PRIX_MENTION_EN--> {{PRIX_MENTION_EN}}.<!--ENDIF:PRIX_MENTION_EN--></p>
+      </div>
+    </div>
+  </section>
 
-    <!-- ── METHODE ─────────────────────────────────────────── -->
-    <section class="offers-section" id="methode-agences" style="background:#0D1210;" aria-labelledby="ag-meth-title">
-      <div class="container">
-        <div class="offers-head">
-          <div class="eyebrow reveal">How it works</div>
-          <h2 id="ag-meth-title" class="reveal delay-1">Three steps,<br /><em>no meetings</em></h2>
-        </div>
-        <ol class="steps-3 reveal delay-2"><li><span class="step-n">01</span><strong>Send the mockups</strong><p>Your Figma files and the number of pages to build.</p></li><li><span class="step-n">02</span><strong>Quote within 24h</strong><p>A price within the range, and a schedule, before we start.</p></li><li><span class="step-n">03</span><strong>Delivery</strong><p>The code is delivered, clean and ready to be handed over under your brand.</p></li></ol>
-      </div>
-    </section>
+  <section class="hm-sec hm-sec--dark" id="methode-agences" aria-labelledby="ag-meth-title">
+    <div class="hm-wrap">
+      <h2 id="ag-meth-title">How it works</h2>
+      <ol class="hm-steps">
+      <li><span>01</span><strong>Send the mockups</strong><p>Your Figma files and the number of pages to build.</p></li>
+      <li><span>02</span><strong>Quote within 24h</strong><p>A price within the range, and a schedule, before we start.</p></li>
+      <li><span>03</span><strong>Delivery</strong><p>The code is delivered, clean and ready to be handed over under your brand.</p></li>
+      </ol>
+    </div>
+  </section>
 
-    <!-- ── CTA ─────────────────────────────────────────────── -->
-    <section class="section tarifs-transparency-section" aria-label="Agency contact">
-      <div class="container">
-        <div class="tarifs-transparency-inner reveal">
-          <p>Send us your mockups and the number of pages: you get a quote within 24h.<!--IF:PRIX_MENTION_EN--> {{PRIX_MENTION_EN}}.<!--ENDIF:PRIX_MENTION_EN--></p>
-          <a href="mailto:contact@alcalspark.com?subject=Collaboration%20%2F%20subcontracting" class="btn btn-outline">Email contact@alcalspark.com</a>
-        </div>
+  <section class="hm-sec hm-sec--cream" aria-label="Agency contact">
+    <div class="hm-wrap hm-split">
+      <h2>A project to build?</h2>
+      <div>
+        <p>Send me your mockups and the number of pages: you get a quote within 24h.<!--IF:PRIX_MENTION_EN--> {{PRIX_MENTION_EN}}.<!--ENDIF:PRIX_MENTION_EN--></p>
+        <div class="hm-links"><a class="hm-link" href="mailto:contact@alcalspark.com?subject=Collaboration%20%2F%20subcontracting">Email contact@alcalspark.com →</a></div>
       </div>
-    </section>
+    </div>
+  </section>
   </main>
 
   <footer id="footer" role="contentinfo">

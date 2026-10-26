@@ -1500,3 +1500,17 @@ body.hm .diag-axis-title { font-size: 1.05rem; }
 .hm-works .pi-meta { background: none !important; padding-left: 0 !important; padding-right: 0 !important; }
 .hm-works .portfolio-item, .hm-works .portfolio-item * { text-decoration: none !important; }
 .hm-works .pi-meta h4 { font-family: var(--font-ui) !important; font-weight: 600; }
+.hm-sec p.hm-lead { margin-top: 1.1rem; }
+.hm-sec p.hm-crumb { margin: 0 0 1.5rem; }
+body.hm .hm-group { margin: 0 0 clamp(3rem, 6vw, 5rem); }
+body.hm .hm-group:last-child { margin-bottom: 0; }
+.hm-row { grid-template-columns: minmax(0, 1fr) 7.5rem 11rem; gap: .35rem 1.5rem; }
+@media (max-width: 860px) { .hm-row { grid-template-columns: minmax(0, 1fr) auto; } }
+.hm-price .hm-unit { display: block; margin-top: .2rem; font-size: .8rem; text-align: right; letter-spacing: 0; }
+body.hm .contact-section > .container { max-width: 1120px; }
+body.hm .contact-section h2 { margin-bottom: 1rem; }
+body.hm .contact-cards { gap: .5rem; margin-top: 1.5rem; }
+body.hm .contact-card { padding-left: 0 !important; padding-right: 0 !important; }
+body.hm .form-intro { margin: 0 0 1.5rem; }
+.hm-reasoning .pr-block h4, .hm-reasoning h4 { color: var(--hm-ink) !important; }
+body.hm .select-arrow { color: rgba(248, 245, 242, .6); }

@@ -329,7 +329,7 @@ for (const f of htmlFiles.filter((x) => rel(x).replace(/\\/g, "/").startsWith("e
 
 // Contact : ligne de sous-traitance visible, aucune heure de rappel.
 for (const [file, needle] of [
-  ["contact.html", "Sous-traitance, collaboration ou partenariat : écrivez-nous à"],
+  ["contact.html", "Sous-traitance, collaboration ou partenariat : écrivez-moi à"],
   ["en/contact.html", "Subcontracting, collaboration or partnership inquiries:"],
 ]) {
   if (!readFileSync(join(ROOT, file), "utf-8").includes(needle)) fail("refonte", `${file}: ligne de sous-traitance absente`);
@@ -337,8 +337,8 @@ for (const [file, needle] of [
 
 // Accueil et tarifs : sections et textes cles.
 for (const [file, needles] of [
-  ["index.html", ['id="offres"', 'id="automatisation-ia"', 'href="tarifs.html"', "Entreprise ou startup", "agences.html"]],
-  ["en/index.html", ['id="offres"', 'id="automatisation-ia"', 'href="tarifs.html"', "Business or startup", "agencies.html"]],
+  ["index.html", ['id="offres"', 'href="services/automatisation-n8n-castres.html"', 'href="tarifs.html"', "Pour les entreprises", "agences.html"]],
+  ["en/index.html", ['id="offres"', 'href="services/automatisation-n8n-castres.html"', 'href="tarifs.html"', "For businesses", "agencies.html"]],
 ]) {
   const html = readFileSync(join(ROOT, file), "utf-8");
   for (const n of needles) if (!html.includes(n)) fail("refonte", `${file}: element attendu absent (${n})`);

@@ -1517,3 +1517,6 @@ body.hm .select-arrow { color: rgba(248, 245, 242, .6); }
 /* Pages services : phrase de maillage interne sous l'appel à l'action */
 .seo-context { margin: 1rem auto 0; max-width: 62ch; font-size: .9rem; line-height: 1.7; color: var(--c72); text-align: center; }
 .seo-context a { color: var(--cream); text-decoration: underline; text-underline-offset: 3px; }
+.hm-row { grid-template-columns: minmax(0, 1fr) 7.5rem 12.5rem; }
+.hm-row-side .hm-link { white-space: nowrap; }
+@media (max-width: 860px) { .hm-row { grid-template-columns: minmax(0, 1fr) auto; } }

@@ -216,10 +216,10 @@
     // Active link
     // Compare sans extension : en production Netlify sert /tarifs (pretty URLs) pour tarifs.html
     const stripExt = p => p.replace(/\.html$/, '');
-    const path = stripExt(window.location.pathname.split('/').pop() || 'index.html');
+    const path = stripExt(window.location.pathname.split('/').pop() || 'index');
     document.querySelectorAll('.nav-link').forEach(link => {
-      const linkPath = stripExt(link.getAttribute('href')?.split('/').pop() || '');
-      if (linkPath === path || (path === '' && linkPath === 'index')) {
+      const linkPath = stripExt((link.getAttribute('href') || '').split('#')[0].split('/').pop() || 'index');
+      if (linkPath === path) {
         link.classList.add('active');
         link.setAttribute('aria-current', 'page');
       }
@@ -656,7 +656,7 @@
   if (localStorage.getItem('alcalspark-cookies')) return;
 
   const isEN = document.documentElement.lang === 'en';
-  const legalHref = isEN ? '../mentions-legales.html' : 'mentions-legales.html';
+  const legalHref = '/mentions-legales';
   const strings = isEN
     ? {
         title: 'Cookies & Privacy',

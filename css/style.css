@@ -1355,8 +1355,7 @@ p { max-width: 62ch; text-wrap: pretty; }
 .hero-title { text-wrap: balance; overflow-wrap: normal; hyphens: manual; }
 .nw { white-space: nowrap; }
 
-/* ==========================================================================
-   Design « humain » (branche design-humain) : accueil, /tarifs, /agences,
+/* ===================================================================   Design « humain » (branche design-humain) : accueil, /tarifs, /agences,
    automatisation, /contact. Tout est préfixé .hm-* ou limité à body.hm,
    les autres pages (légales, CGV, blog, portfolio) ne sont pas touchées.
    Sections sombres (#0A0D0B) et crème (#F8F5F2) en alternance, filets fins,
@@ -1514,3 +1513,7 @@ body.hm .contact-card { padding-left: 0 !important; padding-right: 0 !important;
 body.hm .form-intro { margin: 0 0 1.5rem; }
 .hm-reasoning .pr-block h4, .hm-reasoning h4 { color: var(--hm-ink) !important; }
 body.hm .select-arrow { color: rgba(248, 245, 242, .6); }
+=======
+/* Pages services : phrase de maillage interne sous l'appel à l'action */
+.seo-context { margin: 1rem auto 0; max-width: 62ch; font-size: .9rem; line-height: 1.7; color: var(--c72); text-align: center; }
+.seo-context a { color: var(--cream); text-decoration: underline; text-underline-offset: 3px; }

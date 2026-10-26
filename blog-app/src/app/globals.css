@@ -174,7 +174,9 @@ body:has(#blog-nav-toggle:checked) .blog-nav-toggle-label span:nth-child(3) {
 
 .blog-footer-inner nav {
   display: flex;
-  gap: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 1.5rem;
 }
 
 .blog-footer-inner nav a:hover {
@@ -707,4 +709,15 @@ main {
 .blog-footer {
   position: relative;
   z-index: 1;
+}
+
+.article-cta-links {
+  margin-top: 1.25rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+.article-cta-links a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }

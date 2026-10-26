@@ -8,6 +8,7 @@ mkdir -p out
 echo "[build] Copie des fichiers statiques du site principal..."
 rsync -a \
   --exclude=blog-app \
+  --exclude=blog-static \
   --exclude=out \
   --exclude=.git \
   --exclude=.gitignore \
@@ -44,7 +45,15 @@ if [ -n "${NEXT_PUBLIC_SANITY_PROJECT_ID:-}" ]; then
     cp -r blog-app/out/_next out/_next
   fi
 else
-  echo "[build] Variables Sanity absentes, le blog est ignore (site statique seul)."
+  echo "[build] Variables Sanity absentes, le blog Sanity est ignore (site statique seul)."
+fi
+
+# Articles de blog ecrits en HTML (blog-static/<slug>/index.html) : publies sous /blog/<slug>/,
+# apres la fusion du blog Next.js pour ne pas etre ecrases ni imbriques dans out/blog.
+if [ -d blog-static ]; then
+  echo "[build] Ajout des articles de blog statiques..."
+  mkdir -p out/blog
+  cp -r blog-static/. out/blog/
 fi
 
 echo "[build] Termine. Publication depuis out/"

@@ -13,6 +13,7 @@
  *     pages noindex absentes.
  *  7. CGV : page /cgv en noindex tant qu'elle porte le marqueur "A COMPLETER",
  *     case CGV obligatoire dans les deux questionnaires de brief.
+ * 10. Articles de blog statiques : canonical, h1 unique, JSON-LD (BlogPosting, FAQPage), sitemap, liste du blog.
  *  9. Refonte des offres : termes retires du site (WooCommerce, Shopify, Zapier, creneau
  *     de rappel, "tarifs adaptes", "un projet a la fois"), navigation et pied de page
  *     (Automatisation IA, Agences), pages agences FR/EN, hreflang, ligne de sous-traitance.
@@ -27,7 +28,7 @@ import { spawnSync } from "child_process";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const config = JSON.parse(readFileSync(join(ROOT, "site.config.json"), "utf-8"));
-const SKIP = new Set(["node_modules", ".git", "out", "blog-app", "design_handoff_alcalspark_da", "netlify", ".claude"]);
+const SKIP = new Set(["node_modules", ".git", "out", "blog-app", "blog-static", "design_handoff_alcalspark_da", "netlify", ".claude", "captures-fix-visuel", "captures-hero"]);
 
 function walk(dir, ext, out = []) {
   for (const e of readdirSync(dir)) {
@@ -218,14 +219,14 @@ if (!existsSync(cgvFile)) {
 for (const p of ["brief-site-artisan-btp.html", "en/brief-site-artisan-btp.html"]) {
   const html = readFileSync(join(ROOT, p), "utf-8");
   if (!/<input[^>]*name="cgv_acceptees"[^>]*\brequired\b/.test(html)) fail("cgv", `${p}: case CGV obligatoire absente`);
-  const link = html.match(/<a [^>]*href="(?:\.\.\/)?cgv\.html"[^>]*>/);
+  const link = html.match(/<a [^>]*href="\/cgv"[^>]*>/);
   if (!link) fail("cgv", `${p}: lien vers cgv.html absent`);
   else if (!/target="_blank"/.test(link[0]) || !/rel="[^"]*noopener/.test(link[0])) fail("cgv", `${p}: le lien CGV doit s'ouvrir dans un nouvel onglet (target="_blank" rel="noopener")`);
 }
 // Lien CGV dans le pied de page de chaque page.
 for (const f of htmlFiles) {
   const html = readFileSync(f, "utf-8");
-  if (!/<li><a href="(?:\.\.\/)*cgv\.html">/.test(html)) fail("cgv", `${rel(f)}: lien CGV absent du pied de page`);
+  if (!/<li><a href="\/cgv">/.test(html)) fail("cgv", `${rel(f)}: lien CGV absent du pied de page`);
 }
 
 /* 8. Numeros decoratifs : toujours via le token --accent-num (contraste >= 3:1),
@@ -281,13 +282,13 @@ for (const f of publicHtml) {
 for (const f of publicHtml) {
   const html = readFileSync(f, "utf-8");
   const r = rel(f).replace(/\\/g, "/");
-  if (!/automatisation-n8n-castres\.html"[^>]*class="nav-link[^"]*">(?:Automatisation IA|AI Automation|AI automation)</.test(html)) fail("refonte", `${r}: lien 'Automatisation IA' absent du menu`);
+  if (!/automatisation-ia"[^>]*class="nav-link[^"]*">(?:Automatisation IA|AI Automation|AI automation)</.test(html)) fail("refonte", `${r}: lien 'Automatisation IA' absent du menu`);
   const navHtml = (html.match(/<nav id="navbar"[\s\S]*?<\/nav>/) || [""])[0] + (html.match(/<div class="nav-mobile"[\s\S]*?<\/div>/) || [""])[0];
   if (!/offre-site-artisan-btp/.test(r) && /offre-site-artisan-btp/.test(navHtml)) fail("refonte", `${r}: l'offre BTP ne doit pas figurer dans le menu`);
-  if (!/(?:agences|agencies)\.html">(?:Agences|Agencies)</.test(html)) fail("refonte", `${r}: lien Agences absent du pied de page`);
+  if (!/(?:agences|agencies)">(?:Agences|Agencies)</.test(html)) fail("refonte", `${r}: lien Agences absent du pied de page`);
   if (/class="nav-mobile-cta"[^>]*>[^<]*<\/a>/.test(html)) {
     const cta = html.match(/<a href="([^"]*)" class="nav-mobile-cta"/);
-    if (cta && !/(?:^|\/)contact\.html$/.test(cta[1])) fail("refonte", `${r}: le CTA du menu mobile doit pointer vers contact.html (trouve ${cta[1]})`);
+    if (cta && !/(?:^|\/)contact$/.test(cta[1])) fail("refonte", `${r}: le CTA du menu mobile doit pointer vers /contact (trouve ${cta[1]})`);
   }
 }
 
@@ -304,7 +305,7 @@ for (const [file, subject, other, url] of [
   if (!sitemap.includes(`<loc>${url}</loc>`)) fail("sitemap", `${url} absent de sitemap.xml`);
   if (!new RegExp(`<loc>${url.replace(/[.*+?^${}()|[\]\\\/]/g, "\\$&")}</loc>\\s*<xhtml:link rel="alternate" hreflang="fr"`).test(sitemap)) fail("sitemap", `${url}: annotations hreflang absentes du sitemap`);
 }
-if (!existsSync(join(ROOT, "en/services/automatisation-n8n-castres.html"))) fail("refonte", "en/services/automatisation-n8n-castres.html est absent");
+if (!existsSync(join(ROOT, "en/services/automatisation-ia.html"))) fail("refonte", "en/services/automatisation-ia.html est absent");
 
 // hreflang : une seule annotation par langue et par page.
 for (const f of htmlFiles) {
@@ -313,18 +314,29 @@ for (const f of htmlFiles) {
   if (dup) fail("refonte", `${rel(f)}: hreflang="${dup}" declare plusieurs fois`);
 }
 
-// Pages EN : les liens internes d'une page /en/ ne pointent pas vers la version francaise (sauf le selecteur de langue).
-for (const f of htmlFiles.filter((x) => rel(x).replace(/\\/g, "/").startsWith("en/"))) {
-  const html = readFileSync(f, "utf-8");
-  const dir = dirname(f);
-  for (const m of html.matchAll(/<a\s[^>]*href="([^"#?]+\.html)"[^>]*>/g)) {
-    if (/hreflang="fr"|lang="fr"/.test(m[0]) || /^(https?:|mailto:)/.test(m[1])) continue;
-    const target = resolve(dir, m[1]);
-    const r = relative(ROOT, target).replace(/\\/g, "/");
-    if (r.startsWith("en/") || r.startsWith("..")) continue;
-    const enTwin = join(ROOT, "en", r === "index.html" ? "index.html" : r);
-    if (existsSync(enTwin)) fail("refonte", `${rel(f)}: lien vers la version francaise "${m[1]}" alors que ${relative(ROOT, enTwin)} existe`);
+// Liens internes : URLs propres (pas de .html : Netlify redirige en 301) ; les pages /en/ pointent vers /en/.
+for (const f of htmlFiles) {
+  const html = readFileSync(f, "utf-8").replace(/<script\b[\s\S]*?<\/script>/g, "").replace(/<!--[\s\S]*?-->/g, "");
+  const r = rel(f).replace(/\\/g, "/");
+  for (const m of html.matchAll(/<a\s[^>]*href="([^"]+)"[^>]*>/g)) {
+    const h = m[1];
+    if (/^(https?:|mailto:|tel:|#)/.test(h) || h.includes("{{")) continue;
+    if (/\.html(#|$)/.test(h)) fail("liens", `${r}: lien interne avec .html ("${h}"), utiliser l'URL propre (301 Netlify sinon)`);
+    if (r.startsWith("en/") && h.startsWith("/") && !h.startsWith("/en/") && !/hreflang="fr"|lang="fr"/.test(m[0])) {
+      const path = h.split("#")[0].replace(/\/$/, "");
+      if (path && existsSync(join(ROOT, "en", `${path}.html`))) fail("liens", `${r}: lien vers la version francaise "${h}" alors que /en${path} existe`);
+    }
   }
+}
+// Redirections 301 de l'ancienne URL automatisation (nom local) vers /services/automatisation-ia.
+{
+  const toml = readFileSync(join(ROOT, "netlify.toml"), "utf-8");
+  for (const from of ["/services/automatisation-n8n-castres", "/en/services/automatisation-n8n-castres"]) {
+    const to = from.replace("automatisation-n8n-castres", "automatisation-ia");
+    const re = new RegExp(`from = "${from}"\\s*\\n\\s*to = "${to}"\\s*\\n\\s*status = 301`);
+    if (!re.test(toml)) fail("redirections", `netlify.toml : redirection 301 ${from} -> ${to} absente`);
+  }
+  for (const f of htmlFiles) if (/automatisation-n8n-castres/.test(readFileSync(f, "utf-8"))) fail("redirections", `${rel(f)}: reference a l'ancienne URL automatisation-n8n-castres`);
 }
 
 // Contact : ligne de sous-traitance visible, aucune heure de rappel.
@@ -337,8 +349,8 @@ for (const [file, needle] of [
 
 // Accueil et tarifs : sections et textes cles.
 for (const [file, needles] of [
-  ["index.html", ['id="offres"', 'href="services/automatisation-n8n-castres.html"', 'href="tarifs.html"', "Pour les entreprises", "agences.html"]],
-  ["en/index.html", ['id="offres"', 'href="services/automatisation-n8n-castres.html"', 'href="tarifs.html"', "For businesses", "agencies.html"]],
+  ["index.html", ['id="offres"', 'href="/services/automatisation-ia"', 'href="/tarifs"', "Pour les entreprises", "/agences"]],
+  ["en/index.html", ['id="offres"', 'href="/en/services/automatisation-ia"', 'href="/en/tarifs"', "For businesses", "/en/agencies"]],
 ]) {
   const html = readFileSync(join(ROOT, file), "utf-8");
   for (const n of needles) if (!html.includes(n)) fail("refonte", `${file}: element attendu absent (${n})`);
@@ -359,6 +371,31 @@ for (const f of ["index.html", "en/index.html", "tarifs.html", "en/tarifs.html"]
   const html = readFileSync(join(ROOT, f), "utf-8");
   if (!/"@type": "Offer"/.test(html) || !html.includes('"price": "{{PRIX_ESSENTIEL}}"')) fail("refonte", `${f}: makesOffer sans les Offers de la grille`);
   if (/"priceRange": "€€€"/.test(html)) fail("refonte", `${f}: priceRange generique a remplacer`);
+}
+
+/* 10. Articles de blog statiques (blog-static/<slug>/index.html) ------- */
+{
+  const dir = join(ROOT, "blog-static");
+  const listed = readFileSync(join(ROOT, "blog-app/lib/staticArticles.ts"), "utf-8");
+  for (const slug of existsSync(dir) ? readdirSync(dir) : []) {
+    const f = join(dir, slug, "index.html");
+    if (!existsSync(f)) { fail("blog", `blog-static/${slug}/index.html est absent`); continue; }
+    const html = readFileSync(f, "utf-8");
+    const url = `https://alcalspark.com/blog/${slug}/`;
+    if (!listed.includes(`current: "${slug}"`)) fail("blog", `${slug} absent de blog-app/lib/staticArticles.ts (liste du blog et sitemap du blog)`);
+    if (!sitemap.includes(`<loc>${url}</loc>`)) fail("blog", `${url} absent de sitemap.xml (npm run fix-sitemap)`);
+    if (!html.includes(`<link rel="canonical" href="${url}" />`)) fail("blog", `${slug}: canonical attendu ${url}`);
+    if ((html.match(/<h1[\s>]/g) || []).length !== 1) fail("blog", `${slug}: un seul h1 attendu`);
+    if (!/"@type":\s*"BlogPosting"/.test(html) || !/"@type":\s*"FAQPage"/.test(html)) fail("blog", `${slug}: JSON-LD BlogPosting et FAQPage attendus`);
+    for (const m of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
+      try { JSON.parse(m[1]); } catch (e) { fail("blog", `${slug}: JSON-LD invalide (${e.message})`); }
+    }
+    if (/aggregateRating|"review"/i.test(html)) fail("blog", `${slug}: avis ou note interdits`);
+    if (!html.includes("mailto:contact@alcalspark.com?subject=Collaboration%20%2F%20sous-traitance") && /sous-traiter/.test(slug)) fail("blog", `${slug}: lien mailto de collaboration absent`);
+    const visible = html.replace(/<script\b[\s\S]*?<\/script>/g, "");
+    if (/[—–]/.test(visible)) fail("blog", `${slug}: tiret cadratin ou demi-cadratin dans le texte`);
+    for (const m of visible.matchAll(/<img\b[^>]*>/g)) if (!/\salt=/.test(m[0])) fail("blog", `${slug}: image sans alt`);
+  }
 }
 
 /* Bilan -------------------------------------------------------------- */

@@ -9,11 +9,14 @@
  * blog-app/src/app/blog/sitemap.ts, deja reference dans robots.txt : ce
  * script ne le concerne pas.
  *
+ * Les annotations hreflang (fr / en / x-default) sont regenerees a chaque --write pour toute page
+ * qui a une page jumelle FR/EN (agences <-> en/agencies, sinon meme nom sous en/).
+ *
  * Usage : node scripts/generate-sitemap.mjs [--write]
  * Sans --write, le script affiche seulement les ecarts detectes (dry-run).
  */
 
-import { readFileSync, writeFileSync, readdirSync } from "fs";
+import { readFileSync, writeFileSync, readdirSync, existsSync } from "fs";
 import { resolve, dirname, join } from "path";
 import { fileURLToPath } from "url";
 
@@ -74,13 +77,45 @@ function collectRealUrls() {
     }
   }
 
+  // Articles de blog statiques : blog-static/<slug>/index.html -> /blog/<slug>/
+  const staticDir = join(ROOT, "blog-static");
+  if (existsSync(staticDir)) {
+    for (const slug of readdirSync(staticDir)) {
+      const f = join(staticDir, slug, "index.html");
+      if (existsSync(f) && !isNoindex(f)) urls.set(`${BASE_URL}/blog/${slug}/`, { priority: "0.6" });
+    }
+  }
+
   return urls;
+}
+
+function fileOfLoc(loc) {
+  const p = loc.slice(BASE_URL.length + 1);
+  if (p === "") return "index.html";
+  if (p === "en/") return "en/index.html";
+  return `${p}.html`;
+}
+function locOfFile(f) {
+  const slug = f.replace(/\.html$/, "");
+  return slug === "index" ? `${BASE_URL}/` : slug === "en/index" ? `${BASE_URL}/en/` : `${BASE_URL}/${slug}`;
+}
+function alternatesFor(loc) {
+  const f = fileOfLoc(loc);
+  const isEn = f.startsWith("en/");
+  let fr, en;
+  if (f === "agences.html" || f === "en/agencies.html") { fr = "agences.html"; en = "en/agencies.html"; }
+  else if (isEn) { fr = f.slice(3); en = f; }
+  else { fr = f; en = `en/${f}`; }
+  if (!existsSync(join(ROOT, fr)) || !existsSync(join(ROOT, en))) return "";
+  return [["fr", fr], ["en", en], ["x-default", fr]]
+    .map(([h, x]) => `\n    <xhtml:link rel="alternate" hreflang="${h}" href="${locOfFile(x)}" />`)
+    .join("");
 }
 
 function parseExistingSitemap() {
   const xml = readFileSync(SITEMAP_PATH, "utf-8");
   const entries = new Map();
-  const blockRe = /<url>\s*<loc>([^<]+)<\/loc>\s*<lastmod>([^<]*)<\/lastmod>\s*<changefreq>([^<]*)<\/changefreq>\s*<priority>([^<]*)<\/priority>\s*<\/url>/g;
+  const blockRe = /<url>\s*<loc>([^<]+)<\/loc>(?:\s*<xhtml:link[^>]*\/>)*\s*<lastmod>([^<]*)<\/lastmod>\s*<changefreq>([^<]*)<\/changefreq>\s*<priority>([^<]*)<\/priority>\s*<\/url>/g;
   let m;
   while ((m = blockRe.exec(xml))) {
     entries.set(m[1], { lastmod: m[2], changefreq: m[3], priority: m[4] });
@@ -98,7 +133,7 @@ function main() {
   const missing = [...realUrls.keys()].filter((loc) => !existing.has(loc));
   const stale = [...existing.keys()].filter((loc) => !realUrls.has(loc));
 
-  if (missing.length === 0 && stale.length === 0) {
+  if (missing.length === 0 && stale.length === 0 && !write) {
     console.log("[sitemap] A jour : aucune page reelle manquante, aucune URL obsolete.");
     return;
   }
@@ -117,11 +152,6 @@ function main() {
     return;
   }
 
-  if (missing.length === 0) {
-    console.log("\n[sitemap] Rien a ecrire (aucune URL manquante).");
-    return;
-  }
-
   for (const loc of missing) {
     existing.set(loc, {
       lastmod: today,
@@ -133,7 +163,7 @@ function main() {
   const body = [...existing.entries()]
     .map(
       ([loc, { lastmod, changefreq, priority }]) => `  <url>
-    <loc>${loc}</loc>
+    <loc>${loc}</loc>${alternatesFor(loc)}
     <lastmod>${lastmod}</lastmod>
     <changefreq>${changefreq}</changefreq>
     <priority>${priority}</priority>
@@ -141,7 +171,7 @@ function main() {
     )
     .join("\n\n");
 
-  const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n\n${body}\n\n</urlset>\n`;
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n\n${body}\n\n</urlset>\n`;
   writeFileSync(SITEMAP_PATH, xml, "utf-8");
   console.log(`\n[sitemap] ${missing.length} URL(s) ajoutee(s) a sitemap.xml.`);
 }
